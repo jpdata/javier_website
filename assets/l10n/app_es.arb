@@ -1,0 +1,12 @@
+
+{
+    "@@locale": "es",
+    "title":"Website personal de Javi",
+    "home": "Inicio",
+    "contact_me": "Contáctame",
+    "contact_me_body": "Si quieres contactarme, simplemente envíame un correo electrónico a jpdata@gmail.com",
+    "contact_me_with_email": "Contáctame por correo electrónico",
+    "about_me": "Sobre mí",
+
+    "drawer_header": "Como contactarme ..."
+}

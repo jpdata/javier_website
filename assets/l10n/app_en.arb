@@ -1,0 +1,12 @@
+
+{
+    "@@locale": "en",
+    "title":"Javi''s Personal Website",
+    "home": "Home",
+    "contact_me": "Contact Me",
+    "contact_me_body": "If you want to contact me, just email me back at jpdata@gmail.com",
+    "contact_me_with_email": "Contact Me with Email",
+    "about_me": "About Me",
+
+    "drawer_header": "How to reach Javi ..."
+}
