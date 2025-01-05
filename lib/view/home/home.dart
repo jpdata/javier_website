@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:javier_website/view/home/widgets/background_widget.dart';
+import 'package:flutter_svg_provider/flutter_svg_provider.dart';
+import 'package:javier_website/view/Themes/app_theme.dart';
 import 'package:javier_website/view/widgets/main_drawer.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key, required this.title});
@@ -23,67 +23,60 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    return _scaffoldItem();
+    return _scaffoldThenBackground();
   }
 
-  // Widget _backgroundColumnItem(String itemPartName) {
-  //   return Container(
-  //     decoration: BoxDecoration(
-  //       image: DecorationImage(
-  //         image: SvgPicture.asset('assets/images/$itemPartName.svg'),
-  //         fit: BoxFit.cover,
-  //       ),
-  //     ),
-  //     child: _scaffoldItem(),
-  //   );
-  // }
-
-  Widget _stackedItems() {
-    return Stack(
-      children: [
-        Container(
-          decoration: const BoxDecoration(color: Colors.blue),
+  Widget _backgroundThenScaffold() {
+    return Container(
+      decoration: BoxDecoration(
+        color: AppTheme.lightTheme.colorScheme.primary,
+        image: DecorationImage(
+          image: const Svg('assets/images/bg-tile-part-c.svg'),
+          repeat: ImageRepeat.repeat,
+          colorFilter: ColorFilter.mode(
+              Colors.black.withOpacity(0.5), BlendMode.dstATop),
         ),
-        Positioned.fill(
-          child: Row(
-            children: [
-              Expanded(
-                child: SvgPicture.asset(
-                  'assets/images/bg-lp.svg',
-                  fit: BoxFit.cover,
-                ),
-              ),
-              Expanded(
-                child: SvgPicture.asset(
-                  'assets/images/bg-mp.svg',
-                  fit: BoxFit.cover,
-                ),
-              ),
-              Expanded(
-                child: SvgPicture.asset(
-                  'assets/images/bg-rp.svg',
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ],
-          ),
-        ),
-        //_scaffoldItem(),
-      ],
+      ),
+      child: _scaffoldItem(child: _scaffoldBody()),
     );
   }
 
-  Scaffold _scaffoldItem() {
+  Widget _scaffoldThenBackground() {
+    return _scaffoldItem(
+        child: Container(
+      decoration: BoxDecoration(
+        color: AppTheme.lightTheme.colorScheme.primary,
+        image: DecorationImage(
+          image: const Image(
+            image: Svg('assets/images/bg-tile-part-c.svg'),
+            width: 25,
+            height: 25,
+          ).image,
+          repeat: ImageRepeat.repeat,
+          scale: 1.5,
+          colorFilter: ColorFilter.mode(
+              Colors.black.withOpacity(0.15), BlendMode.dstATop),
+        ),
+      ),
+      child: _scaffoldBody(),
+    ));
+  }
+
+  Scaffold _scaffoldItem({required Widget? child}) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: Image.asset(
-          'assets/images/logo-2.png',
-          width: 180,
-        ),
+        title: Image(
+            image: const Svg('assets/images/logo-azul-c.svg'),
+            width: screenWidth * .10,
+            height: screenHeight * .10,
+            fit: BoxFit.fill),
       ),
+      backgroundColor: Colors.transparent,
       drawer: const MainDrawer(),
-      body: const BackgroundWidget(child: Text('Hello')),
+      body: child,
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',
@@ -96,6 +89,7 @@ class _HomeState extends State<Home> {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           const Text(
             'You have pushed the button this many times:',
