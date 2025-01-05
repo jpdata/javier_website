@@ -1,5 +1,7 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
+import 'package:javier_website/core/l10n/app_locale.dart';
 import 'package:javier_website/view/Themes/app_theme.dart';
 import 'package:javier_website/view/widgets/main_drawer.dart';
 
@@ -24,21 +26,6 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return _scaffoldThenBackground();
-  }
-
-  Widget _backgroundThenScaffold() {
-    return Container(
-      decoration: BoxDecoration(
-        color: AppTheme.lightTheme.colorScheme.primary,
-        image: DecorationImage(
-          image: const Svg('assets/images/bg-tile-part-c.svg'),
-          repeat: ImageRepeat.repeat,
-          colorFilter: ColorFilter.mode(
-              Colors.black.withOpacity(0.5), BlendMode.dstATop),
-        ),
-      ),
-      child: _scaffoldItem(child: _scaffoldBody()),
-    );
   }
 
   Widget _scaffoldThenBackground() {
@@ -85,15 +72,13 @@ class _HomeState extends State<Home> {
     );
   }
 
-  Center _scaffoldBody() {
+  Widget _scaffoldBody() {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          const Text(
-            'You have pushed the button this many times:',
-          ),
+          cogitoErgoSum(),
           Text(
             '$_counter',
             style: Theme.of(context).textTheme.headlineMedium,
@@ -102,4 +87,25 @@ class _HomeState extends State<Home> {
       ),
     );
   }
+
+  Widget cogitoErgoSum() => SizedBox(
+        width: MediaQuery.of(context).size.width * .5,
+        child: DefaultTextStyle(
+          style: const TextStyle(
+            fontSize: 30.0,
+            fontFamily: 'GalaxyBt',
+          ),
+          child: AnimatedTextKit(
+            totalRepeatCount: 1,
+            isRepeatingAnimation: false,
+            animatedTexts: [
+              TypewriterAnimatedText(localizations.cogito_ergo_sum,
+                  speed: const Duration(milliseconds: 200)),
+            ],
+            onTap: () {
+              print("Tap Event");
+            },
+          ),
+        ),
+      );
 }

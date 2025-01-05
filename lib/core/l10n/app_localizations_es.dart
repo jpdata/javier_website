@@ -24,4 +24,10 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get drawer_header => 'Como contactarme ...';
+
+  @override
+  String get cogito_ergo_sum => 'Programo, luego existo';
+
+  @override
+  String get doing_cool_stuf_with_porgramming_languages => 'Haciendo cosas chulas con lenguajes de programación';
 }

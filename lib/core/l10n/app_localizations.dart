@@ -134,6 +134,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'How to reach Javi ...'**
   String get drawer_header;
+
+  /// No description provided for @cogito_ergo_sum.
+  ///
+  /// In en, this message translates to:
+  /// **'I program, therefore I am'**
+  String get cogito_ergo_sum;
+
+  /// No description provided for @doing_cool_stuf_with_porgramming_languages.
+  ///
+  /// In en, this message translates to:
+  /// **'Doing cool stuff with programming languages'**
+  String get doing_cool_stuf_with_porgramming_languages;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
