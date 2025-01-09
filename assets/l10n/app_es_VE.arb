@@ -1,0 +1,20 @@
+
+{
+    "@@locale": "es_VE",
+    "title":"Website personal de Javi",
+    "home": "Inicio",
+    "contact_me": "Contáctame",
+    "contact_me_body": "Si quieres contactarme, simplemente envíame un email a jpdata@gmail.com",
+    "contact_me_by_email": "Contáctame por email",
+    "about_me": "Acerca de mí",
+    "more_options": "Más opciones",
+
+    "drawer_header": "Como contactarme ...",
+    "cogito_ergo_sum": "Programo, luego existo",
+    "doing_cool_stuf_with_porgramming_languages": "Haciendo cosas finas con lenguajes de programación",
+    "spanish_spain": "Español (España)",
+    "spanish_venezuela": "Español (Venezuela)",
+    "catalan": "Catalán",
+    "english": "Inglés"
+
+}

@@ -5,8 +5,11 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
+import 'app_localizations_ca.dart';
 import 'app_localizations_en.dart';
 import 'app_localizations_es.dart';
+
+// ignore_for_file: type=lint
 
 /// Callers can lookup localized strings with an instance of AppLocalizations
 /// returned by `AppLocalizations.of(context)`.
@@ -89,8 +92,10 @@ abstract class AppLocalizations {
 
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
+    Locale('ca'),
     Locale('en'),
-    Locale('es')
+    Locale('es'),
+    Locale('es', 'VE')
   ];
 
   /// No description provided for @title.
@@ -117,17 +122,23 @@ abstract class AppLocalizations {
   /// **'If you want to contact me, just email me back at jpdata@gmail.com'**
   String get contact_me_body;
 
-  /// No description provided for @contact_me_with_email.
+  /// No description provided for @contact_me_by_email.
   ///
   /// In en, this message translates to:
-  /// **'Contact Me with Email'**
-  String get contact_me_with_email;
+  /// **'Contact me by Email'**
+  String get contact_me_by_email;
 
   /// No description provided for @about_me.
   ///
   /// In en, this message translates to:
   /// **'About Me'**
   String get about_me;
+
+  /// No description provided for @more_options.
+  ///
+  /// In en, this message translates to:
+  /// **'More Options'**
+  String get more_options;
 
   /// No description provided for @drawer_header.
   ///
@@ -146,6 +157,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Doing cool stuff with programming languages'**
   String get doing_cool_stuf_with_porgramming_languages;
+
+  /// No description provided for @spanish_spain.
+  ///
+  /// In en, this message translates to:
+  /// **'Spanish (Spain)'**
+  String get spanish_spain;
+
+  /// No description provided for @spanish_venezuela.
+  ///
+  /// In en, this message translates to:
+  /// **'Spanish (Venezuela)'**
+  String get spanish_venezuela;
+
+  /// No description provided for @catalan.
+  ///
+  /// In en, this message translates to:
+  /// **'Catalan'**
+  String get catalan;
+
+  /// No description provided for @english.
+  ///
+  /// In en, this message translates to:
+  /// **'English'**
+  String get english;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
@@ -157,7 +192,7 @@ class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> 
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['en', 'es'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>['ca', 'en', 'es'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
@@ -165,9 +200,19 @@ class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> 
 
 AppLocalizations lookupAppLocalizations(Locale locale) {
 
+  // Lookup logic when language+country codes are specified.
+  switch (locale.languageCode) {
+    case 'es': {
+  switch (locale.countryCode) {
+    case 'VE': return AppLocalizationsEsVe();
+   }
+  break;
+   }
+  }
 
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
+    case 'ca': return AppLocalizationsCa();
     case 'en': return AppLocalizationsEn();
     case 'es': return AppLocalizationsEs();
   }

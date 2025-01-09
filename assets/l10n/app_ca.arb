@@ -1,0 +1,17 @@
+{
+    "@@locale": "ca",
+    "title": "La Pàgina Personal d''en Javi",
+    "home": "Inici",
+    "contact_me": "Contacta''m",
+    "contact_me_body": "Si vols contactar amb mi, només envia''m un correu a jpdata@gmail.com",
+    "contact_me_by_email": "Contacta''m per Correu Electrònic",
+    "about_me": "Sobre mi",
+    "more_options": "Més Opcions",
+    "drawer_header": "Com contactar amb en Javi ...",
+    "cogito_ergo_sum": "Programo, per tant existeixo",
+    "doing_cool_stuf_with_porgramming_languages": "Fent coses genials amb llenguatges de programació",
+    "spanish_spain": "Espanyol (Espanya)",
+    "spanish_venezuela": "Espanyol (Veneçuela)",
+    "catalan": "Català",
+    "english": "Anglès"
+}

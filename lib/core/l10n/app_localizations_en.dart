@@ -1,5 +1,7 @@
 import 'app_localizations.dart';
 
+// ignore_for_file: type=lint
+
 /// The translations for English (`en`).
 class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
@@ -17,10 +19,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get contact_me_body => 'If you want to contact me, just email me back at jpdata@gmail.com';
 
   @override
-  String get contact_me_with_email => 'Contact Me with Email';
+  String get contact_me_by_email => 'Contact me by Email';
 
   @override
   String get about_me => 'About Me';
+
+  @override
+  String get more_options => 'More Options';
 
   @override
   String get drawer_header => 'How to reach Javi ...';
@@ -30,4 +35,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get doing_cool_stuf_with_porgramming_languages => 'Doing cool stuff with programming languages';
+
+  @override
+  String get spanish_spain => 'Spanish (Spain)';
+
+  @override
+  String get spanish_venezuela => 'Spanish (Venezuela)';
+
+  @override
+  String get catalan => 'Catalan';
+
+  @override
+  String get english => 'English';
 }
