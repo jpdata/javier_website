@@ -27,7 +27,7 @@ class _HomeState extends State<Home> {
   }
 
   Widget _scaffoldThenBackground() {
-    return _scaffoldItem(
+    return _scaffold(
         child: Container(
       decoration: BoxDecoration(
         color: AppTheme.lightTheme.colorScheme.primary,
@@ -45,7 +45,7 @@ class _HomeState extends State<Home> {
     ));
   }
 
-  Scaffold _scaffoldItem({required Widget? child}) {
+  Scaffold _scaffold({required Widget? child}) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
@@ -103,6 +103,27 @@ class _HomeState extends State<Home> {
             ),
           ),
           const Spacer(),
+          const Padding(
+            padding: EdgeInsets.all(32.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Spacer(),
+                Image(
+                  image: Svg("assets/images/portfolio.svg"),
+                  width: 50,
+                  height: 50,
+                ),
+                SizedBox(width: 20),
+                Image(
+                  image: Svg("assets/images/hiberus-logo.svg"),
+                  width: 50,
+                  height: 50,
+                ),
+                Spacer()
+              ],
+            ),
+          )
         ],
       ),
     );

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240" id="suitcase">
+  <g fill="none" fill-rule="evenodd">
+    <path d="M0 0h240v240H0z"></path>
+    <path fill="#E8F7FF" d="M200 80v50h-65v-6a8 8 0 0 0-7.75-7.996L127 116h-14a8 8 0 0 0-8 8v6H40V80h160Z"></path>
+    <rect width="170" height="120" x="35" y="75" stroke="#46AAF7" stroke-width="10" rx="15"></rect>
+    <path stroke="#46AAF7" stroke-linecap="square" stroke-width="10" d="M137 135h65"></path>
+    <rect width="20" height="29" x="110" y="121" stroke="#46AAF7" stroke-width="10" rx="8"></rect>
+    <path stroke="#46AAF7" stroke-linecap="square" stroke-width="10" d="M40 135h65"></path>
+    <rect width="70" height="20" x="85" y="55" stroke="#46AAF7" stroke-width="10" rx="8"></rect>
+  </g>
+</svg>
