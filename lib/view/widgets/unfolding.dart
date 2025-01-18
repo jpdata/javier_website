@@ -3,15 +3,30 @@ import 'package:flutter/material.dart';
 class Unfolding extends StatefulWidget {
   final Widget child;
   final Duration duration;
+  final bool unfold;
 
-  /// Constructor del widget desenrollable.
-  /// [child] es el widget que será animado.
-  /// [duration] es el tiempo que tarda en desenrollarse.
-  const Unfolding({
+  /// Constructor privado del widget desenrollable.
+  const Unfolding._({
+    required this.unfold,
     required this.child,
     this.duration = const Duration(milliseconds: 500),
-    super.key,
   });
+
+  /// Factory constructor para desenrollar.
+  factory Unfolding.unfold({
+    required Widget child,
+    Duration duration = const Duration(milliseconds: 500),
+  }) {
+    return Unfolding._(duration: duration, unfold: true, child: child);
+  }
+
+  /// Factory constructor para enrollar.
+  factory Unfolding.fold({
+    required Widget child,
+    Duration duration = const Duration(milliseconds: 500),
+  }) {
+    return Unfolding._(duration: duration, unfold: false, child: child);
+  }
 
   @override
   State<Unfolding> createState() => _UnfoldingState();
@@ -34,8 +49,25 @@ class _UnfoldingState extends State<Unfolding>
       curve: Curves.easeInOut,
     );
 
-    // Inicia la animación al crear el widget.
-    _controller.forward();
+    // Configura la dirección inicial de la animación.
+    if (widget.unfold) {
+      _controller.value = 1.0; // Estado desenrollado
+    } else {
+      _controller.value = 0.0; // Estado enrollado
+    }
+  }
+
+  @override
+  void didUpdateWidget(Unfolding oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    // Verifica si la propiedad `unfold` ha cambiado y ajusta la animación.
+    if (oldWidget.unfold != widget.unfold) {
+      if (widget.unfold) {
+        _controller.forward(); // Desenrollar
+      } else {
+        _controller.reverse(); // Enrollar
+      }
+    }
   }
 
   @override
@@ -43,12 +75,6 @@ class _UnfoldingState extends State<Unfolding>
     _controller.dispose();
     super.dispose();
   }
-
-  /// Método para iniciar la animación manualmente.
-  void unfold() => _controller.forward();
-
-  /// Método para revertir la animación.
-  void fold() => _controller.reverse();
 
   @override
   Widget build(BuildContext context) {

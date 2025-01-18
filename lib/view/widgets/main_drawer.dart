@@ -4,8 +4,8 @@ import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 import 'package:go_router/go_router.dart';
 import 'package:javier_website/core/l10n/app_locale.dart';
 import 'package:javier_website/core/providers/notifiers/locale_notifier.dart';
+import 'package:javier_website/core/utilities.dart';
 import 'package:provider/provider.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class MainDrawer extends StatefulWidget {
   const MainDrawer({super.key});
@@ -35,32 +35,6 @@ class _MainDrawerState extends State<MainDrawer> {
   Future<void> didChangeDependencies() async {
     super.didChangeDependencies();
     await precacheImage(_backgroundImage, context);
-  }
-
-  Future<void> _launchMailto() async {
-    var subject = localizations.contact_me;
-    var body = localizations.contact_me_body;
-    final Uri params = Uri(
-      scheme: 'mailto',
-      path: "jpdata@gmail.com",
-      query: 'subject=$subject&body=$body',
-    );
-
-    final url = params.toString();
-    final uri = Uri.tryParse(url) ?? Uri();
-    if (await canLaunchUrl(uri)) {
-      await launchUrl(uri);
-    } else {
-      //throw 'Could not launch $url';
-      //add snakcbar with message
-      Navigator.of(context).pop();
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Could not launch $url',
-              style: const TextStyle(color: Colors.white)),
-        ),
-      );
-    }
   }
 
   @override
@@ -107,16 +81,16 @@ class _MainDrawerState extends State<MainDrawer> {
                             title: Text(localizations.contact_me_by_email,
                                 style: const TextStyle(color: Colors.white)),
                             onTap: () {
-                              _launchMailto();
+                              Utilities.launchMailto(context);
                             },
                           ),
-                          ListTile(
-                            title: const Text('Item 2',
-                                style: TextStyle(color: Colors.white)),
-                            onTap: () {
-                              context.push('/item2');
-                            },
-                          ),
+                          // ListTile(
+                          //   title: const Text('Item 2',
+                          //       style: TextStyle(color: Colors.white)),
+                          //   onTap: () {
+                          //     context.push('/item2');
+                          //   },
+                          // ),
                         ],
                       ),
                     ),

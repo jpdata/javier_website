@@ -12,13 +12,32 @@ class IndexedContent extends StatefulWidget {
 }
 
 class _IndexedContentState extends State<IndexedContent> {
+  int _lastIndex = 0;
+
   @override
   Widget build(BuildContext context) {
-    return switch (widget.index) {
-      0 => Container(),
-      1 => PortfolioContent(),
-      2 => CreditsContent(),
-      _ => Container()
-    };
+    Widget result;
+    switch (widget.index) {
+      case 1:
+        result = Column(
+          children: [
+            if (_lastIndex == 2)
+              CreditsContent(key: Key(_lastIndex.toString()), unfold: false),
+            PortfolioContent(key: Key(widget.index.toString())),
+          ],
+        );
+      case 2:
+        result = Column(
+          children: [
+            if (_lastIndex == 1)
+              PortfolioContent(key: Key(_lastIndex.toString()), unfold: false),
+            CreditsContent(key: Key(widget.index.toString())),
+          ],
+        );
+      default:
+        result = Container();
+    }
+    _lastIndex = widget.index;
+    return result;
   }
 }

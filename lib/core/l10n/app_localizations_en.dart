@@ -80,4 +80,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get design_colors_and_images => 'Design, colors and images';
+
+  @override
+  String get portfolio => 'Portfolio';
 }

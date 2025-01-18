@@ -1,7 +1,7 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
-import 'package:javier_website/core/utils.dart';
+import 'package:javier_website/core/utilities.dart';
 import 'package:javier_website/core/l10n/app_locale.dart';
 import 'package:javier_website/core/providers/notifiers/locale_notifier.dart';
 import 'package:javier_website/view/Themes/app_theme.dart';
@@ -153,7 +153,21 @@ class _HomeState extends State<Home> {
                         },
                       ),
                     ),
-                    const SizedBox(width: 20), // Replace Flexible with SizedBox
+                    const SizedBox(width: 20),
+                    MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: GestureDetector(
+                        onTap: () {
+                          Utilities.launchMailto(context);
+                        },
+                        child: const Image(
+                          image: Svg("assets/images/email.svg"),
+                          width: 50,
+                          height: 50,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 20),
                   ],
                 ),
               )
@@ -172,7 +186,7 @@ class _HomeState extends State<Home> {
       //height: MediaQuery.of(context).size.height * .3,
       child: DefaultTextStyle(
         style: TextStyle(
-          fontSize: 60.0 * Utils.screenHzRelation(context),
+          fontSize: 60.0 * Utilities.screenHzRelation(context),
           fontFamily: 'GalaxyBt',
           color: Colors.white,
         ),

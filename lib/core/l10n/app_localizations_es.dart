@@ -80,6 +80,9 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get design_colors_and_images => 'Diseño, colores e imágenes';
+
+  @override
+  String get portfolio => 'Portafolio';
 }
 
 /// The translations for Spanish Castilian, as used in Venezuela (`es_VE`).
@@ -160,4 +163,7 @@ class AppLocalizationsEsVe extends AppLocalizationsEs {
 
   @override
   String get design_colors_and_images => 'Diseño, colores e imágenes';
+
+  @override
+  String get portfolio => 'Portafolio';
 }
