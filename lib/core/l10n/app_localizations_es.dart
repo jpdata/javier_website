@@ -47,6 +47,39 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get english => 'Inglés';
+
+  @override
+  String get my_website => 'Mi sitio web';
+
+  @override
+  String get my_website_description => 'Ejemplo de sitio web y aplicación móvil hecha con Flutter';
+
+  @override
+  String get svg_style_cleaner => 'Limpiador de estilos SVG';
+
+  @override
+  String get svg_style_cleaner_description => 'Limpia archivos SVG eliminando estilos innecesarios';
+
+  @override
+  String get api_open_builder => 'ApiOpenBuilder';
+
+  @override
+  String get api_open_builder_description => 'Genera código cliente API de Dart a partir de la especificación OpenAPI 3.0';
+
+  @override
+  String get some_of_my_projects => 'Algunos de mis proyectos';
+
+  @override
+  String get credits_i_must_give => 'Créditos que debo dar';
+
+  @override
+  String get my_collaborations => 'Colaboraciones';
+
+  @override
+  String get collaborators => 'Colaboradores';
+
+  @override
+  String get design_colors_and_images => 'Diseño, colores e imágenes';
 }
 
 /// The translations for Spanish Castilian, as used in Venezuela (`es_VE`).
@@ -94,4 +127,37 @@ class AppLocalizationsEsVe extends AppLocalizationsEs {
 
   @override
   String get english => 'Inglés';
+
+  @override
+  String get my_website => 'Mi website';
+
+  @override
+  String get my_website_description => 'Ejemplo de website y aplicación móvil hecha con Flutter';
+
+  @override
+  String get svg_style_cleaner => 'Limpiador de estilos SVG';
+
+  @override
+  String get svg_style_cleaner_description => 'Limpia archivos SVG eliminando estilos innecesarios';
+
+  @override
+  String get api_open_builder => 'ApiOpenBuilder';
+
+  @override
+  String get api_open_builder_description => 'Genera código cliente API de Dart a partir de la especificación OpenAPI 3.0';
+
+  @override
+  String get some_of_my_projects => 'Algunos de mis proyectos';
+
+  @override
+  String get credits_i_must_give => 'Créditos que debo dar';
+
+  @override
+  String get my_collaborations => 'Colaboraciones';
+
+  @override
+  String get collaborators => 'Colaboradores';
+
+  @override
+  String get design_colors_and_images => 'Diseño, colores e imágenes';
 }

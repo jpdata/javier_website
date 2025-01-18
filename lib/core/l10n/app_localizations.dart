@@ -181,6 +181,72 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'English'**
   String get english;
+
+  /// No description provided for @my_website.
+  ///
+  /// In en, this message translates to:
+  /// **'My Website'**
+  String get my_website;
+
+  /// No description provided for @my_website_description.
+  ///
+  /// In en, this message translates to:
+  /// **'sample website and mobile app made with Flutter'**
+  String get my_website_description;
+
+  /// No description provided for @svg_style_cleaner.
+  ///
+  /// In en, this message translates to:
+  /// **'Svg Style Cleaner'**
+  String get svg_style_cleaner;
+
+  /// No description provided for @svg_style_cleaner_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Clean up SVG files by removing unnecessary styles'**
+  String get svg_style_cleaner_description;
+
+  /// No description provided for @api_open_builder.
+  ///
+  /// In en, this message translates to:
+  /// **'ApiOpenBuilder'**
+  String get api_open_builder;
+
+  /// No description provided for @api_open_builder_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Generate Dart API client code from OpenAPI 3.0 spec'**
+  String get api_open_builder_description;
+
+  /// No description provided for @some_of_my_projects.
+  ///
+  /// In en, this message translates to:
+  /// **'Some of my projects'**
+  String get some_of_my_projects;
+
+  /// No description provided for @credits_i_must_give.
+  ///
+  /// In en, this message translates to:
+  /// **'Credits I must give'**
+  String get credits_i_must_give;
+
+  /// No description provided for @my_collaborations.
+  ///
+  /// In en, this message translates to:
+  /// **'Collaborations'**
+  String get my_collaborations;
+
+  /// No description provided for @collaborators.
+  ///
+  /// In en, this message translates to:
+  /// **'Collaborators'**
+  String get collaborators;
+
+  /// No description provided for @design_colors_and_images.
+  ///
+  /// In en, this message translates to:
+  /// **'Design, colors and images'**
+  String get design_colors_and_images;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

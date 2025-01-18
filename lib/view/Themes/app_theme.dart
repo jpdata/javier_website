@@ -7,11 +7,11 @@ class AppTheme {
   static const Color _errorColor = Colors.red;
 
   static const appBarTheme = AppBarTheme(
-      backgroundColor: _primaryColor,
-      foregroundColor: Colors.white,
-      centerTitle: false,
-      elevation: 0, 
-    );
+    backgroundColor: _primaryColor,
+    foregroundColor: Colors.white,
+    centerTitle: false,
+    elevation: 0,
+  );
 
   // Tema claro
   static final ThemeData lightTheme = ThemeData(
@@ -24,21 +24,21 @@ class AppTheme {
     scaffoldBackgroundColor: _primaryColor, // Fondo del Scaffold
     appBarTheme: appBarTheme.copyWith(backgroundColor: _primaryColor),
     textTheme: const TextTheme(
-      bodyLarge: TextStyle(color: Colors.white),
-      bodyMedium: TextStyle(color: Colors.white),
-      bodySmall: TextStyle(color: Colors.white),
-      displayLarge: TextStyle(color: Colors.white),
-      displayMedium: TextStyle(color: Colors.white),
-      displaySmall: TextStyle(color: Colors.white),
-      headlineLarge: TextStyle(color: Colors.white),
-      headlineMedium: TextStyle(color: Colors.white),
-      headlineSmall: TextStyle(color: Colors.white),
-      labelLarge: TextStyle(color: Colors.white),
-      labelMedium: TextStyle(color: Colors.white),
-      labelSmall: TextStyle(color: Colors.white),
-      titleLarge: TextStyle(color: Colors.white),
-      titleMedium: TextStyle(color: Colors.white),
-      titleSmall: TextStyle(color: Colors.white),
+      bodyLarge: TextStyle(color: Colors.white, fontFamily: 'GalaxyBt'),
+      bodyMedium: TextStyle(color: Colors.white, fontFamily: 'GalaxyBt'),
+      bodySmall: TextStyle(color: Colors.white, fontFamily: 'GalaxyBt'),
+      displayLarge: TextStyle(color: Colors.white, fontFamily: 'GalaxyBt'),
+      displayMedium: TextStyle(color: Colors.white, fontFamily: 'GalaxyBt'),
+      displaySmall: TextStyle(color: Colors.white, fontFamily: 'GalaxyBt'),
+      headlineLarge: TextStyle(color: Colors.white, fontFamily: 'GalaxyBt'),
+      headlineMedium: TextStyle(color: Colors.white, fontFamily: 'GalaxyBt'),
+      headlineSmall: TextStyle(color: Colors.white, fontFamily: 'GalaxyBt'),
+      labelLarge: TextStyle(color: Colors.white, fontFamily: 'GalaxyBt'),
+      labelMedium: TextStyle(color: Colors.white, fontFamily: 'GalaxyBt'),
+      labelSmall: TextStyle(color: Colors.white, fontFamily: 'GalaxyBt'),
+      titleLarge: TextStyle(color: Colors.white, fontFamily: 'GalaxyBt'),
+      titleMedium: TextStyle(color: Colors.white, fontFamily: 'GalaxyBt'),
+      titleSmall: TextStyle(color: Colors.white, fontFamily: 'GalaxyBt'),
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
@@ -57,5 +57,4 @@ class AppTheme {
     ),
     useMaterial3: true,
   );
-
 }

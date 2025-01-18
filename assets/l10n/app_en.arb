@@ -8,14 +8,22 @@
     "contact_me_by_email": "Contact me by Email",
     "about_me": "About Me",
     "more_options": "More Options",
-
     "drawer_header": "How to reach Javi ...",
     "cogito_ergo_sum": "I program, therefore I am",
     "doing_cool_stuf_with_porgramming_languages": "Doing cool stuff with programming languages",
-
     "spanish_spain": "Spanish (Spain)",
     "spanish_venezuela": "Spanish (Venezuela)",
     "catalan": "Catalan",
-    "english": "English"
-
+    "english": "English",
+    "my_website": "My Website",
+    "my_website_description" :"sample website and mobile app made with Flutter",
+    "svg_style_cleaner": "Svg Style Cleaner",
+    "svg_style_cleaner_description": "Clean up SVG files by removing unnecessary styles",
+    "api_open_builder": "ApiOpenBuilder",
+    "api_open_builder_description": "Generate Dart API client code from OpenAPI 3.0 spec",
+    "some_of_my_projects": "Some of my projects",
+    "credits_i_must_give": "Credits I must give",
+    "my_collaborations": "Collaborations",
+    "collaborators": "Collaborators",
+    "design_colors_and_images": "Design, colors and images"
 }

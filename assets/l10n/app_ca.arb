@@ -13,5 +13,16 @@
     "spanish_spain": "Espanyol (Espanya)",
     "spanish_venezuela": "Espanyol (Veneçuela)",
     "catalan": "Català",
-    "english": "Anglès"
+    "english": "Anglès",
+    "my_website": "El meu lloc web",
+    "my_website_description": "Exemple de lloc web i aplicació mòbil feta amb Flutter",
+    "svg_style_cleaner": "Netejador d''estils SVG",
+    "svg_style_cleaner_description": "Neteja fitxers SVG eliminant estils innecessaris",
+    "api_open_builder": "ApiOpenBuilder",
+    "api_open_builder_description": "Genera codi client API de Dart a partir de l''especificació OpenAPI 3.0",
+    "some_of_my_projects": "Alguns dels meus projectes",
+    "credits_i_must_give": "Crèdits que he de donar",
+    "my_collaborations": "Col·laboracions",
+    "collaborators": "Col·laboradors",
+    "design_colors_and_images": "Disseny, colors i imatges"
 }

@@ -1,5 +1,6 @@
 import 'package:country_flags/country_flags.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 import 'package:go_router/go_router.dart';
 import 'package:javier_website/core/l10n/app_locale.dart';
 import 'package:javier_website/core/providers/notifiers/locale_notifier.dart';
@@ -97,6 +98,12 @@ class _MainDrawerState extends State<MainDrawer> {
                             ],
                           ),
                           ListTile(
+                            leading: const Image(
+                              image: Svg('assets/images/email.svg'),
+                              width: 24,
+                              height: 24,
+                              color: Colors.white,
+                            ),
                             title: Text(localizations.contact_me_by_email,
                                 style: const TextStyle(color: Colors.white)),
                             onTap: () {

@@ -47,4 +47,37 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get english => 'English';
+
+  @override
+  String get my_website => 'My Website';
+
+  @override
+  String get my_website_description => 'sample website and mobile app made with Flutter';
+
+  @override
+  String get svg_style_cleaner => 'Svg Style Cleaner';
+
+  @override
+  String get svg_style_cleaner_description => 'Clean up SVG files by removing unnecessary styles';
+
+  @override
+  String get api_open_builder => 'ApiOpenBuilder';
+
+  @override
+  String get api_open_builder_description => 'Generate Dart API client code from OpenAPI 3.0 spec';
+
+  @override
+  String get some_of_my_projects => 'Some of my projects';
+
+  @override
+  String get credits_i_must_give => 'Credits I must give';
+
+  @override
+  String get my_collaborations => 'Collaborations';
+
+  @override
+  String get collaborators => 'Collaborators';
+
+  @override
+  String get design_colors_and_images => 'Design, colors and images';
 }

@@ -1,4 +1,3 @@
-
 {
     "@@locale": "es",
     "title":"Sitio web personal de Javi",
@@ -8,13 +7,22 @@
     "contact_me_by_email": "Contáctame por correo electrónico",
     "about_me": "Sobre mí",
     "more_options": "Más opciones",
-
     "drawer_header": "Como contactarme ...",
     "cogito_ergo_sum": "Programo, luego existo",
     "doing_cool_stuf_with_porgramming_languages": "Haciendo cosas chulas con lenguajes de programación",
     "spanish_spain": "Español (España)",
     "spanish_venezuela": "Español (Venezuela)",
     "catalan": "Catalán",
-    "english": "Inglés"
-
+    "english": "Inglés",
+    "my_website": "Mi sitio web",
+    "my_website_description": "Ejemplo de sitio web y aplicación móvil hecha con Flutter",
+    "svg_style_cleaner": "Limpiador de estilos SVG",
+    "svg_style_cleaner_description": "Limpia archivos SVG eliminando estilos innecesarios",
+    "api_open_builder": "ApiOpenBuilder",
+    "api_open_builder_description": "Genera código cliente API de Dart a partir de la especificación OpenAPI 3.0",
+    "some_of_my_projects": "Algunos de mis proyectos",
+    "credits_i_must_give": "Créditos que debo dar",
+    "my_collaborations": "Colaboraciones",
+    "collaborators": "Colaboradores",
+    "design_colors_and_images": "Diseño, colores e imágenes"
 }

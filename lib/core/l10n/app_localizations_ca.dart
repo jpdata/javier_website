@@ -47,4 +47,37 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String get english => 'Anglès';
+
+  @override
+  String get my_website => 'El meu lloc web';
+
+  @override
+  String get my_website_description => 'Exemple de lloc web i aplicació mòbil feta amb Flutter';
+
+  @override
+  String get svg_style_cleaner => 'Netejador d\'estils SVG';
+
+  @override
+  String get svg_style_cleaner_description => 'Neteja fitxers SVG eliminant estils innecessaris';
+
+  @override
+  String get api_open_builder => 'ApiOpenBuilder';
+
+  @override
+  String get api_open_builder_description => 'Genera codi client API de Dart a partir de l\'especificació OpenAPI 3.0';
+
+  @override
+  String get some_of_my_projects => 'Alguns dels meus projectes';
+
+  @override
+  String get credits_i_must_give => 'Crèdits que he de donar';
+
+  @override
+  String get my_collaborations => 'Col·laboracions';
+
+  @override
+  String get collaborators => 'Col·laboradors';
+
+  @override
+  String get design_colors_and_images => 'Disseny, colors i imatges';
 }
