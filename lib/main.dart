@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:javier_website/core/providers/notifiers/locale_notifier.dart';
 import 'package:provider/provider.dart';
 import 'package:javier_website/core/l10n/app_locale.dart';
 import 'package:javier_website/core/l10n/app_localizations.dart';
 import 'package:javier_website/router/router.dart';
 import 'package:javier_website/view/Themes/app_theme.dart';
+import 'firebase_options.dart';
 
-void main() {
+Future<void> main() async {
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   runApp(
     ChangeNotifierProvider(
       create: (context) => LocaleNotifier(),

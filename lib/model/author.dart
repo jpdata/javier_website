@@ -1,0 +1,12 @@
+
+class Author {
+  final String name;
+  final String email;
+  final String id;
+  
+  Author({
+    required this.id,
+    required this.name,
+    required this.email,
+  });
+}
