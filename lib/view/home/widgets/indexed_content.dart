@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:javier_website/view/blog/entries_list_widget.dart';
 import 'package:javier_website/view/home/widgets/credits_content.dart';
 import 'package:javier_website/view/home/widgets/portfolio_content.dart';
 
@@ -32,6 +33,12 @@ class _IndexedContentState extends State<IndexedContent> {
             if (_lastIndex == 1)
               PortfolioContent(key: Key(_lastIndex.toString()), unfold: false),
             CreditsContent(key: Key(widget.index.toString())),
+          ],
+        );
+      case 3:
+        result = const Column(
+          children: [
+            EntriesListWidget(),
           ],
         );
       default:

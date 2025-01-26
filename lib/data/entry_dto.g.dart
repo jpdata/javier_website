@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'entry_entity.dart';
+part of 'entry_dto.dart';
 
 // **************************************************************************
 // CollectionGenerator
@@ -20,83 +20,81 @@ const _sentinel = _Sentinel();
 /// A collection reference object can be used for adding documents,
 /// getting document references, and querying for documents
 /// (using the methods inherited from Query).
-abstract class EntryEntityCollectionReference
+abstract class EntryDtoCollectionReference
     implements
-        EntryEntityQuery,
-        FirestoreCollectionReference<EntryEntity, EntryEntityQuerySnapshot> {
-  factory EntryEntityCollectionReference([
+        EntryDtoQuery,
+        FirestoreCollectionReference<EntryDto, EntryDtoQuerySnapshot> {
+  factory EntryDtoCollectionReference([
     FirebaseFirestore? firestore,
-  ]) = _$EntryEntityCollectionReference;
+  ]) = _$EntryDtoCollectionReference;
 
-  static EntryEntity fromFirestore(
+  static EntryDto fromFirestore(
     DocumentSnapshot<Map<String, Object?>> snapshot,
     SnapshotOptions? options,
   ) {
-    return _$EntryEntityFromJson({'id': snapshot.id, ...?snapshot.data()});
+    return EntryDto.fromJson(snapshot.data()!);
   }
 
   static Map<String, Object?> toFirestore(
-    EntryEntity value,
+    EntryDto value,
     SetOptions? options,
   ) {
-    return {..._$EntryEntityToJson(value)}..remove('id');
+    return value.toJson();
   }
 
   @override
-  CollectionReference<EntryEntity> get reference;
+  CollectionReference<EntryDto> get reference;
 
   @override
-  EntryEntityDocumentReference doc([String? id]);
+  EntryDtoDocumentReference doc([String? id]);
 
   /// Add a new document to this collection with the specified data,
   /// assigning it a document ID automatically.
-  Future<EntryEntityDocumentReference> add(EntryEntity value);
+  Future<EntryDtoDocumentReference> add(EntryDto value);
 }
 
-class _$EntryEntityCollectionReference extends _$EntryEntityQuery
-    implements EntryEntityCollectionReference {
-  factory _$EntryEntityCollectionReference([FirebaseFirestore? firestore]) {
+class _$EntryDtoCollectionReference extends _$EntryDtoQuery
+    implements EntryDtoCollectionReference {
+  factory _$EntryDtoCollectionReference([FirebaseFirestore? firestore]) {
     firestore ??= FirebaseFirestore.instance;
 
-    return _$EntryEntityCollectionReference._(
+    return _$EntryDtoCollectionReference._(
       firestore.collection('entries').withConverter(
-            fromFirestore: EntryEntityCollectionReference.fromFirestore,
-            toFirestore: EntryEntityCollectionReference.toFirestore,
+            fromFirestore: EntryDtoCollectionReference.fromFirestore,
+            toFirestore: EntryDtoCollectionReference.toFirestore,
           ),
     );
   }
 
-  _$EntryEntityCollectionReference._(
-    CollectionReference<EntryEntity> reference,
+  _$EntryDtoCollectionReference._(
+    CollectionReference<EntryDto> reference,
   ) : super(reference, $referenceWithoutCursor: reference);
 
   String get path => reference.path;
 
   @override
-  CollectionReference<EntryEntity> get reference =>
-      super.reference as CollectionReference<EntryEntity>;
+  CollectionReference<EntryDto> get reference =>
+      super.reference as CollectionReference<EntryDto>;
 
   @override
-  EntryEntityDocumentReference doc([String? id]) {
+  EntryDtoDocumentReference doc([String? id]) {
     assert(
       id == null || id.split('/').length == 1,
       'The document ID cannot be from a different collection',
     );
-    return EntryEntityDocumentReference(
+    return EntryDtoDocumentReference(
       reference.doc(id),
     );
   }
 
   @override
-  Future<EntryEntityDocumentReference> add(EntryEntity value) {
-    return reference
-        .add(value)
-        .then((ref) => EntryEntityDocumentReference(ref));
+  Future<EntryDtoDocumentReference> add(EntryDto value) {
+    return reference.add(value).then((ref) => EntryDtoDocumentReference(ref));
   }
 
   @override
   bool operator ==(Object other) {
-    return other is _$EntryEntityCollectionReference &&
+    return other is _$EntryDtoCollectionReference &&
         other.runtimeType == runtimeType &&
         other.reference == reference;
   }
@@ -105,24 +103,23 @@ class _$EntryEntityCollectionReference extends _$EntryEntityQuery
   int get hashCode => Object.hash(runtimeType, reference);
 }
 
-abstract class EntryEntityDocumentReference extends FirestoreDocumentReference<
-    EntryEntity, EntryEntityDocumentSnapshot> {
-  factory EntryEntityDocumentReference(
-          DocumentReference<EntryEntity> reference) =
-      _$EntryEntityDocumentReference;
+abstract class EntryDtoDocumentReference
+    extends FirestoreDocumentReference<EntryDto, EntryDtoDocumentSnapshot> {
+  factory EntryDtoDocumentReference(DocumentReference<EntryDto> reference) =
+      _$EntryDtoDocumentReference;
 
-  DocumentReference<EntryEntity> get reference;
+  DocumentReference<EntryDto> get reference;
 
-  /// A reference to the [EntryEntityCollectionReference] containing this document.
-  EntryEntityCollectionReference get parent {
-    return _$EntryEntityCollectionReference(reference.firestore);
+  /// A reference to the [EntryDtoCollectionReference] containing this document.
+  EntryDtoCollectionReference get parent {
+    return _$EntryDtoCollectionReference(reference.firestore);
   }
 
   @override
-  Stream<EntryEntityDocumentSnapshot> snapshots();
+  Stream<EntryDtoDocumentSnapshot> snapshots();
 
   @override
-  Future<EntryEntityDocumentSnapshot> get([GetOptions? options]);
+  Future<EntryDtoDocumentSnapshot> get([GetOptions? options]);
 
   @override
   Future<void> delete();
@@ -136,13 +133,14 @@ abstract class EntryEntityDocumentReference extends FirestoreDocumentReference<
   /// Any [FieldValue]s provided will replace the corresponding fields in the
   /// [model] during serialization.
   Future<void> set(
-    EntryEntity model, {
+    EntryDto model, {
     SetOptions? options,
     FieldValue titleFieldValue,
     FieldValue subtitleFieldValue,
     FieldValue contentFieldValue,
     FieldValue createdAtFieldValue,
     FieldValue tagsFieldValue,
+    FieldValue commentsFieldValue,
   });
 
   /// Writes to the document using the transaction API.
@@ -154,13 +152,14 @@ abstract class EntryEntityDocumentReference extends FirestoreDocumentReference<
   /// [model] during serialization.
   void transactionSet(
     Transaction transaction,
-    EntryEntity model, {
+    EntryDto model, {
     SetOptions? options,
     FieldValue titleFieldValue,
     FieldValue subtitleFieldValue,
     FieldValue contentFieldValue,
     FieldValue createdAtFieldValue,
     FieldValue tagsFieldValue,
+    FieldValue commentsFieldValue,
   });
 
   /// Writes to the document using the batch API.
@@ -172,13 +171,14 @@ abstract class EntryEntityDocumentReference extends FirestoreDocumentReference<
   /// [model] during serialization.
   void batchSet(
     WriteBatch batch,
-    EntryEntity model, {
+    EntryDto model, {
     SetOptions? options,
     FieldValue titleFieldValue,
     FieldValue subtitleFieldValue,
     FieldValue contentFieldValue,
     FieldValue createdAtFieldValue,
     FieldValue tagsFieldValue,
+    FieldValue commentsFieldValue,
   });
 
   /// Updates data on the document. Data will be merged with any existing
@@ -196,6 +196,8 @@ abstract class EntryEntityDocumentReference extends FirestoreDocumentReference<
     FieldValue createdAtFieldValue,
     List<String> tags,
     FieldValue tagsFieldValue,
+    List<InvalidType> comments,
+    FieldValue commentsFieldValue,
   });
 
   /// Updates fields in the current document using the transaction API.
@@ -213,6 +215,8 @@ abstract class EntryEntityDocumentReference extends FirestoreDocumentReference<
     FieldValue createdAtFieldValue,
     List<String> tags,
     FieldValue tagsFieldValue,
+    List<InvalidType> comments,
+    FieldValue commentsFieldValue,
   });
 
   /// Updates fields in the current document using the batch API.
@@ -230,58 +234,63 @@ abstract class EntryEntityDocumentReference extends FirestoreDocumentReference<
     FieldValue createdAtFieldValue,
     List<String> tags,
     FieldValue tagsFieldValue,
+    List<InvalidType> comments,
+    FieldValue commentsFieldValue,
   });
 }
 
-class _$EntryEntityDocumentReference
-    extends FirestoreDocumentReference<EntryEntity, EntryEntityDocumentSnapshot>
-    implements EntryEntityDocumentReference {
-  _$EntryEntityDocumentReference(this.reference);
+class _$EntryDtoDocumentReference
+    extends FirestoreDocumentReference<EntryDto, EntryDtoDocumentSnapshot>
+    implements EntryDtoDocumentReference {
+  _$EntryDtoDocumentReference(this.reference);
 
   @override
-  final DocumentReference<EntryEntity> reference;
+  final DocumentReference<EntryDto> reference;
 
-  /// A reference to the [EntryEntityCollectionReference] containing this document.
-  EntryEntityCollectionReference get parent {
-    return _$EntryEntityCollectionReference(reference.firestore);
+  /// A reference to the [EntryDtoCollectionReference] containing this document.
+  EntryDtoCollectionReference get parent {
+    return _$EntryDtoCollectionReference(reference.firestore);
   }
 
   @override
-  Stream<EntryEntityDocumentSnapshot> snapshots() {
-    return reference.snapshots().map(EntryEntityDocumentSnapshot._);
+  Stream<EntryDtoDocumentSnapshot> snapshots() {
+    return reference.snapshots().map(EntryDtoDocumentSnapshot._);
   }
 
   @override
-  Future<EntryEntityDocumentSnapshot> get([GetOptions? options]) {
-    return reference.get(options).then(EntryEntityDocumentSnapshot._);
+  Future<EntryDtoDocumentSnapshot> get([GetOptions? options]) {
+    return reference.get(options).then(EntryDtoDocumentSnapshot._);
   }
 
   @override
-  Future<EntryEntityDocumentSnapshot> transactionGet(Transaction transaction) {
-    return transaction.get(reference).then(EntryEntityDocumentSnapshot._);
+  Future<EntryDtoDocumentSnapshot> transactionGet(Transaction transaction) {
+    return transaction.get(reference).then(EntryDtoDocumentSnapshot._);
   }
 
   Future<void> set(
-    EntryEntity model, {
+    EntryDto model, {
     SetOptions? options,
     FieldValue? titleFieldValue,
     FieldValue? subtitleFieldValue,
     FieldValue? contentFieldValue,
     FieldValue? createdAtFieldValue,
     FieldValue? tagsFieldValue,
+    FieldValue? commentsFieldValue,
   }) async {
     final json = {
-      ..._$EntryEntityToJson(model),
+      ...model.toJson(),
       if (titleFieldValue != null)
-        _$EntryEntityFieldMap['title']!: titleFieldValue,
+        _$$EntryDtoImplFieldMap['title']!: titleFieldValue,
       if (subtitleFieldValue != null)
-        _$EntryEntityFieldMap['subtitle']!: subtitleFieldValue,
+        _$$EntryDtoImplFieldMap['subtitle']!: subtitleFieldValue,
       if (contentFieldValue != null)
-        _$EntryEntityFieldMap['content']!: contentFieldValue,
+        _$$EntryDtoImplFieldMap['content']!: contentFieldValue,
       if (createdAtFieldValue != null)
-        _$EntryEntityFieldMap['createdAt']!: createdAtFieldValue,
+        _$$EntryDtoImplFieldMap['createdAt']!: createdAtFieldValue,
       if (tagsFieldValue != null)
-        _$EntryEntityFieldMap['tags']!: tagsFieldValue,
+        _$$EntryDtoImplFieldMap['tags']!: tagsFieldValue,
+      if (commentsFieldValue != null)
+        _$$EntryDtoImplFieldMap['comments']!: commentsFieldValue,
     };
 
     final castedReference = reference.withConverter<Map<String, dynamic>>(
@@ -293,26 +302,29 @@ class _$EntryEntityDocumentReference
 
   void transactionSet(
     Transaction transaction,
-    EntryEntity model, {
+    EntryDto model, {
     SetOptions? options,
     FieldValue? titleFieldValue,
     FieldValue? subtitleFieldValue,
     FieldValue? contentFieldValue,
     FieldValue? createdAtFieldValue,
     FieldValue? tagsFieldValue,
+    FieldValue? commentsFieldValue,
   }) {
     final json = {
-      ..._$EntryEntityToJson(model),
+      ...model.toJson(),
       if (titleFieldValue != null)
-        _$EntryEntityFieldMap['title']!: titleFieldValue,
+        _$$EntryDtoImplFieldMap['title']!: titleFieldValue,
       if (subtitleFieldValue != null)
-        _$EntryEntityFieldMap['subtitle']!: subtitleFieldValue,
+        _$$EntryDtoImplFieldMap['subtitle']!: subtitleFieldValue,
       if (contentFieldValue != null)
-        _$EntryEntityFieldMap['content']!: contentFieldValue,
+        _$$EntryDtoImplFieldMap['content']!: contentFieldValue,
       if (createdAtFieldValue != null)
-        _$EntryEntityFieldMap['createdAt']!: createdAtFieldValue,
+        _$$EntryDtoImplFieldMap['createdAt']!: createdAtFieldValue,
       if (tagsFieldValue != null)
-        _$EntryEntityFieldMap['tags']!: tagsFieldValue,
+        _$$EntryDtoImplFieldMap['tags']!: tagsFieldValue,
+      if (commentsFieldValue != null)
+        _$$EntryDtoImplFieldMap['comments']!: commentsFieldValue,
     };
 
     transaction.set(reference, json, options);
@@ -320,26 +332,29 @@ class _$EntryEntityDocumentReference
 
   void batchSet(
     WriteBatch batch,
-    EntryEntity model, {
+    EntryDto model, {
     SetOptions? options,
     FieldValue? titleFieldValue,
     FieldValue? subtitleFieldValue,
     FieldValue? contentFieldValue,
     FieldValue? createdAtFieldValue,
     FieldValue? tagsFieldValue,
+    FieldValue? commentsFieldValue,
   }) {
     final json = {
-      ..._$EntryEntityToJson(model),
+      ...model.toJson(),
       if (titleFieldValue != null)
-        _$EntryEntityFieldMap['title']!: titleFieldValue,
+        _$$EntryDtoImplFieldMap['title']!: titleFieldValue,
       if (subtitleFieldValue != null)
-        _$EntryEntityFieldMap['subtitle']!: subtitleFieldValue,
+        _$$EntryDtoImplFieldMap['subtitle']!: subtitleFieldValue,
       if (contentFieldValue != null)
-        _$EntryEntityFieldMap['content']!: contentFieldValue,
+        _$$EntryDtoImplFieldMap['content']!: contentFieldValue,
       if (createdAtFieldValue != null)
-        _$EntryEntityFieldMap['createdAt']!: createdAtFieldValue,
+        _$$EntryDtoImplFieldMap['createdAt']!: createdAtFieldValue,
       if (tagsFieldValue != null)
-        _$EntryEntityFieldMap['tags']!: tagsFieldValue,
+        _$$EntryDtoImplFieldMap['tags']!: tagsFieldValue,
+      if (commentsFieldValue != null)
+        _$$EntryDtoImplFieldMap['comments']!: commentsFieldValue,
     };
 
     batch.set(reference, json, options);
@@ -356,6 +371,8 @@ class _$EntryEntityDocumentReference
     FieldValue? createdAtFieldValue,
     Object? tags = _sentinel,
     FieldValue? tagsFieldValue,
+    Object? comments = _sentinel,
+    FieldValue? commentsFieldValue,
   }) async {
     assert(
       title == _sentinel || titleFieldValue == null,
@@ -377,32 +394,41 @@ class _$EntryEntityDocumentReference
       tags == _sentinel || tagsFieldValue == null,
       "Cannot specify both tags and tagsFieldValue",
     );
+    assert(
+      comments == _sentinel || commentsFieldValue == null,
+      "Cannot specify both comments and commentsFieldValue",
+    );
     final json = {
       if (title != _sentinel)
-        _$EntryEntityFieldMap['title']!:
-            _$EntryEntityPerFieldToJson.title(title as String),
+        _$$EntryDtoImplFieldMap['title']!:
+            _$$EntryDtoImplPerFieldToJson.title(title as String),
       if (titleFieldValue != null)
-        _$EntryEntityFieldMap['title']!: titleFieldValue,
+        _$$EntryDtoImplFieldMap['title']!: titleFieldValue,
       if (subtitle != _sentinel)
-        _$EntryEntityFieldMap['subtitle']!:
-            _$EntryEntityPerFieldToJson.subtitle(subtitle as String),
+        _$$EntryDtoImplFieldMap['subtitle']!:
+            _$$EntryDtoImplPerFieldToJson.subtitle(subtitle as String),
       if (subtitleFieldValue != null)
-        _$EntryEntityFieldMap['subtitle']!: subtitleFieldValue,
+        _$$EntryDtoImplFieldMap['subtitle']!: subtitleFieldValue,
       if (content != _sentinel)
-        _$EntryEntityFieldMap['content']!:
-            _$EntryEntityPerFieldToJson.content(content as String),
+        _$$EntryDtoImplFieldMap['content']!:
+            _$$EntryDtoImplPerFieldToJson.content(content as String),
       if (contentFieldValue != null)
-        _$EntryEntityFieldMap['content']!: contentFieldValue,
+        _$$EntryDtoImplFieldMap['content']!: contentFieldValue,
       if (createdAt != _sentinel)
-        _$EntryEntityFieldMap['createdAt']!:
-            _$EntryEntityPerFieldToJson.createdAt(createdAt as DateTime),
+        _$$EntryDtoImplFieldMap['createdAt']!:
+            _$$EntryDtoImplPerFieldToJson.createdAt(createdAt as DateTime),
       if (createdAtFieldValue != null)
-        _$EntryEntityFieldMap['createdAt']!: createdAtFieldValue,
+        _$$EntryDtoImplFieldMap['createdAt']!: createdAtFieldValue,
       if (tags != _sentinel)
-        _$EntryEntityFieldMap['tags']!:
-            _$EntryEntityPerFieldToJson.tags(tags as List<String>),
+        _$$EntryDtoImplFieldMap['tags']!:
+            _$$EntryDtoImplPerFieldToJson.tags(tags as List<String>),
       if (tagsFieldValue != null)
-        _$EntryEntityFieldMap['tags']!: tagsFieldValue,
+        _$$EntryDtoImplFieldMap['tags']!: tagsFieldValue,
+      if (comments != _sentinel)
+        _$$EntryDtoImplFieldMap['comments']!: _$$EntryDtoImplPerFieldToJson
+            .comments(comments as List<InvalidType>),
+      if (commentsFieldValue != null)
+        _$$EntryDtoImplFieldMap['comments']!: commentsFieldValue,
     };
 
     return reference.update(json);
@@ -420,6 +446,8 @@ class _$EntryEntityDocumentReference
     FieldValue? createdAtFieldValue,
     Object? tags = _sentinel,
     FieldValue? tagsFieldValue,
+    Object? comments = _sentinel,
+    FieldValue? commentsFieldValue,
   }) {
     assert(
       title == _sentinel || titleFieldValue == null,
@@ -441,32 +469,41 @@ class _$EntryEntityDocumentReference
       tags == _sentinel || tagsFieldValue == null,
       "Cannot specify both tags and tagsFieldValue",
     );
+    assert(
+      comments == _sentinel || commentsFieldValue == null,
+      "Cannot specify both comments and commentsFieldValue",
+    );
     final json = {
       if (title != _sentinel)
-        _$EntryEntityFieldMap['title']!:
-            _$EntryEntityPerFieldToJson.title(title as String),
+        _$$EntryDtoImplFieldMap['title']!:
+            _$$EntryDtoImplPerFieldToJson.title(title as String),
       if (titleFieldValue != null)
-        _$EntryEntityFieldMap['title']!: titleFieldValue,
+        _$$EntryDtoImplFieldMap['title']!: titleFieldValue,
       if (subtitle != _sentinel)
-        _$EntryEntityFieldMap['subtitle']!:
-            _$EntryEntityPerFieldToJson.subtitle(subtitle as String),
+        _$$EntryDtoImplFieldMap['subtitle']!:
+            _$$EntryDtoImplPerFieldToJson.subtitle(subtitle as String),
       if (subtitleFieldValue != null)
-        _$EntryEntityFieldMap['subtitle']!: subtitleFieldValue,
+        _$$EntryDtoImplFieldMap['subtitle']!: subtitleFieldValue,
       if (content != _sentinel)
-        _$EntryEntityFieldMap['content']!:
-            _$EntryEntityPerFieldToJson.content(content as String),
+        _$$EntryDtoImplFieldMap['content']!:
+            _$$EntryDtoImplPerFieldToJson.content(content as String),
       if (contentFieldValue != null)
-        _$EntryEntityFieldMap['content']!: contentFieldValue,
+        _$$EntryDtoImplFieldMap['content']!: contentFieldValue,
       if (createdAt != _sentinel)
-        _$EntryEntityFieldMap['createdAt']!:
-            _$EntryEntityPerFieldToJson.createdAt(createdAt as DateTime),
+        _$$EntryDtoImplFieldMap['createdAt']!:
+            _$$EntryDtoImplPerFieldToJson.createdAt(createdAt as DateTime),
       if (createdAtFieldValue != null)
-        _$EntryEntityFieldMap['createdAt']!: createdAtFieldValue,
+        _$$EntryDtoImplFieldMap['createdAt']!: createdAtFieldValue,
       if (tags != _sentinel)
-        _$EntryEntityFieldMap['tags']!:
-            _$EntryEntityPerFieldToJson.tags(tags as List<String>),
+        _$$EntryDtoImplFieldMap['tags']!:
+            _$$EntryDtoImplPerFieldToJson.tags(tags as List<String>),
       if (tagsFieldValue != null)
-        _$EntryEntityFieldMap['tags']!: tagsFieldValue,
+        _$$EntryDtoImplFieldMap['tags']!: tagsFieldValue,
+      if (comments != _sentinel)
+        _$$EntryDtoImplFieldMap['comments']!: _$$EntryDtoImplPerFieldToJson
+            .comments(comments as List<InvalidType>),
+      if (commentsFieldValue != null)
+        _$$EntryDtoImplFieldMap['comments']!: commentsFieldValue,
     };
 
     transaction.update(reference, json);
@@ -484,6 +521,8 @@ class _$EntryEntityDocumentReference
     FieldValue? createdAtFieldValue,
     Object? tags = _sentinel,
     FieldValue? tagsFieldValue,
+    Object? comments = _sentinel,
+    FieldValue? commentsFieldValue,
   }) {
     assert(
       title == _sentinel || titleFieldValue == null,
@@ -505,32 +544,41 @@ class _$EntryEntityDocumentReference
       tags == _sentinel || tagsFieldValue == null,
       "Cannot specify both tags and tagsFieldValue",
     );
+    assert(
+      comments == _sentinel || commentsFieldValue == null,
+      "Cannot specify both comments and commentsFieldValue",
+    );
     final json = {
       if (title != _sentinel)
-        _$EntryEntityFieldMap['title']!:
-            _$EntryEntityPerFieldToJson.title(title as String),
+        _$$EntryDtoImplFieldMap['title']!:
+            _$$EntryDtoImplPerFieldToJson.title(title as String),
       if (titleFieldValue != null)
-        _$EntryEntityFieldMap['title']!: titleFieldValue,
+        _$$EntryDtoImplFieldMap['title']!: titleFieldValue,
       if (subtitle != _sentinel)
-        _$EntryEntityFieldMap['subtitle']!:
-            _$EntryEntityPerFieldToJson.subtitle(subtitle as String),
+        _$$EntryDtoImplFieldMap['subtitle']!:
+            _$$EntryDtoImplPerFieldToJson.subtitle(subtitle as String),
       if (subtitleFieldValue != null)
-        _$EntryEntityFieldMap['subtitle']!: subtitleFieldValue,
+        _$$EntryDtoImplFieldMap['subtitle']!: subtitleFieldValue,
       if (content != _sentinel)
-        _$EntryEntityFieldMap['content']!:
-            _$EntryEntityPerFieldToJson.content(content as String),
+        _$$EntryDtoImplFieldMap['content']!:
+            _$$EntryDtoImplPerFieldToJson.content(content as String),
       if (contentFieldValue != null)
-        _$EntryEntityFieldMap['content']!: contentFieldValue,
+        _$$EntryDtoImplFieldMap['content']!: contentFieldValue,
       if (createdAt != _sentinel)
-        _$EntryEntityFieldMap['createdAt']!:
-            _$EntryEntityPerFieldToJson.createdAt(createdAt as DateTime),
+        _$$EntryDtoImplFieldMap['createdAt']!:
+            _$$EntryDtoImplPerFieldToJson.createdAt(createdAt as DateTime),
       if (createdAtFieldValue != null)
-        _$EntryEntityFieldMap['createdAt']!: createdAtFieldValue,
+        _$$EntryDtoImplFieldMap['createdAt']!: createdAtFieldValue,
       if (tags != _sentinel)
-        _$EntryEntityFieldMap['tags']!:
-            _$EntryEntityPerFieldToJson.tags(tags as List<String>),
+        _$$EntryDtoImplFieldMap['tags']!:
+            _$$EntryDtoImplPerFieldToJson.tags(tags as List<String>),
       if (tagsFieldValue != null)
-        _$EntryEntityFieldMap['tags']!: tagsFieldValue,
+        _$$EntryDtoImplFieldMap['tags']!: tagsFieldValue,
+      if (comments != _sentinel)
+        _$$EntryDtoImplFieldMap['comments']!: _$$EntryDtoImplPerFieldToJson
+            .comments(comments as List<InvalidType>),
+      if (commentsFieldValue != null)
+        _$$EntryDtoImplFieldMap['comments']!: commentsFieldValue,
     };
 
     batch.update(reference, json);
@@ -538,7 +586,7 @@ class _$EntryEntityDocumentReference
 
   @override
   bool operator ==(Object other) {
-    return other is EntryEntityDocumentReference &&
+    return other is EntryDtoDocumentReference &&
         other.runtimeType == runtimeType &&
         other.parent == parent &&
         other.id == id;
@@ -548,13 +596,13 @@ class _$EntryEntityDocumentReference
   int get hashCode => Object.hash(runtimeType, parent, id);
 }
 
-abstract class EntryEntityQuery
-    implements QueryReference<EntryEntity, EntryEntityQuerySnapshot> {
+abstract class EntryDtoQuery
+    implements QueryReference<EntryDto, EntryDtoQuerySnapshot> {
   @override
-  EntryEntityQuery limit(int limit);
+  EntryDtoQuery limit(int limit);
 
   @override
-  EntryEntityQuery limitToLast(int limit);
+  EntryDtoQuery limitToLast(int limit);
 
   /// Perform a where query based on a [FieldPath].
   ///
@@ -573,7 +621,7 @@ abstract class EntryEntityQuery
   /// ```dart
   /// collection.whereTitle(isEqualTo: 'title');
   /// ```
-  EntryEntityQuery whereFieldPath(
+  EntryDtoQuery whereFieldPath(
     Object fieldPath, {
     Object? isEqualTo,
     Object? isNotEqualTo,
@@ -588,7 +636,7 @@ abstract class EntryEntityQuery
     bool? isNull,
   });
 
-  EntryEntityQuery whereDocumentId({
+  EntryDtoQuery whereDocumentId({
     String? isEqualTo,
     String? isNotEqualTo,
     String? isLessThan,
@@ -600,7 +648,7 @@ abstract class EntryEntityQuery
     bool? isNull,
   });
 
-  EntryEntityQuery whereTitle({
+  EntryDtoQuery whereTitle({
     String? isEqualTo,
     String? isNotEqualTo,
     String? isLessThan,
@@ -612,7 +660,7 @@ abstract class EntryEntityQuery
     bool? isNull,
   });
 
-  EntryEntityQuery whereSubtitle({
+  EntryDtoQuery whereSubtitle({
     String? isEqualTo,
     String? isNotEqualTo,
     String? isLessThan,
@@ -624,7 +672,7 @@ abstract class EntryEntityQuery
     bool? isNull,
   });
 
-  EntryEntityQuery whereContent({
+  EntryDtoQuery whereContent({
     String? isEqualTo,
     String? isNotEqualTo,
     String? isLessThan,
@@ -636,7 +684,7 @@ abstract class EntryEntityQuery
     bool? isNull,
   });
 
-  EntryEntityQuery whereCreatedAt({
+  EntryDtoQuery whereCreatedAt({
     DateTime? isEqualTo,
     DateTime? isNotEqualTo,
     DateTime? isLessThan,
@@ -648,7 +696,7 @@ abstract class EntryEntityQuery
     bool? isNull,
   });
 
-  EntryEntityQuery whereTags({
+  EntryDtoQuery whereTags({
     List<String>? isEqualTo,
     List<String>? isNotEqualTo,
     List<String>? isLessThan,
@@ -657,6 +705,18 @@ abstract class EntryEntityQuery
     List<String>? isGreaterThanOrEqualTo,
     String? arrayContains,
     List<String>? arrayContainsAny,
+    bool? isNull,
+  });
+
+  EntryDtoQuery whereComments({
+    List<InvalidType>? isEqualTo,
+    List<InvalidType>? isNotEqualTo,
+    List<InvalidType>? isLessThan,
+    List<InvalidType>? isLessThanOrEqualTo,
+    List<InvalidType>? isGreaterThan,
+    List<InvalidType>? isGreaterThanOrEqualTo,
+    InvalidType arrayContains,
+    List<InvalidType>? arrayContainsAny,
     bool? isNull,
   });
 
@@ -680,98 +740,109 @@ abstract class EntryEntityQuery
   /// ```dart
   /// collection.orderByTitle(startAt: 'title');
   /// ```
-  EntryEntityQuery orderByFieldPath(
+  EntryDtoQuery orderByFieldPath(
     Object fieldPath, {
     bool descending = false,
     Object startAt,
     Object startAfter,
     Object endAt,
     Object endBefore,
-    EntryEntityDocumentSnapshot? startAtDocument,
-    EntryEntityDocumentSnapshot? endAtDocument,
-    EntryEntityDocumentSnapshot? endBeforeDocument,
-    EntryEntityDocumentSnapshot? startAfterDocument,
+    EntryDtoDocumentSnapshot? startAtDocument,
+    EntryDtoDocumentSnapshot? endAtDocument,
+    EntryDtoDocumentSnapshot? endBeforeDocument,
+    EntryDtoDocumentSnapshot? startAfterDocument,
   });
 
-  EntryEntityQuery orderByDocumentId({
+  EntryDtoQuery orderByDocumentId({
     bool descending = false,
     String startAt,
     String startAfter,
     String endAt,
     String endBefore,
-    EntryEntityDocumentSnapshot? startAtDocument,
-    EntryEntityDocumentSnapshot? endAtDocument,
-    EntryEntityDocumentSnapshot? endBeforeDocument,
-    EntryEntityDocumentSnapshot? startAfterDocument,
+    EntryDtoDocumentSnapshot? startAtDocument,
+    EntryDtoDocumentSnapshot? endAtDocument,
+    EntryDtoDocumentSnapshot? endBeforeDocument,
+    EntryDtoDocumentSnapshot? startAfterDocument,
   });
 
-  EntryEntityQuery orderByTitle({
+  EntryDtoQuery orderByTitle({
     bool descending = false,
     String startAt,
     String startAfter,
     String endAt,
     String endBefore,
-    EntryEntityDocumentSnapshot? startAtDocument,
-    EntryEntityDocumentSnapshot? endAtDocument,
-    EntryEntityDocumentSnapshot? endBeforeDocument,
-    EntryEntityDocumentSnapshot? startAfterDocument,
+    EntryDtoDocumentSnapshot? startAtDocument,
+    EntryDtoDocumentSnapshot? endAtDocument,
+    EntryDtoDocumentSnapshot? endBeforeDocument,
+    EntryDtoDocumentSnapshot? startAfterDocument,
   });
 
-  EntryEntityQuery orderBySubtitle({
+  EntryDtoQuery orderBySubtitle({
     bool descending = false,
     String startAt,
     String startAfter,
     String endAt,
     String endBefore,
-    EntryEntityDocumentSnapshot? startAtDocument,
-    EntryEntityDocumentSnapshot? endAtDocument,
-    EntryEntityDocumentSnapshot? endBeforeDocument,
-    EntryEntityDocumentSnapshot? startAfterDocument,
+    EntryDtoDocumentSnapshot? startAtDocument,
+    EntryDtoDocumentSnapshot? endAtDocument,
+    EntryDtoDocumentSnapshot? endBeforeDocument,
+    EntryDtoDocumentSnapshot? startAfterDocument,
   });
 
-  EntryEntityQuery orderByContent({
+  EntryDtoQuery orderByContent({
     bool descending = false,
     String startAt,
     String startAfter,
     String endAt,
     String endBefore,
-    EntryEntityDocumentSnapshot? startAtDocument,
-    EntryEntityDocumentSnapshot? endAtDocument,
-    EntryEntityDocumentSnapshot? endBeforeDocument,
-    EntryEntityDocumentSnapshot? startAfterDocument,
+    EntryDtoDocumentSnapshot? startAtDocument,
+    EntryDtoDocumentSnapshot? endAtDocument,
+    EntryDtoDocumentSnapshot? endBeforeDocument,
+    EntryDtoDocumentSnapshot? startAfterDocument,
   });
 
-  EntryEntityQuery orderByCreatedAt({
+  EntryDtoQuery orderByCreatedAt({
     bool descending = false,
     DateTime startAt,
     DateTime startAfter,
     DateTime endAt,
     DateTime endBefore,
-    EntryEntityDocumentSnapshot? startAtDocument,
-    EntryEntityDocumentSnapshot? endAtDocument,
-    EntryEntityDocumentSnapshot? endBeforeDocument,
-    EntryEntityDocumentSnapshot? startAfterDocument,
+    EntryDtoDocumentSnapshot? startAtDocument,
+    EntryDtoDocumentSnapshot? endAtDocument,
+    EntryDtoDocumentSnapshot? endBeforeDocument,
+    EntryDtoDocumentSnapshot? startAfterDocument,
   });
 
-  EntryEntityQuery orderByTags({
+  EntryDtoQuery orderByTags({
     bool descending = false,
     List<String> startAt,
     List<String> startAfter,
     List<String> endAt,
     List<String> endBefore,
-    EntryEntityDocumentSnapshot? startAtDocument,
-    EntryEntityDocumentSnapshot? endAtDocument,
-    EntryEntityDocumentSnapshot? endBeforeDocument,
-    EntryEntityDocumentSnapshot? startAfterDocument,
+    EntryDtoDocumentSnapshot? startAtDocument,
+    EntryDtoDocumentSnapshot? endAtDocument,
+    EntryDtoDocumentSnapshot? endBeforeDocument,
+    EntryDtoDocumentSnapshot? startAfterDocument,
+  });
+
+  EntryDtoQuery orderByComments({
+    bool descending = false,
+    List<InvalidType> startAt,
+    List<InvalidType> startAfter,
+    List<InvalidType> endAt,
+    List<InvalidType> endBefore,
+    EntryDtoDocumentSnapshot? startAtDocument,
+    EntryDtoDocumentSnapshot? endAtDocument,
+    EntryDtoDocumentSnapshot? endBeforeDocument,
+    EntryDtoDocumentSnapshot? startAfterDocument,
   });
 }
 
-class _$EntryEntityQuery
-    extends QueryReference<EntryEntity, EntryEntityQuerySnapshot>
-    implements EntryEntityQuery {
-  _$EntryEntityQuery(
+class _$EntryDtoQuery extends QueryReference<EntryDto, EntryDtoQuerySnapshot>
+    implements EntryDtoQuery {
+  _$EntryDtoQuery(
     this._collection, {
-    required Query<EntryEntity> $referenceWithoutCursor,
+    required Query<EntryDto> $referenceWithoutCursor,
     $QueryCursor $queryCursor = const $QueryCursor(),
   }) : super(
           $referenceWithoutCursor: $referenceWithoutCursor,
@@ -781,22 +852,20 @@ class _$EntryEntityQuery
   final CollectionReference<Object?> _collection;
 
   @override
-  Stream<EntryEntityQuerySnapshot> snapshots([SnapshotOptions? options]) {
-    return reference
-        .snapshots()
-        .map(EntryEntityQuerySnapshot._fromQuerySnapshot);
+  Stream<EntryDtoQuerySnapshot> snapshots([SnapshotOptions? options]) {
+    return reference.snapshots().map(EntryDtoQuerySnapshot._fromQuerySnapshot);
   }
 
   @override
-  Future<EntryEntityQuerySnapshot> get([GetOptions? options]) {
+  Future<EntryDtoQuerySnapshot> get([GetOptions? options]) {
     return reference
         .get(options)
-        .then(EntryEntityQuerySnapshot._fromQuerySnapshot);
+        .then(EntryDtoQuerySnapshot._fromQuerySnapshot);
   }
 
   @override
-  EntryEntityQuery limit(int limit) {
-    return _$EntryEntityQuery(
+  EntryDtoQuery limit(int limit) {
+    return _$EntryDtoQuery(
       _collection,
       $referenceWithoutCursor: $referenceWithoutCursor.limit(limit),
       $queryCursor: $queryCursor,
@@ -804,8 +873,8 @@ class _$EntryEntityQuery
   }
 
   @override
-  EntryEntityQuery limitToLast(int limit) {
-    return _$EntryEntityQuery(
+  EntryDtoQuery limitToLast(int limit) {
+    return _$EntryDtoQuery(
       _collection,
       $referenceWithoutCursor: $referenceWithoutCursor.limitToLast(limit),
       $queryCursor: $queryCursor,
@@ -813,7 +882,7 @@ class _$EntryEntityQuery
   }
 
   @override
-  EntryEntityQuery whereFieldPath(
+  EntryDtoQuery whereFieldPath(
     Object fieldPath, {
     Object? isEqualTo = _sentinel,
     Object? isNotEqualTo = _sentinel,
@@ -827,7 +896,7 @@ class _$EntryEntityQuery
     List<Object?>? whereNotIn,
     bool? isNull,
   }) {
-    return _$EntryEntityQuery(
+    return _$EntryDtoQuery(
       _collection,
       $referenceWithoutCursor: $referenceWithoutCursor.where(
         fieldPath,
@@ -850,7 +919,7 @@ class _$EntryEntityQuery
   }
 
   @override
-  EntryEntityQuery whereDocumentId({
+  EntryDtoQuery whereDocumentId({
     Object? isEqualTo = _sentinel,
     Object? isNotEqualTo = _sentinel,
     Object? isLessThan,
@@ -861,7 +930,7 @@ class _$EntryEntityQuery
     List<String>? whereNotIn,
     bool? isNull,
   }) {
-    return _$EntryEntityQuery(
+    return _$EntryDtoQuery(
       _collection,
       $referenceWithoutCursor: $referenceWithoutCursor.where(
         FieldPath.documentId,
@@ -882,7 +951,7 @@ class _$EntryEntityQuery
   }
 
   @override
-  EntryEntityQuery whereTitle({
+  EntryDtoQuery whereTitle({
     Object? isEqualTo = _sentinel,
     Object? isNotEqualTo = _sentinel,
     Object? isLessThan,
@@ -893,32 +962,32 @@ class _$EntryEntityQuery
     List<String>? whereNotIn,
     bool? isNull,
   }) {
-    return _$EntryEntityQuery(
+    return _$EntryDtoQuery(
       _collection,
       $referenceWithoutCursor: $referenceWithoutCursor.where(
-        _$EntryEntityFieldMap['title']!,
+        _$$EntryDtoImplFieldMap['title']!,
         isEqualTo: isEqualTo != _sentinel
-            ? _$EntryEntityPerFieldToJson.title(isEqualTo as String)
+            ? _$$EntryDtoImplPerFieldToJson.title(isEqualTo as String)
             : null,
         isNotEqualTo: isNotEqualTo != _sentinel
-            ? _$EntryEntityPerFieldToJson.title(isNotEqualTo as String)
+            ? _$$EntryDtoImplPerFieldToJson.title(isNotEqualTo as String)
             : null,
         isLessThan: isLessThan != null
-            ? _$EntryEntityPerFieldToJson.title(isLessThan as String)
+            ? _$$EntryDtoImplPerFieldToJson.title(isLessThan as String)
             : null,
         isLessThanOrEqualTo: isLessThanOrEqualTo != null
-            ? _$EntryEntityPerFieldToJson.title(isLessThanOrEqualTo as String)
+            ? _$$EntryDtoImplPerFieldToJson.title(isLessThanOrEqualTo as String)
             : null,
         isGreaterThan: isGreaterThan != null
-            ? _$EntryEntityPerFieldToJson.title(isGreaterThan as String)
+            ? _$$EntryDtoImplPerFieldToJson.title(isGreaterThan as String)
             : null,
         isGreaterThanOrEqualTo: isGreaterThanOrEqualTo != null
-            ? _$EntryEntityPerFieldToJson
+            ? _$$EntryDtoImplPerFieldToJson
                 .title(isGreaterThanOrEqualTo as String)
             : null,
-        whereIn: whereIn?.map((e) => _$EntryEntityPerFieldToJson.title(e)),
+        whereIn: whereIn?.map((e) => _$$EntryDtoImplPerFieldToJson.title(e)),
         whereNotIn:
-            whereNotIn?.map((e) => _$EntryEntityPerFieldToJson.title(e)),
+            whereNotIn?.map((e) => _$$EntryDtoImplPerFieldToJson.title(e)),
         isNull: isNull ??
             (isEqualTo == null ? false : null) ??
             (isNotEqualTo == null ? true : null),
@@ -928,7 +997,7 @@ class _$EntryEntityQuery
   }
 
   @override
-  EntryEntityQuery whereSubtitle({
+  EntryDtoQuery whereSubtitle({
     Object? isEqualTo = _sentinel,
     Object? isNotEqualTo = _sentinel,
     Object? isLessThan,
@@ -939,33 +1008,33 @@ class _$EntryEntityQuery
     List<String>? whereNotIn,
     bool? isNull,
   }) {
-    return _$EntryEntityQuery(
+    return _$EntryDtoQuery(
       _collection,
       $referenceWithoutCursor: $referenceWithoutCursor.where(
-        _$EntryEntityFieldMap['subtitle']!,
+        _$$EntryDtoImplFieldMap['subtitle']!,
         isEqualTo: isEqualTo != _sentinel
-            ? _$EntryEntityPerFieldToJson.subtitle(isEqualTo as String)
+            ? _$$EntryDtoImplPerFieldToJson.subtitle(isEqualTo as String)
             : null,
         isNotEqualTo: isNotEqualTo != _sentinel
-            ? _$EntryEntityPerFieldToJson.subtitle(isNotEqualTo as String)
+            ? _$$EntryDtoImplPerFieldToJson.subtitle(isNotEqualTo as String)
             : null,
         isLessThan: isLessThan != null
-            ? _$EntryEntityPerFieldToJson.subtitle(isLessThan as String)
+            ? _$$EntryDtoImplPerFieldToJson.subtitle(isLessThan as String)
             : null,
         isLessThanOrEqualTo: isLessThanOrEqualTo != null
-            ? _$EntryEntityPerFieldToJson
+            ? _$$EntryDtoImplPerFieldToJson
                 .subtitle(isLessThanOrEqualTo as String)
             : null,
         isGreaterThan: isGreaterThan != null
-            ? _$EntryEntityPerFieldToJson.subtitle(isGreaterThan as String)
+            ? _$$EntryDtoImplPerFieldToJson.subtitle(isGreaterThan as String)
             : null,
         isGreaterThanOrEqualTo: isGreaterThanOrEqualTo != null
-            ? _$EntryEntityPerFieldToJson
+            ? _$$EntryDtoImplPerFieldToJson
                 .subtitle(isGreaterThanOrEqualTo as String)
             : null,
-        whereIn: whereIn?.map((e) => _$EntryEntityPerFieldToJson.subtitle(e)),
+        whereIn: whereIn?.map((e) => _$$EntryDtoImplPerFieldToJson.subtitle(e)),
         whereNotIn:
-            whereNotIn?.map((e) => _$EntryEntityPerFieldToJson.subtitle(e)),
+            whereNotIn?.map((e) => _$$EntryDtoImplPerFieldToJson.subtitle(e)),
         isNull: isNull ??
             (isEqualTo == null ? false : null) ??
             (isNotEqualTo == null ? true : null),
@@ -975,7 +1044,7 @@ class _$EntryEntityQuery
   }
 
   @override
-  EntryEntityQuery whereContent({
+  EntryDtoQuery whereContent({
     Object? isEqualTo = _sentinel,
     Object? isNotEqualTo = _sentinel,
     Object? isLessThan,
@@ -986,32 +1055,33 @@ class _$EntryEntityQuery
     List<String>? whereNotIn,
     bool? isNull,
   }) {
-    return _$EntryEntityQuery(
+    return _$EntryDtoQuery(
       _collection,
       $referenceWithoutCursor: $referenceWithoutCursor.where(
-        _$EntryEntityFieldMap['content']!,
+        _$$EntryDtoImplFieldMap['content']!,
         isEqualTo: isEqualTo != _sentinel
-            ? _$EntryEntityPerFieldToJson.content(isEqualTo as String)
+            ? _$$EntryDtoImplPerFieldToJson.content(isEqualTo as String)
             : null,
         isNotEqualTo: isNotEqualTo != _sentinel
-            ? _$EntryEntityPerFieldToJson.content(isNotEqualTo as String)
+            ? _$$EntryDtoImplPerFieldToJson.content(isNotEqualTo as String)
             : null,
         isLessThan: isLessThan != null
-            ? _$EntryEntityPerFieldToJson.content(isLessThan as String)
+            ? _$$EntryDtoImplPerFieldToJson.content(isLessThan as String)
             : null,
         isLessThanOrEqualTo: isLessThanOrEqualTo != null
-            ? _$EntryEntityPerFieldToJson.content(isLessThanOrEqualTo as String)
+            ? _$$EntryDtoImplPerFieldToJson
+                .content(isLessThanOrEqualTo as String)
             : null,
         isGreaterThan: isGreaterThan != null
-            ? _$EntryEntityPerFieldToJson.content(isGreaterThan as String)
+            ? _$$EntryDtoImplPerFieldToJson.content(isGreaterThan as String)
             : null,
         isGreaterThanOrEqualTo: isGreaterThanOrEqualTo != null
-            ? _$EntryEntityPerFieldToJson
+            ? _$$EntryDtoImplPerFieldToJson
                 .content(isGreaterThanOrEqualTo as String)
             : null,
-        whereIn: whereIn?.map((e) => _$EntryEntityPerFieldToJson.content(e)),
+        whereIn: whereIn?.map((e) => _$$EntryDtoImplPerFieldToJson.content(e)),
         whereNotIn:
-            whereNotIn?.map((e) => _$EntryEntityPerFieldToJson.content(e)),
+            whereNotIn?.map((e) => _$$EntryDtoImplPerFieldToJson.content(e)),
         isNull: isNull ??
             (isEqualTo == null ? false : null) ??
             (isNotEqualTo == null ? true : null),
@@ -1021,7 +1091,7 @@ class _$EntryEntityQuery
   }
 
   @override
-  EntryEntityQuery whereCreatedAt({
+  EntryDtoQuery whereCreatedAt({
     Object? isEqualTo = _sentinel,
     Object? isNotEqualTo = _sentinel,
     Object? isLessThan,
@@ -1032,33 +1102,34 @@ class _$EntryEntityQuery
     List<DateTime>? whereNotIn,
     bool? isNull,
   }) {
-    return _$EntryEntityQuery(
+    return _$EntryDtoQuery(
       _collection,
       $referenceWithoutCursor: $referenceWithoutCursor.where(
-        _$EntryEntityFieldMap['createdAt']!,
+        _$$EntryDtoImplFieldMap['createdAt']!,
         isEqualTo: isEqualTo != _sentinel
-            ? _$EntryEntityPerFieldToJson.createdAt(isEqualTo as DateTime)
+            ? _$$EntryDtoImplPerFieldToJson.createdAt(isEqualTo as DateTime)
             : null,
         isNotEqualTo: isNotEqualTo != _sentinel
-            ? _$EntryEntityPerFieldToJson.createdAt(isNotEqualTo as DateTime)
+            ? _$$EntryDtoImplPerFieldToJson.createdAt(isNotEqualTo as DateTime)
             : null,
         isLessThan: isLessThan != null
-            ? _$EntryEntityPerFieldToJson.createdAt(isLessThan as DateTime)
+            ? _$$EntryDtoImplPerFieldToJson.createdAt(isLessThan as DateTime)
             : null,
         isLessThanOrEqualTo: isLessThanOrEqualTo != null
-            ? _$EntryEntityPerFieldToJson
+            ? _$$EntryDtoImplPerFieldToJson
                 .createdAt(isLessThanOrEqualTo as DateTime)
             : null,
         isGreaterThan: isGreaterThan != null
-            ? _$EntryEntityPerFieldToJson.createdAt(isGreaterThan as DateTime)
+            ? _$$EntryDtoImplPerFieldToJson.createdAt(isGreaterThan as DateTime)
             : null,
         isGreaterThanOrEqualTo: isGreaterThanOrEqualTo != null
-            ? _$EntryEntityPerFieldToJson
+            ? _$$EntryDtoImplPerFieldToJson
                 .createdAt(isGreaterThanOrEqualTo as DateTime)
             : null,
-        whereIn: whereIn?.map((e) => _$EntryEntityPerFieldToJson.createdAt(e)),
+        whereIn:
+            whereIn?.map((e) => _$$EntryDtoImplPerFieldToJson.createdAt(e)),
         whereNotIn:
-            whereNotIn?.map((e) => _$EntryEntityPerFieldToJson.createdAt(e)),
+            whereNotIn?.map((e) => _$$EntryDtoImplPerFieldToJson.createdAt(e)),
         isNull: isNull ??
             (isEqualTo == null ? false : null) ??
             (isNotEqualTo == null ? true : null),
@@ -1068,7 +1139,7 @@ class _$EntryEntityQuery
   }
 
   @override
-  EntryEntityQuery whereTags({
+  EntryDtoQuery whereTags({
     Object? isEqualTo = _sentinel,
     Object? isNotEqualTo = _sentinel,
     Object? isLessThan,
@@ -1079,37 +1150,37 @@ class _$EntryEntityQuery
     List<String>? arrayContainsAny,
     bool? isNull,
   }) {
-    return _$EntryEntityQuery(
+    return _$EntryDtoQuery(
       _collection,
       $referenceWithoutCursor: $referenceWithoutCursor.where(
-        _$EntryEntityFieldMap['tags']!,
+        _$$EntryDtoImplFieldMap['tags']!,
         isEqualTo: isEqualTo != _sentinel
-            ? _$EntryEntityPerFieldToJson.tags(isEqualTo as List<String>)
+            ? _$$EntryDtoImplPerFieldToJson.tags(isEqualTo as List<String>)
             : null,
         isNotEqualTo: isNotEqualTo != _sentinel
-            ? _$EntryEntityPerFieldToJson.tags(isNotEqualTo as List<String>)
+            ? _$$EntryDtoImplPerFieldToJson.tags(isNotEqualTo as List<String>)
             : null,
         isLessThan: isLessThan != null
-            ? _$EntryEntityPerFieldToJson.tags(isLessThan as List<String>)
+            ? _$$EntryDtoImplPerFieldToJson.tags(isLessThan as List<String>)
             : null,
         isLessThanOrEqualTo: isLessThanOrEqualTo != null
-            ? _$EntryEntityPerFieldToJson
+            ? _$$EntryDtoImplPerFieldToJson
                 .tags(isLessThanOrEqualTo as List<String>)
             : null,
         isGreaterThan: isGreaterThan != null
-            ? _$EntryEntityPerFieldToJson.tags(isGreaterThan as List<String>)
+            ? _$$EntryDtoImplPerFieldToJson.tags(isGreaterThan as List<String>)
             : null,
         isGreaterThanOrEqualTo: isGreaterThanOrEqualTo != null
-            ? _$EntryEntityPerFieldToJson
+            ? _$$EntryDtoImplPerFieldToJson
                 .tags(isGreaterThanOrEqualTo as List<String>)
             : null,
         arrayContains: arrayContains != null
-            ? (_$EntryEntityPerFieldToJson.tags([arrayContains as String])
+            ? (_$$EntryDtoImplPerFieldToJson.tags([arrayContains as String])
                     as List?)!
                 .single
             : null,
         arrayContainsAny: arrayContainsAny != null
-            ? _$EntryEntityPerFieldToJson.tags(arrayContainsAny)
+            ? _$$EntryDtoImplPerFieldToJson.tags(arrayContainsAny)
                 as Iterable<Object>?
             : null,
         isNull: isNull ??
@@ -1121,17 +1192,74 @@ class _$EntryEntityQuery
   }
 
   @override
-  EntryEntityQuery orderByFieldPath(
+  EntryDtoQuery whereComments({
+    Object? isEqualTo = _sentinel,
+    Object? isNotEqualTo = _sentinel,
+    Object? isLessThan,
+    Object? isLessThanOrEqualTo,
+    Object? isGreaterThan,
+    Object? isGreaterThanOrEqualTo,
+    Object? arrayContains,
+    List<InvalidType>? arrayContainsAny,
+    bool? isNull,
+  }) {
+    return _$EntryDtoQuery(
+      _collection,
+      $referenceWithoutCursor: $referenceWithoutCursor.where(
+        _$$EntryDtoImplFieldMap['comments']!,
+        isEqualTo: isEqualTo != _sentinel
+            ? _$$EntryDtoImplPerFieldToJson
+                .comments(isEqualTo as List<InvalidType>)
+            : null,
+        isNotEqualTo: isNotEqualTo != _sentinel
+            ? _$$EntryDtoImplPerFieldToJson
+                .comments(isNotEqualTo as List<InvalidType>)
+            : null,
+        isLessThan: isLessThan != null
+            ? _$$EntryDtoImplPerFieldToJson
+                .comments(isLessThan as List<InvalidType>)
+            : null,
+        isLessThanOrEqualTo: isLessThanOrEqualTo != null
+            ? _$$EntryDtoImplPerFieldToJson
+                .comments(isLessThanOrEqualTo as List<InvalidType>)
+            : null,
+        isGreaterThan: isGreaterThan != null
+            ? _$$EntryDtoImplPerFieldToJson
+                .comments(isGreaterThan as List<InvalidType>)
+            : null,
+        isGreaterThanOrEqualTo: isGreaterThanOrEqualTo != null
+            ? _$$EntryDtoImplPerFieldToJson
+                .comments(isGreaterThanOrEqualTo as List<InvalidType>)
+            : null,
+        arrayContains: arrayContains != null
+            ? (_$$EntryDtoImplPerFieldToJson
+                    .comments([arrayContains as InvalidType]) as List?)!
+                .single
+            : null,
+        arrayContainsAny: arrayContainsAny != null
+            ? _$$EntryDtoImplPerFieldToJson.comments(arrayContainsAny)
+                as Iterable<Object>?
+            : null,
+        isNull: isNull ??
+            (isEqualTo == null ? false : null) ??
+            (isNotEqualTo == null ? true : null),
+      ),
+      $queryCursor: $queryCursor,
+    );
+  }
+
+  @override
+  EntryDtoQuery orderByFieldPath(
     Object fieldPath, {
     bool descending = false,
     Object? startAt = _sentinel,
     Object? startAfter = _sentinel,
     Object? endAt = _sentinel,
     Object? endBefore = _sentinel,
-    EntryEntityDocumentSnapshot? startAtDocument,
-    EntryEntityDocumentSnapshot? endAtDocument,
-    EntryEntityDocumentSnapshot? endBeforeDocument,
-    EntryEntityDocumentSnapshot? startAfterDocument,
+    EntryDtoDocumentSnapshot? startAtDocument,
+    EntryDtoDocumentSnapshot? endAtDocument,
+    EntryDtoDocumentSnapshot? endBeforeDocument,
+    EntryDtoDocumentSnapshot? startAfterDocument,
   }) {
     final query =
         $referenceWithoutCursor.orderBy(fieldPath, descending: descending);
@@ -1187,7 +1315,7 @@ class _$EntryEntityQuery
       );
     }
 
-    return _$EntryEntityQuery(
+    return _$EntryDtoQuery(
       _collection,
       $referenceWithoutCursor: query,
       $queryCursor: queryCursor,
@@ -1195,16 +1323,16 @@ class _$EntryEntityQuery
   }
 
   @override
-  EntryEntityQuery orderByDocumentId({
+  EntryDtoQuery orderByDocumentId({
     bool descending = false,
     Object? startAt = _sentinel,
     Object? startAfter = _sentinel,
     Object? endAt = _sentinel,
     Object? endBefore = _sentinel,
-    EntryEntityDocumentSnapshot? startAtDocument,
-    EntryEntityDocumentSnapshot? endAtDocument,
-    EntryEntityDocumentSnapshot? endBeforeDocument,
-    EntryEntityDocumentSnapshot? startAfterDocument,
+    EntryDtoDocumentSnapshot? startAtDocument,
+    EntryDtoDocumentSnapshot? endAtDocument,
+    EntryDtoDocumentSnapshot? endBeforeDocument,
+    EntryDtoDocumentSnapshot? startAfterDocument,
   }) {
     final query = $referenceWithoutCursor.orderBy(FieldPath.documentId,
         descending: descending);
@@ -1260,7 +1388,7 @@ class _$EntryEntityQuery
       );
     }
 
-    return _$EntryEntityQuery(
+    return _$EntryDtoQuery(
       _collection,
       $referenceWithoutCursor: query,
       $queryCursor: queryCursor,
@@ -1268,19 +1396,19 @@ class _$EntryEntityQuery
   }
 
   @override
-  EntryEntityQuery orderByTitle({
+  EntryDtoQuery orderByTitle({
     bool descending = false,
     Object? startAt = _sentinel,
     Object? startAfter = _sentinel,
     Object? endAt = _sentinel,
     Object? endBefore = _sentinel,
-    EntryEntityDocumentSnapshot? startAtDocument,
-    EntryEntityDocumentSnapshot? endAtDocument,
-    EntryEntityDocumentSnapshot? endBeforeDocument,
-    EntryEntityDocumentSnapshot? startAfterDocument,
+    EntryDtoDocumentSnapshot? startAtDocument,
+    EntryDtoDocumentSnapshot? endAtDocument,
+    EntryDtoDocumentSnapshot? endBeforeDocument,
+    EntryDtoDocumentSnapshot? startAfterDocument,
   }) {
     final query = $referenceWithoutCursor
-        .orderBy(_$EntryEntityFieldMap['title']!, descending: descending);
+        .orderBy(_$$EntryDtoImplFieldMap['title']!, descending: descending);
     var queryCursor = $queryCursor;
 
     if (startAtDocument != null) {
@@ -1333,7 +1461,7 @@ class _$EntryEntityQuery
       );
     }
 
-    return _$EntryEntityQuery(
+    return _$EntryDtoQuery(
       _collection,
       $referenceWithoutCursor: query,
       $queryCursor: queryCursor,
@@ -1341,19 +1469,19 @@ class _$EntryEntityQuery
   }
 
   @override
-  EntryEntityQuery orderBySubtitle({
+  EntryDtoQuery orderBySubtitle({
     bool descending = false,
     Object? startAt = _sentinel,
     Object? startAfter = _sentinel,
     Object? endAt = _sentinel,
     Object? endBefore = _sentinel,
-    EntryEntityDocumentSnapshot? startAtDocument,
-    EntryEntityDocumentSnapshot? endAtDocument,
-    EntryEntityDocumentSnapshot? endBeforeDocument,
-    EntryEntityDocumentSnapshot? startAfterDocument,
+    EntryDtoDocumentSnapshot? startAtDocument,
+    EntryDtoDocumentSnapshot? endAtDocument,
+    EntryDtoDocumentSnapshot? endBeforeDocument,
+    EntryDtoDocumentSnapshot? startAfterDocument,
   }) {
     final query = $referenceWithoutCursor
-        .orderBy(_$EntryEntityFieldMap['subtitle']!, descending: descending);
+        .orderBy(_$$EntryDtoImplFieldMap['subtitle']!, descending: descending);
     var queryCursor = $queryCursor;
 
     if (startAtDocument != null) {
@@ -1406,7 +1534,7 @@ class _$EntryEntityQuery
       );
     }
 
-    return _$EntryEntityQuery(
+    return _$EntryDtoQuery(
       _collection,
       $referenceWithoutCursor: query,
       $queryCursor: queryCursor,
@@ -1414,19 +1542,19 @@ class _$EntryEntityQuery
   }
 
   @override
-  EntryEntityQuery orderByContent({
+  EntryDtoQuery orderByContent({
     bool descending = false,
     Object? startAt = _sentinel,
     Object? startAfter = _sentinel,
     Object? endAt = _sentinel,
     Object? endBefore = _sentinel,
-    EntryEntityDocumentSnapshot? startAtDocument,
-    EntryEntityDocumentSnapshot? endAtDocument,
-    EntryEntityDocumentSnapshot? endBeforeDocument,
-    EntryEntityDocumentSnapshot? startAfterDocument,
+    EntryDtoDocumentSnapshot? startAtDocument,
+    EntryDtoDocumentSnapshot? endAtDocument,
+    EntryDtoDocumentSnapshot? endBeforeDocument,
+    EntryDtoDocumentSnapshot? startAfterDocument,
   }) {
     final query = $referenceWithoutCursor
-        .orderBy(_$EntryEntityFieldMap['content']!, descending: descending);
+        .orderBy(_$$EntryDtoImplFieldMap['content']!, descending: descending);
     var queryCursor = $queryCursor;
 
     if (startAtDocument != null) {
@@ -1479,7 +1607,7 @@ class _$EntryEntityQuery
       );
     }
 
-    return _$EntryEntityQuery(
+    return _$EntryDtoQuery(
       _collection,
       $referenceWithoutCursor: query,
       $queryCursor: queryCursor,
@@ -1487,19 +1615,19 @@ class _$EntryEntityQuery
   }
 
   @override
-  EntryEntityQuery orderByCreatedAt({
+  EntryDtoQuery orderByCreatedAt({
     bool descending = false,
     Object? startAt = _sentinel,
     Object? startAfter = _sentinel,
     Object? endAt = _sentinel,
     Object? endBefore = _sentinel,
-    EntryEntityDocumentSnapshot? startAtDocument,
-    EntryEntityDocumentSnapshot? endAtDocument,
-    EntryEntityDocumentSnapshot? endBeforeDocument,
-    EntryEntityDocumentSnapshot? startAfterDocument,
+    EntryDtoDocumentSnapshot? startAtDocument,
+    EntryDtoDocumentSnapshot? endAtDocument,
+    EntryDtoDocumentSnapshot? endBeforeDocument,
+    EntryDtoDocumentSnapshot? startAfterDocument,
   }) {
     final query = $referenceWithoutCursor
-        .orderBy(_$EntryEntityFieldMap['createdAt']!, descending: descending);
+        .orderBy(_$$EntryDtoImplFieldMap['createdAt']!, descending: descending);
     var queryCursor = $queryCursor;
 
     if (startAtDocument != null) {
@@ -1552,7 +1680,7 @@ class _$EntryEntityQuery
       );
     }
 
-    return _$EntryEntityQuery(
+    return _$EntryDtoQuery(
       _collection,
       $referenceWithoutCursor: query,
       $queryCursor: queryCursor,
@@ -1560,19 +1688,19 @@ class _$EntryEntityQuery
   }
 
   @override
-  EntryEntityQuery orderByTags({
+  EntryDtoQuery orderByTags({
     bool descending = false,
     Object? startAt = _sentinel,
     Object? startAfter = _sentinel,
     Object? endAt = _sentinel,
     Object? endBefore = _sentinel,
-    EntryEntityDocumentSnapshot? startAtDocument,
-    EntryEntityDocumentSnapshot? endAtDocument,
-    EntryEntityDocumentSnapshot? endBeforeDocument,
-    EntryEntityDocumentSnapshot? startAfterDocument,
+    EntryDtoDocumentSnapshot? startAtDocument,
+    EntryDtoDocumentSnapshot? endAtDocument,
+    EntryDtoDocumentSnapshot? endBeforeDocument,
+    EntryDtoDocumentSnapshot? startAfterDocument,
   }) {
     final query = $referenceWithoutCursor
-        .orderBy(_$EntryEntityFieldMap['tags']!, descending: descending);
+        .orderBy(_$$EntryDtoImplFieldMap['tags']!, descending: descending);
     var queryCursor = $queryCursor;
 
     if (startAtDocument != null) {
@@ -1625,7 +1753,80 @@ class _$EntryEntityQuery
       );
     }
 
-    return _$EntryEntityQuery(
+    return _$EntryDtoQuery(
+      _collection,
+      $referenceWithoutCursor: query,
+      $queryCursor: queryCursor,
+    );
+  }
+
+  @override
+  EntryDtoQuery orderByComments({
+    bool descending = false,
+    Object? startAt = _sentinel,
+    Object? startAfter = _sentinel,
+    Object? endAt = _sentinel,
+    Object? endBefore = _sentinel,
+    EntryDtoDocumentSnapshot? startAtDocument,
+    EntryDtoDocumentSnapshot? endAtDocument,
+    EntryDtoDocumentSnapshot? endBeforeDocument,
+    EntryDtoDocumentSnapshot? startAfterDocument,
+  }) {
+    final query = $referenceWithoutCursor
+        .orderBy(_$$EntryDtoImplFieldMap['comments']!, descending: descending);
+    var queryCursor = $queryCursor;
+
+    if (startAtDocument != null) {
+      queryCursor = queryCursor.copyWith(
+        startAt: const [],
+        startAtDocumentSnapshot: startAtDocument.snapshot,
+      );
+    }
+    if (startAfterDocument != null) {
+      queryCursor = queryCursor.copyWith(
+        startAfter: const [],
+        startAfterDocumentSnapshot: startAfterDocument.snapshot,
+      );
+    }
+    if (endAtDocument != null) {
+      queryCursor = queryCursor.copyWith(
+        endAt: const [],
+        endAtDocumentSnapshot: endAtDocument.snapshot,
+      );
+    }
+    if (endBeforeDocument != null) {
+      queryCursor = queryCursor.copyWith(
+        endBefore: const [],
+        endBeforeDocumentSnapshot: endBeforeDocument.snapshot,
+      );
+    }
+
+    if (startAt != _sentinel) {
+      queryCursor = queryCursor.copyWith(
+        startAt: [...queryCursor.startAt, startAt],
+        startAtDocumentSnapshot: null,
+      );
+    }
+    if (startAfter != _sentinel) {
+      queryCursor = queryCursor.copyWith(
+        startAfter: [...queryCursor.startAfter, startAfter],
+        startAfterDocumentSnapshot: null,
+      );
+    }
+    if (endAt != _sentinel) {
+      queryCursor = queryCursor.copyWith(
+        endAt: [...queryCursor.endAt, endAt],
+        endAtDocumentSnapshot: null,
+      );
+    }
+    if (endBefore != _sentinel) {
+      queryCursor = queryCursor.copyWith(
+        endBefore: [...queryCursor.endBefore, endBefore],
+        endBeforeDocumentSnapshot: null,
+      );
+    }
+
+    return _$EntryDtoQuery(
       _collection,
       $referenceWithoutCursor: query,
       $queryCursor: queryCursor,
@@ -1634,7 +1835,7 @@ class _$EntryEntityQuery
 
   @override
   bool operator ==(Object other) {
-    return other is _$EntryEntityQuery &&
+    return other is _$EntryDtoQuery &&
         other.runtimeType == runtimeType &&
         other.reference == reference;
   }
@@ -1643,57 +1844,56 @@ class _$EntryEntityQuery
   int get hashCode => Object.hash(runtimeType, reference);
 }
 
-class EntryEntityDocumentSnapshot
-    extends FirestoreDocumentSnapshot<EntryEntity> {
-  EntryEntityDocumentSnapshot._(this.snapshot) : data = snapshot.data();
+class EntryDtoDocumentSnapshot extends FirestoreDocumentSnapshot<EntryDto> {
+  EntryDtoDocumentSnapshot._(this.snapshot) : data = snapshot.data();
 
   @override
-  final DocumentSnapshot<EntryEntity> snapshot;
+  final DocumentSnapshot<EntryDto> snapshot;
 
   @override
-  EntryEntityDocumentReference get reference {
-    return EntryEntityDocumentReference(
+  EntryDtoDocumentReference get reference {
+    return EntryDtoDocumentReference(
       snapshot.reference,
     );
   }
 
   @override
-  final EntryEntity? data;
+  final EntryDto? data;
 }
 
-class EntryEntityQuerySnapshot extends FirestoreQuerySnapshot<EntryEntity,
-    EntryEntityQueryDocumentSnapshot> {
-  EntryEntityQuerySnapshot._(
+class EntryDtoQuerySnapshot
+    extends FirestoreQuerySnapshot<EntryDto, EntryDtoQueryDocumentSnapshot> {
+  EntryDtoQuerySnapshot._(
     this.snapshot,
     this.docs,
     this.docChanges,
   );
 
-  factory EntryEntityQuerySnapshot._fromQuerySnapshot(
-    QuerySnapshot<EntryEntity> snapshot,
+  factory EntryDtoQuerySnapshot._fromQuerySnapshot(
+    QuerySnapshot<EntryDto> snapshot,
   ) {
-    final docs = snapshot.docs.map(EntryEntityQueryDocumentSnapshot._).toList();
+    final docs = snapshot.docs.map(EntryDtoQueryDocumentSnapshot._).toList();
 
     final docChanges = snapshot.docChanges.map((change) {
       return _decodeDocumentChange(
         change,
-        EntryEntityDocumentSnapshot._,
+        EntryDtoDocumentSnapshot._,
       );
     }).toList();
 
-    return EntryEntityQuerySnapshot._(
+    return EntryDtoQuerySnapshot._(
       snapshot,
       docs,
       docChanges,
     );
   }
 
-  static FirestoreDocumentChange<EntryEntityDocumentSnapshot>
+  static FirestoreDocumentChange<EntryDtoDocumentSnapshot>
       _decodeDocumentChange<T>(
     DocumentChange<T> docChange,
-    EntryEntityDocumentSnapshot Function(DocumentSnapshot<T> doc) decodeDoc,
+    EntryDtoDocumentSnapshot Function(DocumentSnapshot<T> doc) decodeDoc,
   ) {
-    return FirestoreDocumentChange<EntryEntityDocumentSnapshot>(
+    return FirestoreDocumentChange<EntryDtoDocumentSnapshot>(
       type: docChange.type,
       oldIndex: docChange.oldIndex,
       newIndex: docChange.newIndex,
@@ -1701,29 +1901,29 @@ class EntryEntityQuerySnapshot extends FirestoreQuerySnapshot<EntryEntity,
     );
   }
 
-  final QuerySnapshot<EntryEntity> snapshot;
+  final QuerySnapshot<EntryDto> snapshot;
 
   @override
-  final List<EntryEntityQueryDocumentSnapshot> docs;
+  final List<EntryDtoQueryDocumentSnapshot> docs;
 
   @override
-  final List<FirestoreDocumentChange<EntryEntityDocumentSnapshot>> docChanges;
+  final List<FirestoreDocumentChange<EntryDtoDocumentSnapshot>> docChanges;
 }
 
-class EntryEntityQueryDocumentSnapshot
-    extends FirestoreQueryDocumentSnapshot<EntryEntity>
-    implements EntryEntityDocumentSnapshot {
-  EntryEntityQueryDocumentSnapshot._(this.snapshot) : data = snapshot.data();
+class EntryDtoQueryDocumentSnapshot
+    extends FirestoreQueryDocumentSnapshot<EntryDto>
+    implements EntryDtoDocumentSnapshot {
+  EntryDtoQueryDocumentSnapshot._(this.snapshot) : data = snapshot.data();
 
   @override
-  final QueryDocumentSnapshot<EntryEntity> snapshot;
+  final QueryDocumentSnapshot<EntryDto> snapshot;
 
   @override
-  final EntryEntity data;
+  final EntryDto data;
 
   @override
-  EntryEntityDocumentReference get reference {
-    return EntryEntityDocumentReference(snapshot.reference);
+  EntryDtoDocumentReference get reference {
+    return EntryDtoDocumentReference(snapshot.reference);
   }
 }
 
@@ -1731,31 +1931,31 @@ class EntryEntityQueryDocumentSnapshot
 // JsonSerializableGenerator
 // **************************************************************************
 
-EntryEntity _$EntryEntityFromJson(Map<String, dynamic> json) => EntryEntity(
-      id: json['id'] as String,
+_$EntryDtoImpl _$$EntryDtoImplFromJson(Map<String, dynamic> json) =>
+    _$EntryDtoImpl(
       title: json['title'] as String,
       subtitle: json['subtitle'] as String,
       content: json['content'] as String,
       createdAt: const FirestoreDateTimeConverter()
           .fromJson(json['createdAt'] as Timestamp),
-      tags:
-          (json['tags'] as List<dynamic>?)?.map((e) => e as String).toList() ??
-              const [],
+      tags: (json['tags'] as List<dynamic>).map((e) => e as String).toList(),
+      comments: (json['comments'] as List<dynamic>)
+          .map((e) => const CommentDtoReferenceConverter()
+              .fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
-const _$EntryEntityFieldMap = <String, String>{
-  'id': 'id',
+const _$$EntryDtoImplFieldMap = <String, String>{
   'title': 'title',
   'subtitle': 'subtitle',
   'content': 'content',
   'createdAt': 'createdAt',
   'tags': 'tags',
+  'comments': 'comments',
 };
 
 // ignore: unused_element
-abstract class _$EntryEntityPerFieldToJson {
-  // ignore: unused_element
-  static Object? id(String instance) => instance;
+abstract class _$$EntryDtoImplPerFieldToJson {
   // ignore: unused_element
   static Object? title(String instance) => instance;
   // ignore: unused_element
@@ -1767,15 +1967,20 @@ abstract class _$EntryEntityPerFieldToJson {
       const FirestoreDateTimeConverter().toJson(instance);
   // ignore: unused_element
   static Object? tags(List<String> instance) => instance;
+  // ignore: unused_element
+  static Object? comments(List<InvalidType> instance) =>
+      instance.map(const CommentDtoReferenceConverter().toJson).toList();
 }
 
-Map<String, dynamic> _$EntryEntityToJson(EntryEntity instance) =>
+Map<String, dynamic> _$$EntryDtoImplToJson(_$EntryDtoImpl instance) =>
     <String, dynamic>{
-      'id': instance.id,
       'title': instance.title,
       'subtitle': instance.subtitle,
       'content': instance.content,
       'createdAt':
           const FirestoreDateTimeConverter().toJson(instance.createdAt),
       'tags': instance.tags,
+      'comments': instance.comments
+          .map(const CommentDtoReferenceConverter().toJson)
+          .toList(),
     };

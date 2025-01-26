@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:javier_website/core/providers/auth_provider.dart';
 import 'package:javier_website/core/providers/notifiers/locale_notifier.dart';
-import 'package:provider/provider.dart';
 import 'package:javier_website/core/l10n/app_locale.dart';
 import 'package:javier_website/core/l10n/app_localizations.dart';
 import 'package:javier_website/router/router.dart';
@@ -9,24 +10,24 @@ import 'package:javier_website/view/Themes/app_theme.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
   runApp(
-    ChangeNotifierProvider(
-      create: (context) => LocaleNotifier(),
-      child: const MyApp(),
+    const ProviderScope(
+      child: MyApp(),
     ),
   );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final locale = Provider.of<LocaleNotifier>(context).locale;
+  Widget build(BuildContext context, WidgetRef ref) {
+    final locale = ref.watch(localeProvider);
     LocalizationManager.updateLocale(context); // Update localizations
 
     return MaterialApp.router(

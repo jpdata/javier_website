@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'comment_entity.dart';
+part of 'comment_dto.dart';
 
 // **************************************************************************
 // CollectionGenerator
@@ -20,84 +20,81 @@ const _sentinel = _Sentinel();
 /// A collection reference object can be used for adding documents,
 /// getting document references, and querying for documents
 /// (using the methods inherited from Query).
-abstract class CommentEntityCollectionReference
+abstract class CommentDtoCollectionReference
     implements
-        CommentEntityQuery,
-        FirestoreCollectionReference<CommentEntity,
-            CommentEntityQuerySnapshot> {
-  factory CommentEntityCollectionReference([
+        CommentDtoQuery,
+        FirestoreCollectionReference<CommentDto, CommentDtoQuerySnapshot> {
+  factory CommentDtoCollectionReference([
     FirebaseFirestore? firestore,
-  ]) = _$CommentEntityCollectionReference;
+  ]) = _$CommentDtoCollectionReference;
 
-  static CommentEntity fromFirestore(
+  static CommentDto fromFirestore(
     DocumentSnapshot<Map<String, Object?>> snapshot,
     SnapshotOptions? options,
   ) {
-    return _$CommentEntityFromJson({'id': snapshot.id, ...?snapshot.data()});
+    return CommentDto.fromJson(snapshot.data()!);
   }
 
   static Map<String, Object?> toFirestore(
-    CommentEntity value,
+    CommentDto value,
     SetOptions? options,
   ) {
-    return {..._$CommentEntityToJson(value)}..remove('id');
+    return value.toJson();
   }
 
   @override
-  CollectionReference<CommentEntity> get reference;
+  CollectionReference<CommentDto> get reference;
 
   @override
-  CommentEntityDocumentReference doc([String? id]);
+  CommentDtoDocumentReference doc([String? id]);
 
   /// Add a new document to this collection with the specified data,
   /// assigning it a document ID automatically.
-  Future<CommentEntityDocumentReference> add(CommentEntity value);
+  Future<CommentDtoDocumentReference> add(CommentDto value);
 }
 
-class _$CommentEntityCollectionReference extends _$CommentEntityQuery
-    implements CommentEntityCollectionReference {
-  factory _$CommentEntityCollectionReference([FirebaseFirestore? firestore]) {
+class _$CommentDtoCollectionReference extends _$CommentDtoQuery
+    implements CommentDtoCollectionReference {
+  factory _$CommentDtoCollectionReference([FirebaseFirestore? firestore]) {
     firestore ??= FirebaseFirestore.instance;
 
-    return _$CommentEntityCollectionReference._(
+    return _$CommentDtoCollectionReference._(
       firestore.collection('comments').withConverter(
-            fromFirestore: CommentEntityCollectionReference.fromFirestore,
-            toFirestore: CommentEntityCollectionReference.toFirestore,
+            fromFirestore: CommentDtoCollectionReference.fromFirestore,
+            toFirestore: CommentDtoCollectionReference.toFirestore,
           ),
     );
   }
 
-  _$CommentEntityCollectionReference._(
-    CollectionReference<CommentEntity> reference,
+  _$CommentDtoCollectionReference._(
+    CollectionReference<CommentDto> reference,
   ) : super(reference, $referenceWithoutCursor: reference);
 
   String get path => reference.path;
 
   @override
-  CollectionReference<CommentEntity> get reference =>
-      super.reference as CollectionReference<CommentEntity>;
+  CollectionReference<CommentDto> get reference =>
+      super.reference as CollectionReference<CommentDto>;
 
   @override
-  CommentEntityDocumentReference doc([String? id]) {
+  CommentDtoDocumentReference doc([String? id]) {
     assert(
       id == null || id.split('/').length == 1,
       'The document ID cannot be from a different collection',
     );
-    return CommentEntityDocumentReference(
+    return CommentDtoDocumentReference(
       reference.doc(id),
     );
   }
 
   @override
-  Future<CommentEntityDocumentReference> add(CommentEntity value) {
-    return reference
-        .add(value)
-        .then((ref) => CommentEntityDocumentReference(ref));
+  Future<CommentDtoDocumentReference> add(CommentDto value) {
+    return reference.add(value).then((ref) => CommentDtoDocumentReference(ref));
   }
 
   @override
   bool operator ==(Object other) {
-    return other is _$CommentEntityCollectionReference &&
+    return other is _$CommentDtoCollectionReference &&
         other.runtimeType == runtimeType &&
         other.reference == reference;
   }
@@ -106,25 +103,23 @@ class _$CommentEntityCollectionReference extends _$CommentEntityQuery
   int get hashCode => Object.hash(runtimeType, reference);
 }
 
-abstract class CommentEntityDocumentReference
-    extends FirestoreDocumentReference<CommentEntity,
-        CommentEntityDocumentSnapshot> {
-  factory CommentEntityDocumentReference(
-          DocumentReference<CommentEntity> reference) =
-      _$CommentEntityDocumentReference;
+abstract class CommentDtoDocumentReference
+    extends FirestoreDocumentReference<CommentDto, CommentDtoDocumentSnapshot> {
+  factory CommentDtoDocumentReference(DocumentReference<CommentDto> reference) =
+      _$CommentDtoDocumentReference;
 
-  DocumentReference<CommentEntity> get reference;
+  DocumentReference<CommentDto> get reference;
 
-  /// A reference to the [CommentEntityCollectionReference] containing this document.
-  CommentEntityCollectionReference get parent {
-    return _$CommentEntityCollectionReference(reference.firestore);
+  /// A reference to the [CommentDtoCollectionReference] containing this document.
+  CommentDtoCollectionReference get parent {
+    return _$CommentDtoCollectionReference(reference.firestore);
   }
 
   @override
-  Stream<CommentEntityDocumentSnapshot> snapshots();
+  Stream<CommentDtoDocumentSnapshot> snapshots();
 
   @override
-  Future<CommentEntityDocumentSnapshot> get([GetOptions? options]);
+  Future<CommentDtoDocumentSnapshot> get([GetOptions? options]);
 
   @override
   Future<void> delete();
@@ -138,11 +133,12 @@ abstract class CommentEntityDocumentReference
   /// Any [FieldValue]s provided will replace the corresponding fields in the
   /// [model] during serialization.
   Future<void> set(
-    CommentEntity model, {
+    CommentDto model, {
     SetOptions? options,
-    FieldValue entryFieldValue,
     FieldValue contentFieldValue,
     FieldValue createdAtFieldValue,
+    FieldValue authorNameFieldValue,
+    FieldValue authorEmailFieldValue,
   });
 
   /// Writes to the document using the transaction API.
@@ -154,11 +150,12 @@ abstract class CommentEntityDocumentReference
   /// [model] during serialization.
   void transactionSet(
     Transaction transaction,
-    CommentEntity model, {
+    CommentDto model, {
     SetOptions? options,
-    FieldValue entryFieldValue,
     FieldValue contentFieldValue,
     FieldValue createdAtFieldValue,
+    FieldValue authorNameFieldValue,
+    FieldValue authorEmailFieldValue,
   });
 
   /// Writes to the document using the batch API.
@@ -170,11 +167,12 @@ abstract class CommentEntityDocumentReference
   /// [model] during serialization.
   void batchSet(
     WriteBatch batch,
-    CommentEntity model, {
+    CommentDto model, {
     SetOptions? options,
-    FieldValue entryFieldValue,
     FieldValue contentFieldValue,
     FieldValue createdAtFieldValue,
+    FieldValue authorNameFieldValue,
+    FieldValue authorEmailFieldValue,
   });
 
   /// Updates data on the document. Data will be merged with any existing
@@ -182,12 +180,14 @@ abstract class CommentEntityDocumentReference
   ///
   /// If no document exists yet, the update will fail.
   Future<void> update({
-    InvalidType entry,
-    FieldValue entryFieldValue,
     String content,
     FieldValue contentFieldValue,
     DateTime createdAt,
     FieldValue createdAtFieldValue,
+    String authorName,
+    FieldValue authorNameFieldValue,
+    String authorEmail,
+    FieldValue authorEmailFieldValue,
   });
 
   /// Updates fields in the current document using the transaction API.
@@ -195,12 +195,14 @@ abstract class CommentEntityDocumentReference
   /// The update will fail if applied to a document that does not exist.
   void transactionUpdate(
     Transaction transaction, {
-    InvalidType entry,
-    FieldValue entryFieldValue,
     String content,
     FieldValue contentFieldValue,
     DateTime createdAt,
     FieldValue createdAtFieldValue,
+    String authorName,
+    FieldValue authorNameFieldValue,
+    String authorEmail,
+    FieldValue authorEmailFieldValue,
   });
 
   /// Updates fields in the current document using the batch API.
@@ -208,59 +210,63 @@ abstract class CommentEntityDocumentReference
   /// The update will fail if applied to a document that does not exist.
   void batchUpdate(
     WriteBatch batch, {
-    InvalidType entry,
-    FieldValue entryFieldValue,
     String content,
     FieldValue contentFieldValue,
     DateTime createdAt,
     FieldValue createdAtFieldValue,
+    String authorName,
+    FieldValue authorNameFieldValue,
+    String authorEmail,
+    FieldValue authorEmailFieldValue,
   });
 }
 
-class _$CommentEntityDocumentReference extends FirestoreDocumentReference<
-    CommentEntity,
-    CommentEntityDocumentSnapshot> implements CommentEntityDocumentReference {
-  _$CommentEntityDocumentReference(this.reference);
+class _$CommentDtoDocumentReference
+    extends FirestoreDocumentReference<CommentDto, CommentDtoDocumentSnapshot>
+    implements CommentDtoDocumentReference {
+  _$CommentDtoDocumentReference(this.reference);
 
   @override
-  final DocumentReference<CommentEntity> reference;
+  final DocumentReference<CommentDto> reference;
 
-  /// A reference to the [CommentEntityCollectionReference] containing this document.
-  CommentEntityCollectionReference get parent {
-    return _$CommentEntityCollectionReference(reference.firestore);
+  /// A reference to the [CommentDtoCollectionReference] containing this document.
+  CommentDtoCollectionReference get parent {
+    return _$CommentDtoCollectionReference(reference.firestore);
   }
 
   @override
-  Stream<CommentEntityDocumentSnapshot> snapshots() {
-    return reference.snapshots().map(CommentEntityDocumentSnapshot._);
+  Stream<CommentDtoDocumentSnapshot> snapshots() {
+    return reference.snapshots().map(CommentDtoDocumentSnapshot._);
   }
 
   @override
-  Future<CommentEntityDocumentSnapshot> get([GetOptions? options]) {
-    return reference.get(options).then(CommentEntityDocumentSnapshot._);
+  Future<CommentDtoDocumentSnapshot> get([GetOptions? options]) {
+    return reference.get(options).then(CommentDtoDocumentSnapshot._);
   }
 
   @override
-  Future<CommentEntityDocumentSnapshot> transactionGet(
-      Transaction transaction) {
-    return transaction.get(reference).then(CommentEntityDocumentSnapshot._);
+  Future<CommentDtoDocumentSnapshot> transactionGet(Transaction transaction) {
+    return transaction.get(reference).then(CommentDtoDocumentSnapshot._);
   }
 
   Future<void> set(
-    CommentEntity model, {
+    CommentDto model, {
     SetOptions? options,
-    FieldValue? entryFieldValue,
     FieldValue? contentFieldValue,
     FieldValue? createdAtFieldValue,
+    FieldValue? authorNameFieldValue,
+    FieldValue? authorEmailFieldValue,
   }) async {
     final json = {
-      ..._$CommentEntityToJson(model),
-      if (entryFieldValue != null)
-        _$CommentEntityFieldMap['entry']!: entryFieldValue,
+      ...model.toJson(),
       if (contentFieldValue != null)
-        _$CommentEntityFieldMap['content']!: contentFieldValue,
+        _$$CommentDtoImplFieldMap['content']!: contentFieldValue,
       if (createdAtFieldValue != null)
-        _$CommentEntityFieldMap['createdAt']!: createdAtFieldValue,
+        _$$CommentDtoImplFieldMap['createdAt']!: createdAtFieldValue,
+      if (authorNameFieldValue != null)
+        _$$CommentDtoImplFieldMap['authorName']!: authorNameFieldValue,
+      if (authorEmailFieldValue != null)
+        _$$CommentDtoImplFieldMap['authorEmail']!: authorEmailFieldValue,
     };
 
     final castedReference = reference.withConverter<Map<String, dynamic>>(
@@ -272,20 +278,23 @@ class _$CommentEntityDocumentReference extends FirestoreDocumentReference<
 
   void transactionSet(
     Transaction transaction,
-    CommentEntity model, {
+    CommentDto model, {
     SetOptions? options,
-    FieldValue? entryFieldValue,
     FieldValue? contentFieldValue,
     FieldValue? createdAtFieldValue,
+    FieldValue? authorNameFieldValue,
+    FieldValue? authorEmailFieldValue,
   }) {
     final json = {
-      ..._$CommentEntityToJson(model),
-      if (entryFieldValue != null)
-        _$CommentEntityFieldMap['entry']!: entryFieldValue,
+      ...model.toJson(),
       if (contentFieldValue != null)
-        _$CommentEntityFieldMap['content']!: contentFieldValue,
+        _$$CommentDtoImplFieldMap['content']!: contentFieldValue,
       if (createdAtFieldValue != null)
-        _$CommentEntityFieldMap['createdAt']!: createdAtFieldValue,
+        _$$CommentDtoImplFieldMap['createdAt']!: createdAtFieldValue,
+      if (authorNameFieldValue != null)
+        _$$CommentDtoImplFieldMap['authorName']!: authorNameFieldValue,
+      if (authorEmailFieldValue != null)
+        _$$CommentDtoImplFieldMap['authorEmail']!: authorEmailFieldValue,
     };
 
     transaction.set(reference, json, options);
@@ -293,37 +302,38 @@ class _$CommentEntityDocumentReference extends FirestoreDocumentReference<
 
   void batchSet(
     WriteBatch batch,
-    CommentEntity model, {
+    CommentDto model, {
     SetOptions? options,
-    FieldValue? entryFieldValue,
     FieldValue? contentFieldValue,
     FieldValue? createdAtFieldValue,
+    FieldValue? authorNameFieldValue,
+    FieldValue? authorEmailFieldValue,
   }) {
     final json = {
-      ..._$CommentEntityToJson(model),
-      if (entryFieldValue != null)
-        _$CommentEntityFieldMap['entry']!: entryFieldValue,
+      ...model.toJson(),
       if (contentFieldValue != null)
-        _$CommentEntityFieldMap['content']!: contentFieldValue,
+        _$$CommentDtoImplFieldMap['content']!: contentFieldValue,
       if (createdAtFieldValue != null)
-        _$CommentEntityFieldMap['createdAt']!: createdAtFieldValue,
+        _$$CommentDtoImplFieldMap['createdAt']!: createdAtFieldValue,
+      if (authorNameFieldValue != null)
+        _$$CommentDtoImplFieldMap['authorName']!: authorNameFieldValue,
+      if (authorEmailFieldValue != null)
+        _$$CommentDtoImplFieldMap['authorEmail']!: authorEmailFieldValue,
     };
 
     batch.set(reference, json, options);
   }
 
   Future<void> update({
-    Object? entry = _sentinel,
-    FieldValue? entryFieldValue,
     Object? content = _sentinel,
     FieldValue? contentFieldValue,
     Object? createdAt = _sentinel,
     FieldValue? createdAtFieldValue,
+    Object? authorName = _sentinel,
+    FieldValue? authorNameFieldValue,
+    Object? authorEmail = _sentinel,
+    FieldValue? authorEmailFieldValue,
   }) async {
-    assert(
-      entry == _sentinel || entryFieldValue == null,
-      "Cannot specify both entry and entryFieldValue",
-    );
     assert(
       content == _sentinel || contentFieldValue == null,
       "Cannot specify both content and contentFieldValue",
@@ -332,22 +342,35 @@ class _$CommentEntityDocumentReference extends FirestoreDocumentReference<
       createdAt == _sentinel || createdAtFieldValue == null,
       "Cannot specify both createdAt and createdAtFieldValue",
     );
+    assert(
+      authorName == _sentinel || authorNameFieldValue == null,
+      "Cannot specify both authorName and authorNameFieldValue",
+    );
+    assert(
+      authorEmail == _sentinel || authorEmailFieldValue == null,
+      "Cannot specify both authorEmail and authorEmailFieldValue",
+    );
     final json = {
-      if (entry != _sentinel)
-        _$CommentEntityFieldMap['entry']!:
-            _$CommentEntityPerFieldToJson.entry(entry as InvalidType),
-      if (entryFieldValue != null)
-        _$CommentEntityFieldMap['entry']!: entryFieldValue,
       if (content != _sentinel)
-        _$CommentEntityFieldMap['content']!:
-            _$CommentEntityPerFieldToJson.content(content as String),
+        _$$CommentDtoImplFieldMap['content']!:
+            _$$CommentDtoImplPerFieldToJson.content(content as String),
       if (contentFieldValue != null)
-        _$CommentEntityFieldMap['content']!: contentFieldValue,
+        _$$CommentDtoImplFieldMap['content']!: contentFieldValue,
       if (createdAt != _sentinel)
-        _$CommentEntityFieldMap['createdAt']!:
-            _$CommentEntityPerFieldToJson.createdAt(createdAt as DateTime),
+        _$$CommentDtoImplFieldMap['createdAt']!:
+            _$$CommentDtoImplPerFieldToJson.createdAt(createdAt as DateTime),
       if (createdAtFieldValue != null)
-        _$CommentEntityFieldMap['createdAt']!: createdAtFieldValue,
+        _$$CommentDtoImplFieldMap['createdAt']!: createdAtFieldValue,
+      if (authorName != _sentinel)
+        _$$CommentDtoImplFieldMap['authorName']!:
+            _$$CommentDtoImplPerFieldToJson.authorName(authorName as String),
+      if (authorNameFieldValue != null)
+        _$$CommentDtoImplFieldMap['authorName']!: authorNameFieldValue,
+      if (authorEmail != _sentinel)
+        _$$CommentDtoImplFieldMap['authorEmail']!:
+            _$$CommentDtoImplPerFieldToJson.authorEmail(authorEmail as String),
+      if (authorEmailFieldValue != null)
+        _$$CommentDtoImplFieldMap['authorEmail']!: authorEmailFieldValue,
     };
 
     return reference.update(json);
@@ -355,17 +378,15 @@ class _$CommentEntityDocumentReference extends FirestoreDocumentReference<
 
   void transactionUpdate(
     Transaction transaction, {
-    Object? entry = _sentinel,
-    FieldValue? entryFieldValue,
     Object? content = _sentinel,
     FieldValue? contentFieldValue,
     Object? createdAt = _sentinel,
     FieldValue? createdAtFieldValue,
+    Object? authorName = _sentinel,
+    FieldValue? authorNameFieldValue,
+    Object? authorEmail = _sentinel,
+    FieldValue? authorEmailFieldValue,
   }) {
-    assert(
-      entry == _sentinel || entryFieldValue == null,
-      "Cannot specify both entry and entryFieldValue",
-    );
     assert(
       content == _sentinel || contentFieldValue == null,
       "Cannot specify both content and contentFieldValue",
@@ -374,22 +395,35 @@ class _$CommentEntityDocumentReference extends FirestoreDocumentReference<
       createdAt == _sentinel || createdAtFieldValue == null,
       "Cannot specify both createdAt and createdAtFieldValue",
     );
+    assert(
+      authorName == _sentinel || authorNameFieldValue == null,
+      "Cannot specify both authorName and authorNameFieldValue",
+    );
+    assert(
+      authorEmail == _sentinel || authorEmailFieldValue == null,
+      "Cannot specify both authorEmail and authorEmailFieldValue",
+    );
     final json = {
-      if (entry != _sentinel)
-        _$CommentEntityFieldMap['entry']!:
-            _$CommentEntityPerFieldToJson.entry(entry as InvalidType),
-      if (entryFieldValue != null)
-        _$CommentEntityFieldMap['entry']!: entryFieldValue,
       if (content != _sentinel)
-        _$CommentEntityFieldMap['content']!:
-            _$CommentEntityPerFieldToJson.content(content as String),
+        _$$CommentDtoImplFieldMap['content']!:
+            _$$CommentDtoImplPerFieldToJson.content(content as String),
       if (contentFieldValue != null)
-        _$CommentEntityFieldMap['content']!: contentFieldValue,
+        _$$CommentDtoImplFieldMap['content']!: contentFieldValue,
       if (createdAt != _sentinel)
-        _$CommentEntityFieldMap['createdAt']!:
-            _$CommentEntityPerFieldToJson.createdAt(createdAt as DateTime),
+        _$$CommentDtoImplFieldMap['createdAt']!:
+            _$$CommentDtoImplPerFieldToJson.createdAt(createdAt as DateTime),
       if (createdAtFieldValue != null)
-        _$CommentEntityFieldMap['createdAt']!: createdAtFieldValue,
+        _$$CommentDtoImplFieldMap['createdAt']!: createdAtFieldValue,
+      if (authorName != _sentinel)
+        _$$CommentDtoImplFieldMap['authorName']!:
+            _$$CommentDtoImplPerFieldToJson.authorName(authorName as String),
+      if (authorNameFieldValue != null)
+        _$$CommentDtoImplFieldMap['authorName']!: authorNameFieldValue,
+      if (authorEmail != _sentinel)
+        _$$CommentDtoImplFieldMap['authorEmail']!:
+            _$$CommentDtoImplPerFieldToJson.authorEmail(authorEmail as String),
+      if (authorEmailFieldValue != null)
+        _$$CommentDtoImplFieldMap['authorEmail']!: authorEmailFieldValue,
     };
 
     transaction.update(reference, json);
@@ -397,17 +431,15 @@ class _$CommentEntityDocumentReference extends FirestoreDocumentReference<
 
   void batchUpdate(
     WriteBatch batch, {
-    Object? entry = _sentinel,
-    FieldValue? entryFieldValue,
     Object? content = _sentinel,
     FieldValue? contentFieldValue,
     Object? createdAt = _sentinel,
     FieldValue? createdAtFieldValue,
+    Object? authorName = _sentinel,
+    FieldValue? authorNameFieldValue,
+    Object? authorEmail = _sentinel,
+    FieldValue? authorEmailFieldValue,
   }) {
-    assert(
-      entry == _sentinel || entryFieldValue == null,
-      "Cannot specify both entry and entryFieldValue",
-    );
     assert(
       content == _sentinel || contentFieldValue == null,
       "Cannot specify both content and contentFieldValue",
@@ -416,22 +448,35 @@ class _$CommentEntityDocumentReference extends FirestoreDocumentReference<
       createdAt == _sentinel || createdAtFieldValue == null,
       "Cannot specify both createdAt and createdAtFieldValue",
     );
+    assert(
+      authorName == _sentinel || authorNameFieldValue == null,
+      "Cannot specify both authorName and authorNameFieldValue",
+    );
+    assert(
+      authorEmail == _sentinel || authorEmailFieldValue == null,
+      "Cannot specify both authorEmail and authorEmailFieldValue",
+    );
     final json = {
-      if (entry != _sentinel)
-        _$CommentEntityFieldMap['entry']!:
-            _$CommentEntityPerFieldToJson.entry(entry as InvalidType),
-      if (entryFieldValue != null)
-        _$CommentEntityFieldMap['entry']!: entryFieldValue,
       if (content != _sentinel)
-        _$CommentEntityFieldMap['content']!:
-            _$CommentEntityPerFieldToJson.content(content as String),
+        _$$CommentDtoImplFieldMap['content']!:
+            _$$CommentDtoImplPerFieldToJson.content(content as String),
       if (contentFieldValue != null)
-        _$CommentEntityFieldMap['content']!: contentFieldValue,
+        _$$CommentDtoImplFieldMap['content']!: contentFieldValue,
       if (createdAt != _sentinel)
-        _$CommentEntityFieldMap['createdAt']!:
-            _$CommentEntityPerFieldToJson.createdAt(createdAt as DateTime),
+        _$$CommentDtoImplFieldMap['createdAt']!:
+            _$$CommentDtoImplPerFieldToJson.createdAt(createdAt as DateTime),
       if (createdAtFieldValue != null)
-        _$CommentEntityFieldMap['createdAt']!: createdAtFieldValue,
+        _$$CommentDtoImplFieldMap['createdAt']!: createdAtFieldValue,
+      if (authorName != _sentinel)
+        _$$CommentDtoImplFieldMap['authorName']!:
+            _$$CommentDtoImplPerFieldToJson.authorName(authorName as String),
+      if (authorNameFieldValue != null)
+        _$$CommentDtoImplFieldMap['authorName']!: authorNameFieldValue,
+      if (authorEmail != _sentinel)
+        _$$CommentDtoImplFieldMap['authorEmail']!:
+            _$$CommentDtoImplPerFieldToJson.authorEmail(authorEmail as String),
+      if (authorEmailFieldValue != null)
+        _$$CommentDtoImplFieldMap['authorEmail']!: authorEmailFieldValue,
     };
 
     batch.update(reference, json);
@@ -439,7 +484,7 @@ class _$CommentEntityDocumentReference extends FirestoreDocumentReference<
 
   @override
   bool operator ==(Object other) {
-    return other is CommentEntityDocumentReference &&
+    return other is CommentDtoDocumentReference &&
         other.runtimeType == runtimeType &&
         other.parent == parent &&
         other.id == id;
@@ -449,13 +494,13 @@ class _$CommentEntityDocumentReference extends FirestoreDocumentReference<
   int get hashCode => Object.hash(runtimeType, parent, id);
 }
 
-abstract class CommentEntityQuery
-    implements QueryReference<CommentEntity, CommentEntityQuerySnapshot> {
+abstract class CommentDtoQuery
+    implements QueryReference<CommentDto, CommentDtoQuerySnapshot> {
   @override
-  CommentEntityQuery limit(int limit);
+  CommentDtoQuery limit(int limit);
 
   @override
-  CommentEntityQuery limitToLast(int limit);
+  CommentDtoQuery limitToLast(int limit);
 
   /// Perform a where query based on a [FieldPath].
   ///
@@ -474,7 +519,7 @@ abstract class CommentEntityQuery
   /// ```dart
   /// collection.whereTitle(isEqualTo: 'title');
   /// ```
-  CommentEntityQuery whereFieldPath(
+  CommentDtoQuery whereFieldPath(
     Object fieldPath, {
     Object? isEqualTo,
     Object? isNotEqualTo,
@@ -489,7 +534,7 @@ abstract class CommentEntityQuery
     bool? isNull,
   });
 
-  CommentEntityQuery whereDocumentId({
+  CommentDtoQuery whereDocumentId({
     String? isEqualTo,
     String? isNotEqualTo,
     String? isLessThan,
@@ -501,19 +546,7 @@ abstract class CommentEntityQuery
     bool? isNull,
   });
 
-  CommentEntityQuery whereEntry({
-    InvalidType? isEqualTo,
-    InvalidType? isNotEqualTo,
-    InvalidType? isLessThan,
-    InvalidType? isLessThanOrEqualTo,
-    InvalidType? isGreaterThan,
-    InvalidType? isGreaterThanOrEqualTo,
-    List<InvalidType>? whereIn,
-    List<InvalidType>? whereNotIn,
-    bool? isNull,
-  });
-
-  CommentEntityQuery whereContent({
+  CommentDtoQuery whereContent({
     String? isEqualTo,
     String? isNotEqualTo,
     String? isLessThan,
@@ -525,7 +558,7 @@ abstract class CommentEntityQuery
     bool? isNull,
   });
 
-  CommentEntityQuery whereCreatedAt({
+  CommentDtoQuery whereCreatedAt({
     DateTime? isEqualTo,
     DateTime? isNotEqualTo,
     DateTime? isLessThan,
@@ -534,6 +567,30 @@ abstract class CommentEntityQuery
     DateTime? isGreaterThanOrEqualTo,
     List<DateTime>? whereIn,
     List<DateTime>? whereNotIn,
+    bool? isNull,
+  });
+
+  CommentDtoQuery whereAuthorName({
+    String? isEqualTo,
+    String? isNotEqualTo,
+    String? isLessThan,
+    String? isLessThanOrEqualTo,
+    String? isGreaterThan,
+    String? isGreaterThanOrEqualTo,
+    List<String>? whereIn,
+    List<String>? whereNotIn,
+    bool? isNull,
+  });
+
+  CommentDtoQuery whereAuthorEmail({
+    String? isEqualTo,
+    String? isNotEqualTo,
+    String? isLessThan,
+    String? isLessThanOrEqualTo,
+    String? isGreaterThan,
+    String? isGreaterThanOrEqualTo,
+    List<String>? whereIn,
+    List<String>? whereNotIn,
     bool? isNull,
   });
 
@@ -557,74 +614,86 @@ abstract class CommentEntityQuery
   /// ```dart
   /// collection.orderByTitle(startAt: 'title');
   /// ```
-  CommentEntityQuery orderByFieldPath(
+  CommentDtoQuery orderByFieldPath(
     Object fieldPath, {
     bool descending = false,
     Object startAt,
     Object startAfter,
     Object endAt,
     Object endBefore,
-    CommentEntityDocumentSnapshot? startAtDocument,
-    CommentEntityDocumentSnapshot? endAtDocument,
-    CommentEntityDocumentSnapshot? endBeforeDocument,
-    CommentEntityDocumentSnapshot? startAfterDocument,
+    CommentDtoDocumentSnapshot? startAtDocument,
+    CommentDtoDocumentSnapshot? endAtDocument,
+    CommentDtoDocumentSnapshot? endBeforeDocument,
+    CommentDtoDocumentSnapshot? startAfterDocument,
   });
 
-  CommentEntityQuery orderByDocumentId({
+  CommentDtoQuery orderByDocumentId({
     bool descending = false,
     String startAt,
     String startAfter,
     String endAt,
     String endBefore,
-    CommentEntityDocumentSnapshot? startAtDocument,
-    CommentEntityDocumentSnapshot? endAtDocument,
-    CommentEntityDocumentSnapshot? endBeforeDocument,
-    CommentEntityDocumentSnapshot? startAfterDocument,
+    CommentDtoDocumentSnapshot? startAtDocument,
+    CommentDtoDocumentSnapshot? endAtDocument,
+    CommentDtoDocumentSnapshot? endBeforeDocument,
+    CommentDtoDocumentSnapshot? startAfterDocument,
   });
 
-  CommentEntityQuery orderByEntry({
-    bool descending = false,
-    InvalidType startAt,
-    InvalidType startAfter,
-    InvalidType endAt,
-    InvalidType endBefore,
-    CommentEntityDocumentSnapshot? startAtDocument,
-    CommentEntityDocumentSnapshot? endAtDocument,
-    CommentEntityDocumentSnapshot? endBeforeDocument,
-    CommentEntityDocumentSnapshot? startAfterDocument,
-  });
-
-  CommentEntityQuery orderByContent({
+  CommentDtoQuery orderByContent({
     bool descending = false,
     String startAt,
     String startAfter,
     String endAt,
     String endBefore,
-    CommentEntityDocumentSnapshot? startAtDocument,
-    CommentEntityDocumentSnapshot? endAtDocument,
-    CommentEntityDocumentSnapshot? endBeforeDocument,
-    CommentEntityDocumentSnapshot? startAfterDocument,
+    CommentDtoDocumentSnapshot? startAtDocument,
+    CommentDtoDocumentSnapshot? endAtDocument,
+    CommentDtoDocumentSnapshot? endBeforeDocument,
+    CommentDtoDocumentSnapshot? startAfterDocument,
   });
 
-  CommentEntityQuery orderByCreatedAt({
+  CommentDtoQuery orderByCreatedAt({
     bool descending = false,
     DateTime startAt,
     DateTime startAfter,
     DateTime endAt,
     DateTime endBefore,
-    CommentEntityDocumentSnapshot? startAtDocument,
-    CommentEntityDocumentSnapshot? endAtDocument,
-    CommentEntityDocumentSnapshot? endBeforeDocument,
-    CommentEntityDocumentSnapshot? startAfterDocument,
+    CommentDtoDocumentSnapshot? startAtDocument,
+    CommentDtoDocumentSnapshot? endAtDocument,
+    CommentDtoDocumentSnapshot? endBeforeDocument,
+    CommentDtoDocumentSnapshot? startAfterDocument,
+  });
+
+  CommentDtoQuery orderByAuthorName({
+    bool descending = false,
+    String startAt,
+    String startAfter,
+    String endAt,
+    String endBefore,
+    CommentDtoDocumentSnapshot? startAtDocument,
+    CommentDtoDocumentSnapshot? endAtDocument,
+    CommentDtoDocumentSnapshot? endBeforeDocument,
+    CommentDtoDocumentSnapshot? startAfterDocument,
+  });
+
+  CommentDtoQuery orderByAuthorEmail({
+    bool descending = false,
+    String startAt,
+    String startAfter,
+    String endAt,
+    String endBefore,
+    CommentDtoDocumentSnapshot? startAtDocument,
+    CommentDtoDocumentSnapshot? endAtDocument,
+    CommentDtoDocumentSnapshot? endBeforeDocument,
+    CommentDtoDocumentSnapshot? startAfterDocument,
   });
 }
 
-class _$CommentEntityQuery
-    extends QueryReference<CommentEntity, CommentEntityQuerySnapshot>
-    implements CommentEntityQuery {
-  _$CommentEntityQuery(
+class _$CommentDtoQuery
+    extends QueryReference<CommentDto, CommentDtoQuerySnapshot>
+    implements CommentDtoQuery {
+  _$CommentDtoQuery(
     this._collection, {
-    required Query<CommentEntity> $referenceWithoutCursor,
+    required Query<CommentDto> $referenceWithoutCursor,
     $QueryCursor $queryCursor = const $QueryCursor(),
   }) : super(
           $referenceWithoutCursor: $referenceWithoutCursor,
@@ -634,22 +703,22 @@ class _$CommentEntityQuery
   final CollectionReference<Object?> _collection;
 
   @override
-  Stream<CommentEntityQuerySnapshot> snapshots([SnapshotOptions? options]) {
+  Stream<CommentDtoQuerySnapshot> snapshots([SnapshotOptions? options]) {
     return reference
         .snapshots()
-        .map(CommentEntityQuerySnapshot._fromQuerySnapshot);
+        .map(CommentDtoQuerySnapshot._fromQuerySnapshot);
   }
 
   @override
-  Future<CommentEntityQuerySnapshot> get([GetOptions? options]) {
+  Future<CommentDtoQuerySnapshot> get([GetOptions? options]) {
     return reference
         .get(options)
-        .then(CommentEntityQuerySnapshot._fromQuerySnapshot);
+        .then(CommentDtoQuerySnapshot._fromQuerySnapshot);
   }
 
   @override
-  CommentEntityQuery limit(int limit) {
-    return _$CommentEntityQuery(
+  CommentDtoQuery limit(int limit) {
+    return _$CommentDtoQuery(
       _collection,
       $referenceWithoutCursor: $referenceWithoutCursor.limit(limit),
       $queryCursor: $queryCursor,
@@ -657,8 +726,8 @@ class _$CommentEntityQuery
   }
 
   @override
-  CommentEntityQuery limitToLast(int limit) {
-    return _$CommentEntityQuery(
+  CommentDtoQuery limitToLast(int limit) {
+    return _$CommentDtoQuery(
       _collection,
       $referenceWithoutCursor: $referenceWithoutCursor.limitToLast(limit),
       $queryCursor: $queryCursor,
@@ -666,7 +735,7 @@ class _$CommentEntityQuery
   }
 
   @override
-  CommentEntityQuery whereFieldPath(
+  CommentDtoQuery whereFieldPath(
     Object fieldPath, {
     Object? isEqualTo = _sentinel,
     Object? isNotEqualTo = _sentinel,
@@ -680,7 +749,7 @@ class _$CommentEntityQuery
     List<Object?>? whereNotIn,
     bool? isNull,
   }) {
-    return _$CommentEntityQuery(
+    return _$CommentDtoQuery(
       _collection,
       $referenceWithoutCursor: $referenceWithoutCursor.where(
         fieldPath,
@@ -703,7 +772,7 @@ class _$CommentEntityQuery
   }
 
   @override
-  CommentEntityQuery whereDocumentId({
+  CommentDtoQuery whereDocumentId({
     Object? isEqualTo = _sentinel,
     Object? isNotEqualTo = _sentinel,
     Object? isLessThan,
@@ -714,7 +783,7 @@ class _$CommentEntityQuery
     List<String>? whereNotIn,
     bool? isNull,
   }) {
-    return _$CommentEntityQuery(
+    return _$CommentDtoQuery(
       _collection,
       $referenceWithoutCursor: $referenceWithoutCursor.where(
         FieldPath.documentId,
@@ -735,54 +804,7 @@ class _$CommentEntityQuery
   }
 
   @override
-  CommentEntityQuery whereEntry({
-    Object? isEqualTo = _sentinel,
-    Object? isNotEqualTo = _sentinel,
-    Object? isLessThan,
-    Object? isLessThanOrEqualTo,
-    Object? isGreaterThan,
-    Object? isGreaterThanOrEqualTo,
-    List<InvalidType>? whereIn,
-    List<InvalidType>? whereNotIn,
-    bool? isNull,
-  }) {
-    return _$CommentEntityQuery(
-      _collection,
-      $referenceWithoutCursor: $referenceWithoutCursor.where(
-        _$CommentEntityFieldMap['entry']!,
-        isEqualTo: isEqualTo != _sentinel
-            ? _$CommentEntityPerFieldToJson.entry(isEqualTo as InvalidType)
-            : null,
-        isNotEqualTo: isNotEqualTo != _sentinel
-            ? _$CommentEntityPerFieldToJson.entry(isNotEqualTo as InvalidType)
-            : null,
-        isLessThan: isLessThan != null
-            ? _$CommentEntityPerFieldToJson.entry(isLessThan as InvalidType)
-            : null,
-        isLessThanOrEqualTo: isLessThanOrEqualTo != null
-            ? _$CommentEntityPerFieldToJson
-                .entry(isLessThanOrEqualTo as InvalidType)
-            : null,
-        isGreaterThan: isGreaterThan != null
-            ? _$CommentEntityPerFieldToJson.entry(isGreaterThan as InvalidType)
-            : null,
-        isGreaterThanOrEqualTo: isGreaterThanOrEqualTo != null
-            ? _$CommentEntityPerFieldToJson
-                .entry(isGreaterThanOrEqualTo as InvalidType)
-            : null,
-        whereIn: whereIn?.map((e) => _$CommentEntityPerFieldToJson.entry(e)),
-        whereNotIn:
-            whereNotIn?.map((e) => _$CommentEntityPerFieldToJson.entry(e)),
-        isNull: isNull ??
-            (isEqualTo == null ? false : null) ??
-            (isNotEqualTo == null ? true : null),
-      ),
-      $queryCursor: $queryCursor,
-    );
-  }
-
-  @override
-  CommentEntityQuery whereContent({
+  CommentDtoQuery whereContent({
     Object? isEqualTo = _sentinel,
     Object? isNotEqualTo = _sentinel,
     Object? isLessThan,
@@ -793,33 +815,34 @@ class _$CommentEntityQuery
     List<String>? whereNotIn,
     bool? isNull,
   }) {
-    return _$CommentEntityQuery(
+    return _$CommentDtoQuery(
       _collection,
       $referenceWithoutCursor: $referenceWithoutCursor.where(
-        _$CommentEntityFieldMap['content']!,
+        _$$CommentDtoImplFieldMap['content']!,
         isEqualTo: isEqualTo != _sentinel
-            ? _$CommentEntityPerFieldToJson.content(isEqualTo as String)
+            ? _$$CommentDtoImplPerFieldToJson.content(isEqualTo as String)
             : null,
         isNotEqualTo: isNotEqualTo != _sentinel
-            ? _$CommentEntityPerFieldToJson.content(isNotEqualTo as String)
+            ? _$$CommentDtoImplPerFieldToJson.content(isNotEqualTo as String)
             : null,
         isLessThan: isLessThan != null
-            ? _$CommentEntityPerFieldToJson.content(isLessThan as String)
+            ? _$$CommentDtoImplPerFieldToJson.content(isLessThan as String)
             : null,
         isLessThanOrEqualTo: isLessThanOrEqualTo != null
-            ? _$CommentEntityPerFieldToJson
+            ? _$$CommentDtoImplPerFieldToJson
                 .content(isLessThanOrEqualTo as String)
             : null,
         isGreaterThan: isGreaterThan != null
-            ? _$CommentEntityPerFieldToJson.content(isGreaterThan as String)
+            ? _$$CommentDtoImplPerFieldToJson.content(isGreaterThan as String)
             : null,
         isGreaterThanOrEqualTo: isGreaterThanOrEqualTo != null
-            ? _$CommentEntityPerFieldToJson
+            ? _$$CommentDtoImplPerFieldToJson
                 .content(isGreaterThanOrEqualTo as String)
             : null,
-        whereIn: whereIn?.map((e) => _$CommentEntityPerFieldToJson.content(e)),
+        whereIn:
+            whereIn?.map((e) => _$$CommentDtoImplPerFieldToJson.content(e)),
         whereNotIn:
-            whereNotIn?.map((e) => _$CommentEntityPerFieldToJson.content(e)),
+            whereNotIn?.map((e) => _$$CommentDtoImplPerFieldToJson.content(e)),
         isNull: isNull ??
             (isEqualTo == null ? false : null) ??
             (isNotEqualTo == null ? true : null),
@@ -829,7 +852,7 @@ class _$CommentEntityQuery
   }
 
   @override
-  CommentEntityQuery whereCreatedAt({
+  CommentDtoQuery whereCreatedAt({
     Object? isEqualTo = _sentinel,
     Object? isNotEqualTo = _sentinel,
     Object? isLessThan,
@@ -840,34 +863,36 @@ class _$CommentEntityQuery
     List<DateTime>? whereNotIn,
     bool? isNull,
   }) {
-    return _$CommentEntityQuery(
+    return _$CommentDtoQuery(
       _collection,
       $referenceWithoutCursor: $referenceWithoutCursor.where(
-        _$CommentEntityFieldMap['createdAt']!,
+        _$$CommentDtoImplFieldMap['createdAt']!,
         isEqualTo: isEqualTo != _sentinel
-            ? _$CommentEntityPerFieldToJson.createdAt(isEqualTo as DateTime)
+            ? _$$CommentDtoImplPerFieldToJson.createdAt(isEqualTo as DateTime)
             : null,
         isNotEqualTo: isNotEqualTo != _sentinel
-            ? _$CommentEntityPerFieldToJson.createdAt(isNotEqualTo as DateTime)
+            ? _$$CommentDtoImplPerFieldToJson
+                .createdAt(isNotEqualTo as DateTime)
             : null,
         isLessThan: isLessThan != null
-            ? _$CommentEntityPerFieldToJson.createdAt(isLessThan as DateTime)
+            ? _$$CommentDtoImplPerFieldToJson.createdAt(isLessThan as DateTime)
             : null,
         isLessThanOrEqualTo: isLessThanOrEqualTo != null
-            ? _$CommentEntityPerFieldToJson
+            ? _$$CommentDtoImplPerFieldToJson
                 .createdAt(isLessThanOrEqualTo as DateTime)
             : null,
         isGreaterThan: isGreaterThan != null
-            ? _$CommentEntityPerFieldToJson.createdAt(isGreaterThan as DateTime)
+            ? _$$CommentDtoImplPerFieldToJson
+                .createdAt(isGreaterThan as DateTime)
             : null,
         isGreaterThanOrEqualTo: isGreaterThanOrEqualTo != null
-            ? _$CommentEntityPerFieldToJson
+            ? _$$CommentDtoImplPerFieldToJson
                 .createdAt(isGreaterThanOrEqualTo as DateTime)
             : null,
         whereIn:
-            whereIn?.map((e) => _$CommentEntityPerFieldToJson.createdAt(e)),
-        whereNotIn:
-            whereNotIn?.map((e) => _$CommentEntityPerFieldToJson.createdAt(e)),
+            whereIn?.map((e) => _$$CommentDtoImplPerFieldToJson.createdAt(e)),
+        whereNotIn: whereNotIn
+            ?.map((e) => _$$CommentDtoImplPerFieldToJson.createdAt(e)),
         isNull: isNull ??
             (isEqualTo == null ? false : null) ??
             (isNotEqualTo == null ? true : null),
@@ -877,17 +902,116 @@ class _$CommentEntityQuery
   }
 
   @override
-  CommentEntityQuery orderByFieldPath(
+  CommentDtoQuery whereAuthorName({
+    Object? isEqualTo = _sentinel,
+    Object? isNotEqualTo = _sentinel,
+    Object? isLessThan,
+    Object? isLessThanOrEqualTo,
+    Object? isGreaterThan,
+    Object? isGreaterThanOrEqualTo,
+    List<String>? whereIn,
+    List<String>? whereNotIn,
+    bool? isNull,
+  }) {
+    return _$CommentDtoQuery(
+      _collection,
+      $referenceWithoutCursor: $referenceWithoutCursor.where(
+        _$$CommentDtoImplFieldMap['authorName']!,
+        isEqualTo: isEqualTo != _sentinel
+            ? _$$CommentDtoImplPerFieldToJson.authorName(isEqualTo as String)
+            : null,
+        isNotEqualTo: isNotEqualTo != _sentinel
+            ? _$$CommentDtoImplPerFieldToJson.authorName(isNotEqualTo as String)
+            : null,
+        isLessThan: isLessThan != null
+            ? _$$CommentDtoImplPerFieldToJson.authorName(isLessThan as String)
+            : null,
+        isLessThanOrEqualTo: isLessThanOrEqualTo != null
+            ? _$$CommentDtoImplPerFieldToJson
+                .authorName(isLessThanOrEqualTo as String)
+            : null,
+        isGreaterThan: isGreaterThan != null
+            ? _$$CommentDtoImplPerFieldToJson
+                .authorName(isGreaterThan as String)
+            : null,
+        isGreaterThanOrEqualTo: isGreaterThanOrEqualTo != null
+            ? _$$CommentDtoImplPerFieldToJson
+                .authorName(isGreaterThanOrEqualTo as String)
+            : null,
+        whereIn:
+            whereIn?.map((e) => _$$CommentDtoImplPerFieldToJson.authorName(e)),
+        whereNotIn: whereNotIn
+            ?.map((e) => _$$CommentDtoImplPerFieldToJson.authorName(e)),
+        isNull: isNull ??
+            (isEqualTo == null ? false : null) ??
+            (isNotEqualTo == null ? true : null),
+      ),
+      $queryCursor: $queryCursor,
+    );
+  }
+
+  @override
+  CommentDtoQuery whereAuthorEmail({
+    Object? isEqualTo = _sentinel,
+    Object? isNotEqualTo = _sentinel,
+    Object? isLessThan,
+    Object? isLessThanOrEqualTo,
+    Object? isGreaterThan,
+    Object? isGreaterThanOrEqualTo,
+    List<String>? whereIn,
+    List<String>? whereNotIn,
+    bool? isNull,
+  }) {
+    return _$CommentDtoQuery(
+      _collection,
+      $referenceWithoutCursor: $referenceWithoutCursor.where(
+        _$$CommentDtoImplFieldMap['authorEmail']!,
+        isEqualTo: isEqualTo != _sentinel
+            ? _$$CommentDtoImplPerFieldToJson.authorEmail(isEqualTo as String)
+            : null,
+        isNotEqualTo: isNotEqualTo != _sentinel
+            ? _$$CommentDtoImplPerFieldToJson
+                .authorEmail(isNotEqualTo as String)
+            : null,
+        isLessThan: isLessThan != null
+            ? _$$CommentDtoImplPerFieldToJson.authorEmail(isLessThan as String)
+            : null,
+        isLessThanOrEqualTo: isLessThanOrEqualTo != null
+            ? _$$CommentDtoImplPerFieldToJson
+                .authorEmail(isLessThanOrEqualTo as String)
+            : null,
+        isGreaterThan: isGreaterThan != null
+            ? _$$CommentDtoImplPerFieldToJson
+                .authorEmail(isGreaterThan as String)
+            : null,
+        isGreaterThanOrEqualTo: isGreaterThanOrEqualTo != null
+            ? _$$CommentDtoImplPerFieldToJson
+                .authorEmail(isGreaterThanOrEqualTo as String)
+            : null,
+        whereIn:
+            whereIn?.map((e) => _$$CommentDtoImplPerFieldToJson.authorEmail(e)),
+        whereNotIn: whereNotIn
+            ?.map((e) => _$$CommentDtoImplPerFieldToJson.authorEmail(e)),
+        isNull: isNull ??
+            (isEqualTo == null ? false : null) ??
+            (isNotEqualTo == null ? true : null),
+      ),
+      $queryCursor: $queryCursor,
+    );
+  }
+
+  @override
+  CommentDtoQuery orderByFieldPath(
     Object fieldPath, {
     bool descending = false,
     Object? startAt = _sentinel,
     Object? startAfter = _sentinel,
     Object? endAt = _sentinel,
     Object? endBefore = _sentinel,
-    CommentEntityDocumentSnapshot? startAtDocument,
-    CommentEntityDocumentSnapshot? endAtDocument,
-    CommentEntityDocumentSnapshot? endBeforeDocument,
-    CommentEntityDocumentSnapshot? startAfterDocument,
+    CommentDtoDocumentSnapshot? startAtDocument,
+    CommentDtoDocumentSnapshot? endAtDocument,
+    CommentDtoDocumentSnapshot? endBeforeDocument,
+    CommentDtoDocumentSnapshot? startAfterDocument,
   }) {
     final query =
         $referenceWithoutCursor.orderBy(fieldPath, descending: descending);
@@ -943,7 +1067,7 @@ class _$CommentEntityQuery
       );
     }
 
-    return _$CommentEntityQuery(
+    return _$CommentDtoQuery(
       _collection,
       $referenceWithoutCursor: query,
       $queryCursor: queryCursor,
@@ -951,16 +1075,16 @@ class _$CommentEntityQuery
   }
 
   @override
-  CommentEntityQuery orderByDocumentId({
+  CommentDtoQuery orderByDocumentId({
     bool descending = false,
     Object? startAt = _sentinel,
     Object? startAfter = _sentinel,
     Object? endAt = _sentinel,
     Object? endBefore = _sentinel,
-    CommentEntityDocumentSnapshot? startAtDocument,
-    CommentEntityDocumentSnapshot? endAtDocument,
-    CommentEntityDocumentSnapshot? endBeforeDocument,
-    CommentEntityDocumentSnapshot? startAfterDocument,
+    CommentDtoDocumentSnapshot? startAtDocument,
+    CommentDtoDocumentSnapshot? endAtDocument,
+    CommentDtoDocumentSnapshot? endBeforeDocument,
+    CommentDtoDocumentSnapshot? startAfterDocument,
   }) {
     final query = $referenceWithoutCursor.orderBy(FieldPath.documentId,
         descending: descending);
@@ -1016,7 +1140,7 @@ class _$CommentEntityQuery
       );
     }
 
-    return _$CommentEntityQuery(
+    return _$CommentDtoQuery(
       _collection,
       $referenceWithoutCursor: query,
       $queryCursor: queryCursor,
@@ -1024,19 +1148,19 @@ class _$CommentEntityQuery
   }
 
   @override
-  CommentEntityQuery orderByEntry({
+  CommentDtoQuery orderByContent({
     bool descending = false,
     Object? startAt = _sentinel,
     Object? startAfter = _sentinel,
     Object? endAt = _sentinel,
     Object? endBefore = _sentinel,
-    CommentEntityDocumentSnapshot? startAtDocument,
-    CommentEntityDocumentSnapshot? endAtDocument,
-    CommentEntityDocumentSnapshot? endBeforeDocument,
-    CommentEntityDocumentSnapshot? startAfterDocument,
+    CommentDtoDocumentSnapshot? startAtDocument,
+    CommentDtoDocumentSnapshot? endAtDocument,
+    CommentDtoDocumentSnapshot? endBeforeDocument,
+    CommentDtoDocumentSnapshot? startAfterDocument,
   }) {
     final query = $referenceWithoutCursor
-        .orderBy(_$CommentEntityFieldMap['entry']!, descending: descending);
+        .orderBy(_$$CommentDtoImplFieldMap['content']!, descending: descending);
     var queryCursor = $queryCursor;
 
     if (startAtDocument != null) {
@@ -1089,7 +1213,7 @@ class _$CommentEntityQuery
       );
     }
 
-    return _$CommentEntityQuery(
+    return _$CommentDtoQuery(
       _collection,
       $referenceWithoutCursor: query,
       $queryCursor: queryCursor,
@@ -1097,19 +1221,20 @@ class _$CommentEntityQuery
   }
 
   @override
-  CommentEntityQuery orderByContent({
+  CommentDtoQuery orderByCreatedAt({
     bool descending = false,
     Object? startAt = _sentinel,
     Object? startAfter = _sentinel,
     Object? endAt = _sentinel,
     Object? endBefore = _sentinel,
-    CommentEntityDocumentSnapshot? startAtDocument,
-    CommentEntityDocumentSnapshot? endAtDocument,
-    CommentEntityDocumentSnapshot? endBeforeDocument,
-    CommentEntityDocumentSnapshot? startAfterDocument,
+    CommentDtoDocumentSnapshot? startAtDocument,
+    CommentDtoDocumentSnapshot? endAtDocument,
+    CommentDtoDocumentSnapshot? endBeforeDocument,
+    CommentDtoDocumentSnapshot? startAfterDocument,
   }) {
-    final query = $referenceWithoutCursor
-        .orderBy(_$CommentEntityFieldMap['content']!, descending: descending);
+    final query = $referenceWithoutCursor.orderBy(
+        _$$CommentDtoImplFieldMap['createdAt']!,
+        descending: descending);
     var queryCursor = $queryCursor;
 
     if (startAtDocument != null) {
@@ -1162,7 +1287,7 @@ class _$CommentEntityQuery
       );
     }
 
-    return _$CommentEntityQuery(
+    return _$CommentDtoQuery(
       _collection,
       $referenceWithoutCursor: query,
       $queryCursor: queryCursor,
@@ -1170,19 +1295,20 @@ class _$CommentEntityQuery
   }
 
   @override
-  CommentEntityQuery orderByCreatedAt({
+  CommentDtoQuery orderByAuthorName({
     bool descending = false,
     Object? startAt = _sentinel,
     Object? startAfter = _sentinel,
     Object? endAt = _sentinel,
     Object? endBefore = _sentinel,
-    CommentEntityDocumentSnapshot? startAtDocument,
-    CommentEntityDocumentSnapshot? endAtDocument,
-    CommentEntityDocumentSnapshot? endBeforeDocument,
-    CommentEntityDocumentSnapshot? startAfterDocument,
+    CommentDtoDocumentSnapshot? startAtDocument,
+    CommentDtoDocumentSnapshot? endAtDocument,
+    CommentDtoDocumentSnapshot? endBeforeDocument,
+    CommentDtoDocumentSnapshot? startAfterDocument,
   }) {
-    final query = $referenceWithoutCursor
-        .orderBy(_$CommentEntityFieldMap['createdAt']!, descending: descending);
+    final query = $referenceWithoutCursor.orderBy(
+        _$$CommentDtoImplFieldMap['authorName']!,
+        descending: descending);
     var queryCursor = $queryCursor;
 
     if (startAtDocument != null) {
@@ -1235,7 +1361,81 @@ class _$CommentEntityQuery
       );
     }
 
-    return _$CommentEntityQuery(
+    return _$CommentDtoQuery(
+      _collection,
+      $referenceWithoutCursor: query,
+      $queryCursor: queryCursor,
+    );
+  }
+
+  @override
+  CommentDtoQuery orderByAuthorEmail({
+    bool descending = false,
+    Object? startAt = _sentinel,
+    Object? startAfter = _sentinel,
+    Object? endAt = _sentinel,
+    Object? endBefore = _sentinel,
+    CommentDtoDocumentSnapshot? startAtDocument,
+    CommentDtoDocumentSnapshot? endAtDocument,
+    CommentDtoDocumentSnapshot? endBeforeDocument,
+    CommentDtoDocumentSnapshot? startAfterDocument,
+  }) {
+    final query = $referenceWithoutCursor.orderBy(
+        _$$CommentDtoImplFieldMap['authorEmail']!,
+        descending: descending);
+    var queryCursor = $queryCursor;
+
+    if (startAtDocument != null) {
+      queryCursor = queryCursor.copyWith(
+        startAt: const [],
+        startAtDocumentSnapshot: startAtDocument.snapshot,
+      );
+    }
+    if (startAfterDocument != null) {
+      queryCursor = queryCursor.copyWith(
+        startAfter: const [],
+        startAfterDocumentSnapshot: startAfterDocument.snapshot,
+      );
+    }
+    if (endAtDocument != null) {
+      queryCursor = queryCursor.copyWith(
+        endAt: const [],
+        endAtDocumentSnapshot: endAtDocument.snapshot,
+      );
+    }
+    if (endBeforeDocument != null) {
+      queryCursor = queryCursor.copyWith(
+        endBefore: const [],
+        endBeforeDocumentSnapshot: endBeforeDocument.snapshot,
+      );
+    }
+
+    if (startAt != _sentinel) {
+      queryCursor = queryCursor.copyWith(
+        startAt: [...queryCursor.startAt, startAt],
+        startAtDocumentSnapshot: null,
+      );
+    }
+    if (startAfter != _sentinel) {
+      queryCursor = queryCursor.copyWith(
+        startAfter: [...queryCursor.startAfter, startAfter],
+        startAfterDocumentSnapshot: null,
+      );
+    }
+    if (endAt != _sentinel) {
+      queryCursor = queryCursor.copyWith(
+        endAt: [...queryCursor.endAt, endAt],
+        endAtDocumentSnapshot: null,
+      );
+    }
+    if (endBefore != _sentinel) {
+      queryCursor = queryCursor.copyWith(
+        endBefore: [...queryCursor.endBefore, endBefore],
+        endBeforeDocumentSnapshot: null,
+      );
+    }
+
+    return _$CommentDtoQuery(
       _collection,
       $referenceWithoutCursor: query,
       $queryCursor: queryCursor,
@@ -1244,7 +1444,7 @@ class _$CommentEntityQuery
 
   @override
   bool operator ==(Object other) {
-    return other is _$CommentEntityQuery &&
+    return other is _$CommentDtoQuery &&
         other.runtimeType == runtimeType &&
         other.reference == reference;
   }
@@ -1253,58 +1453,56 @@ class _$CommentEntityQuery
   int get hashCode => Object.hash(runtimeType, reference);
 }
 
-class CommentEntityDocumentSnapshot
-    extends FirestoreDocumentSnapshot<CommentEntity> {
-  CommentEntityDocumentSnapshot._(this.snapshot) : data = snapshot.data();
+class CommentDtoDocumentSnapshot extends FirestoreDocumentSnapshot<CommentDto> {
+  CommentDtoDocumentSnapshot._(this.snapshot) : data = snapshot.data();
 
   @override
-  final DocumentSnapshot<CommentEntity> snapshot;
+  final DocumentSnapshot<CommentDto> snapshot;
 
   @override
-  CommentEntityDocumentReference get reference {
-    return CommentEntityDocumentReference(
+  CommentDtoDocumentReference get reference {
+    return CommentDtoDocumentReference(
       snapshot.reference,
     );
   }
 
   @override
-  final CommentEntity? data;
+  final CommentDto? data;
 }
 
-class CommentEntityQuerySnapshot extends FirestoreQuerySnapshot<CommentEntity,
-    CommentEntityQueryDocumentSnapshot> {
-  CommentEntityQuerySnapshot._(
+class CommentDtoQuerySnapshot extends FirestoreQuerySnapshot<CommentDto,
+    CommentDtoQueryDocumentSnapshot> {
+  CommentDtoQuerySnapshot._(
     this.snapshot,
     this.docs,
     this.docChanges,
   );
 
-  factory CommentEntityQuerySnapshot._fromQuerySnapshot(
-    QuerySnapshot<CommentEntity> snapshot,
+  factory CommentDtoQuerySnapshot._fromQuerySnapshot(
+    QuerySnapshot<CommentDto> snapshot,
   ) {
-    final docs =
-        snapshot.docs.map(CommentEntityQueryDocumentSnapshot._).toList();
+    final docs = snapshot.docs.map(CommentDtoQueryDocumentSnapshot._).toList();
 
     final docChanges = snapshot.docChanges.map((change) {
       return _decodeDocumentChange(
         change,
-        CommentEntityDocumentSnapshot._,
+        CommentDtoDocumentSnapshot._,
       );
     }).toList();
 
-    return CommentEntityQuerySnapshot._(
+    return CommentDtoQuerySnapshot._(
       snapshot,
       docs,
       docChanges,
     );
   }
 
-  static FirestoreDocumentChange<CommentEntityDocumentSnapshot>
+  static FirestoreDocumentChange<CommentDtoDocumentSnapshot>
       _decodeDocumentChange<T>(
     DocumentChange<T> docChange,
-    CommentEntityDocumentSnapshot Function(DocumentSnapshot<T> doc) decodeDoc,
+    CommentDtoDocumentSnapshot Function(DocumentSnapshot<T> doc) decodeDoc,
   ) {
-    return FirestoreDocumentChange<CommentEntityDocumentSnapshot>(
+    return FirestoreDocumentChange<CommentDtoDocumentSnapshot>(
       type: docChange.type,
       oldIndex: docChange.oldIndex,
       newIndex: docChange.newIndex,
@@ -1312,28 +1510,70 @@ class CommentEntityQuerySnapshot extends FirestoreQuerySnapshot<CommentEntity,
     );
   }
 
-  final QuerySnapshot<CommentEntity> snapshot;
+  final QuerySnapshot<CommentDto> snapshot;
 
   @override
-  final List<CommentEntityQueryDocumentSnapshot> docs;
+  final List<CommentDtoQueryDocumentSnapshot> docs;
 
   @override
-  final List<FirestoreDocumentChange<CommentEntityDocumentSnapshot>> docChanges;
+  final List<FirestoreDocumentChange<CommentDtoDocumentSnapshot>> docChanges;
 }
 
-class CommentEntityQueryDocumentSnapshot
-    extends FirestoreQueryDocumentSnapshot<CommentEntity>
-    implements CommentEntityDocumentSnapshot {
-  CommentEntityQueryDocumentSnapshot._(this.snapshot) : data = snapshot.data();
+class CommentDtoQueryDocumentSnapshot
+    extends FirestoreQueryDocumentSnapshot<CommentDto>
+    implements CommentDtoDocumentSnapshot {
+  CommentDtoQueryDocumentSnapshot._(this.snapshot) : data = snapshot.data();
 
   @override
-  final QueryDocumentSnapshot<CommentEntity> snapshot;
+  final QueryDocumentSnapshot<CommentDto> snapshot;
 
   @override
-  final CommentEntity data;
+  final CommentDto data;
 
   @override
-  CommentEntityDocumentReference get reference {
-    return CommentEntityDocumentReference(snapshot.reference);
+  CommentDtoDocumentReference get reference {
+    return CommentDtoDocumentReference(snapshot.reference);
   }
 }
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+_$CommentDtoImpl _$$CommentDtoImplFromJson(Map<String, dynamic> json) =>
+    _$CommentDtoImpl(
+      content: json['content'] as String,
+      createdAt: const FirestoreDateTimeConverter()
+          .fromJson(json['createdAt'] as Timestamp),
+      authorName: json['authorName'] as String,
+      authorEmail: json['authorEmail'] as String,
+    );
+
+const _$$CommentDtoImplFieldMap = <String, String>{
+  'content': 'content',
+  'createdAt': 'createdAt',
+  'authorName': 'authorName',
+  'authorEmail': 'authorEmail',
+};
+
+// ignore: unused_element
+abstract class _$$CommentDtoImplPerFieldToJson {
+  // ignore: unused_element
+  static Object? content(String instance) => instance;
+  // ignore: unused_element
+  static Object? createdAt(DateTime instance) =>
+      const FirestoreDateTimeConverter().toJson(instance);
+  // ignore: unused_element
+  static Object? authorName(String instance) => instance;
+  // ignore: unused_element
+  static Object? authorEmail(String instance) => instance;
+}
+
+Map<String, dynamic> _$$CommentDtoImplToJson(_$CommentDtoImpl instance) =>
+    <String, dynamic>{
+      'content': instance.content,
+      'createdAt':
+          const FirestoreDateTimeConverter().toJson(instance.createdAt),
+      'authorName': instance.authorName,
+      'authorEmail': instance.authorEmail,
+    };

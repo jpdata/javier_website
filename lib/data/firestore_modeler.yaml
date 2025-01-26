@@ -1,0 +1,65 @@
+$: 'FirestoreModelerConfig'
+name: 'javier_website'
+genDir: 'lib/data'
+clientFileName: 'firestore_modeler.yaml'
+database:
+  schemas:
+    - id: 'LyCVJxidTlCks8IvjaRVKA'
+      className: 'EntryDto'
+      fields:
+        - name: 'title'
+          type:
+            $: 'StringTypeData'
+            required: true
+        - name: 'subtitle'
+          type:
+            $: 'StringTypeData'
+            required: true
+        - name: 'content'
+          type:
+            $: 'StringTypeData'
+            required: false
+        - name: 'createdAt'
+          type:
+            $: 'TimestampTypeData'
+            required: true
+        - name: 'comments'
+          type:
+            $: 'ArrayTypeData'
+            itemType:
+              $: 'DocRefTypeData'
+              collectionId: 'eO5f0YLxRJ6-rQpabF5nYg'
+              required: true
+            required: true
+    - id: 'Nh8WF2cmQMuZlZXCw4uVoQ'
+      className: 'CommentDto'
+      fields:
+        - name: 'content'
+          type:
+            $: 'StringTypeData'
+            required: true
+        - name: 'createdAt'
+          type:
+            $: 'StringTypeData'
+            required: true
+        - name: 'author_name'
+          type:
+            $: 'StringTypeData'
+            required: true
+        - name: 'author_email'
+          type:
+            $: 'StringTypeData'
+            required: true
+  collections:
+    - id: 'Jd7cT8JdQ5mfXkBnbPIy8g'
+      subPath: 'entries'
+      subCollections: []
+      schemaID: 'LyCVJxidTlCks8IvjaRVKA'
+    - id: 'eO5f0YLxRJ6-rQpabF5nYg'
+      subPath: 'comments'
+      subCollections: []
+      schemaID: 'Nh8WF2cmQMuZlZXCw4uVoQ'
+nodeOffsets:
+  root: '0,0'
+  Jd7cT8JdQ5mfXkBnbPIy8g: '322.91619873046875,0'
+  eO5f0YLxRJ6-rQpabF5nYg: '322.91619873046875,402'

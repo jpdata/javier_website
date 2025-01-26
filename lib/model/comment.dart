@@ -1,21 +1,19 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:flutter/foundation.dart';
+import 'package:javier_website/data/common.dart';
 
+part 'comment.freezed.dart';
+part 'comment.g.dart';
 
-import 'package:javier_website/model/author.dart';
-import 'package:javier_website/model/entry.dart';
+@freezed
+class Comment with _$Comment {
+  factory Comment({
+    required String content,
+    required DateTime createdAt,
+    required String authorName,
+    required String authorEmail,
+  }) = _Comment;
 
-class Comment {
-  final String id;
-  final Entry entry;
-  final Author author;
-  final String content;
-  final DateTime createdAt;
-
-  Comment({
-    required this.id,
-    required this.entry,
-    required this.author,
-    required this.content,
-    required this.createdAt,
-  });
-
+  factory Comment.fromJson(Map<String, Object?> json) =>
+      _$CommentFromJson(json);
 }

@@ -1,18 +1,19 @@
 import 'package:javier_website/model/comment.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:flutter/foundation.dart';
 
-class Entry {
-  final String id;
-  final String title;
-  final String subtitle;
-  final String content;
-  final List<String> tags;
-  final List<Comment> comments;
+part 'entry.freezed.dart';
+part 'entry.g.dart';
 
-  Entry(
-      {required this.id,
-      required this.title,
-      required this.subtitle,
-      required this.content,
-      this.tags = const [],
-      this.comments = const []});
+@freezed
+class Entry with _$Entry {
+  const factory Entry({
+    required String title,
+    required String subtitle,
+    required String content,
+    @Default(<String>[]) List<String> tags,
+    @Default(<Comment>[]) List<Comment> comments,
+  }) = _Entry;
+
+  factory Entry.fromJson(Map<String, Object?> json) => _$EntryFromJson(json);
 }

@@ -12,6 +12,11 @@ analyzer:
   - lib/core/l10n/app_localizations.dart
   - lib/core/l10n/app_localizations_en.dart
   - lib/core/l10n/app_localizations_es.dart
+  - lib/core/l10n/app_localizations_ca.dart
+  errors:
+    invalid_annotation_target: ignore
+  plugins:
+    - custom_lint
 include: package:flutter_lints/flutter.yaml
 
 linter:

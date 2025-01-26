@@ -8,7 +8,6 @@ import 'package:javier_website/view/Themes/app_theme.dart';
 import 'package:javier_website/view/home/widgets/indexed_content.dart';
 import 'package:javier_website/view/widgets/fading_edges_image.dart';
 import 'package:javier_website/view/widgets/main_drawer.dart';
-import 'package:provider/provider.dart';
 import 'package:rive/rive.dart' as rive;
 import 'package:url_launcher/url_launcher.dart';
 
@@ -113,6 +112,22 @@ class _HomeState extends State<Home> {
                       child: GestureDetector(
                         onTap: () {
                           setState(() {
+                            _index = 3;
+                          });
+                        },
+                        child: const Image(
+                          image: Svg("assets/images/blog.svg"),
+                          width: 50,
+                          height: 50,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 20), // Replace Flexible with SizedBox
+                    MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: GestureDetector(
+                        onTap: () {
+                          setState(() {
                             _index = 1;
                           });
                         },
@@ -180,7 +195,7 @@ class _HomeState extends State<Home> {
 
   Widget _typeWriterText(
       {required List<String> text, void Function()? onFinished}) {
-    var locale = Provider.of<LocaleNotifier>(context).locale;
+    var locale = localeProvider;
     return SizedBox(
       width: MediaQuery.of(context).size.width * .6,
       //height: MediaQuery.of(context).size.height * .3,
