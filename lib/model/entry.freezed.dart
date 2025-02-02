@@ -23,6 +23,8 @@ mixin _$Entry {
   String get title => throw _privateConstructorUsedError;
   String get subtitle => throw _privateConstructorUsedError;
   String get content => throw _privateConstructorUsedError;
+  DateTime get createdAt => throw _privateConstructorUsedError;
+  String get bannerImageUrl => throw _privateConstructorUsedError;
   List<String> get tags => throw _privateConstructorUsedError;
   List<Comment> get comments => throw _privateConstructorUsedError;
 
@@ -44,6 +46,8 @@ abstract class $EntryCopyWith<$Res> {
       {String title,
       String subtitle,
       String content,
+      DateTime createdAt,
+      String bannerImageUrl,
       List<String> tags,
       List<Comment> comments});
 }
@@ -66,6 +70,8 @@ class _$EntryCopyWithImpl<$Res, $Val extends Entry>
     Object? title = null,
     Object? subtitle = null,
     Object? content = null,
+    Object? createdAt = null,
+    Object? bannerImageUrl = null,
     Object? tags = null,
     Object? comments = null,
   }) {
@@ -81,6 +87,14 @@ class _$EntryCopyWithImpl<$Res, $Val extends Entry>
       content: null == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
+              as String,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      bannerImageUrl: null == bannerImageUrl
+          ? _value.bannerImageUrl
+          : bannerImageUrl // ignore: cast_nullable_to_non_nullable
               as String,
       tags: null == tags
           ? _value.tags
@@ -105,6 +119,8 @@ abstract class _$$EntryImplCopyWith<$Res> implements $EntryCopyWith<$Res> {
       {String title,
       String subtitle,
       String content,
+      DateTime createdAt,
+      String bannerImageUrl,
       List<String> tags,
       List<Comment> comments});
 }
@@ -125,6 +141,8 @@ class __$$EntryImplCopyWithImpl<$Res>
     Object? title = null,
     Object? subtitle = null,
     Object? content = null,
+    Object? createdAt = null,
+    Object? bannerImageUrl = null,
     Object? tags = null,
     Object? comments = null,
   }) {
@@ -140,6 +158,14 @@ class __$$EntryImplCopyWithImpl<$Res>
       content: null == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
+              as String,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      bannerImageUrl: null == bannerImageUrl
+          ? _value.bannerImageUrl
+          : bannerImageUrl // ignore: cast_nullable_to_non_nullable
               as String,
       tags: null == tags
           ? _value._tags
@@ -160,6 +186,8 @@ class _$EntryImpl with DiagnosticableTreeMixin implements _Entry {
       {required this.title,
       required this.subtitle,
       required this.content,
+      required this.createdAt,
+      required this.bannerImageUrl,
       final List<String> tags = const <String>[],
       final List<Comment> comments = const <Comment>[]})
       : _tags = tags,
@@ -174,6 +202,10 @@ class _$EntryImpl with DiagnosticableTreeMixin implements _Entry {
   final String subtitle;
   @override
   final String content;
+  @override
+  final DateTime createdAt;
+  @override
+  final String bannerImageUrl;
   final List<String> _tags;
   @override
   @JsonKey()
@@ -194,7 +226,7 @@ class _$EntryImpl with DiagnosticableTreeMixin implements _Entry {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Entry(title: $title, subtitle: $subtitle, content: $content, tags: $tags, comments: $comments)';
+    return 'Entry(title: $title, subtitle: $subtitle, content: $content, createdAt: $createdAt, bannerImageUrl: $bannerImageUrl, tags: $tags, comments: $comments)';
   }
 
   @override
@@ -205,6 +237,8 @@ class _$EntryImpl with DiagnosticableTreeMixin implements _Entry {
       ..add(DiagnosticsProperty('title', title))
       ..add(DiagnosticsProperty('subtitle', subtitle))
       ..add(DiagnosticsProperty('content', content))
+      ..add(DiagnosticsProperty('createdAt', createdAt))
+      ..add(DiagnosticsProperty('bannerImageUrl', bannerImageUrl))
       ..add(DiagnosticsProperty('tags', tags))
       ..add(DiagnosticsProperty('comments', comments));
   }
@@ -218,6 +252,10 @@ class _$EntryImpl with DiagnosticableTreeMixin implements _Entry {
             (identical(other.subtitle, subtitle) ||
                 other.subtitle == subtitle) &&
             (identical(other.content, content) || other.content == content) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
+            (identical(other.bannerImageUrl, bannerImageUrl) ||
+                other.bannerImageUrl == bannerImageUrl) &&
             const DeepCollectionEquality().equals(other._tags, _tags) &&
             const DeepCollectionEquality().equals(other._comments, _comments));
   }
@@ -229,6 +267,8 @@ class _$EntryImpl with DiagnosticableTreeMixin implements _Entry {
       title,
       subtitle,
       content,
+      createdAt,
+      bannerImageUrl,
       const DeepCollectionEquality().hash(_tags),
       const DeepCollectionEquality().hash(_comments));
 
@@ -253,6 +293,8 @@ abstract class _Entry implements Entry {
       {required final String title,
       required final String subtitle,
       required final String content,
+      required final DateTime createdAt,
+      required final String bannerImageUrl,
       final List<String> tags,
       final List<Comment> comments}) = _$EntryImpl;
 
@@ -264,6 +306,10 @@ abstract class _Entry implements Entry {
   String get subtitle;
   @override
   String get content;
+  @override
+  DateTime get createdAt;
+  @override
+  String get bannerImageUrl;
   @override
   List<String> get tags;
   @override

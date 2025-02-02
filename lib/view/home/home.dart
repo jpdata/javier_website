@@ -1,58 +1,32 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
-import 'package:javier_website/core/utilities.dart';
+import 'package:javier_website/core/utils.dart';
 import 'package:javier_website/core/l10n/app_locale.dart';
 import 'package:javier_website/core/providers/notifiers/locale_notifier.dart';
-import 'package:javier_website/view/Themes/app_theme.dart';
 import 'package:javier_website/view/home/widgets/indexed_content.dart';
+import 'package:javier_website/view/widgets/common_scaffold.dart';
 import 'package:javier_website/view/widgets/fading_edges_image.dart';
-import 'package:javier_website/view/widgets/main_drawer.dart';
 import 'package:rive/rive.dart' as rive;
 import 'package:url_launcher/url_launcher.dart';
 
-class Home extends StatefulWidget {
+class Home extends ConsumerStatefulWidget {
   const Home({super.key, required this.title});
 
   final String title;
 
   @override
-  State<Home> createState() => _HomeState();
+  ConsumerState<Home> createState() => _HomeState();
 }
 
-class _HomeState extends State<Home> {
+class _HomeState extends ConsumerState<Home> {
   int _index = 0;
 
   @override
   Widget build(BuildContext context) {
-    LocalizationManager.updateLocale(context); // Update localizations
-    return _scaffoldThenBackground();
-  }
-
-  Widget _scaffoldThenBackground() {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        foregroundColor: AppTheme.lightTheme.colorScheme.primary,
-      ),
-      backgroundColor: Colors.transparent,
-      drawer: const MainDrawer(),
-      body: Container(
-        decoration: BoxDecoration(
-          color: AppTheme.lightTheme.colorScheme.primary,
-          image: DecorationImage(
-            image: const Image(
-              image: Svg('assets/images/bg-tile-part-c.svg'),
-            ).image,
-            repeat: ImageRepeat.repeat,
-            scale: 1.5,
-            colorFilter:
-                ColorFilter.mode(Colors.black.withAlpha(38), BlendMode.dstATop),
-          ),
-        ),
-        child: _scaffoldBody(),
-      ),
-    );
+    ref.watch(localeProvider);
+    return CommonScaffold(child: _scaffoldBody());
   }
 
   Widget _scaffoldBody() {
@@ -173,7 +147,7 @@ class _HomeState extends State<Home> {
                       cursor: SystemMouseCursors.click,
                       child: GestureDetector(
                         onTap: () {
-                          Utilities.launchMailto(context);
+                          Utils.launchMailto(context);
                         },
                         child: const Image(
                           image: Svg("assets/images/email.svg"),
@@ -195,13 +169,13 @@ class _HomeState extends State<Home> {
 
   Widget _typeWriterText(
       {required List<String> text, void Function()? onFinished}) {
-    var locale = localeProvider;
+    var locale = ref.read(localeProvider);
     return SizedBox(
       width: MediaQuery.of(context).size.width * .6,
       //height: MediaQuery.of(context).size.height * .3,
       child: DefaultTextStyle(
         style: TextStyle(
-          fontSize: 60.0 * Utilities.screenHzRelation(context),
+          fontSize: 60.0 * Utils.screenHzRelation(context),
           fontFamily: 'GalaxyBt',
           color: Colors.white,
         ),

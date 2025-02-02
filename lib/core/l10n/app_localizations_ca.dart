@@ -1,3 +1,5 @@
+import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -83,4 +85,60 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String get portfolio => 'Portafoli';
+
+  @override
+  String comment_title(String name, DateTime date) {
+    final intl.DateFormat dateDateFormat = intl.DateFormat.yMd(localeName);
+    final String dateString = dateDateFormat.format(date);
+
+    return '$name ha comentat el $dateString';
+  }
+
+  @override
+  String get comments => 'Comentaris';
+
+  @override
+  String get newEntry => 'Nova Entrada';
+
+  @override
+  String get subtitle => 'Subtítol';
+
+  @override
+  String get content => 'Contingut';
+
+  @override
+  String get bannerImageUrl => 'URL de la Imatge de Banner';
+
+  @override
+  String get tags => 'Etiquetes (separades per comes)';
+
+  @override
+  String get saveEntry => 'Guardar Entrada';
+
+  @override
+  String get pleaseEnterTitle => 'Si us plau, introdueix un títol';
+
+  @override
+  String get pleaseEnterSubtitle => 'Si us plau, introdueix un subtítol';
+
+  @override
+  String get pleaseEnterContent => 'Si us plau, introdueix contingut';
+
+  @override
+  String get pleaseEnterBannerImageUrl => 'Si us plau, introdueix una URL de la imatge de banner';
+
+  @override
+  String get blog => 'Blog';
+
+  @override
+  String get blog_entry => 'Entrada de Blog';
+
+  @override
+  String get blog_entries => 'Entrades de Blog';
+
+  @override
+  String get blog_new_entry => 'Nova Entrada de Blog';
+
+  @override
+  String get read_more => 'Llegir més';
 }

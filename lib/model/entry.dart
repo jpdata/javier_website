@@ -11,6 +11,8 @@ class Entry with _$Entry {
     required String title,
     required String subtitle,
     required String content,
+    required DateTime createdAt,
+    required String bannerImageUrl,
     @Default(<String>[]) List<String> tags,
     @Default(<Comment>[]) List<Comment> comments,
   }) = _Entry;

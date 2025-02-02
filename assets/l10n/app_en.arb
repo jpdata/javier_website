@@ -1,4 +1,3 @@
-
 {
     "@@locale": "en",
     "title":"Javi''s Personal Website",
@@ -26,5 +25,33 @@
     "my_collaborations": "Collaborations",
     "collaborators": "Collaborators",
     "design_colors_and_images": "Design, colors and images",
-    "portfolio": "Portfolio"
+    "portfolio": "Portfolio",
+    "comment_title": "{name} commented on {date}",
+    "@comment_title": {
+        "placeholders": {
+            "name": {
+                "type": "String"
+            },
+            "date": {
+                "type": "DateTime",
+                "format": "yMd"
+            }
+        }
+    },
+    "comments": "Comments",
+    "newEntry": "New Entry",
+    "subtitle": "Subtitle",
+    "content": "Content",
+    "bannerImageUrl": "Banner Image URL",
+    "tags": "Tags (comma separated)",
+    "saveEntry": "Save Entry",
+    "pleaseEnterTitle": "Please enter a title",
+    "pleaseEnterSubtitle": "Please enter a subtitle",
+    "pleaseEnterContent": "Please enter content",
+    "pleaseEnterBannerImageUrl": "Please enter a banner image URL",
+    "blog": "Blog",
+    "blog_entry":"Blog Entry",
+    "blog_entries":"Blog Entries",
+    "blog_new_entry":"New Blog Entry",
+    "read_more":"Read More"
 }

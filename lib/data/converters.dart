@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:javier_website/data/comment_dto.dart';
+import 'package:javier_website/data/firestore_client.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 class CommentDtoReferenceConverter

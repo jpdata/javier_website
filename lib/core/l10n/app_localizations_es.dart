@@ -1,3 +1,5 @@
+import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -83,6 +85,62 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get portfolio => 'Portafolio';
+
+  @override
+  String comment_title(String name, DateTime date) {
+    final intl.DateFormat dateDateFormat = intl.DateFormat.yMd(localeName);
+    final String dateString = dateDateFormat.format(date);
+
+    return '$name ha comentado el $dateString';
+  }
+
+  @override
+  String get comments => 'Comentarios';
+
+  @override
+  String get newEntry => 'Nueva Entrada';
+
+  @override
+  String get subtitle => 'Subtítulo';
+
+  @override
+  String get content => 'Contenido';
+
+  @override
+  String get bannerImageUrl => 'URL de la Imagen de Banner';
+
+  @override
+  String get tags => 'Etiquetas (separadas por comas)';
+
+  @override
+  String get saveEntry => 'Guardar Entrada';
+
+  @override
+  String get pleaseEnterTitle => 'Por favor ingrese un título';
+
+  @override
+  String get pleaseEnterSubtitle => 'Por favor ingrese un subtítulo';
+
+  @override
+  String get pleaseEnterContent => 'Por favor ingrese contenido';
+
+  @override
+  String get pleaseEnterBannerImageUrl => 'Por favor ingrese una URL de imagen de banner';
+
+  @override
+  String get blog => 'Blog';
+
+  @override
+  String get blog_entry => 'Entrada de Blog';
+
+  @override
+  String get blog_entries => 'Entradas de Blog';
+
+  @override
+  String get blog_new_entry => 'Nueva Entrada de Blog';
+
+  @override
+  String get read_more => 'Leer más';
 }
 
 /// The translations for Spanish Castilian, as used in Venezuela (`es_VE`).
@@ -166,4 +224,60 @@ class AppLocalizationsEsVe extends AppLocalizationsEs {
 
   @override
   String get portfolio => 'Portafolio';
+
+  @override
+  String comment_title(String name, DateTime date) {
+    final intl.DateFormat dateDateFormat = intl.DateFormat.yMd(localeName);
+    final String dateString = dateDateFormat.format(date);
+
+    return '$name comentó el $dateString';
+  }
+
+  @override
+  String get comments => 'Comentarios';
+
+  @override
+  String get newEntry => 'Nueva Entrada';
+
+  @override
+  String get subtitle => 'Subtítulo';
+
+  @override
+  String get content => 'Contenido';
+
+  @override
+  String get bannerImageUrl => 'URL de la Imagen de Banner';
+
+  @override
+  String get tags => 'Etiquetas (separadas por comas)';
+
+  @override
+  String get saveEntry => 'Guardar Entrada';
+
+  @override
+  String get pleaseEnterTitle => 'Por favor ingrese un título';
+
+  @override
+  String get pleaseEnterSubtitle => 'Por favor ingrese un subtítulo';
+
+  @override
+  String get pleaseEnterContent => 'Por favor ingrese contenido';
+
+  @override
+  String get pleaseEnterBannerImageUrl => 'Por favor ingrese una URL de imagen de banner';
+
+  @override
+  String get blog => 'Blog';
+
+  @override
+  String get blog_entry => 'Entrada de Blog';
+
+  @override
+  String get blog_entries => 'Entradas de Blog';
+
+  @override
+  String get blog_new_entry => 'Nueva Entrada de Blog';
+
+  @override
+  String get read_more => 'Leer más';
 }

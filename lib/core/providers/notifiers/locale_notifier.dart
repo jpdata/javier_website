@@ -8,6 +8,9 @@ class LocaleNotifier extends StateNotifier<Locale> {
   LocaleNotifier() : super(PlatformDispatcher.instance.locale);
 
   void setLocale({required Locale locale, BuildContext? context}) {
+    print(
+        "🔹 Cambiando idioma a: ${locale.languageCode}"); // ✅ Verifica si se llama a la función
+
     state = locale;
     if (context != null) LocalizationManager.updateLocale(context);
   }

@@ -1,20 +1,21 @@
 import 'package:country_flags/country_flags.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 import 'package:go_router/go_router.dart';
 import 'package:javier_website/core/l10n/app_locale.dart';
 import 'package:javier_website/core/providers/notifiers/locale_notifier.dart';
-import 'package:javier_website/core/utilities.dart';
-import 'package:provider/provider.dart';
+import 'package:javier_website/core/utils.dart';
+import 'package:javier_website/router/rout_names.dart';
 
-class MainDrawer extends StatefulWidget {
+class MainDrawer extends ConsumerStatefulWidget {
   const MainDrawer({super.key});
 
   @override
-  State<MainDrawer> createState() => _MainDrawerState();
+  ConsumerState<MainDrawer> createState() => _MainDrawerState();
 }
 
-class _MainDrawerState extends State<MainDrawer> {
+class _MainDrawerState extends ConsumerState<MainDrawer> {
   late ImageProvider<Object> _backgroundImage;
   late DecorationImage _backgroundDecoration;
 
@@ -39,7 +40,7 @@ class _MainDrawerState extends State<MainDrawer> {
 
   @override
   Widget build(BuildContext context) {
-    final localeNotifier = Provider.of<LocaleNotifier>(context);
+    ref.watch(localeProvider);
 
     return Drawer(
       child: Container(
@@ -81,16 +82,17 @@ class _MainDrawerState extends State<MainDrawer> {
                             title: Text(localizations.contact_me_by_email,
                                 style: const TextStyle(color: Colors.white)),
                             onTap: () {
-                              Utilities.launchMailto(context);
+                              Utils.launchMailto(context);
                             },
                           ),
-                          // ListTile(
-                          //   title: const Text('Item 2',
-                          //       style: TextStyle(color: Colors.white)),
-                          //   onTap: () {
-                          //     context.push('/item2');
-                          //   },
-                          // ),
+                          ListTile(
+                            title: Text(localizations.blog,
+                                style: const TextStyle(color: Colors.white)),
+                            onTap: () {
+                              Scaffold.of(context).closeDrawer();
+                              context.pushNamed(RoutNames.blogEntries);
+                            },
+                          ),
                         ],
                       ),
                     ),
@@ -108,9 +110,8 @@ class _MainDrawerState extends State<MainDrawer> {
                             width: 48,
                           ),
                           onPressed: () {
-                            localeNotifier.setLocale(
+                            ref.read(localeProvider.notifier).setLocale(
                                 locale: const Locale('en'), context: context);
-                            LocalizationManager.updateLocale(context);
                             context.go('/');
                           },
                           tooltip: localizations.english,
@@ -123,9 +124,8 @@ class _MainDrawerState extends State<MainDrawer> {
                             width: 48,
                           ),
                           onPressed: () {
-                            localeNotifier.setLocale(
+                            ref.read(localeProvider.notifier).setLocale(
                                 locale: const Locale('es'), context: context);
-                            LocalizationManager.updateLocale(context);
                             context.go('/');
                           },
                           tooltip: localizations.spanish_spain,
@@ -138,10 +138,9 @@ class _MainDrawerState extends State<MainDrawer> {
                             width: 48,
                           ),
                           onPressed: () {
-                            localeNotifier.setLocale(
+                            ref.read(localeProvider.notifier).setLocale(
                                 locale: const Locale('es', 'VE'),
                                 context: context);
-                            LocalizationManager.updateLocale(context);
                             context.go('/');
                           },
                           tooltip: localizations.spanish_venezuela,
@@ -154,9 +153,8 @@ class _MainDrawerState extends State<MainDrawer> {
                             width: 48,
                           ),
                           onPressed: () {
-                            localeNotifier.setLocale(
+                            ref.read(localeProvider.notifier).setLocale(
                                 locale: const Locale('ca'), context: context);
-                            LocalizationManager.updateLocale(context);
                             context.go('/');
                           },
                           tooltip: localizations.catalan,

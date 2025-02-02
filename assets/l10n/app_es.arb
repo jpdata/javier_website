@@ -25,5 +25,33 @@
     "my_collaborations": "Colaboraciones",
     "collaborators": "Colaboradores",
     "design_colors_and_images": "Diseño, colores e imágenes",
-    "portfolio": "Portafolio"
+    "portfolio": "Portafolio",
+    "comment_title": "{name} ha comentado el {date}",
+    "comments": "Comentarios",
+    "newEntry": "Nueva Entrada",
+    "subtitle": "Subtítulo",
+    "content": "Contenido",
+    "bannerImageUrl": "URL de la Imagen de Banner",
+    "tags": "Etiquetas (separadas por comas)",
+    "saveEntry": "Guardar Entrada",
+    "pleaseEnterTitle": "Por favor ingrese un título",
+    "pleaseEnterSubtitle": "Por favor ingrese un subtítulo",
+    "pleaseEnterContent": "Por favor ingrese contenido",
+    "pleaseEnterBannerImageUrl": "Por favor ingrese una URL de imagen de banner",
+    "blog": "Blog",
+    "blog_entry": "Entrada de Blog",
+    "blog_entries": "Entradas de Blog",
+    "blog_new_entry": "Nueva Entrada de Blog",
+    "@comment_title": {
+        "placeholders": {
+            "name": {
+                "type": "String"
+            },
+            "date": {
+                "type": "DateTime",
+                "format": "yMd"
+            }
+        }
+    },
+    "read_more":"Leer más"
 }

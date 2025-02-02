@@ -1,3 +1,5 @@
+import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -83,4 +85,60 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get portfolio => 'Portfolio';
+
+  @override
+  String comment_title(String name, DateTime date) {
+    final intl.DateFormat dateDateFormat = intl.DateFormat.yMd(localeName);
+    final String dateString = dateDateFormat.format(date);
+
+    return '$name commented on $dateString';
+  }
+
+  @override
+  String get comments => 'Comments';
+
+  @override
+  String get newEntry => 'New Entry';
+
+  @override
+  String get subtitle => 'Subtitle';
+
+  @override
+  String get content => 'Content';
+
+  @override
+  String get bannerImageUrl => 'Banner Image URL';
+
+  @override
+  String get tags => 'Tags (comma separated)';
+
+  @override
+  String get saveEntry => 'Save Entry';
+
+  @override
+  String get pleaseEnterTitle => 'Please enter a title';
+
+  @override
+  String get pleaseEnterSubtitle => 'Please enter a subtitle';
+
+  @override
+  String get pleaseEnterContent => 'Please enter content';
+
+  @override
+  String get pleaseEnterBannerImageUrl => 'Please enter a banner image URL';
+
+  @override
+  String get blog => 'Blog';
+
+  @override
+  String get blog_entry => 'Blog Entry';
+
+  @override
+  String get blog_entries => 'Blog Entries';
+
+  @override
+  String get blog_new_entry => 'New Blog Entry';
+
+  @override
+  String get read_more => 'Read More';
 }

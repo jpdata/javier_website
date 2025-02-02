@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:javier_website/view/blog/entries_list_widget.dart';
+import 'package:javier_website/view/home/widgets/resumed_entries_from_firebase_widget.dart';
 import 'package:javier_website/view/home/widgets/credits_content.dart';
 import 'package:javier_website/view/home/widgets/portfolio_content.dart';
 
@@ -38,7 +38,7 @@ class _IndexedContentState extends State<IndexedContent> {
       case 3:
         result = const Column(
           children: [
-            EntriesListWidget(),
+            ResumedEntriesFromFirebaseWidget(),
           ],
         );
       default:

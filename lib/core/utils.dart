@@ -1,8 +1,9 @@
+import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:javier_website/core/l10n/app_locale.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class Utilities {
+class Utils {
   static double screenHzRelation(BuildContext context) =>
       MediaQuery.of(context).size.width / 1920;
   static double screenVtRelation(BuildContext context) =>
@@ -11,6 +12,12 @@ class Utilities {
       value * screenHzRelation(context);
   static double adjustToScreenVtRel(BuildContext context, double value) =>
       value * screenVtRelation(context);
+
+  static double mediaWidthPercent(BuildContext context, double percent) =>
+      MediaQuery.of(context).size.width * percent / 100;
+
+  static double mediaHeightPercent(BuildContext context, double percent) =>
+      MediaQuery.of(context).size.height * percent / 100;
 
   static Future<void> launchMailto(BuildContext context) async {
     var subject = localizations.contact_me;
@@ -46,4 +53,17 @@ class Utilities {
       throw 'Could not launch $url';
     }
   }
+
+  static final List<Flushbar> flushBars = [];
+
+  static void showSnackBar(
+    BuildContext context, {
+    required String text,
+    required Color color,
+  }) =>
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text(
+        text,
+        style: const TextStyle(color: Colors.white, fontSize: 24),
+      )));
 }

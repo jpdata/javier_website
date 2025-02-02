@@ -253,6 +253,108 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Portfolio'**
   String get portfolio;
+
+  /// No description provided for @comment_title.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} commented on {date}'**
+  String comment_title(String name, DateTime date);
+
+  /// No description provided for @comments.
+  ///
+  /// In en, this message translates to:
+  /// **'Comments'**
+  String get comments;
+
+  /// No description provided for @newEntry.
+  ///
+  /// In en, this message translates to:
+  /// **'New Entry'**
+  String get newEntry;
+
+  /// No description provided for @subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Subtitle'**
+  String get subtitle;
+
+  /// No description provided for @content.
+  ///
+  /// In en, this message translates to:
+  /// **'Content'**
+  String get content;
+
+  /// No description provided for @bannerImageUrl.
+  ///
+  /// In en, this message translates to:
+  /// **'Banner Image URL'**
+  String get bannerImageUrl;
+
+  /// No description provided for @tags.
+  ///
+  /// In en, this message translates to:
+  /// **'Tags (comma separated)'**
+  String get tags;
+
+  /// No description provided for @saveEntry.
+  ///
+  /// In en, this message translates to:
+  /// **'Save Entry'**
+  String get saveEntry;
+
+  /// No description provided for @pleaseEnterTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a title'**
+  String get pleaseEnterTitle;
+
+  /// No description provided for @pleaseEnterSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a subtitle'**
+  String get pleaseEnterSubtitle;
+
+  /// No description provided for @pleaseEnterContent.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter content'**
+  String get pleaseEnterContent;
+
+  /// No description provided for @pleaseEnterBannerImageUrl.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a banner image URL'**
+  String get pleaseEnterBannerImageUrl;
+
+  /// No description provided for @blog.
+  ///
+  /// In en, this message translates to:
+  /// **'Blog'**
+  String get blog;
+
+  /// No description provided for @blog_entry.
+  ///
+  /// In en, this message translates to:
+  /// **'Blog Entry'**
+  String get blog_entry;
+
+  /// No description provided for @blog_entries.
+  ///
+  /// In en, this message translates to:
+  /// **'Blog Entries'**
+  String get blog_entries;
+
+  /// No description provided for @blog_new_entry.
+  ///
+  /// In en, this message translates to:
+  /// **'New Blog Entry'**
+  String get blog_new_entry;
+
+  /// No description provided for @read_more.
+  ///
+  /// In en, this message translates to:
+  /// **'Read More'**
+  String get read_more;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

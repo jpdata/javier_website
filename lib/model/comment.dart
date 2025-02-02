@@ -1,6 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
-import 'package:javier_website/data/common.dart';
 
 part 'comment.freezed.dart';
 part 'comment.g.dart';
