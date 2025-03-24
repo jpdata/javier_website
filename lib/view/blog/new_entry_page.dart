@@ -81,6 +81,7 @@ class _NewEntryPageState extends State<NewEntryPage> {
                 onPressed: () async {
                   if (_formKey.currentState!.validate()) {
                     final newEntry = Entry(
+                      id: '',
                       title: _titleController.text,
                       subtitle: _subtitleController.text,
                       content: _contentController.text,

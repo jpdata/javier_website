@@ -7,6 +7,7 @@ part of 'entry.dart';
 // **************************************************************************
 
 _$EntryImpl _$$EntryImplFromJson(Map<String, dynamic> json) => _$EntryImpl(
+      id: json['id'] as String,
       title: json['title'] as String,
       subtitle: json['subtitle'] as String,
       content: json['content'] as String,
@@ -22,6 +23,7 @@ _$EntryImpl _$$EntryImplFromJson(Map<String, dynamic> json) => _$EntryImpl(
     );
 
 const _$$EntryImplFieldMap = <String, String>{
+  'id': 'id',
   'title': 'title',
   'subtitle': 'subtitle',
   'content': 'content',
@@ -33,6 +35,8 @@ const _$$EntryImplFieldMap = <String, String>{
 
 // ignore: unused_element
 abstract class _$$EntryImplPerFieldToJson {
+  // ignore: unused_element
+  static Object? id(String instance) => instance;
   // ignore: unused_element
   static Object? title(String instance) => instance;
   // ignore: unused_element
@@ -51,6 +55,7 @@ abstract class _$$EntryImplPerFieldToJson {
 
 Map<String, dynamic> _$$EntryImplToJson(_$EntryImpl instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'title': instance.title,
       'subtitle': instance.subtitle,
       'content': instance.content,

@@ -25,7 +25,9 @@ class AppRouter {
         path: RoutPaths.blogEntry,
         name: 'blog_entry',
         builder: (context, state) {
-          var entry = state.extra as Entry;
+          var entry = (state.extra is Map)
+              ? Entry.fromJson(state.extra as Map<String, Object?>)
+              : state.extra as Entry;
           return EntryDetailPage(entry: entry);
         },
       ),

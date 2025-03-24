@@ -7,6 +7,7 @@ import 'package:javier_website/core/l10n/app_locale.dart';
 import 'package:javier_website/core/providers/notifiers/locale_notifier.dart';
 import 'package:javier_website/core/utils.dart';
 import 'package:javier_website/router/rout_names.dart';
+import 'package:rive/rive.dart' as rive;
 
 class MainDrawer extends ConsumerStatefulWidget {
   const MainDrawer({super.key});
@@ -41,7 +42,7 @@ class _MainDrawerState extends ConsumerState<MainDrawer> {
   @override
   Widget build(BuildContext context) {
     ref.watch(localeProvider);
-
+    double screenWidth = MediaQuery.of(context).size.width;
     return Drawer(
       child: Container(
         decoration: BoxDecoration(
@@ -58,16 +59,27 @@ class _MainDrawerState extends ConsumerState<MainDrawer> {
                         children: [
                           Row(
                             children: [
-                              Expanded(
-                                child: DrawerHeader(
-                                  decoration: const BoxDecoration(
-                                    color: Colors
-                                        .transparent, // Fondo transparente
-                                  ),
-                                  child: Text(
-                                    localizations.more_options,
-                                    style: const TextStyle(color: Colors.white),
-                                  ),
+                              DrawerHeader(
+                                decoration: const BoxDecoration(
+                                  color:
+                                      Colors.transparent, // Fondo transparente
+                                ),
+                                child: Column(
+                                  children: [
+                                    Text(
+                                      localizations.more_options,
+                                      style:
+                                          const TextStyle(color: Colors.white),
+                                    ),
+                                    SizedBox(
+                                      width: screenWidth * .15,
+                                      height: screenWidth / 1.48 * .09,
+                                      child: const rive.RiveAnimation.asset(
+                                        'assets/animations/javier.riv',
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ],

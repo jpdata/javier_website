@@ -20,6 +20,7 @@ Entry _$EntryFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Entry {
+  String get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get subtitle => throw _privateConstructorUsedError;
   String get content => throw _privateConstructorUsedError;
@@ -43,7 +44,8 @@ abstract class $EntryCopyWith<$Res> {
       _$EntryCopyWithImpl<$Res, Entry>;
   @useResult
   $Res call(
-      {String title,
+      {String id,
+      String title,
       String subtitle,
       String content,
       DateTime createdAt,
@@ -67,6 +69,7 @@ class _$EntryCopyWithImpl<$Res, $Val extends Entry>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? title = null,
     Object? subtitle = null,
     Object? content = null,
@@ -76,6 +79,10 @@ class _$EntryCopyWithImpl<$Res, $Val extends Entry>
     Object? comments = null,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -116,7 +123,8 @@ abstract class _$$EntryImplCopyWith<$Res> implements $EntryCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String title,
+      {String id,
+      String title,
       String subtitle,
       String content,
       DateTime createdAt,
@@ -138,6 +146,7 @@ class __$$EntryImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? title = null,
     Object? subtitle = null,
     Object? content = null,
@@ -147,6 +156,10 @@ class __$$EntryImplCopyWithImpl<$Res>
     Object? comments = null,
   }) {
     return _then(_$EntryImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -183,7 +196,8 @@ class __$$EntryImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$EntryImpl with DiagnosticableTreeMixin implements _Entry {
   const _$EntryImpl(
-      {required this.title,
+      {required this.id,
+      required this.title,
       required this.subtitle,
       required this.content,
       required this.createdAt,
@@ -196,6 +210,8 @@ class _$EntryImpl with DiagnosticableTreeMixin implements _Entry {
   factory _$EntryImpl.fromJson(Map<String, dynamic> json) =>
       _$$EntryImplFromJson(json);
 
+  @override
+  final String id;
   @override
   final String title;
   @override
@@ -226,7 +242,7 @@ class _$EntryImpl with DiagnosticableTreeMixin implements _Entry {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Entry(title: $title, subtitle: $subtitle, content: $content, createdAt: $createdAt, bannerImageUrl: $bannerImageUrl, tags: $tags, comments: $comments)';
+    return 'Entry(id: $id, title: $title, subtitle: $subtitle, content: $content, createdAt: $createdAt, bannerImageUrl: $bannerImageUrl, tags: $tags, comments: $comments)';
   }
 
   @override
@@ -234,6 +250,7 @@ class _$EntryImpl with DiagnosticableTreeMixin implements _Entry {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'Entry'))
+      ..add(DiagnosticsProperty('id', id))
       ..add(DiagnosticsProperty('title', title))
       ..add(DiagnosticsProperty('subtitle', subtitle))
       ..add(DiagnosticsProperty('content', content))
@@ -248,6 +265,7 @@ class _$EntryImpl with DiagnosticableTreeMixin implements _Entry {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$EntryImpl &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.subtitle, subtitle) ||
                 other.subtitle == subtitle) &&
@@ -264,6 +282,7 @@ class _$EntryImpl with DiagnosticableTreeMixin implements _Entry {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      id,
       title,
       subtitle,
       content,
@@ -290,7 +309,8 @@ class _$EntryImpl with DiagnosticableTreeMixin implements _Entry {
 
 abstract class _Entry implements Entry {
   const factory _Entry(
-      {required final String title,
+      {required final String id,
+      required final String title,
       required final String subtitle,
       required final String content,
       required final DateTime createdAt,
@@ -300,6 +320,8 @@ abstract class _Entry implements Entry {
 
   factory _Entry.fromJson(Map<String, dynamic> json) = _$EntryImpl.fromJson;
 
+  @override
+  String get id;
   @override
   String get title;
   @override

@@ -8,7 +8,6 @@ import 'package:javier_website/core/providers/notifiers/locale_notifier.dart';
 import 'package:javier_website/view/home/widgets/indexed_content.dart';
 import 'package:javier_website/view/widgets/common_scaffold.dart';
 import 'package:javier_website/view/widgets/fading_edges_image.dart';
-import 'package:rive/rive.dart' as rive;
 import 'package:url_launcher/url_launcher.dart';
 
 class Home extends ConsumerStatefulWidget {
@@ -41,24 +40,13 @@ class _HomeState extends ConsumerState<Home> {
             children: <Widget>[
               Padding(
                 padding: EdgeInsets.fromLTRB(
-                    screenWidth * .0, 0, screenWidth * .4, 0),
-                child: SizedBox(
-                  width: screenWidth * .30,
-                  height: screenWidth / 1.48 * .30,
-                  child: const rive.RiveAnimation.asset(
-                    'assets/animations/javier.riv',
-                  ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.fromLTRB(
-                    screenWidth * .05, 0, screenWidth * .05, 0),
+                    screenWidth * .05, screenWidth * .05, screenWidth * .05, 0),
                 child: Wrap(
                   children: [
-                    const FadingEdgesImage(
-                      imagePath: 'assets/images/javi.jpg',
-                      width: 200,
-                      height: 200,
+                    const Image(
+                      image: Svg("assets/images/javi-wireframe.svg"),
+                      width: 250,
+                      height: 300,
                     ),
                     SizedBox(width: screenWidth * .05),
                     _typeWriterText(
@@ -71,7 +59,8 @@ class _HomeState extends ConsumerState<Home> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.fromLTRB(screenWidth * .05, 0, 0, 0),
+                padding: EdgeInsets.fromLTRB(
+                    screenWidth * .05, 0, screenWidth * .05, 0),
                 child: IndexedContent(index: _index),
               ),
               const SizedBox(height: 32.0), // Replace Flexible with SizedBox

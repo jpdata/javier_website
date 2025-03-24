@@ -1,0 +1,2 @@
+C:/Users/jpdat/source/repos/jpdata/javier_website/javier_website/android/app/.cxx/Debug/3i3e6v5u/armeabi-v7a/CMakeFiles/edit_cache.dir
+C:/Users/jpdat/source/repos/jpdata/javier_website/javier_website/android/app/.cxx/Debug/3i3e6v5u/armeabi-v7a/CMakeFiles/rebuild_cache.dir

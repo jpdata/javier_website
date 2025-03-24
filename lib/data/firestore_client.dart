@@ -14,6 +14,7 @@ import 'package:firestore_modeler/firestore_modeler.dart';
 
 class EntryDto {
   const EntryDto({
+    required this.id,
     required this.title,
     required this.subtitle,
     required this.content,
@@ -25,6 +26,7 @@ class EntryDto {
 
   factory EntryDto.fromJson(Map<String, dynamic> json) {
     return EntryDto(
+        id: json['id'] as String,
         title: (json['title']) as String,
         subtitle: (json['subtitle']) as String,
         content: (json['content']) as String,
@@ -44,6 +46,8 @@ class EntryDto {
         bannerImageUrl: (json['bannerImageUrl']) as String);
   }
 
+  final String id;
+
   final String title;
 
   final String subtitle;
@@ -60,6 +64,7 @@ class EntryDto {
 
   Map<String, dynamic> toJson() {
     return {
+      'id': (id),
       'title': (title),
       'subtitle': (subtitle),
       'content': (content),

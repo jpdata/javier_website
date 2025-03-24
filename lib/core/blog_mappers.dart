@@ -20,6 +20,7 @@ extension EntryMapper on EntryDto {
       return value.data?.toEntity();
     }).toList());
     return Entry(
+      id: id,
       title: title,
       subtitle: subtitle,
       content: content,
@@ -35,12 +36,13 @@ extension EntryMapper on EntryDto {
 extension EntryDtoMapper on Entry {
   EntryDto toDto() {
     return EntryDto(
+      id: id,
       title: title,
       subtitle: subtitle,
       content: content,
       createdAt: createdAt,
       tags: tags,
-      comments: [],// comments.map((e) => e.toDto()).toList(),
+      comments: [], // comments.map((e) => e.toDto()).toList(),
       bannerImageUrl: bannerImageUrl,
     );
   }

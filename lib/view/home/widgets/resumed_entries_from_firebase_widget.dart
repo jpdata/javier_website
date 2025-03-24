@@ -31,8 +31,13 @@ class _EntriesListWidgetState
 
   _entriesWithNewWidget(List<Entry> entries) {
     return Padding(
-      padding:
-          EdgeInsets.fromLTRB(0, 0, Utils.mediaWidthPercent(context, 25), 0),
+      padding: const EdgeInsets.fromLTRB(
+        0,
+        0,
+        0,
+        //Utils.mediaWidthPercent(context, 25),
+        0,
+      ),
       child: SingleChildScrollView(
         child: ResumedEntriesWidget(
           entries: entries,
@@ -40,5 +45,4 @@ class _EntriesListWidgetState
       ),
     );
   }
-
 }
