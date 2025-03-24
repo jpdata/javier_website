@@ -43,4 +43,5 @@ app.*.map.json
 /android/app/release
 crendetials.json
 assets/images/SvgStyleCleaner.exe
-assets/strings/crendetials.json
+lib/credentials.json
+assets/strings/credentials.json
