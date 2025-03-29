@@ -1,3 +1,4 @@
+import 'dart:developer' as developer show log;
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -8,8 +9,7 @@ class LocaleNotifier extends StateNotifier<Locale> {
   LocaleNotifier() : super(PlatformDispatcher.instance.locale);
 
   void setLocale({required Locale locale, BuildContext? context}) {
-    print(
-        "🔹 Cambiando idioma a: ${locale.languageCode}"); // ✅ Verifica si se llama a la función
+    developer.log("🔹 Cambiando idioma a: ${locale.languageCode}");
 
     state = locale;
     if (context != null) LocalizationManager.updateLocale(context);

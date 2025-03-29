@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:javier_website/core/utils.dart';
 import 'package:javier_website/model/entry.dart';
 import 'package:javier_website/view/home/widgets/resumed_entries_widget.dart';
 import 'package:javier_website/viewmodel/entries_view_model.dart';

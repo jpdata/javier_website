@@ -1,4 +1,3 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:javier_website/core/blog_mappers.dart';
 import 'package:javier_website/data/firestore_client.dart';
 import 'package:javier_website/model/entry.dart';
@@ -18,8 +17,9 @@ class EntriesViewModel extends _$EntriesViewModel {
 
   Future<List<Entry>> _fetchEntries() async {
     final querySnapshot = await _entriesCollection.get();
-    final entries = await Future.wait(
-        querySnapshot.docs.map((doc) async => await doc.data.toEntity()).toList());
+    final entries = await Future.wait(querySnapshot.docs
+        .map((doc) async => await doc.data.toEntity())
+        .toList());
     return entries;
   }
 }

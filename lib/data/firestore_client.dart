@@ -8,7 +8,6 @@
 // ├─ entries/
 // └─ comments/
 
-import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firestore_modeler/firestore_modeler.dart';
 
@@ -1229,7 +1228,7 @@ class _$EntryDtoQuery extends QueryReference<EntryDto, EntryDtoQuerySnapshot>
             ? (arrayContains as List<String>?)?.map((e) => (e)).toList()
             : null,
         arrayContainsAny: arrayContainsAny != null
-            ? (arrayContainsAny)?.map((e) => (e)).toList() as Iterable<Object>?
+            ? (arrayContainsAny).map((e) => (e)).toList() as Iterable<Object>?
             : null,
         isNull: isNull ??
             (isEqualTo == null ? false : null) ??

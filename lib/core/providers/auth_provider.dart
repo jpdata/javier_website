@@ -1,3 +1,5 @@
+import 'dart:developer' as developer;
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
@@ -35,10 +37,10 @@ class AuthProvider extends _$AuthProvider {
       );
       return _userCredential;
     } on FirebaseAuthException catch (e) {
-      if (e .code == 'user-not-found') {
-        print('No user found for that email.');
+      if (e.code == 'user-not-found') {
+        developer.log('No user found for that email.');
       } else if (e.code == 'wrong-password') {
-        print('Wrong password provided for that user.');
+        developer.log('Wrong password provided for that user.');
       }
       return null;
     }

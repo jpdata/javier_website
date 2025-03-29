@@ -73,7 +73,7 @@ class _MainDrawerState extends ConsumerState<MainDrawer> {
                                     ),
                                     SizedBox(
                                       width: screenWidth * .15,
-                                      height: screenWidth / 1.48 * .09,
+                                      height: screenWidth / 1.48 * .10,
                                       child: const rive.RiveAnimation.asset(
                                         'assets/animations/javier.riv',
                                         fit: BoxFit.cover,
