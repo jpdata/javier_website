@@ -149,13 +149,13 @@ abstract class AppLocalizations {
   /// No description provided for @cogito_ergo_sum.
   ///
   /// In en, this message translates to:
-  /// **'I program, therefore I am'**
+  /// **'I program, therefore I am.'**
   String get cogito_ergo_sum;
 
   /// No description provided for @doing_cool_stuf_with_porgramming_languages.
   ///
   /// In en, this message translates to:
-  /// **'Doing cool stuff with programming languages'**
+  /// **'Doing cool stuff with programming languages.'**
   String get doing_cool_stuf_with_porgramming_languages;
 
   /// No description provided for @spanish_spain.

@@ -28,7 +28,9 @@ class _HomeState extends ConsumerState<Home> {
   }
 
   Widget _scaffoldBody() {
-    double screenWidth = MediaQuery.of(context).size.width;
+    double screenWidth = MediaQuery.of(context).size.width > 600
+        ? 600
+        : MediaQuery.of(context).size.width;
     return Column(
       children: [
         Expanded(
@@ -95,8 +97,8 @@ class _HomeState extends ConsumerState<Home> {
                   _index = 3;
                 });
               },
-              imagePath: 'assets/images/blog.svg',
-              imagePathMouseOver: 'assets/images/Linkedin-negativo.svg',
+              imagePath: 'assets/images/Blog.svg',
+              imagePathMouseOver: 'assets/images/Blog-negativo.svg',
             ),
             const SizedBox(width: 10), // Replace Flexible with SizedBox
             FooterIconMenuItem(
@@ -113,8 +115,8 @@ class _HomeState extends ConsumerState<Home> {
                   _index = 1;
                 });
               },
-              imagePath: 'assets/images/portfolio.svg',
-              imagePathMouseOver: 'assets/images/Linkedin.svg',
+              imagePath: 'assets/images/Portfolio.svg',
+              imagePathMouseOver: 'assets/images/Portfolio-negativo.svg',
             ),
             const SizedBox(width: 10),
             FooterIconMenuItem(
@@ -123,24 +125,40 @@ class _HomeState extends ConsumerState<Home> {
                   _index = 2;
                 });
               },
-              imagePath: 'assets/images/credits.svg',
-              imagePathMouseOver: 'assets/images/Linkedin.svg',
+              imagePath: 'assets/images/Colaboradores.svg',
+              imagePathMouseOver: 'assets/images/Colaboradores-negativo.svg',
             ),
             const SizedBox(width: 10),
             FooterIconMenuItem(
               onTap: () {
                 Utils.launchURL('https://www.hiberus.com');
               },
-              imagePath: 'assets/images/hiberus-logo.svg',
-              imagePathMouseOver: 'assets/images/hiberus-logo.svg',
+              imagePath: 'assets/images/Hiberus.svg',
+              imagePathMouseOver: 'assets/images/Hiberus-negativo.svg',
             ),
             const SizedBox(width: 10),
             FooterIconMenuItem(
               onTap: () {
                 Utils.launchMailto(context);
               },
-              imagePath: 'assets/images/email.svg',
-              imagePathMouseOver: 'assets/images/hiberus-logo.svg',
+              imagePath: 'assets/images/Mail.svg',
+              imagePathMouseOver: 'assets/images/Mail-negativo.svg',
+            ),
+            const SizedBox(width: 10),
+            FooterIconMenuItem(
+              onTap: () {
+                Utils.launchURL('https://www.instagram.com/jeprato');
+              },
+              imagePath: 'assets/images/Instagram.svg',
+              imagePathMouseOver: 'assets/images/Instagram-negativo.svg',
+            ),
+            const SizedBox(width: 10),
+            FooterIconMenuItem(
+              onTap: () {
+                Utils.launchURL('https://www.github.com/jpdata');
+              },
+              imagePath: 'assets/images/Github.svg',
+              imagePathMouseOver: 'assets/images/Github-negativo.svg',
             ),
           ],
         ),
@@ -151,8 +169,9 @@ class _HomeState extends ConsumerState<Home> {
   Widget _typeWriterText(
       {required List<String> text, void Function()? onFinished}) {
     var locale = ref.read(localeProvider);
+    var screenWidth = MediaQuery.of(context).size.width;
     return SizedBox(
-      width: MediaQuery.of(context).size.width * .40,
+      width: screenWidth * .40,
       //height: MediaQuery.of(context).size.height * .3,
       child: DefaultTextStyle(
         style: TextStyle(

@@ -46,8 +46,8 @@ class _CommonScaffoldState extends ConsumerState<CommonScaffold> {
         title: Text(widget.title != null
             ? widget.title!
             : DynamicAppLocalizations.of(context).translate(currentRoute)),
-        backgroundColor: Colors.white,
-        foregroundColor: AppTheme.lightTheme.colorScheme.primary,
+        backgroundColor: AppTheme.lightTheme.colorScheme.primary,
+        foregroundColor: Colors.white,
         leading: widget.showBackButton
             ? IconButton(
                 icon: widget.backButtonIcon,

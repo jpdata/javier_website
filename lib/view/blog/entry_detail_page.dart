@@ -19,8 +19,8 @@ class EntryDetailPage extends StatelessWidget {
       showBackButton: true,
       child: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.fromLTRB(screenWidth * .20, screenWidth * .01,
-              screenWidth * .20, screenWidth * .01),
+          padding: EdgeInsets.fromLTRB(screenWidth * .10, screenWidth * .01,
+              screenWidth * .10, screenWidth * .01),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -75,18 +75,13 @@ class EntryDetailPage extends StatelessWidget {
                 children: [
                   Expanded(
                     child: Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.white),
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
                       ),
-                      child: Container(
-                        decoration: const BoxDecoration(
-                          color: Colors.white,
-                        ),
-                        margin: const EdgeInsets.all(4),
-                        child: Text(
-                          entry.content,
-                          style: const TextStyle(color: Colors.black),
-                        ),
+                      margin: const EdgeInsets.all(4),
+                      child: Text(
+                        entry.content,
+                        style: const TextStyle(color: Colors.black),
                       ),
                     ),
                   ),

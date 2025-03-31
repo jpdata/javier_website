@@ -29,7 +29,6 @@ class _MainDrawerState extends ConsumerState<MainDrawer> {
         Colors.black.withAlpha(33), // 🎨 Color de filtro
         BlendMode.dstATop,
       ),
-      // 🎨 Filtro
     );
   }
 
@@ -42,7 +41,9 @@ class _MainDrawerState extends ConsumerState<MainDrawer> {
   @override
   Widget build(BuildContext context) {
     ref.watch(localeProvider);
-    double screenWidth = MediaQuery.of(context).size.width;
+    double screenWidth = MediaQuery.of(context).size.width > 400
+        ? 400
+        : MediaQuery.of(context).size.width;
     return Drawer(
       child: Container(
         decoration: BoxDecoration(
@@ -66,14 +67,9 @@ class _MainDrawerState extends ConsumerState<MainDrawer> {
                                 ),
                                 child: Column(
                                   children: [
-                                    Text(
-                                      localizations.more_options,
-                                      style:
-                                          const TextStyle(color: Colors.white),
-                                    ),
                                     SizedBox(
-                                      width: screenWidth * .15,
-                                      height: screenWidth / 1.48 * .10,
+                                      width: screenWidth * .40,
+                                      height: screenWidth / 1.48 * .40,
                                       child: const rive.RiveAnimation.asset(
                                         'assets/animations/javier.riv',
                                         fit: BoxFit.cover,
@@ -85,8 +81,9 @@ class _MainDrawerState extends ConsumerState<MainDrawer> {
                             ],
                           ),
                           ListTile(
+                            tileColor: Colors.black.withAlpha(128),
                             leading: const Image(
-                              image: Svg('assets/images/email.svg'),
+                              image: Svg('assets/images/Mail.svg'),
                               width: 24,
                               height: 24,
                               color: Colors.white,
@@ -97,12 +94,67 @@ class _MainDrawerState extends ConsumerState<MainDrawer> {
                               Utils.launchMailto(context);
                             },
                           ),
+                          const SizedBox(height: 2),
                           ListTile(
+                            tileColor: Colors.black.withAlpha(128),
+                            leading: const Image(
+                              image: Svg('assets/images/Blog.svg'),
+                              width: 24,
+                              height: 24,
+                              color: Colors.white,
+                            ),
                             title: Text(localizations.blog,
                                 style: const TextStyle(color: Colors.white)),
                             onTap: () {
                               Scaffold.of(context).closeDrawer();
                               context.pushNamed(RoutNames.blogEntries);
+                            },
+                          ),
+                          const SizedBox(height: 2),
+                          ListTile(
+                            tileColor: Colors.black.withAlpha(128),
+                            leading: const Image(
+                              image: Svg('assets/images/Instagram.svg'),
+                              width: 24,
+                              height: 24,
+                              color: Colors.white,
+                            ),
+                            title: const Text('Instagram',
+                                style: TextStyle(color: Colors.white)),
+                            onTap: () {
+                              Utils.launchURL(
+                                  'https://www.instagram.com/jeprato');
+                            },
+                          ),
+                          const SizedBox(height: 2),
+                          ListTile(
+                            tileColor: Colors.black.withAlpha(128),
+                            leading: const Image(
+                              image: Svg('assets/images/Linkedin.svg'),
+                              width: 24,
+                              height: 24,
+                              color: Colors.white,
+                            ),
+                            title: const Text('Linkedin',
+                                style: TextStyle(color: Colors.white)),
+                            onTap: () {
+                              Utils.launchURL(
+                                  'https://www.linkedin.com/in/jeprato/');
+                            },
+                          ),
+                          const SizedBox(height: 2),
+                          ListTile(
+                            tileColor: Colors.black.withAlpha(128),
+                            leading: const Image(
+                              image: Svg('assets/images/Hiberus.svg'),
+                              width: 24,
+                              height: 24,
+                              color: Colors.white,
+                            ),
+                            title: const Text('hiberus',
+                                style: TextStyle(color: Colors.white)),
+                            onTap: () {
+                              Utils.launchURL('https://www.hiberus.com');
                             },
                           ),
                         ],

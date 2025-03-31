@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
 class AppTheme {
-  static const Color _primaryColor =
-      Color.fromARGB(255, 6, 38, 169); //Color(0xFF364B9C);
-  static const Color _secondaryColor = Colors.orange;
+  static const Color _primaryColor = Color(
+      0xFF0626A9); //Color.fromARGB(255, 6, 38, 169); //Color(0xFF364B9C); 0x0626A9
+  // Color.fromARGB(255, 6, 38, 169); //Color(0xFF364B9C); 0x0626A9
+  static const Color _secondaryColor = Color(0xFFE3E0E7);
   static const Color _errorColor = Colors.red;
 
   static const appBarTheme = AppBarTheme(
