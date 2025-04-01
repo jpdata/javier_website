@@ -5,7 +5,10 @@ import 'package:javier_website/view/home/widgets/resumed_entries_widget.dart';
 import 'package:javier_website/viewmodel/entries_view_model.dart';
 
 class ResumedEntriesFromFirebaseWidget extends ConsumerStatefulWidget {
-  const ResumedEntriesFromFirebaseWidget({super.key});
+  final int listLength;
+  final int page;
+  const ResumedEntriesFromFirebaseWidget(
+      {super.key, this.listLength = 3, this.page = 0});
 
   @override
   ConsumerState<ResumedEntriesFromFirebaseWidget> createState() =>
@@ -19,7 +22,8 @@ class _EntriesListWidgetState
 
   @override
   Widget build(BuildContext context) {
-    var entryVm = ref.watch(entriesViewModelProvider);
+    var entryVm = ref.watch(
+        entriesViewModelProvider(limit: widget.listLength, page: widget.page));
 
     return entryVm.when(
       data: (entries) => _entriesWithNewWidget(entries),
@@ -30,13 +34,7 @@ class _EntriesListWidgetState
 
   _entriesWithNewWidget(List<Entry> entries) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(
-        0,
-        0,
-        0,
-        //Utils.mediaWidthPercent(context, 25),
-        0,
-      ),
+      padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
       child: SingleChildScrollView(
         child: ResumedEntriesWidget(
           entries: entries,

@@ -47,7 +47,7 @@ class _CommonScaffoldState extends ConsumerState<CommonScaffold> {
             ? widget.title!
             : DynamicAppLocalizations.of(context).translate(currentRoute)),
         backgroundColor: AppTheme.lightTheme.colorScheme.primary,
-        foregroundColor: Colors.white,
+        foregroundColor: AppTheme.lightTheme.colorScheme.onPrimary,
         leading: widget.showBackButton
             ? IconButton(
                 icon: widget.backButtonIcon,
@@ -61,6 +61,7 @@ class _CommonScaffoldState extends ConsumerState<CommonScaffold> {
       drawer: const MainDrawer(),
       body: Container(
         height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
           color: AppTheme.lightTheme.colorScheme.primary,
           image: DecorationImage(

@@ -18,7 +18,7 @@ class CreditsContent extends StatelessWidget {
 
   final List<Map<String, String>> collaborators = [
     {
-      'icon': 'assets/images/linkedin-icon-3.svg',
+      'icon': 'assets/images/linkedin.svg',
       'name': 'John Gonzalez Vicent',
       'url': 'https://www.linkedin.com/in/johngonzalezvicent/',
       'description': localizations.design_colors_and_images,
@@ -27,26 +27,26 @@ class CreditsContent extends StatelessWidget {
 
   final List<Map<String, String>> collaborations = [
     {
-      'icon': 'assets/images/linkedin-icon-3.svg',
+      'icon': 'assets/images/Linkedin.svg',
       'name': 'John Gonzalez Vicent',
       'url': 'https://www.linkedin.com/in/johngonzalezvicent/',
       'description': localizations.design_colors_and_images,
     },
   ];
 
-  final List<Map<String, String>> creditsImustgive = [
-    {
-      'icon': 'assets/images/portfolio.svg',
-      'name': 'Icono Portfolio',
-      'url': 'https://iconscout.com/contributors/fullratio',
-      'description': localizations.portfolio,
-    },
-    {
-      'icon': 'assets/images/email.svg',
-      'name': 'Icono email',
-      'url': 'https://iconscout.com/contributors/eva-icons',
-      'description': localizations.contact_me_by_email,
-    },
+  final List<Map<String, String>> creditsIMustGive = [
+    // {
+    //   'icon': 'assets/images/portfolio.svg',
+    //   'name': 'Icono Portfolio',
+    //   'url': 'https://iconscout.com/contributors/fullratio',
+    //   'description': localizations.portfolio,
+    // },
+    // {
+    //   'icon': 'assets/images/email.svg',
+    //   'name': 'Icono email',
+    //   'url': 'https://iconscout.com/contributors/eva-icons',
+    //   'description': localizations.contact_me_by_email,
+    // },
   ];
 
   @override
@@ -61,7 +61,7 @@ class CreditsContent extends StatelessWidget {
                         3 +
                         collaborators.length +
                         collaborations.length +
-                        creditsImustgive.length)),
+                        creditsIMustGive.length)),
             child: _unfoldContent(textStyle),
           )
         : Unfolding.fold(
@@ -71,7 +71,7 @@ class CreditsContent extends StatelessWidget {
                         3 +
                         collaborators.length +
                         collaborations.length +
-                        creditsImustgive.length)),
+                        creditsIMustGive.length)),
             child: _unfoldContent(textStyle),
           );
   }
@@ -121,14 +121,17 @@ class CreditsContent extends StatelessWidget {
         //   );
         // }),
         //Credits I must give
-        DelayedDisplay(
-          delay: Duration(milliseconds: initialDelay),
-          child: Text(
-            localizations.credits_i_must_give,
-            style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-          ),
-        ),
-        ...creditsImustgive.map((item) {
+        (creditsIMustGive.isNotEmpty
+            ? DelayedDisplay(
+                delay: Duration(milliseconds: initialDelay),
+                child: Text(
+                  localizations.credits_i_must_give,
+                  style: const TextStyle(
+                      fontSize: 24, fontWeight: FontWeight.bold),
+                ),
+              )
+            : Container()),
+        ...creditsIMustGive.map((item) {
           index++;
           return DelayedDisplay(
             delay: Duration(milliseconds: initialDelay + index * duration),

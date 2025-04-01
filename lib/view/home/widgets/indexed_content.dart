@@ -38,7 +38,10 @@ class _IndexedContentState extends State<IndexedContent> {
       case 3:
         result = const Column(
           children: [
-            ResumedEntriesFromFirebaseWidget(),
+            ResumedEntriesFromFirebaseWidget(
+              page: 0,
+              listLength: 3,
+            ),
           ],
         );
       default:
