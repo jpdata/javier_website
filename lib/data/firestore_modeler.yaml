@@ -61,6 +61,13 @@ database:
           type:
             $: 'StringTypeData'
             required: true
+    - id: 'pMk_KhDrQGqowPAfru2nHg'
+      className: 'News'
+      fields:
+        - name: 'content'
+          type:
+            $: 'StringTypeData'
+            required: true
   collections:
     - id: 'Jd7cT8JdQ5mfXkBnbPIy8g'
       subPath: 'entries'
@@ -70,7 +77,12 @@ database:
       subPath: 'comments'
       subCollections: []
       schemaID: 'Nh8WF2cmQMuZlZXCw4uVoQ'
+    - id: 'Q9IetBUHRaO9FMS55r-DvA'
+      subPath: 'news'
+      subCollections: []
+      schemaID: 'pMk_KhDrQGqowPAfru2nHg'
 nodeOffsets:
   root: '0,0'
   Jd7cT8JdQ5mfXkBnbPIy8g: '322.91619873046875,0'
   eO5f0YLxRJ6-rQpabF5nYg: '319.91619873046875,477'
+  Q9IetBUHRaO9FMS55r-DvA: '319.91619873046875,879'

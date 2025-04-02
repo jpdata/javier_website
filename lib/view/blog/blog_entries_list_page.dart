@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:javier_website/core/l10n/app_locale.dart';
+import 'package:javier_website/router/rout_names.dart';
 import 'package:javier_website/view/home/widgets/resumed_entries_from_firebase_widget.dart';
 import 'package:javier_website/view/widgets/common_scaffold.dart';
 
@@ -27,16 +30,21 @@ class BlogEntriesListPage extends ConsumerWidget {
                   children: [
                     const ResumedEntriesFromFirebaseWidget(),
                     const SizedBox(height: 16),
-                    ElevatedButton(
-                      onPressed: () {
-                        // Acción para crear una nueva entrada
-                      },
-                      // style: ElevatedButton.styleFrom(
-                      //   backgroundColor:
-                      //       Theme.of(context).colorScheme.onPrimary,
-                      //   foregroundColor: Theme.of(context).colorScheme.primary,
-                      // ),
-                      child: const Text('Nueva entrada'),
+                    Row(
+                      children: [
+                        ElevatedButton(
+                          onPressed: () {
+                            context.pushNamed(RoutNames.blogNewEntry);
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor:
+                                Theme.of(context).colorScheme.onPrimary,
+                            foregroundColor:
+                                Theme.of(context).colorScheme.primary,
+                          ),
+                          child: Text(localizations.newEntry),
+                        ),
+                      ],
                     ),
                   ],
                 ),

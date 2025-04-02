@@ -43,7 +43,7 @@ class AppTheme {
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        backgroundColor: _primaryColor,
+        backgroundColor: _secondaryColor,
 
         // primary: _primaryColor, // Color de fondo del botón
         // onPrimary: Colors.white, // Color del texto del botón

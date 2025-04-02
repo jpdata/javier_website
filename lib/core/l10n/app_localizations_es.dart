@@ -104,6 +104,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get subtitle => 'Subtítulo';
 
   @override
+  String get entryTitle => 'Título';
+
+  @override
   String get content => 'Contenido';
 
   @override
@@ -241,6 +244,9 @@ class AppLocalizationsEsVe extends AppLocalizationsEs {
 
   @override
   String get subtitle => 'Subtítulo';
+
+  @override
+  String get entryTitle => 'Título';
 
   @override
   String get content => 'Contenido';

@@ -1,0 +1,2 @@
+C:/Users/jpdat/source/repos/jpdata/javier_website/javier_website/android/app/.cxx/RelWithDebInfo/1n6p5q70/x86/CMakeFiles/edit_cache.dir
+C:/Users/jpdat/source/repos/jpdata/javier_website/javier_website/android/app/.cxx/RelWithDebInfo/1n6p5q70/x86/CMakeFiles/rebuild_cache.dir

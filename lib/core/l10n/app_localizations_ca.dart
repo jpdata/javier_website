@@ -104,6 +104,9 @@ class AppLocalizationsCa extends AppLocalizations {
   String get subtitle => 'Subtítol';
 
   @override
+  String get entryTitle => 'Títol';
+
+  @override
   String get content => 'Contingut';
 
   @override

@@ -41,6 +41,7 @@
     "comments": "Comments",
     "newEntry": "New Entry",
     "subtitle": "Subtitle",
+    "entryTitle": "Title",
     "content": "Content",
     "bannerImageUrl": "Banner Image URL",
     "tags": "Tags (comma separated)",

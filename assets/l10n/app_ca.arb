@@ -29,6 +29,7 @@
     "comment_title": "{name} ha comentat el {date}",
     "comments": "Comentaris",
     "newEntry": "Nova Entrada",
+    "entryTitle": "Títol",
     "subtitle": "Subtítol",
     "content": "Contingut",
     "bannerImageUrl": "URL de la Imatge de Banner",

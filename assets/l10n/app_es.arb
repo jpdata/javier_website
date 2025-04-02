@@ -29,6 +29,7 @@
     "comment_title": "{name} ha comentado el {date}",
     "comments": "Comentarios",
     "newEntry": "Nueva Entrada",
+    "entryTitle": "Título",
     "subtitle": "Subtítulo",
     "content": "Contenido",
     "bannerImageUrl": "URL de la Imagen de Banner",

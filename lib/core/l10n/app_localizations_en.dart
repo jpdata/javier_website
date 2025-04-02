@@ -104,6 +104,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get subtitle => 'Subtitle';
 
   @override
+  String get entryTitle => 'Title';
+
+  @override
   String get content => 'Content';
 
   @override

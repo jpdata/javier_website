@@ -39,7 +39,7 @@ class _CommonScaffoldState extends ConsumerState<CommonScaffold> {
 
   Widget _scaffoldThenBackground(Widget child) {
     final goRouter = ref.watch(goRouterProvider);
-    final currentRoute = goRouter.state?.name ?? '';
+    final currentRoute = goRouter.state.name ?? '';
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: true,

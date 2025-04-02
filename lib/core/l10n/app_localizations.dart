@@ -278,6 +278,12 @@ abstract class AppLocalizations {
   /// **'Subtitle'**
   String get subtitle;
 
+  /// No description provided for @entryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Title'**
+  String get entryTitle;
+
   /// No description provided for @content.
   ///
   /// In en, this message translates to:
