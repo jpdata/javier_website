@@ -1,23 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:javier_website/core/l10n/app_locale.dart';
 import 'package:javier_website/router/rout_names.dart';
-import 'package:javier_website/view/home/widgets/resumed_entries_from_firebase_widget.dart';
+import 'package:javier_website/view/themes/app_theme.dart';
+import 'package:javier_website/view/blog/resumed_entries_from_firebase.dart';
 import 'package:javier_website/view/widgets/common_scaffold.dart';
 
-class BlogEntriesListPage extends ConsumerWidget {
+class BlogEntriesListPage extends StatelessWidget {
   const BlogEntriesListPage({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
 
     return CommonScaffold(
       showBackButton: true,
       child: Padding(
-        padding:
-            EdgeInsets.fromLTRB(screenWidth * .10, 8, screenWidth * .10, 0),
+        padding: EdgeInsets.fromLTRB(screenWidth * .10, 8, screenWidth * .10, 0),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -28,7 +27,19 @@ class BlogEntriesListPage extends ConsumerWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    const ResumedEntriesFromFirebaseWidget(),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(localizations.blog_entries,
+                            style: TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                              color: AppTheme.lightTheme.colorScheme.secondary,
+                            )),
+                      ],
+                    ),
+                    const SizedBox(height: 16),
+                    const ResumedEntriesFromFirebase(),
                     const SizedBox(height: 16),
                     Row(
                       children: [
@@ -36,12 +47,7 @@ class BlogEntriesListPage extends ConsumerWidget {
                           onPressed: () {
                             context.pushNamed(RoutNames.blogNewEntry);
                           },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor:
-                                Theme.of(context).colorScheme.onPrimary,
-                            foregroundColor:
-                                Theme.of(context).colorScheme.primary,
-                          ),
+                          style: AppTheme.lightTheme.elevatedButtonTheme.style,
                           child: Text(localizations.newEntry),
                         ),
                       ],

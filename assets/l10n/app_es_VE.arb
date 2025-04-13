@@ -43,6 +43,21 @@
     "blog_entry": "Entrada de Blog",
     "blog_entries": "Entradas de Blog",
     "blog_new_entry": "Nueva Entrada de Blog",
+    "blog_edit_entry": "Editar Entrada",
+    "news": "Noticias",
+    "news_entry": "Entrada de Noticias",
+    "news_entries": "Entradas de Noticias",
+    "news_new_entry": "Nueva Entrada",
+    "news_edit_entry": "Editar Entrada",
+    "news_on": "Noticias del {date}",
+    "@news_on": {
+        "placeholders": {
+            "date": {
+                "type": "DateTime",
+                "format": "yMd"
+            }
+        }
+    },
     "@comment_title": {
         "placeholders": {
             "name": {
@@ -54,5 +69,21 @@
             }
         }
     },
-    "read_more":"Leer más"
+    "read_more":"Leer más",
+    "pickAnImage": "Selecciona una imagen",
+    "signIn": "Iniciar Sesión",
+    "signOut": "Cerrar Sesión",
+    "signingIn": "Iniciando Sesión",
+    "error": "Error",
+    "signingOut": "Cerrando Sesión",
+    "loadind_data": "Cargando datos...",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "cancel": "Cancelar",
+    "ok": "Aceptar",
+    "delete": "Borrar",
+    "delete_entry": "Borrar Entrada",
+    "delete_comment": "Borrar Comentario",
+    "back": "Atrás",
+    "return_": "Volver"
 }

@@ -8,17 +8,18 @@ import 'package:go_router/go_router.dart';
 import 'package:javier_website/core/l10n/app_locale.dart';
 import 'package:javier_website/model/entry.dart';
 import 'package:javier_website/router/rout_names.dart';
+import 'package:javier_website/view/themes/app_theme.dart';
 
-class ResumedNewsEntries extends StatefulWidget {
+class ResumedEntries extends StatefulWidget {
   final List<Entry> entries;
 
-  const ResumedNewsEntries({super.key, required this.entries});
+  const ResumedEntries({super.key, required this.entries});
 
   @override
-  State<ResumedNewsEntries> createState() => _ResumedNewsEntriesState();
+  State<ResumedEntries> createState() => _ResumedEntriesState();
 }
 
-class _ResumedNewsEntriesState extends State<ResumedNewsEntries> {
+class _ResumedEntriesState extends State<ResumedEntries> {
   final Map<int, bool> _expanded = {};
 
   @override
@@ -37,15 +38,20 @@ class _ResumedNewsEntriesState extends State<ResumedNewsEntries> {
 
           return ExpansionPanel(
             isExpanded: isExpanded,
-            backgroundColor: Colors.black.withAlpha(25),
+            backgroundColor: Colors.black.withAlpha(128),
             canTapOnHeader: true,
             headerBuilder: (context, isExpanded) {
               return ListTile(
-                leading:
-                    const Icon(Icons.article_outlined, color: Colors.white),
+                leading: Icon(
+                  Icons.article_outlined,
+                  color: AppTheme.lightTheme.colorScheme.primary,
+                ),
                 title: Text(
                   entryData.title,
-                  style: const TextStyle(color: Colors.white, fontSize: 18),
+                  style: TextStyle(
+                    color: AppTheme.lightTheme.colorScheme.primary,
+                    fontSize: 18,
+                  ),
                 ),
               );
             },
@@ -56,7 +62,11 @@ class _ResumedNewsEntriesState extends State<ResumedNewsEntries> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.fromLTRB(16, 0, 0, 0),
-                      child: Text(entryData.subtitle),
+                      child: Text(entryData.subtitle,
+                          style: TextStyle(
+                              color: AppTheme.lightTheme.colorScheme.primary,
+                              fontSize: 16,
+                              fontWeight: FontWeight.normal)),
                     ),
                   ],
                 ),
@@ -69,17 +79,21 @@ class _ResumedNewsEntriesState extends State<ResumedNewsEntries> {
                         child: GestureDetector(
                           onTap: () {
                             context.pushNamed(RoutNames.blogEntry,
+                                pathParameters: {
+                                  'id': entryData.id,
+                                },
                                 extra: entryData);
                           },
                           child: Container(
-                            color: Colors.black.withAlpha(128),
+                            color: Colors.black.withAlpha(200),
                             child: Padding(
                               padding: const EdgeInsets.fromLTRB(16, 0, 0, 0),
                               child: Text(localizations.read_more,
-                                  style: const TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.normal)),
+                                  style: TextStyle(
+                                    color: AppTheme.lightTheme.colorScheme.primary,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.normal,
+                                  )),
                             ),
                           ),
                         ),

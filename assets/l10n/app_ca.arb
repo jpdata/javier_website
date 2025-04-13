@@ -43,7 +43,14 @@
     "blog_entry": "Entrada de Blog",
     "blog_entries": "Entrades de Blog",
     "blog_new_entry": "Nova Entrada de Blog",
-    "@comment_title": {
+    "blog_edit_entry": "Edita Entrada",
+    "news": "Notícies",
+    "news_entry": "Entrada de Notícies",
+    "news_entries": "Entrades de Notícies",
+    "news_new_entry": "Nova Entrada",
+    "news_edit_entry": "Edita Entrada",
+    "news_on": "Notícies del {date}",
+    "@news_on": {
         "placeholders": {
             "name": {
                 "type": "String"
@@ -54,5 +61,29 @@
             }
         }
     },
-    "read_more":"Llegir més"
+    "@comment_title": {
+        "placeholders": {
+            "date": {
+                "type": "DateTime",
+                "format": "yMd"
+            }
+        }
+    },
+    "read_more": "Llegir més",
+    "pickAnImage": "Selecciona una imatge",
+    "signIn": "Inicia Sessió",
+    "signOut": "Tanca Sessió",
+    "signingIn": "Iniciant Sessió",
+    "error": "Error",
+    "signingOut": "Tancant Sessió",
+    "loadind_data": "Carregant dades...",
+    "email": "Correu electrònic",
+    "password": "Contrasenya",
+    "cancel": "Cancel·la",
+    "ok": "D''acord",
+    "delete": "Esborra",
+    "delete_entry": "Esborra Entrada",
+    "delete_comment": "Esborra Comentari",
+    "back": "Enrere",
+    "return_": "Torna"
 }

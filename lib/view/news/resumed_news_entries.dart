@@ -4,21 +4,24 @@
 //Comments are nested to their owner entry
 
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:javier_website/core/l10n/app_locale.dart';
-import 'package:javier_website/model/entry.dart';
+import 'package:javier_website/model/news_entry.dart';
 import 'package:javier_website/router/rout_names.dart';
+import 'package:javier_website/view/themes/app_theme.dart';
+import 'package:javier_website/viewmodel/news/news_entries_view_model.dart';
 
-class ResumedEntriesWidget extends StatefulWidget {
-  final List<Entry> entries;
+class ResumedNewsEntries extends ConsumerStatefulWidget {
+  final List<NewsEntry> entries;
 
-  const ResumedEntriesWidget({super.key, required this.entries});
+  const ResumedNewsEntries({super.key, required this.entries});
 
   @override
-  State<ResumedEntriesWidget> createState() => _ResumedEntriesWidgetState();
+  ConsumerState<ResumedNewsEntries> createState() => _ResumedNewsEntriesState();
 }
 
-class _ResumedEntriesWidgetState extends State<ResumedEntriesWidget> {
+class _ResumedNewsEntriesState extends ConsumerState<ResumedNewsEntries> {
   final Map<int, bool> _expanded = {};
 
   @override
@@ -41,11 +44,26 @@ class _ResumedEntriesWidgetState extends State<ResumedEntriesWidget> {
             canTapOnHeader: true,
             headerBuilder: (context, isExpanded) {
               return ListTile(
-                leading:
-                    const Icon(Icons.article_outlined, color: Colors.white),
+                leading: Icon(Icons.article_outlined, color: AppTheme.lightTheme.colorScheme.primary),
                 title: Text(
-                  entryData.title,
-                  style: const TextStyle(color: Colors.white, fontSize: 18),
+                  entryData.createdAt.toString(),
+                  style: TextStyle(color: AppTheme.lightTheme.colorScheme.primary, fontSize: 18),
+                ),
+                trailing: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    IconButton(
+                      icon: Icon(Icons.delete, color: AppTheme.lightTheme.colorScheme.primary),
+                      onPressed: () {
+                        setState(() {
+                          var newsEntryVm = ref.read(newsEntriesViewModelProvider().notifier);
+                          newsEntryVm.deleteEntry(entryData.id);
+                          widget.entries.removeAt(index);
+                          _expanded.remove(index);
+                        });
+                      },
+                    ),
+                  ],
                 ),
               );
             },
@@ -54,32 +72,26 @@ class _ResumedEntriesWidgetState extends State<ResumedEntriesWidget> {
               children: [
                 Row(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(16, 0, 0, 0),
-                      child: Text(entryData.subtitle),
-                    ),
-                  ],
-                ),
-                const Divider(),
-                Row(
-                  children: [
                     Expanded(
                       child: MouseRegion(
                         cursor: SystemMouseCursors.click,
                         child: GestureDetector(
                           onTap: () {
-                            context.pushNamed(RoutNames.blogEntry,
-                                extra: entryData);
+                            context.pushNamed(
+                              RoutNames.newsEntry,
+                              pathParameters: {'id': entryData.id},
+                            );
                           },
                           child: Container(
                             color: Colors.black.withAlpha(128),
                             child: Padding(
                               padding: const EdgeInsets.fromLTRB(16, 0, 0, 0),
                               child: Text(localizations.read_more,
-                                  style: const TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.normal)),
+                                  style: TextStyle(
+                                    color: AppTheme.lightTheme.colorScheme.primary,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.normal,
+                                  )),
                             ),
                           ),
                         ),

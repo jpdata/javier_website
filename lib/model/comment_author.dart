@@ -6,7 +6,7 @@ part 'comment_author.freezed.dart';
 part 'comment_author.g.dart';
 
 @freezed
-class CommentAuthor with _$CommentAuthor {
+sealed class CommentAuthor with _$CommentAuthor {
   const factory CommentAuthor({
     required String name,
     required String email,

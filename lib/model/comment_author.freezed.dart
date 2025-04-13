@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,147 +10,31 @@ part of 'comment_author.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-CommentAuthor _$CommentAuthorFromJson(Map<String, dynamic> json) {
-  return _CommentAuthor.fromJson(json);
-}
 
 /// @nodoc
 mixin _$CommentAuthor {
-  String get name => throw _privateConstructorUsedError;
-  String get email => throw _privateConstructorUsedError;
-  String get avatar => throw _privateConstructorUsedError;
-
-  /// Serializes this CommentAuthor to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  String get name;
+  String get email;
+  String get avatar;
 
   /// Create a copy of CommentAuthor
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $CommentAuthorCopyWith<CommentAuthor> get copyWith =>
-      throw _privateConstructorUsedError;
-}
+      _$CommentAuthorCopyWithImpl<CommentAuthor>(
+          this as CommentAuthor, _$identity);
 
-/// @nodoc
-abstract class $CommentAuthorCopyWith<$Res> {
-  factory $CommentAuthorCopyWith(
-          CommentAuthor value, $Res Function(CommentAuthor) then) =
-      _$CommentAuthorCopyWithImpl<$Res, CommentAuthor>;
-  @useResult
-  $Res call({String name, String email, String avatar});
-}
-
-/// @nodoc
-class _$CommentAuthorCopyWithImpl<$Res, $Val extends CommentAuthor>
-    implements $CommentAuthorCopyWith<$Res> {
-  _$CommentAuthorCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of CommentAuthor
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? name = null,
-    Object? email = null,
-    Object? avatar = null,
-  }) {
-    return _then(_value.copyWith(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      email: null == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      avatar: null == avatar
-          ? _value.avatar
-          : avatar // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$CommentAuthorImplCopyWith<$Res>
-    implements $CommentAuthorCopyWith<$Res> {
-  factory _$$CommentAuthorImplCopyWith(
-          _$CommentAuthorImpl value, $Res Function(_$CommentAuthorImpl) then) =
-      __$$CommentAuthorImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String name, String email, String avatar});
-}
-
-/// @nodoc
-class __$$CommentAuthorImplCopyWithImpl<$Res>
-    extends _$CommentAuthorCopyWithImpl<$Res, _$CommentAuthorImpl>
-    implements _$$CommentAuthorImplCopyWith<$Res> {
-  __$$CommentAuthorImplCopyWithImpl(
-      _$CommentAuthorImpl _value, $Res Function(_$CommentAuthorImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of CommentAuthor
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? name = null,
-    Object? email = null,
-    Object? avatar = null,
-  }) {
-    return _then(_$CommentAuthorImpl(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      email: null == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      avatar: null == avatar
-          ? _value.avatar
-          : avatar // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$CommentAuthorImpl implements _CommentAuthor {
-  const _$CommentAuthorImpl(
-      {required this.name, required this.email, required this.avatar});
-
-  factory _$CommentAuthorImpl.fromJson(Map<String, dynamic> json) =>
-      _$$CommentAuthorImplFromJson(json);
-
-  @override
-  final String name;
-  @override
-  final String email;
-  @override
-  final String avatar;
-
-  @override
-  String toString() {
-    return 'CommentAuthor(name: $name, email: $email, avatar: $avatar)';
-  }
+  /// Serializes this CommentAuthor to a JSON map.
+  Map<String, dynamic> toJson();
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$CommentAuthorImpl &&
+            other is CommentAuthor &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.avatar, avatar) || other.avatar == avatar));
@@ -159,42 +44,148 @@ class _$CommentAuthorImpl implements _CommentAuthor {
   @override
   int get hashCode => Object.hash(runtimeType, name, email, avatar);
 
-  /// Create a copy of CommentAuthor
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$CommentAuthorImplCopyWith<_$CommentAuthorImpl> get copyWith =>
-      __$$CommentAuthorImplCopyWithImpl<_$CommentAuthorImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$CommentAuthorImplToJson(
-      this,
-    );
+  String toString() {
+    return 'CommentAuthor(name: $name, email: $email, avatar: $avatar)';
   }
 }
 
-abstract class _CommentAuthor implements CommentAuthor {
-  const factory _CommentAuthor(
-      {required final String name,
-      required final String email,
-      required final String avatar}) = _$CommentAuthorImpl;
+/// @nodoc
+abstract mixin class $CommentAuthorCopyWith<$Res> {
+  factory $CommentAuthorCopyWith(
+          CommentAuthor value, $Res Function(CommentAuthor) _then) =
+      _$CommentAuthorCopyWithImpl;
+  @useResult
+  $Res call({String name, String email, String avatar});
+}
 
-  factory _CommentAuthor.fromJson(Map<String, dynamic> json) =
-      _$CommentAuthorImpl.fromJson;
+/// @nodoc
+class _$CommentAuthorCopyWithImpl<$Res>
+    implements $CommentAuthorCopyWith<$Res> {
+  _$CommentAuthorCopyWithImpl(this._self, this._then);
+
+  final CommentAuthor _self;
+  final $Res Function(CommentAuthor) _then;
+
+  /// Create a copy of CommentAuthor
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? name = null,
+    Object? email = null,
+    Object? avatar = null,
+  }) {
+    return _then(_self.copyWith(
+      name: null == name
+          ? _self.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      email: null == email
+          ? _self.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      avatar: null == avatar
+          ? _self.avatar
+          : avatar // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _CommentAuthor implements CommentAuthor {
+  const _CommentAuthor(
+      {required this.name, required this.email, required this.avatar});
+  factory _CommentAuthor.fromJson(Map<String, dynamic> json) =>
+      _$CommentAuthorFromJson(json);
 
   @override
-  String get name;
+  final String name;
   @override
-  String get email;
+  final String email;
   @override
-  String get avatar;
+  final String avatar;
 
   /// Create a copy of CommentAuthor
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$CommentAuthorImplCopyWith<_$CommentAuthorImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  _$CommentAuthorCopyWith<_CommentAuthor> get copyWith =>
+      __$CommentAuthorCopyWithImpl<_CommentAuthor>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$CommentAuthorToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _CommentAuthor &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.avatar, avatar) || other.avatar == avatar));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, name, email, avatar);
+
+  @override
+  String toString() {
+    return 'CommentAuthor(name: $name, email: $email, avatar: $avatar)';
+  }
 }
+
+/// @nodoc
+abstract mixin class _$CommentAuthorCopyWith<$Res>
+    implements $CommentAuthorCopyWith<$Res> {
+  factory _$CommentAuthorCopyWith(
+          _CommentAuthor value, $Res Function(_CommentAuthor) _then) =
+      __$CommentAuthorCopyWithImpl;
+  @override
+  @useResult
+  $Res call({String name, String email, String avatar});
+}
+
+/// @nodoc
+class __$CommentAuthorCopyWithImpl<$Res>
+    implements _$CommentAuthorCopyWith<$Res> {
+  __$CommentAuthorCopyWithImpl(this._self, this._then);
+
+  final _CommentAuthor _self;
+  final $Res Function(_CommentAuthor) _then;
+
+  /// Create a copy of CommentAuthor
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? name = null,
+    Object? email = null,
+    Object? avatar = null,
+  }) {
+    return _then(_CommentAuthor(
+      name: null == name
+          ? _self.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      email: null == email
+          ? _self.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      avatar: null == avatar
+          ? _self.avatar
+          : avatar // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+// dart format on

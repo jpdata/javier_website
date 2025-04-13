@@ -1,27 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:javier_website/core/blog_mappers.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:javier_website/core/l10n/app_locale.dart';
-import 'package:javier_website/data/firestore_client.dart';
-import 'package:javier_website/model/entry.dart';
-import 'package:javier_website/view/Themes/app_theme.dart';
+import 'package:javier_website/model/news_entry.dart';
+import 'package:javier_website/view/themes/app_theme.dart';
 import 'package:javier_website/view/widgets/common_scaffold.dart';
 import 'package:html_editor_enhanced/html_editor.dart';
+import 'package:javier_website/viewmodel/news/news_entries_view_model.dart';
 
-class NewsNewEntryPage extends StatefulWidget {
+class NewsNewEntryPage extends ConsumerStatefulWidget {
   const NewsNewEntryPage({super.key});
 
   @override
-  State<NewsNewEntryPage> createState() => _NewsNewEntryPageState();
+  ConsumerState<NewsNewEntryPage> createState() => _NewsNewEntryPageState();
 }
 
-class _NewsNewEntryPageState extends State<NewsNewEntryPage> {
+class _NewsNewEntryPageState extends ConsumerState<NewsNewEntryPage> {
   final _formKey = GlobalKey<FormState>();
-  final _titleController = TextEditingController();
-  final _subtitleController = TextEditingController();
-  final _contentController = TextEditingController();
   final _contentHtmlController = HtmlEditorController();
-  final _bannerImageUrlController = TextEditingController();
-  final _tagsController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -30,8 +26,7 @@ class _NewsNewEntryPageState extends State<NewsNewEntryPage> {
     return CommonScaffold(
       showBackButton: true,
       child: Padding(
-        padding:
-            EdgeInsets.fromLTRB(screenWidth * .10, 8, screenWidth * .10, 8),
+        padding: EdgeInsets.fromLTRB(screenWidth * .10, 8, screenWidth * .10, 8),
         child: Form(
           key: _formKey,
           child: SizedBox(
@@ -40,46 +35,22 @@ class _NewsNewEntryPageState extends State<NewsNewEntryPage> {
               physics: const BouncingScrollPhysics(),
               child: Column(
                 children: [
-                  HtmlEditor(
-                    controller: _contentHtmlController, //required
-                    htmlEditorOptions: HtmlEditorOptions(
-                      hint: localizations.content,
-                      //initalText: "text content initial, if any",
-                    ),
-                    otherOptions: const OtherOptions(
-                      height: 400,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.all(Radius.circular(4)),
-                      ),
-                    ),
-                  ),
+                  _htmlEditorField(),
                   const SizedBox(height: 20),
                   ElevatedButton(
                     style: AppTheme.lightTheme.elevatedButtonTheme.style,
-                    // (
-                    //   textStyle: Theme.of(context).textTheme.labelLarge,
-                    //   backgroundColor: Theme.of(context).colorScheme.onPrimary,
-                    //   foregroundColor: Theme.of(context).colorScheme.primary,
-                    // ),
                     onPressed: () async {
                       if (_formKey.currentState!.validate()) {
-                        final newEntry = Entry(
+                        final newEntry = NewsEntry(
                           id: '',
-                          title: _titleController.text,
-                          subtitle: _subtitleController.text,
-                          content: _contentHtmlController.toString(),
+                          content: await _contentHtmlController.getText(),
                           createdAt: DateTime.now(),
-                          bannerImageUrl: _bannerImageUrlController.text,
-                          tags: _tagsController.text
-                              .split(',')
-                              .map((tag) => tag.trim())
-                              .toList(),
-                          comments: [],
                         );
-                        // Handle the new entry (e.g., save to database)
-                        await EntriesCollectionReference()
-                            .add(newEntry.toDto());
+                        var newsEntryVm = ref.read(newsEntriesViewModelProvider().notifier);
+                        newsEntryVm.createEntry(newEntry);
+                        if (context.mounted) {
+                          context.pop();
+                        }
                       }
                     },
                     child: Text(localizations.saveEntry),
@@ -93,13 +64,46 @@ class _NewsNewEntryPageState extends State<NewsNewEntryPage> {
     );
   }
 
-  @override
-  void dispose() {
-    _titleController.dispose();
-    _subtitleController.dispose();
-    _contentController.dispose();
-    _bannerImageUrlController.dispose();
-    _tagsController.dispose();
-    super.dispose();
+  Widget _htmlEditorField() {
+    return Container(
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.primary,
+        borderRadius: const BorderRadius.all(Radius.circular(5)),
+      ),
+      child: HtmlEditor(
+        controller: _contentHtmlController,
+        htmlToolbarOptions: HtmlToolbarOptions(
+          defaultToolbarButtons: [
+            const StyleButtons(),
+            const FontSettingButtons(),
+            const ColorButtons(),
+            const InsertButtons(),
+            const OtherButtons(),
+          ],
+          toolbarPosition: ToolbarPosition.belowEditor,
+          toolbarType: ToolbarType.nativeScrollable,
+          textStyle: TextStyle(
+            fontFamily: 'Roboto',
+            color: AppTheme.lightTheme.colorScheme.secondary,
+          ),
+          dropdownBackgroundColor: AppTheme.lightTheme.colorScheme.primary,
+          onButtonPressed: (button, controller, focusNode) {
+            return true;
+          },
+        ),
+        htmlEditorOptions: HtmlEditorOptions(
+          hint: localizations.content,
+          //initalText: "text content initial, if any",
+        ),
+        otherOptions: OtherOptions(
+//          height: 400,
+
+          decoration: BoxDecoration(
+            color: AppTheme.lightTheme.colorScheme.primary,
+            borderRadius: const BorderRadius.all(Radius.circular(5)),
+          ),
+        ),
+      ),
+    );
   }
 }

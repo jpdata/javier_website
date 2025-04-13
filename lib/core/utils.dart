@@ -4,14 +4,10 @@ import 'package:javier_website/core/l10n/app_locale.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Utils {
-  static double screenHzRelation(BuildContext context) =>
-      MediaQuery.of(context).size.width / 1920;
-  static double screenVtRelation(BuildContext context) =>
-      MediaQuery.of(context).size.height / 1080;
-  static double adjustToScreenHzRel(BuildContext context, double value) =>
-      value * screenHzRelation(context);
-  static double adjustToScreenVtRel(BuildContext context, double value) =>
-      value * screenVtRelation(context);
+  static double screenHzRelation(BuildContext context) => MediaQuery.of(context).size.width / 1920;
+  static double screenVtRelation(BuildContext context) => MediaQuery.of(context).size.height / 1080;
+  static double adjustToScreenHzRel(BuildContext context, double value) => value * screenHzRelation(context);
+  static double adjustToScreenVtRel(BuildContext context, double value) => value * screenVtRelation(context);
 
   static double mediaWidthPercent(BuildContext context, double percent) =>
       MediaQuery.of(context).size.width * percent / 100;
@@ -35,13 +31,14 @@ class Utils {
     } else {
       //throw 'Could not launch $url';
       //add snakcbar with message
-      Navigator.of(context).pop();
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Could not launch $url',
-              style: const TextStyle(color: Colors.white)),
-        ),
-      );
+      if (context.mounted) {
+        Navigator.of(context).pop();
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Could not launch $url', style: const TextStyle(color: Colors.white)),
+          ),
+        );
+      }
     }
   }
 

@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,168 +10,32 @@ part of 'comment.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-Comment _$CommentFromJson(Map<String, dynamic> json) {
-  return _Comment.fromJson(json);
-}
-
 /// @nodoc
-mixin _$Comment {
-  String get content => throw _privateConstructorUsedError;
-  DateTime get createdAt => throw _privateConstructorUsedError;
-  String get authorName => throw _privateConstructorUsedError;
-  String get authorEmail => throw _privateConstructorUsedError;
-
-  /// Serializes this Comment to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+mixin _$Comment implements DiagnosticableTreeMixin {
+  String get id;
+  String get content;
+  DateTime get createdAt;
+  String get authorName;
+  String get authorEmail;
 
   /// Create a copy of Comment
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $CommentCopyWith<Comment> get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $CommentCopyWith<$Res> {
-  factory $CommentCopyWith(Comment value, $Res Function(Comment) then) =
-      _$CommentCopyWithImpl<$Res, Comment>;
-  @useResult
-  $Res call(
-      {String content,
-      DateTime createdAt,
-      String authorName,
-      String authorEmail});
-}
-
-/// @nodoc
-class _$CommentCopyWithImpl<$Res, $Val extends Comment>
-    implements $CommentCopyWith<$Res> {
-  _$CommentCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of Comment
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? content = null,
-    Object? createdAt = null,
-    Object? authorName = null,
-    Object? authorEmail = null,
-  }) {
-    return _then(_value.copyWith(
-      content: null == content
-          ? _value.content
-          : content // ignore: cast_nullable_to_non_nullable
-              as String,
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      authorName: null == authorName
-          ? _value.authorName
-          : authorName // ignore: cast_nullable_to_non_nullable
-              as String,
-      authorEmail: null == authorEmail
-          ? _value.authorEmail
-          : authorEmail // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
-}
+  $CommentCopyWith<Comment> get copyWith =>
+      _$CommentCopyWithImpl<Comment>(this as Comment, _$identity);
 
-/// @nodoc
-abstract class _$$CommentImplCopyWith<$Res> implements $CommentCopyWith<$Res> {
-  factory _$$CommentImplCopyWith(
-          _$CommentImpl value, $Res Function(_$CommentImpl) then) =
-      __$$CommentImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {String content,
-      DateTime createdAt,
-      String authorName,
-      String authorEmail});
-}
-
-/// @nodoc
-class __$$CommentImplCopyWithImpl<$Res>
-    extends _$CommentCopyWithImpl<$Res, _$CommentImpl>
-    implements _$$CommentImplCopyWith<$Res> {
-  __$$CommentImplCopyWithImpl(
-      _$CommentImpl _value, $Res Function(_$CommentImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of Comment
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? content = null,
-    Object? createdAt = null,
-    Object? authorName = null,
-    Object? authorEmail = null,
-  }) {
-    return _then(_$CommentImpl(
-      content: null == content
-          ? _value.content
-          : content // ignore: cast_nullable_to_non_nullable
-              as String,
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      authorName: null == authorName
-          ? _value.authorName
-          : authorName // ignore: cast_nullable_to_non_nullable
-              as String,
-      authorEmail: null == authorEmail
-          ? _value.authorEmail
-          : authorEmail // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$CommentImpl with DiagnosticableTreeMixin implements _Comment {
-  _$CommentImpl(
-      {required this.content,
-      required this.createdAt,
-      required this.authorName,
-      required this.authorEmail});
-
-  factory _$CommentImpl.fromJson(Map<String, dynamic> json) =>
-      _$$CommentImplFromJson(json);
-
-  @override
-  final String content;
-  @override
-  final DateTime createdAt;
-  @override
-  final String authorName;
-  @override
-  final String authorEmail;
-
-  @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Comment(content: $content, createdAt: $createdAt, authorName: $authorName, authorEmail: $authorEmail)';
-  }
+  /// Serializes this Comment to a JSON map.
+  Map<String, dynamic> toJson();
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'Comment'))
+      ..add(DiagnosticsProperty('id', id))
       ..add(DiagnosticsProperty('content', content))
       ..add(DiagnosticsProperty('createdAt', createdAt))
       ..add(DiagnosticsProperty('authorName', authorName))
@@ -181,7 +46,8 @@ class _$CommentImpl with DiagnosticableTreeMixin implements _Comment {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$CommentImpl &&
+            other is Comment &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.content, content) || other.content == content) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
@@ -194,46 +60,200 @@ class _$CommentImpl with DiagnosticableTreeMixin implements _Comment {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, content, createdAt, authorName, authorEmail);
-
-  /// Create a copy of Comment
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$CommentImplCopyWith<_$CommentImpl> get copyWith =>
-      __$$CommentImplCopyWithImpl<_$CommentImpl>(this, _$identity);
+      Object.hash(runtimeType, id, content, createdAt, authorName, authorEmail);
 
   @override
-  Map<String, dynamic> toJson() {
-    return _$$CommentImplToJson(
-      this,
-    );
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'Comment(id: $id, content: $content, createdAt: $createdAt, authorName: $authorName, authorEmail: $authorEmail)';
   }
 }
 
-abstract class _Comment implements Comment {
-  factory _Comment(
-      {required final String content,
-      required final DateTime createdAt,
-      required final String authorName,
-      required final String authorEmail}) = _$CommentImpl;
+/// @nodoc
+abstract mixin class $CommentCopyWith<$Res> {
+  factory $CommentCopyWith(Comment value, $Res Function(Comment) _then) =
+      _$CommentCopyWithImpl;
+  @useResult
+  $Res call(
+      {String id,
+      String content,
+      DateTime createdAt,
+      String authorName,
+      String authorEmail});
+}
 
-  factory _Comment.fromJson(Map<String, dynamic> json) = _$CommentImpl.fromJson;
+/// @nodoc
+class _$CommentCopyWithImpl<$Res> implements $CommentCopyWith<$Res> {
+  _$CommentCopyWithImpl(this._self, this._then);
+
+  final Comment _self;
+  final $Res Function(Comment) _then;
+
+  /// Create a copy of Comment
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? content = null,
+    Object? createdAt = null,
+    Object? authorName = null,
+    Object? authorEmail = null,
+  }) {
+    return _then(_self.copyWith(
+      id: null == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      content: null == content
+          ? _self.content
+          : content // ignore: cast_nullable_to_non_nullable
+              as String,
+      createdAt: null == createdAt
+          ? _self.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      authorName: null == authorName
+          ? _self.authorName
+          : authorName // ignore: cast_nullable_to_non_nullable
+              as String,
+      authorEmail: null == authorEmail
+          ? _self.authorEmail
+          : authorEmail // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _Comment with DiagnosticableTreeMixin implements Comment {
+  _Comment(
+      {required this.id,
+      required this.content,
+      required this.createdAt,
+      required this.authorName,
+      required this.authorEmail});
+  factory _Comment.fromJson(Map<String, dynamic> json) =>
+      _$CommentFromJson(json);
 
   @override
-  String get content;
+  final String id;
   @override
-  DateTime get createdAt;
+  final String content;
   @override
-  String get authorName;
+  final DateTime createdAt;
   @override
-  String get authorEmail;
+  final String authorName;
+  @override
+  final String authorEmail;
 
   /// Create a copy of Comment
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$CommentImplCopyWith<_$CommentImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  _$CommentCopyWith<_Comment> get copyWith =>
+      __$CommentCopyWithImpl<_Comment>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$CommentToJson(
+      this,
+    );
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    properties
+      ..add(DiagnosticsProperty('type', 'Comment'))
+      ..add(DiagnosticsProperty('id', id))
+      ..add(DiagnosticsProperty('content', content))
+      ..add(DiagnosticsProperty('createdAt', createdAt))
+      ..add(DiagnosticsProperty('authorName', authorName))
+      ..add(DiagnosticsProperty('authorEmail', authorEmail));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _Comment &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.content, content) || other.content == content) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
+            (identical(other.authorName, authorName) ||
+                other.authorName == authorName) &&
+            (identical(other.authorEmail, authorEmail) ||
+                other.authorEmail == authorEmail));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, id, content, createdAt, authorName, authorEmail);
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'Comment(id: $id, content: $content, createdAt: $createdAt, authorName: $authorName, authorEmail: $authorEmail)';
+  }
 }
+
+/// @nodoc
+abstract mixin class _$CommentCopyWith<$Res> implements $CommentCopyWith<$Res> {
+  factory _$CommentCopyWith(_Comment value, $Res Function(_Comment) _then) =
+      __$CommentCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String id,
+      String content,
+      DateTime createdAt,
+      String authorName,
+      String authorEmail});
+}
+
+/// @nodoc
+class __$CommentCopyWithImpl<$Res> implements _$CommentCopyWith<$Res> {
+  __$CommentCopyWithImpl(this._self, this._then);
+
+  final _Comment _self;
+  final $Res Function(_Comment) _then;
+
+  /// Create a copy of Comment
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? id = null,
+    Object? content = null,
+    Object? createdAt = null,
+    Object? authorName = null,
+    Object? authorEmail = null,
+  }) {
+    return _then(_Comment(
+      id: null == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      content: null == content
+          ? _self.content
+          : content // ignore: cast_nullable_to_non_nullable
+              as String,
+      createdAt: null == createdAt
+          ? _self.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      authorName: null == authorName
+          ? _self.authorName
+          : authorName // ignore: cast_nullable_to_non_nullable
+              as String,
+      authorEmail: null == authorEmail
+          ? _self.authorEmail
+          : authorEmail // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+// dart format on

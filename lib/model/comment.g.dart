@@ -6,15 +6,16 @@ part of 'comment.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$CommentImpl _$$CommentImplFromJson(Map<String, dynamic> json) =>
-    _$CommentImpl(
+_Comment _$CommentFromJson(Map<String, dynamic> json) => _Comment(
+      id: json['id'] as String,
       content: json['content'] as String,
       createdAt: DateTime.parse(json['createdAt'] as String),
       authorName: json['authorName'] as String,
       authorEmail: json['authorEmail'] as String,
     );
 
-const _$$CommentImplFieldMap = <String, String>{
+const _$CommentFieldMap = <String, String>{
+  'id': 'id',
   'content': 'content',
   'createdAt': 'createdAt',
   'authorName': 'authorName',
@@ -22,7 +23,9 @@ const _$$CommentImplFieldMap = <String, String>{
 };
 
 // ignore: unused_element
-abstract class _$$CommentImplPerFieldToJson {
+abstract class _$CommentPerFieldToJson {
+  // ignore: unused_element
+  static Object? id(String instance) => instance;
   // ignore: unused_element
   static Object? content(String instance) => instance;
   // ignore: unused_element
@@ -33,8 +36,8 @@ abstract class _$$CommentImplPerFieldToJson {
   static Object? authorEmail(String instance) => instance;
 }
 
-Map<String, dynamic> _$$CommentImplToJson(_$CommentImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$CommentToJson(_Comment instance) => <String, dynamic>{
+      'id': instance.id,
       'content': instance.content,
       'createdAt': instance.createdAt.toIso8601String(),
       'authorName': instance.authorName,

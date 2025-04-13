@@ -6,7 +6,7 @@ part of 'entry.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$EntryImpl _$$EntryImplFromJson(Map<String, dynamic> json) => _$EntryImpl(
+_Entry _$EntryFromJson(Map<String, dynamic> json) => _Entry(
       id: json['id'] as String,
       title: json['title'] as String,
       subtitle: json['subtitle'] as String,
@@ -22,7 +22,7 @@ _$EntryImpl _$$EntryImplFromJson(Map<String, dynamic> json) => _$EntryImpl(
           const <Comment>[],
     );
 
-const _$$EntryImplFieldMap = <String, String>{
+const _$EntryFieldMap = <String, String>{
   'id': 'id',
   'title': 'title',
   'subtitle': 'subtitle',
@@ -34,7 +34,7 @@ const _$$EntryImplFieldMap = <String, String>{
 };
 
 // ignore: unused_element
-abstract class _$$EntryImplPerFieldToJson {
+abstract class _$EntryPerFieldToJson {
   // ignore: unused_element
   static Object? id(String instance) => instance;
   // ignore: unused_element
@@ -53,8 +53,7 @@ abstract class _$$EntryImplPerFieldToJson {
   static Object? comments(List<Comment> instance) => instance;
 }
 
-Map<String, dynamic> _$$EntryImplToJson(_$EntryImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$EntryToJson(_Entry instance) => <String, dynamic>{
       'id': instance.id,
       'title': instance.title,
       'subtitle': instance.subtitle,

@@ -1,22 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:javier_website/core/l10n/app_locale.dart';
 import 'package:javier_website/model/entry.dart';
-import 'package:javier_website/view/home/widgets/resumed_entries_widget.dart';
-import 'package:javier_website/viewmodel/entries_view_model.dart';
+import 'package:javier_website/view/blog/resumed_entries.dart';
+import 'package:javier_website/view/widgets/fade_in_out_text.dart';
+import 'package:javier_website/viewmodel/blog/entries_view_model.dart';
 
-class ResumedEntriesFromFirebaseWidget extends ConsumerStatefulWidget {
+class ResumedEntriesFromFirebase extends ConsumerStatefulWidget {
   final int listLength;
   final int page;
-  const ResumedEntriesFromFirebaseWidget(
+  const ResumedEntriesFromFirebase(
       {super.key, this.listLength = 3, this.page = 0});
 
   @override
-  ConsumerState<ResumedEntriesFromFirebaseWidget> createState() =>
+  ConsumerState<ResumedEntriesFromFirebase> createState() =>
       _EntriesListWidgetState();
 }
 
 class _EntriesListWidgetState
-    extends ConsumerState<ResumedEntriesFromFirebaseWidget> {
+    extends ConsumerState<ResumedEntriesFromFirebase> {
   int expandedIndex = -1;
   int expandedCommentIndex = -1;
 
@@ -27,7 +29,7 @@ class _EntriesListWidgetState
 
     return entryVm.when(
       data: (entries) => _entriesWithNewWidget(entries),
-      loading: () => const CircularProgressIndicator(),
+      loading: () => FadeInOutText(text: localizations.loadind_data),
       error: (error, stackTrace) => Text('Error: $error'),
     );
   }
@@ -36,7 +38,7 @@ class _EntriesListWidgetState
     return Padding(
       padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
       child: SingleChildScrollView(
-        child: ResumedEntriesWidget(
+        child: ResumedEntries(
           entries: entries,
         ),
       ),

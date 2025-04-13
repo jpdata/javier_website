@@ -332,6 +332,12 @@ abstract class AppLocalizations {
   /// **'Please enter a banner image URL'**
   String get pleaseEnterBannerImageUrl;
 
+  /// No description provided for @read_more.
+  ///
+  /// In en, this message translates to:
+  /// **'Read More'**
+  String get read_more;
+
   /// No description provided for @blog.
   ///
   /// In en, this message translates to:
@@ -356,11 +362,143 @@ abstract class AppLocalizations {
   /// **'New Blog Entry'**
   String get blog_new_entry;
 
-  /// No description provided for @read_more.
+  /// No description provided for @blog_edit_entry.
   ///
   /// In en, this message translates to:
-  /// **'Read More'**
-  String get read_more;
+  /// **'Edit Entry'**
+  String get blog_edit_entry;
+
+  /// No description provided for @news.
+  ///
+  /// In en, this message translates to:
+  /// **'News'**
+  String get news;
+
+  /// No description provided for @news_entry.
+  ///
+  /// In en, this message translates to:
+  /// **'News Entry'**
+  String get news_entry;
+
+  /// No description provided for @news_entries.
+  ///
+  /// In en, this message translates to:
+  /// **'News Entries'**
+  String get news_entries;
+
+  /// No description provided for @news_new_entry.
+  ///
+  /// In en, this message translates to:
+  /// **'New Entry'**
+  String get news_new_entry;
+
+  /// No description provided for @news_edit_entry.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Entry'**
+  String get news_edit_entry;
+
+  /// No description provided for @pickAnImage.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick an image'**
+  String get pickAnImage;
+
+  /// No description provided for @signIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign In'**
+  String get signIn;
+
+  /// No description provided for @signOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign Out'**
+  String get signOut;
+
+  /// No description provided for @signingIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Signing In'**
+  String get signingIn;
+
+  /// No description provided for @error.
+  ///
+  /// In en, this message translates to:
+  /// **'Error'**
+  String get error;
+
+  /// No description provided for @signingOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Signing Out'**
+  String get signingOut;
+
+  /// No description provided for @loadind_data.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading data...'**
+  String get loadind_data;
+
+  /// No description provided for @email.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get email;
+
+  /// No description provided for @password.
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get password;
+
+  /// No description provided for @cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
+
+  /// No description provided for @ok.
+  ///
+  /// In en, this message translates to:
+  /// **'OK'**
+  String get ok;
+
+  /// No description provided for @delete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get delete;
+
+  /// No description provided for @delete_entry.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete Entry'**
+  String get delete_entry;
+
+  /// No description provided for @delete_comment.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete Comment'**
+  String get delete_comment;
+
+  /// No description provided for @back.
+  ///
+  /// In en, this message translates to:
+  /// **'Back'**
+  String get back;
+
+  /// No description provided for @return_.
+  ///
+  /// In en, this message translates to:
+  /// **'Return'**
+  String get return_;
+
+  /// No description provided for @news_on.
+  ///
+  /// In en, this message translates to:
+  /// **'News on {date}'**
+  String news_on(DateTime date);
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

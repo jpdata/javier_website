@@ -131,6 +131,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get pleaseEnterBannerImageUrl => 'Por favor ingrese una URL de imagen de banner';
 
   @override
+  String get read_more => 'Leer más';
+
+  @override
   String get blog => 'Blog';
 
   @override
@@ -143,7 +146,78 @@ class AppLocalizationsEs extends AppLocalizations {
   String get blog_new_entry => 'Nueva Entrada de Blog';
 
   @override
-  String get read_more => 'Leer más';
+  String get blog_edit_entry => 'Editar Entrada';
+
+  @override
+  String get news => 'Noticias';
+
+  @override
+  String get news_entry => 'Entrada de Noticias';
+
+  @override
+  String get news_entries => 'Entradas de Noticias';
+
+  @override
+  String get news_new_entry => 'Nueva Entrada';
+
+  @override
+  String get news_edit_entry => 'Editar Entrada';
+
+  @override
+  String get pickAnImage => 'Selecciona una imagen';
+
+  @override
+  String get signIn => 'Iniciar Sesión';
+
+  @override
+  String get signOut => 'Cerrar Sesión';
+
+  @override
+  String get signingIn => 'Iniciando Sesión';
+
+  @override
+  String get error => 'Error';
+
+  @override
+  String get signingOut => 'Cerrando Sesión';
+
+  @override
+  String get loadind_data => 'Cargando datos...';
+
+  @override
+  String get email => 'Correo electrónico';
+
+  @override
+  String get password => 'Contraseña';
+
+  @override
+  String get cancel => 'Cancelar';
+
+  @override
+  String get ok => 'Aceptar';
+
+  @override
+  String get delete => 'Eliminar';
+
+  @override
+  String get delete_entry => 'Eliminar Entrada';
+
+  @override
+  String get delete_comment => 'Eliminar Comentario';
+
+  @override
+  String get back => 'Atrás';
+
+  @override
+  String get return_ => 'Regresar';
+
+  @override
+  String news_on(DateTime date) {
+    final intl.DateFormat dateDateFormat = intl.DateFormat.yMd(localeName);
+    final String dateString = dateDateFormat.format(date);
+
+    return 'Noticias del $dateString';
+  }
 }
 
 /// The translations for Spanish Castilian, as used in Venezuela (`es_VE`).
@@ -273,6 +347,9 @@ class AppLocalizationsEsVe extends AppLocalizationsEs {
   String get pleaseEnterBannerImageUrl => 'Por favor ingrese una URL de imagen de banner';
 
   @override
+  String get read_more => 'Leer más';
+
+  @override
   String get blog => 'Blog';
 
   @override
@@ -285,5 +362,76 @@ class AppLocalizationsEsVe extends AppLocalizationsEs {
   String get blog_new_entry => 'Nueva Entrada de Blog';
 
   @override
-  String get read_more => 'Leer más';
+  String get blog_edit_entry => 'Editar Entrada';
+
+  @override
+  String get news => 'Noticias';
+
+  @override
+  String get news_entry => 'Entrada de Noticias';
+
+  @override
+  String get news_entries => 'Entradas de Noticias';
+
+  @override
+  String get news_new_entry => 'Nueva Entrada';
+
+  @override
+  String get news_edit_entry => 'Editar Entrada';
+
+  @override
+  String get pickAnImage => 'Selecciona una imagen';
+
+  @override
+  String get signIn => 'Iniciar Sesión';
+
+  @override
+  String get signOut => 'Cerrar Sesión';
+
+  @override
+  String get signingIn => 'Iniciando Sesión';
+
+  @override
+  String get error => 'Error';
+
+  @override
+  String get signingOut => 'Cerrando Sesión';
+
+  @override
+  String get loadind_data => 'Cargando datos...';
+
+  @override
+  String get email => 'Correo electrónico';
+
+  @override
+  String get password => 'Contraseña';
+
+  @override
+  String get cancel => 'Cancelar';
+
+  @override
+  String get ok => 'Aceptar';
+
+  @override
+  String get delete => 'Borrar';
+
+  @override
+  String get delete_entry => 'Borrar Entrada';
+
+  @override
+  String get delete_comment => 'Borrar Comentario';
+
+  @override
+  String get back => 'Atrás';
+
+  @override
+  String get return_ => 'Volver';
+
+  @override
+  String news_on(DateTime date) {
+    final intl.DateFormat dateDateFormat = intl.DateFormat.yMd(localeName);
+    final String dateString = dateDateFormat.format(date);
+
+    return 'Noticias del $dateString';
+  }
 }

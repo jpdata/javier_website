@@ -131,6 +131,9 @@ class AppLocalizationsCa extends AppLocalizations {
   String get pleaseEnterBannerImageUrl => 'Si us plau, introdueix una URL de la imatge de banner';
 
   @override
+  String get read_more => 'Llegir més';
+
+  @override
   String get blog => 'Blog';
 
   @override
@@ -143,5 +146,76 @@ class AppLocalizationsCa extends AppLocalizations {
   String get blog_new_entry => 'Nova Entrada de Blog';
 
   @override
-  String get read_more => 'Llegir més';
+  String get blog_edit_entry => 'Edita Entrada';
+
+  @override
+  String get news => 'Notícies';
+
+  @override
+  String get news_entry => 'Entrada de Notícies';
+
+  @override
+  String get news_entries => 'Entrades de Notícies';
+
+  @override
+  String get news_new_entry => 'Nova Entrada';
+
+  @override
+  String get news_edit_entry => 'Edita Entrada';
+
+  @override
+  String get pickAnImage => 'Selecciona una imatge';
+
+  @override
+  String get signIn => 'Inicia Sessió';
+
+  @override
+  String get signOut => 'Tanca Sessió';
+
+  @override
+  String get signingIn => 'Iniciant Sessió';
+
+  @override
+  String get error => 'Error';
+
+  @override
+  String get signingOut => 'Tancant Sessió';
+
+  @override
+  String get loadind_data => 'Carregant dades...';
+
+  @override
+  String get email => 'Correu electrònic';
+
+  @override
+  String get password => 'Contrasenya';
+
+  @override
+  String get cancel => 'Cancel·la';
+
+  @override
+  String get ok => 'D\'acord';
+
+  @override
+  String get delete => 'Esborra';
+
+  @override
+  String get delete_entry => 'Esborra Entrada';
+
+  @override
+  String get delete_comment => 'Esborra Comentari';
+
+  @override
+  String get back => 'Enrere';
+
+  @override
+  String get return_ => 'Torna';
+
+  @override
+  String news_on(DateTime date) {
+    final intl.DateFormat dateDateFormat = intl.DateFormat.yMd(localeName);
+    final String dateString = dateDateFormat.format(date);
+
+    return 'Notícies del $dateString';
+  }
 }

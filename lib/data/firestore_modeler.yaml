@@ -7,6 +7,10 @@ database:
     - id: 'LyCVJxidTlCks8IvjaRVKA'
       className: 'EntryDto'
       fields:
+        - name: 'id'
+          type:
+            $: 'StringTypeData'
+            required: true
         - name: 'title'
           type:
             $: 'StringTypeData'
@@ -45,6 +49,10 @@ database:
     - id: 'Nh8WF2cmQMuZlZXCw4uVoQ'
       className: 'CommentDto'
       fields:
+        - name: 'id'
+          type:
+            $: 'StringTypeData'
+            required: true
         - name: 'content'
           type:
             $: 'StringTypeData'
@@ -62,11 +70,19 @@ database:
             $: 'StringTypeData'
             required: true
     - id: 'pMk_KhDrQGqowPAfru2nHg'
-      className: 'News'
+      className: 'NewsDto'
       fields:
+        - name: 'id'
+          type:
+            $: 'StringTypeData'
+            required: true
         - name: 'content'
           type:
             $: 'StringTypeData'
+            required: true
+        - name: 'createdAt'
+          type:
+            $: 'TimestampTypeData'
             required: true
   collections:
     - id: 'Jd7cT8JdQ5mfXkBnbPIy8g'
@@ -84,5 +100,5 @@ database:
 nodeOffsets:
   root: '0,0'
   Jd7cT8JdQ5mfXkBnbPIy8g: '322.91619873046875,0'
-  eO5f0YLxRJ6-rQpabF5nYg: '319.91619873046875,477'
+  eO5f0YLxRJ6-rQpabF5nYg: '326.44007511877044,524.8417601808794'
   Q9IetBUHRaO9FMS55r-DvA: '319.91619873046875,879'

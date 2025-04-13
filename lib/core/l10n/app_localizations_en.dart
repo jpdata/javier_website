@@ -131,6 +131,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get pleaseEnterBannerImageUrl => 'Please enter a banner image URL';
 
   @override
+  String get read_more => 'Read More';
+
+  @override
   String get blog => 'Blog';
 
   @override
@@ -143,5 +146,76 @@ class AppLocalizationsEn extends AppLocalizations {
   String get blog_new_entry => 'New Blog Entry';
 
   @override
-  String get read_more => 'Read More';
+  String get blog_edit_entry => 'Edit Entry';
+
+  @override
+  String get news => 'News';
+
+  @override
+  String get news_entry => 'News Entry';
+
+  @override
+  String get news_entries => 'News Entries';
+
+  @override
+  String get news_new_entry => 'New Entry';
+
+  @override
+  String get news_edit_entry => 'Edit Entry';
+
+  @override
+  String get pickAnImage => 'Pick an image';
+
+  @override
+  String get signIn => 'Sign In';
+
+  @override
+  String get signOut => 'Sign Out';
+
+  @override
+  String get signingIn => 'Signing In';
+
+  @override
+  String get error => 'Error';
+
+  @override
+  String get signingOut => 'Signing Out';
+
+  @override
+  String get loadind_data => 'Loading data...';
+
+  @override
+  String get email => 'Email';
+
+  @override
+  String get password => 'Password';
+
+  @override
+  String get cancel => 'Cancel';
+
+  @override
+  String get ok => 'OK';
+
+  @override
+  String get delete => 'Delete';
+
+  @override
+  String get delete_entry => 'Delete Entry';
+
+  @override
+  String get delete_comment => 'Delete Comment';
+
+  @override
+  String get back => 'Back';
+
+  @override
+  String get return_ => 'Return';
+
+  @override
+  String news_on(DateTime date) {
+    final intl.DateFormat dateDateFormat = intl.DateFormat.yMd(localeName);
+    final String dateString = dateDateFormat.format(date);
+
+    return 'News on $dateString';
+  }
 }

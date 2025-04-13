@@ -1,10 +1,12 @@
 import 'package:javier_website/data/firestore_client.dart';
 import 'package:javier_website/model/comment.dart';
 import 'package:javier_website/model/entry.dart';
+import 'package:javier_website/model/news_entry.dart';
 
 extension CommentMapper on CommentDto {
   Comment toEntity() {
     return Comment(
+      id: id,
       content: content,
       createdAt: createdAt,
       authorName: authorName,
@@ -51,10 +53,31 @@ extension EntryDtoMapper on Entry {
 extension CommentDtoMapper on Comment {
   CommentDto toDto() {
     return CommentDto(
+      id: id,
       content: content,
       createdAt: createdAt,
       authorName: authorName,
       authorEmail: authorEmail,
+    );
+  }
+}
+
+extension NewsDtoMapper on NewsEntry {
+  NewsDto toDto() {
+    return NewsDto(
+      id: id,
+      content: content,
+      createdAt: createdAt,
+    );
+  }
+}
+
+extension NewsEntryMapper on NewsDto {
+  Future<NewsEntry> toEntity() async {
+    return NewsEntry(
+      id: id,
+      content: content,
+      createdAt: createdAt,
     );
   }
 }

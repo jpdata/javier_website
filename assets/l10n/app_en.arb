@@ -50,9 +50,40 @@
     "pleaseEnterSubtitle": "Please enter a subtitle",
     "pleaseEnterContent": "Please enter content",
     "pleaseEnterBannerImageUrl": "Please enter a banner image URL",
+    "read_more":"Read More",
     "blog": "Blog",
     "blog_entry":"Blog Entry",
     "blog_entries":"Blog Entries",
     "blog_new_entry":"New Blog Entry",
-    "read_more":"Read More"
+    "blog_edit_entry":"Edit Entry",
+    "news": "News",
+    "news_entry":"News Entry",
+    "news_entries":"News Entries",
+    "news_new_entry":"New Entry",
+    "news_edit_entry":"Edit Entry",
+    "pickAnImage": "Pick an image",
+    "signIn": "Sign In",
+    "signOut": "Sign Out",
+    "signingIn": "Signing In",
+    "error": "Error",
+    "signingOut": "Signing Out",
+    "loadind_data": "Loading data...",
+    "email": "Email",
+    "password": "Password",
+    "cancel": "Cancel",
+    "ok": "OK",
+    "delete": "Delete",
+    "delete_entry": "Delete Entry",
+    "delete_comment": "Delete Comment",
+    "back": "Back",
+    "return_": "Return",
+    "news_on": "News on {date}",
+    "@news_on": {
+        "placeholders": {
+            "date": {
+                "type": "DateTime",
+                "format": "yMd"
+            }
+        }
+    }
 }

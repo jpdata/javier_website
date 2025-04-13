@@ -3,8 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 import 'package:javier_website/core/l10n/dynamic_app_localizations.dart';
 import 'package:javier_website/core/providers/go_router_provider.dart';
-import 'package:javier_website/view/Themes/app_theme.dart';
-import 'package:javier_website/view/widgets/main_drawer.dart';
+import 'package:javier_website/view/themes/app_theme.dart';
+import 'package:javier_website/view/drawer/main_drawer.dart';
 
 class CommonScaffold extends ConsumerStatefulWidget {
   final Widget child;

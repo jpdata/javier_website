@@ -9,7 +9,7 @@ import 'package:javier_website/core/providers/notifiers/locale_notifier.dart';
 import 'package:javier_website/core/l10n/app_locale.dart';
 import 'package:javier_website/core/l10n/app_localizations.dart';
 import 'package:javier_website/router/router.dart';
-import 'package:javier_website/view/Themes/app_theme.dart';
+import 'package:javier_website/view/themes/app_theme.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'dart:developer' as developer;
 import 'firebase_options.dart';
