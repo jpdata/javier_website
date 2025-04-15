@@ -16,3 +16,13 @@ subprojects {
 tasks.register("clean", Delete) {
     delete rootProject.buildDir
 }
+
+buildscript {
+    repositories {
+        google()        // ✅ Necesario para descargar el plugin de Android
+        mavenCentral()  // ✅ Alternativa para otras dependencias
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.5.0' // Asegúrate de que esta línea esté dentro del bloque buildscript
+    }
+}

@@ -149,13 +149,13 @@ abstract class AppLocalizations {
   /// No description provided for @cogito_ergo_sum.
   ///
   /// In en, this message translates to:
-  /// **'I program, therefore I am'**
+  /// **'I program, therefore I am.'**
   String get cogito_ergo_sum;
 
   /// No description provided for @doing_cool_stuf_with_porgramming_languages.
   ///
   /// In en, this message translates to:
-  /// **'Doing cool stuff with programming languages'**
+  /// **'Doing cool stuff with programming languages.'**
   String get doing_cool_stuf_with_porgramming_languages;
 
   /// No description provided for @spanish_spain.
@@ -253,6 +253,276 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Portfolio'**
   String get portfolio;
+
+  /// No description provided for @comment_title.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} commented on {date}'**
+  String comment_title(String name, DateTime date);
+
+  /// No description provided for @comments.
+  ///
+  /// In en, this message translates to:
+  /// **'Comments'**
+  String get comments;
+
+  /// No description provided for @newEntry.
+  ///
+  /// In en, this message translates to:
+  /// **'New Entry'**
+  String get newEntry;
+
+  /// No description provided for @subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Subtitle'**
+  String get subtitle;
+
+  /// No description provided for @entryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Title'**
+  String get entryTitle;
+
+  /// No description provided for @content.
+  ///
+  /// In en, this message translates to:
+  /// **'Content'**
+  String get content;
+
+  /// No description provided for @bannerImageUrl.
+  ///
+  /// In en, this message translates to:
+  /// **'Banner Image URL'**
+  String get bannerImageUrl;
+
+  /// No description provided for @tags.
+  ///
+  /// In en, this message translates to:
+  /// **'Tags (comma separated)'**
+  String get tags;
+
+  /// No description provided for @saveEntry.
+  ///
+  /// In en, this message translates to:
+  /// **'Save Entry'**
+  String get saveEntry;
+
+  /// No description provided for @pleaseEnterTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a title'**
+  String get pleaseEnterTitle;
+
+  /// No description provided for @pleaseEnterSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a subtitle'**
+  String get pleaseEnterSubtitle;
+
+  /// No description provided for @pleaseEnterContent.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter content'**
+  String get pleaseEnterContent;
+
+  /// No description provided for @pleaseEnterBannerImageUrl.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a banner image URL'**
+  String get pleaseEnterBannerImageUrl;
+
+  /// No description provided for @read_more.
+  ///
+  /// In en, this message translates to:
+  /// **'Read More'**
+  String get read_more;
+
+  /// No description provided for @blog.
+  ///
+  /// In en, this message translates to:
+  /// **'Blog'**
+  String get blog;
+
+  /// No description provided for @blog_entry.
+  ///
+  /// In en, this message translates to:
+  /// **'Blog Entry'**
+  String get blog_entry;
+
+  /// No description provided for @blog_entries.
+  ///
+  /// In en, this message translates to:
+  /// **'Blog Entries'**
+  String get blog_entries;
+
+  /// No description provided for @blog_new_entry.
+  ///
+  /// In en, this message translates to:
+  /// **'New Blog Entry'**
+  String get blog_new_entry;
+
+  /// No description provided for @blog_edit_entry.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Entry'**
+  String get blog_edit_entry;
+
+  /// No description provided for @news.
+  ///
+  /// In en, this message translates to:
+  /// **'News'**
+  String get news;
+
+  /// No description provided for @news_entry.
+  ///
+  /// In en, this message translates to:
+  /// **'News Entry'**
+  String get news_entry;
+
+  /// No description provided for @news_entries.
+  ///
+  /// In en, this message translates to:
+  /// **'News Entries'**
+  String get news_entries;
+
+  /// No description provided for @news_new_entry.
+  ///
+  /// In en, this message translates to:
+  /// **'New Entry'**
+  String get news_new_entry;
+
+  /// No description provided for @news_edit_entry.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Entry'**
+  String get news_edit_entry;
+
+  /// No description provided for @pickAnImage.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick an image'**
+  String get pickAnImage;
+
+  /// No description provided for @signIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign In'**
+  String get signIn;
+
+  /// No description provided for @signOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign Out'**
+  String get signOut;
+
+  /// No description provided for @signingIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Signing In'**
+  String get signingIn;
+
+  /// No description provided for @error.
+  ///
+  /// In en, this message translates to:
+  /// **'Error'**
+  String get error;
+
+  /// No description provided for @signingOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Signing Out'**
+  String get signingOut;
+
+  /// No description provided for @loadind_data.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading data...'**
+  String get loadind_data;
+
+  /// No description provided for @email.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get email;
+
+  /// No description provided for @password.
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get password;
+
+  /// No description provided for @cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
+
+  /// No description provided for @ok.
+  ///
+  /// In en, this message translates to:
+  /// **'OK'**
+  String get ok;
+
+  /// No description provided for @delete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get delete;
+
+  /// No description provided for @delete_entry.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete Entry'**
+  String get delete_entry;
+
+  /// No description provided for @delete_comment.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete Comment'**
+  String get delete_comment;
+
+  /// No description provided for @back.
+  ///
+  /// In en, this message translates to:
+  /// **'Back'**
+  String get back;
+
+  /// No description provided for @return_.
+  ///
+  /// In en, this message translates to:
+  /// **'Return'**
+  String get return_;
+
+  /// No description provided for @news_on.
+  ///
+  /// In en, this message translates to:
+  /// **'News on {date}'**
+  String news_on(DateTime date);
+
+  /// No description provided for @hiberus.
+  ///
+  /// In en, this message translates to:
+  /// **'hiberus'**
+  String get hiberus;
+
+  /// No description provided for @instagram.
+  ///
+  /// In en, this message translates to:
+  /// **'Instagram'**
+  String get instagram;
+
+  /// No description provided for @linkedin.
+  ///
+  /// In en, this message translates to:
+  /// **'LinkedIn'**
+  String get linkedin;
+
+  /// No description provided for @github.
+  ///
+  /// In en, this message translates to:
+  /// **'GitHub'**
+  String get github;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

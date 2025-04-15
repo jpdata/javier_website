@@ -1,4 +1,3 @@
-
 {
     "@@locale": "en",
     "title":"Javi''s Personal Website",
@@ -9,8 +8,8 @@
     "about_me": "About Me",
     "more_options": "More Options",
     "drawer_header": "How to reach Javi ...",
-    "cogito_ergo_sum": "I program, therefore I am",
-    "doing_cool_stuf_with_porgramming_languages": "Doing cool stuff with programming languages",
+    "cogito_ergo_sum": "I program, therefore I am.",
+    "doing_cool_stuf_with_porgramming_languages": "Doing cool stuff with programming languages.",
     "spanish_spain": "Spanish (Spain)",
     "spanish_venezuela": "Spanish (Venezuela)",
     "catalan": "Catalan",
@@ -26,5 +25,69 @@
     "my_collaborations": "Collaborations",
     "collaborators": "Collaborators",
     "design_colors_and_images": "Design, colors and images",
-    "portfolio": "Portfolio"
+    "portfolio": "Portfolio",
+    "comment_title": "{name} commented on {date}",
+    "@comment_title": {
+        "placeholders": {
+            "name": {
+                "type": "String"
+            },
+            "date": {
+                "type": "DateTime",
+                "format": "yMd"
+            }
+        }
+    },
+    "comments": "Comments",
+    "newEntry": "New Entry",
+    "subtitle": "Subtitle",
+    "entryTitle": "Title",
+    "content": "Content",
+    "bannerImageUrl": "Banner Image URL",
+    "tags": "Tags (comma separated)",
+    "saveEntry": "Save Entry",
+    "pleaseEnterTitle": "Please enter a title",
+    "pleaseEnterSubtitle": "Please enter a subtitle",
+    "pleaseEnterContent": "Please enter content",
+    "pleaseEnterBannerImageUrl": "Please enter a banner image URL",
+    "read_more":"Read More",
+    "blog": "Blog",
+    "blog_entry":"Blog Entry",
+    "blog_entries":"Blog Entries",
+    "blog_new_entry":"New Blog Entry",
+    "blog_edit_entry":"Edit Entry",
+    "news": "News",
+    "news_entry":"News Entry",
+    "news_entries":"News Entries",
+    "news_new_entry":"New Entry",
+    "news_edit_entry":"Edit Entry",
+    "pickAnImage": "Pick an image",
+    "signIn": "Sign In",
+    "signOut": "Sign Out",
+    "signingIn": "Signing In",
+    "error": "Error",
+    "signingOut": "Signing Out",
+    "loadind_data": "Loading data...",
+    "email": "Email",
+    "password": "Password",
+    "cancel": "Cancel",
+    "ok": "OK",
+    "delete": "Delete",
+    "delete_entry": "Delete Entry",
+    "delete_comment": "Delete Comment",
+    "back": "Back",
+    "return_": "Return",
+    "news_on": "News on {date}",
+    "@news_on": {
+        "placeholders": {
+            "date": {
+                "type": "DateTime",
+                "format": "yMd"
+            }
+        }
+    },
+    "hiberus": "hiberus",
+    "instagram": "Instagram",
+    "linkedin": "LinkedIn",
+    "github": "GitHub"
 }

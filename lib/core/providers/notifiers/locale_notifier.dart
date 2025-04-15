@@ -2,21 +2,37 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:javier_website/core/l10n/app_locale.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-class LocaleNotifier extends ChangeNotifier {
-  late Locale _locale; // Idioma predeterminado
+// class LocaleNotifier extends StateNotifier<Locale> {
+//   LocaleNotifier() : super(PlatformDispatcher.instance.locale);
 
-  LocaleNotifier() {
-    // Inicializar con el idioma del dispositivo
-    _locale = PlatformDispatcher.instance.locale;
+//   void setLocale({required Locale locale, BuildContext? context}) {
+//     developer.log("🔹 Cambiando idioma a: ${locale.languageCode}");
+
+//     state = locale;
+//     if (context != null) LocalizationManager.updateLocale(context);
+//   }
+
+//   String get currentLocale => state.languageCode;
+// }
+
+// final localeProvider = StateNotifierProvider<LocaleNotifier, Locale>((ref) {
+//   return LocaleNotifier();
+// });
+
+part 'locale_notifier.g.dart';
+
+@Riverpod()
+class LocaleNotifier extends _$LocaleNotifier {
+  @override
+  Locale build() {
+    return PlatformDispatcher.instance.locale;
   }
 
-  Locale get locale => _locale;
-
+  // ignore: avoid_build_context_in_providers
   void setLocale({required Locale locale, BuildContext? context}) {
-    _locale = locale;
-    if(context !=null) LocalizationManager.updateLocale(context);
-
-    notifyListeners();
+    state = locale;
+    if (context != null) LocalizationManager.updateLocale(context);
   }
 }

@@ -1,3 +1,5 @@
+// ignore: unused_import
+import 'package:intl/intl.dart' as intl;
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -83,4 +85,149 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String get portfolio => 'Portafoli';
+
+  @override
+  String comment_title(String name, DateTime date) {
+    final intl.DateFormat dateDateFormat = intl.DateFormat.yMd(localeName);
+    final String dateString = dateDateFormat.format(date);
+
+    return '$name ha comentat el $dateString';
+  }
+
+  @override
+  String get comments => 'Comentaris';
+
+  @override
+  String get newEntry => 'Nova Entrada';
+
+  @override
+  String get subtitle => 'Subtítol';
+
+  @override
+  String get entryTitle => 'Títol';
+
+  @override
+  String get content => 'Contingut';
+
+  @override
+  String get bannerImageUrl => 'URL de la Imatge de Banner';
+
+  @override
+  String get tags => 'Etiquetes (separades per comes)';
+
+  @override
+  String get saveEntry => 'Guardar Entrada';
+
+  @override
+  String get pleaseEnterTitle => 'Si us plau, introdueix un títol';
+
+  @override
+  String get pleaseEnterSubtitle => 'Si us plau, introdueix un subtítol';
+
+  @override
+  String get pleaseEnterContent => 'Si us plau, introdueix contingut';
+
+  @override
+  String get pleaseEnterBannerImageUrl => 'Si us plau, introdueix una URL de la imatge de banner';
+
+  @override
+  String get read_more => 'Llegir més';
+
+  @override
+  String get blog => 'Blog';
+
+  @override
+  String get blog_entry => 'Entrada de Blog';
+
+  @override
+  String get blog_entries => 'Entrades de Blog';
+
+  @override
+  String get blog_new_entry => 'Nova Entrada de Blog';
+
+  @override
+  String get blog_edit_entry => 'Edita Entrada';
+
+  @override
+  String get news => 'Notícies';
+
+  @override
+  String get news_entry => 'Entrada de Notícies';
+
+  @override
+  String get news_entries => 'Entrades de Notícies';
+
+  @override
+  String get news_new_entry => 'Nova Entrada';
+
+  @override
+  String get news_edit_entry => 'Edita Entrada';
+
+  @override
+  String get pickAnImage => 'Selecciona una imatge';
+
+  @override
+  String get signIn => 'Inicia Sessió';
+
+  @override
+  String get signOut => 'Tanca Sessió';
+
+  @override
+  String get signingIn => 'Iniciant Sessió';
+
+  @override
+  String get error => 'Error';
+
+  @override
+  String get signingOut => 'Tancant Sessió';
+
+  @override
+  String get loadind_data => 'Carregant dades...';
+
+  @override
+  String get email => 'Correu electrònic';
+
+  @override
+  String get password => 'Contrasenya';
+
+  @override
+  String get cancel => 'Cancel·la';
+
+  @override
+  String get ok => 'D\'acord';
+
+  @override
+  String get delete => 'Esborra';
+
+  @override
+  String get delete_entry => 'Esborra Entrada';
+
+  @override
+  String get delete_comment => 'Esborra Comentari';
+
+  @override
+  String get back => 'Enrere';
+
+  @override
+  String get return_ => 'Torna';
+
+  @override
+  String news_on(DateTime date) {
+    final intl.DateFormat dateDateFormat = intl.DateFormat.yMd(localeName);
+    final String dateString = dateDateFormat.format(date);
+
+    return 'Notícies del $dateString';
+  }
+
+  @override
+  String get hiberus => 'hiberus';
+
+  @override
+  String get instagram => 'Instagram';
+
+  @override
+  String get linkedin => 'LinkedIn';
+
+  @override
+  String get github => 'GitHub';
 }

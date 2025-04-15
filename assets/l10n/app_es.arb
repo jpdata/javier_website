@@ -25,5 +25,69 @@
     "my_collaborations": "Colaboraciones",
     "collaborators": "Colaboradores",
     "design_colors_and_images": "Diseño, colores e imágenes",
-    "portfolio": "Portafolio"
+    "portfolio": "Portafolio",
+    "comment_title": "{name} ha comentado el {date}",
+    "comments": "Comentarios",
+    "newEntry": "Nueva Entrada",
+    "entryTitle": "Título",
+    "subtitle": "Subtítulo",
+    "content": "Contenido",
+    "bannerImageUrl": "URL de la Imagen de Banner",
+    "tags": "Etiquetas (separadas por comas)",
+    "saveEntry": "Guardar Entrada",
+    "pleaseEnterTitle": "Por favor ingrese un título",
+    "pleaseEnterSubtitle": "Por favor ingrese un subtítulo",
+    "pleaseEnterContent": "Por favor ingrese contenido",
+    "pleaseEnterBannerImageUrl": "Por favor ingrese una URL de imagen de banner",
+    "blog": "Blog",
+    "blog_entry": "Entrada de Blog",
+    "blog_entries": "Entradas de Blog",
+    "blog_new_entry": "Nueva Entrada de Blog",
+    "blog_edit_entry": "Editar Entrada",
+    "@comment_title": {
+        "placeholders": {
+            "name": {
+                "type": "String"
+            },
+            "date": {
+                "type": "DateTime",
+                "format": "yMd"
+            }
+        }
+    },
+    "read_more":"Leer más",
+    "news": "Noticias",
+    "news_entry": "Entrada de Noticias",
+    "news_entries": "Entradas de Noticias",
+    "news_new_entry": "Nueva Entrada",
+    "news_edit_entry": "Editar Entrada",
+    "news_on": "Noticias del {date}",
+    "@news_on": {
+        "placeholders": {
+            "date": {
+                "type": "DateTime",
+                "format": "yMd"
+            }
+        }
+    },
+    "pickAnImage": "Selecciona una imagen",
+    "signIn": "Iniciar Sesión",
+    "signOut": "Cerrar Sesión",
+    "signingIn": "Iniciando Sesión",
+    "error": "Error",
+    "signingOut": "Cerrando Sesión",
+    "loadind_data": "Cargando datos...",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "cancel": "Cancelar",
+    "ok": "Aceptar",
+    "delete": "Eliminar",
+    "delete_entry": "Eliminar Entrada",
+    "delete_comment": "Eliminar Comentario",
+    "back": "Atrás",
+    "return_": "Regresar",
+    "hiberus": "hiberus",
+    "instagram": "Instagram",
+    "linkedin": "LinkedIn",
+    "github": "GitHub"
 }

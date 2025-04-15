@@ -1,194 +1,200 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
-import 'package:javier_website/core/utilities.dart';
+import 'package:javier_website/core/utils.dart';
 import 'package:javier_website/core/l10n/app_locale.dart';
 import 'package:javier_website/core/providers/notifiers/locale_notifier.dart';
-import 'package:javier_website/view/Themes/app_theme.dart';
+import 'package:javier_website/view/themes/app_theme.dart';
+import 'package:javier_website/view/home/widgets/footer_icon_menu_item.dart';
 import 'package:javier_website/view/home/widgets/indexed_content.dart';
-import 'package:javier_website/view/widgets/fading_edges_image.dart';
-import 'package:javier_website/view/widgets/main_drawer.dart';
-import 'package:provider/provider.dart';
-import 'package:rive/rive.dart' as rive;
-import 'package:url_launcher/url_launcher.dart';
+import 'package:javier_website/view/widgets/common_scaffold.dart';
 
-class Home extends StatefulWidget {
+class Home extends ConsumerStatefulWidget {
   const Home({super.key, required this.title});
 
   final String title;
 
   @override
-  State<Home> createState() => _HomeState();
+  ConsumerState<Home> createState() => _HomeState();
 }
 
-class _HomeState extends State<Home> {
+class _HomeState extends ConsumerState<Home> {
   int _index = 0;
 
   @override
   Widget build(BuildContext context) {
-    LocalizationManager.updateLocale(context); // Update localizations
-    return _scaffoldThenBackground();
-  }
-
-  Widget _scaffoldThenBackground() {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        foregroundColor: AppTheme.lightTheme.colorScheme.primary,
-      ),
-      backgroundColor: Colors.transparent,
-      drawer: const MainDrawer(),
-      body: Container(
-        decoration: BoxDecoration(
-          color: AppTheme.lightTheme.colorScheme.primary,
-          image: DecorationImage(
-            image: const Image(
-              image: Svg('assets/images/bg-tile-part-c.svg'),
-            ).image,
-            repeat: ImageRepeat.repeat,
-            scale: 1.5,
-            colorFilter:
-                ColorFilter.mode(Colors.black.withAlpha(38), BlendMode.dstATop),
-          ),
-        ),
-        child: _scaffoldBody(),
-      ),
-    );
+    ref.watch(localeNotifierProvider);
+    return CommonScaffold(child: _scaffoldBody());
   }
 
   Widget _scaffoldBody() {
-    double screenWidth = MediaQuery.of(context).size.width;
-    return Center(
-      child: ListView(
-        children: [
-          Column(
-            mainAxisSize: MainAxisSize.min, // Add this line
+    double screenWidth = MediaQuery.of(context).size.width > 600 ? 600 : MediaQuery.of(context).size.width;
+    return Column(
+      children: [
+        Expanded(
+          child: Center(
+            child: ListView(
+              children: [
+                Column(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(screenWidth * .05, screenWidth * .05, screenWidth * .05, 0),
+                      child: Row(
+                        children: [
+                          Image(
+                              image: const Svg("assets/images/javi-wireframe.svg"),
+                              width: screenWidth * .45,
+                              color: AppTheme.lightTheme.colorScheme.secondary),
+                          //SizedBox(width: screenWidth * .05),
+                          _typeWriterText(
+                            text: <String>[
+                              '${localizations.cogito_ergo_sum}\n${localizations.doing_cool_stuf_with_porgramming_languages}',
+                            ],
+                            onFinished: () {},
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(screenWidth * .05, 10, screenWidth * .05, 0),
+                      child: IndexedContent(index: _index),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(0, 32, 0, 32),
+          child: _footer(),
+        ),
+      ],
+    );
+  }
+
+  SingleChildScrollView _footer() {
+    return SingleChildScrollView(
+      physics: const BouncingScrollPhysics(),
+      scrollDirection: Axis.horizontal,
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        color: AppTheme.lightTheme.colorScheme.secondary.withAlpha(128),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Padding(
-                padding: EdgeInsets.fromLTRB(
-                    screenWidth * .0, 0, screenWidth * .4, 0),
-                child: SizedBox(
-                  width: screenWidth * .30,
-                  height: screenWidth / 1.48 * .30,
-                  child: const rive.RiveAnimation.asset(
-                    'assets/animations/javier.riv',
-                  ),
-                ),
+            children: [
+              FooterIconMenuItem(
+                onTap: () {
+                  setState(() {
+                    _index = 4;
+                  });
+                },
+                imagePath: 'assets/images/about_me.svg',
+                imagePathMouseOver: 'assets/images/about_me_negativo.svg',
+                tooltipTextMouseOver: localizations.about_me,
               ),
-              Padding(
-                padding: EdgeInsets.fromLTRB(
-                    screenWidth * .05, 0, screenWidth * .05, 0),
-                child: Wrap(
-                  children: [
-                    const FadingEdgesImage(
-                      imagePath: 'assets/images/javi.jpg',
-                      width: 200,
-                      height: 200,
-                    ),
-                    SizedBox(width: screenWidth * .05),
-                    _typeWriterText(
-                      text: <String>[
-                        '${localizations.cogito_ergo_sum}\n${localizations.doing_cool_stuf_with_porgramming_languages}',
-                      ],
-                      onFinished: () {},
-                    ),
-                  ],
-                ),
+              const SizedBox(width: 10), //
+              FooterIconMenuItem(
+                onTap: () {
+                  setState(() {
+                    _index = 3;
+                  });
+                },
+                imagePath: 'assets/images/Blog.svg',
+                imagePathMouseOver: 'assets/images/Blog-negativo.svg',
+                tooltipTextMouseOver: localizations.blog,
               ),
-              Padding(
-                padding: EdgeInsets.fromLTRB(screenWidth * .05, 0, 0, 0),
-                child: IndexedContent(index: _index),
+              const SizedBox(width: 10), // Replace Flexible with SizedBox
+              FooterIconMenuItem(
+                onTap: () {
+                  Utils.launchURL('https://www.linkedin.com/in/jeprato/');
+                },
+                imagePath: 'assets/images/Linkedin.svg',
+                imagePathMouseOver: 'assets/images/Linkedin-negativo.svg',
+                tooltipTextMouseOver: localizations.linkedin,
               ),
-              const SizedBox(height: 32.0), // Replace Flexible with SizedBox
-              Padding(
-                padding: const EdgeInsets.all(32.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    const SizedBox(width: 20), // Replace Flexible with SizedBox
-                    MouseRegion(
-                      cursor: SystemMouseCursors.click,
-                      child: GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            _index = 1;
-                          });
-                        },
-                        child: const Image(
-                          image: Svg("assets/images/portfolio.svg"),
-                          width: 50,
-                          height: 50,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(width: 20),
-                    MouseRegion(
-                      cursor: SystemMouseCursors.click,
-                      child: GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            _index = 2;
-                          });
-                        },
-                        child: const Image(
-                          image: Svg("assets/images/credits.svg"),
-                          width: 50,
-                          height: 50,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(width: 20),
-                    MouseRegion(
-                      cursor: SystemMouseCursors.click,
-                      child: GestureDetector(
-                        child: const Image(
-                          image: Svg("assets/images/hiberus-logo.svg"),
-                          width: 50,
-                          height: 50,
-                        ),
-                        onTap: () {
-                          _launchURL('https://www.hiberus.com/');
-                        },
-                      ),
-                    ),
-                    const SizedBox(width: 20),
-                    MouseRegion(
-                      cursor: SystemMouseCursors.click,
-                      child: GestureDetector(
-                        onTap: () {
-                          Utilities.launchMailto(context);
-                        },
-                        child: const Image(
-                          image: Svg("assets/images/email.svg"),
-                          width: 50,
-                          height: 50,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(width: 20),
-                  ],
-                ),
-              )
+              const SizedBox(width: 10),
+              FooterIconMenuItem(
+                onTap: () {
+                  setState(() {
+                    _index = 1;
+                  });
+                },
+                imagePath: 'assets/images/Portfolio.svg',
+                imagePathMouseOver: 'assets/images/Portfolio-negativo.svg',
+                tooltipTextMouseOver: localizations.portfolio,
+              ),
+              const SizedBox(width: 10),
+              FooterIconMenuItem(
+                onTap: () {
+                  setState(() {
+                    _index = 2;
+                  });
+                },
+                imagePath: 'assets/images/Colaboradores.svg',
+                imagePathMouseOver: 'assets/images/Colaboradores-negativo.svg',
+                tooltipTextMouseOver: localizations.collaborators,
+              ),
+              const SizedBox(width: 10),
+              FooterIconMenuItem(
+                onTap: () {
+                  Utils.launchURL('https://www.hiberus.com');
+                },
+                imagePath: 'assets/images/Hiberus.svg',
+                imagePathMouseOver: 'assets/images/Hiberus-negativo.svg',
+                tooltipTextMouseOver: localizations.hiberus,
+              ),
+              const SizedBox(width: 10),
+              FooterIconMenuItem(
+                onTap: () {
+                  Utils.launchMailto(context);
+                },
+                imagePath: 'assets/images/Mail.svg',
+                imagePathMouseOver: 'assets/images/Mail-negativo.svg',
+                tooltipTextMouseOver: localizations.contact_me,
+              ),
+              const SizedBox(width: 10),
+              FooterIconMenuItem(
+                onTap: () {
+                  Utils.launchURL('https://www.instagram.com/jeprato');
+                },
+                imagePath: 'assets/images/Instagram.svg',
+                imagePathMouseOver: 'assets/images/Instagram-negativo.svg',
+                tooltipTextMouseOver: localizations.instagram,
+              ),
+              const SizedBox(width: 10),
+              FooterIconMenuItem(
+                onTap: () {
+                  Utils.launchURL('https://www.github.com/jpdata');
+                },
+                imagePath: 'assets/images/Github.svg',
+                imagePathMouseOver: 'assets/images/Github-negativo.svg',
+                tooltipTextMouseOver: localizations.github,
+              ),
             ],
           ),
-        ],
+        ),
       ),
     );
   }
 
-  Widget _typeWriterText(
-      {required List<String> text, void Function()? onFinished}) {
-    var locale = Provider.of<LocaleNotifier>(context).locale;
+  Widget _typeWriterText({required List<String> text, void Function()? onFinished}) {
+    var locale = ref.read(localeNotifierProvider);
+    var screenWidth = MediaQuery.of(context).size.width;
     return SizedBox(
-      width: MediaQuery.of(context).size.width * .6,
+      width: screenWidth * .40,
       //height: MediaQuery.of(context).size.height * .3,
       child: DefaultTextStyle(
         style: TextStyle(
-          fontSize: 60.0 * Utilities.screenHzRelation(context),
+          fontSize: 60.0 * Utils.screenHzRelation(context),
           fontFamily: 'GalaxyBt',
-          color: Colors.white,
+          color: AppTheme.lightTheme.colorScheme.secondary,
         ),
         child: AnimatedTextKit(
           key: ValueKey(locale),
@@ -197,8 +203,7 @@ class _HomeState extends State<Home> {
           isRepeatingAnimation: false,
           animatedTexts: [
             ...text.map(
-              (text) => TypewriterAnimatedText(text,
-                  speed: const Duration(milliseconds: 90)),
+              (text) => TypewriterAnimatedText(text, speed: const Duration(milliseconds: 90)),
             )
           ],
           onTap: () {
@@ -214,14 +219,5 @@ class _HomeState extends State<Home> {
         ),
       ),
     );
-  }
-
-  Future<void> _launchURL(String url) async {
-    final uri = Uri.tryParse(url) ?? Uri();
-    if (await canLaunchUrl(uri)) {
-      await launchUrl(uri);
-    } else {
-      throw 'Could not launch $url';
-    }
   }
 }

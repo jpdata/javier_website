@@ -2,7 +2,7 @@ import 'package:delayed_display/delayed_display.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 import 'package:javier_website/core/l10n/app_locale.dart';
-import 'package:javier_website/core/utilities.dart';
+import 'package:javier_website/core/utils.dart';
 import 'package:javier_website/view/widgets/unfolding.dart';
 
 class PortfolioContent extends StatelessWidget {
@@ -73,7 +73,7 @@ class PortfolioContent extends StatelessWidget {
               leading: Image(image: Svg(item['icon']!)),
               title: Text(item['name']!, style: textStyle),
               subtitle: Text(item['description']!, style: textStyle),
-              onTap: () => Utilities.launchURL(item['url']!),
+              onTap: () => Utils.launchURL(item['url']!),
             ),
           );
         }),

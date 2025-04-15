@@ -1,5 +1,5 @@
 name: javier_website
-description: "A new Flutter project."
+description: "Sitio web de Javier Prato y blog profesional."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -16,7 +16,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 1.0.0+1
+version: 2.0.20250413
 
 environment:
   sdk: '>=3.4.1 <4.0.0'
@@ -33,27 +33,58 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  go_router: ^14.6.2
+  flutter_web_plugins:
+    sdk: flutter
+  go_router: ^14.8.1
   intl: any
   url_launcher: ^6.3.1
-  flutter_svg: ^2.0.16
+  flutter_svg: ^2.0.17
   flutter_svg_provider: ^1.0.7
-  animated_text_kit: ^4.2.2
+  animated_text_kit: ^4.2.3
   country_flags: ^3.2.0
-  provider: ^6.1.2
+  provider: ^6.1.4
   rive: ^0.13.20
   delayed_display: ^2.0.0
+  firebase_core: 3.13.0
+  cloud_firestore: ^5.6.6
+  cloud_firestore_odm: ^1.0.0-dev.88
+  json_annotation: ^4.9.0
+  firestore_modeler: ^0.2.0
+  riverpod: 2.6.1
+  flutter_riverpod: ^2.6.1
+  riverpod_annotation: ^2.6.1
+  firebase_auth: ^5.5.2
+  firebase_remote_config: ^5.4.3
+  firebase_analytics: ^11.4.5
+  another_flushbar: ^1.12.30
+  freezed_annotation: ^3.0.0
+  cloud_functions: ^5.4.0
+  firebase_storage: ^12.4.5
+  flutter_html: ^3.0.0
+  flutter_html_all: ^3.0.0
+  html_editor_enhanced: ^2.6.0
+  flutter_inappwebview: ^6.1.5
+  image_picker: ^1.1.2
+  textfield_tags: ^3.0.1
+  file_picker: ^8.3.7  
+  shared_preferences: ^2.5.3
   
 dev_dependencies:
-
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^3.0.0
+  build_runner: ^2.4.15
+  #cloud_firestore_odm_generator: ^1.0.0-dev.89
+  flutter_lints: 4.0.0
   flutter_test:
     sdk: flutter
+  freezed: ^3.0.4
+  json_serializable: ^6.9.4
+  riverpod_generator: ^2.6.5
+  custom_lint: ^0.7.5
+  riverpod_lint: ^2.6.5
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -76,7 +107,8 @@ flutter:
     - assets/images/
     - assets/fonts/
     - assets/animations/
-    
+    - assets/l10n/
+    - assets/strings/
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
   # "family" key with the font family name, and a "fonts" key with a
@@ -94,6 +126,7 @@ flutter:
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
   #
+  
   fonts:
     - family: Calibri
       fonts:

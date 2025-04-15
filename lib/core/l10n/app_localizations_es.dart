@@ -1,3 +1,5 @@
+// ignore: unused_import
+import 'package:intl/intl.dart' as intl;
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -83,6 +85,151 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get portfolio => 'Portafolio';
+
+  @override
+  String comment_title(String name, DateTime date) {
+    final intl.DateFormat dateDateFormat = intl.DateFormat.yMd(localeName);
+    final String dateString = dateDateFormat.format(date);
+
+    return '$name ha comentado el $dateString';
+  }
+
+  @override
+  String get comments => 'Comentarios';
+
+  @override
+  String get newEntry => 'Nueva Entrada';
+
+  @override
+  String get subtitle => 'Subtítulo';
+
+  @override
+  String get entryTitle => 'Título';
+
+  @override
+  String get content => 'Contenido';
+
+  @override
+  String get bannerImageUrl => 'URL de la Imagen de Banner';
+
+  @override
+  String get tags => 'Etiquetas (separadas por comas)';
+
+  @override
+  String get saveEntry => 'Guardar Entrada';
+
+  @override
+  String get pleaseEnterTitle => 'Por favor ingrese un título';
+
+  @override
+  String get pleaseEnterSubtitle => 'Por favor ingrese un subtítulo';
+
+  @override
+  String get pleaseEnterContent => 'Por favor ingrese contenido';
+
+  @override
+  String get pleaseEnterBannerImageUrl => 'Por favor ingrese una URL de imagen de banner';
+
+  @override
+  String get read_more => 'Leer más';
+
+  @override
+  String get blog => 'Blog';
+
+  @override
+  String get blog_entry => 'Entrada de Blog';
+
+  @override
+  String get blog_entries => 'Entradas de Blog';
+
+  @override
+  String get blog_new_entry => 'Nueva Entrada de Blog';
+
+  @override
+  String get blog_edit_entry => 'Editar Entrada';
+
+  @override
+  String get news => 'Noticias';
+
+  @override
+  String get news_entry => 'Entrada de Noticias';
+
+  @override
+  String get news_entries => 'Entradas de Noticias';
+
+  @override
+  String get news_new_entry => 'Nueva Entrada';
+
+  @override
+  String get news_edit_entry => 'Editar Entrada';
+
+  @override
+  String get pickAnImage => 'Selecciona una imagen';
+
+  @override
+  String get signIn => 'Iniciar Sesión';
+
+  @override
+  String get signOut => 'Cerrar Sesión';
+
+  @override
+  String get signingIn => 'Iniciando Sesión';
+
+  @override
+  String get error => 'Error';
+
+  @override
+  String get signingOut => 'Cerrando Sesión';
+
+  @override
+  String get loadind_data => 'Cargando datos...';
+
+  @override
+  String get email => 'Correo electrónico';
+
+  @override
+  String get password => 'Contraseña';
+
+  @override
+  String get cancel => 'Cancelar';
+
+  @override
+  String get ok => 'Aceptar';
+
+  @override
+  String get delete => 'Eliminar';
+
+  @override
+  String get delete_entry => 'Eliminar Entrada';
+
+  @override
+  String get delete_comment => 'Eliminar Comentario';
+
+  @override
+  String get back => 'Atrás';
+
+  @override
+  String get return_ => 'Regresar';
+
+  @override
+  String news_on(DateTime date) {
+    final intl.DateFormat dateDateFormat = intl.DateFormat.yMd(localeName);
+    final String dateString = dateDateFormat.format(date);
+
+    return 'Noticias del $dateString';
+  }
+
+  @override
+  String get hiberus => 'hiberus';
+
+  @override
+  String get instagram => 'Instagram';
+
+  @override
+  String get linkedin => 'LinkedIn';
+
+  @override
+  String get github => 'GitHub';
 }
 
 /// The translations for Spanish Castilian, as used in Venezuela (`es_VE`).
@@ -166,4 +313,149 @@ class AppLocalizationsEsVe extends AppLocalizationsEs {
 
   @override
   String get portfolio => 'Portafolio';
+
+  @override
+  String comment_title(String name, DateTime date) {
+    final intl.DateFormat dateDateFormat = intl.DateFormat.yMd(localeName);
+    final String dateString = dateDateFormat.format(date);
+
+    return '$name comentó el $dateString';
+  }
+
+  @override
+  String get comments => 'Comentarios';
+
+  @override
+  String get newEntry => 'Nueva Entrada';
+
+  @override
+  String get subtitle => 'Subtítulo';
+
+  @override
+  String get entryTitle => 'Título';
+
+  @override
+  String get content => 'Contenido';
+
+  @override
+  String get bannerImageUrl => 'URL de la Imagen de Banner';
+
+  @override
+  String get tags => 'Etiquetas (separadas por comas)';
+
+  @override
+  String get saveEntry => 'Guardar Entrada';
+
+  @override
+  String get pleaseEnterTitle => 'Por favor ingrese un título';
+
+  @override
+  String get pleaseEnterSubtitle => 'Por favor ingrese un subtítulo';
+
+  @override
+  String get pleaseEnterContent => 'Por favor ingrese contenido';
+
+  @override
+  String get pleaseEnterBannerImageUrl => 'Por favor ingrese una URL de imagen de banner';
+
+  @override
+  String get read_more => 'Leer más';
+
+  @override
+  String get blog => 'Blog';
+
+  @override
+  String get blog_entry => 'Entrada de Blog';
+
+  @override
+  String get blog_entries => 'Entradas de Blog';
+
+  @override
+  String get blog_new_entry => 'Nueva Entrada de Blog';
+
+  @override
+  String get blog_edit_entry => 'Editar Entrada';
+
+  @override
+  String get news => 'Noticias';
+
+  @override
+  String get news_entry => 'Entrada de Noticias';
+
+  @override
+  String get news_entries => 'Entradas de Noticias';
+
+  @override
+  String get news_new_entry => 'Nueva Entrada';
+
+  @override
+  String get news_edit_entry => 'Editar Entrada';
+
+  @override
+  String get pickAnImage => 'Selecciona una imagen';
+
+  @override
+  String get signIn => 'Iniciar Sesión';
+
+  @override
+  String get signOut => 'Cerrar Sesión';
+
+  @override
+  String get signingIn => 'Iniciando Sesión';
+
+  @override
+  String get error => 'Error';
+
+  @override
+  String get signingOut => 'Cerrando Sesión';
+
+  @override
+  String get loadind_data => 'Cargando datos...';
+
+  @override
+  String get email => 'Correo electrónico';
+
+  @override
+  String get password => 'Contraseña';
+
+  @override
+  String get cancel => 'Cancelar';
+
+  @override
+  String get ok => 'Aceptar';
+
+  @override
+  String get delete => 'Borrar';
+
+  @override
+  String get delete_entry => 'Borrar Entrada';
+
+  @override
+  String get delete_comment => 'Borrar Comentario';
+
+  @override
+  String get back => 'Atrás';
+
+  @override
+  String get return_ => 'Volver';
+
+  @override
+  String news_on(DateTime date) {
+    final intl.DateFormat dateDateFormat = intl.DateFormat.yMd(localeName);
+    final String dateString = dateDateFormat.format(date);
+
+    return 'Noticias del $dateString';
+  }
+
+  @override
+  String get hiberus => 'hiberus';
+
+  @override
+  String get instagram => 'Instagram';
+
+  @override
+  String get linkedin => 'LinkedIn';
+
+  @override
+  String get github => 'GitHub';
 }

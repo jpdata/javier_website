@@ -1,16 +1,47 @@
 {
-  "hosting": {
-    "public": "build/web",
-    "ignore": [
+  "hosting":
+  {
+    "public":"build/web",
+    "ignore":
+    [
       "firebase.json",
       "**/.*",
-      "**/node_modules/**"
-    ],
-    "rewrites": [
+      "**/node_modules/**"],
+      "rewrites":
+      [
+        {
+          "source":"**",
+          "destination":"/index.html"
+        }
+      ]
+    },"flutter":
+    {
+      "platforms":
       {
-        "source": "**",
-        "destination": "/index.html"
-      }
-    ]
+        "android":
+        {
+          "default":
+          {
+            "projectId":"javi-website",
+            "appId":"1:873494706483:android:c20ad84b24915ea4416646",
+            "fileOutput":"android/app/google-services.json"
+          }
+        },
+        "dart":
+        {
+          "lib/firebase_options.dart":
+          {
+            "projectId":"javi-website",
+            "configurations":
+            {
+              "android":"1:873494706483:android:c20ad84b24915ea4416646",
+              "ios":"1:873494706483:ios:2776b342cca4d150416646",
+              "macos":"1:873494706483:ios:2776b342cca4d150416646",
+              "web":"1:873494706483:web:a2b1397505d5575c416646",
+              "windows":"1:873494706483:web:9809bcbca2f572d5416646"
+            }
+          }
+        }
+     }
   }
 }

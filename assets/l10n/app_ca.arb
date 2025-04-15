@@ -25,5 +25,69 @@
     "my_collaborations": "Col·laboracions",
     "collaborators": "Col·laboradors",
     "design_colors_and_images": "Disseny, colors i imatges",
-    "portfolio": "Portafoli"
+    "portfolio": "Portafoli",
+    "comment_title": "{name} ha comentat el {date}",
+    "comments": "Comentaris",
+    "newEntry": "Nova Entrada",
+    "entryTitle": "Títol",
+    "subtitle": "Subtítol",
+    "content": "Contingut",
+    "bannerImageUrl": "URL de la Imatge de Banner",
+    "tags": "Etiquetes (separades per comes)",
+    "saveEntry": "Guardar Entrada",
+    "pleaseEnterTitle": "Si us plau, introdueix un títol",
+    "pleaseEnterSubtitle": "Si us plau, introdueix un subtítol",
+    "pleaseEnterContent": "Si us plau, introdueix contingut",
+    "pleaseEnterBannerImageUrl": "Si us plau, introdueix una URL de la imatge de banner",
+    "blog": "Blog",
+    "blog_entry": "Entrada de Blog",
+    "blog_entries": "Entrades de Blog",
+    "blog_new_entry": "Nova Entrada de Blog",
+    "blog_edit_entry": "Edita Entrada",
+    "news": "Notícies",
+    "news_entry": "Entrada de Notícies",
+    "news_entries": "Entrades de Notícies",
+    "news_new_entry": "Nova Entrada",
+    "news_edit_entry": "Edita Entrada",
+    "news_on": "Notícies del {date}",
+    "@news_on": {
+        "placeholders": {
+            "name": {
+                "type": "String"
+            },
+            "date": {
+                "type": "DateTime",
+                "format": "yMd"
+            }
+        }
+    },
+    "@comment_title": {
+        "placeholders": {
+            "date": {
+                "type": "DateTime",
+                "format": "yMd"
+            }
+        }
+    },
+    "read_more": "Llegir més",
+    "pickAnImage": "Selecciona una imatge",
+    "signIn": "Inicia Sessió",
+    "signOut": "Tanca Sessió",
+    "signingIn": "Iniciant Sessió",
+    "error": "Error",
+    "signingOut": "Tancant Sessió",
+    "loadind_data": "Carregant dades...",
+    "email": "Correu electrònic",
+    "password": "Contrasenya",
+    "cancel": "Cancel·la",
+    "ok": "D''acord",
+    "delete": "Esborra",
+    "delete_entry": "Esborra Entrada",
+    "delete_comment": "Esborra Comentari",
+    "back": "Enrere",
+    "return_": "Torna",
+    "hiberus": "hiberus",
+    "instagram": "Instagram",
+    "linkedin": "LinkedIn",
+    "github": "GitHub"
 }

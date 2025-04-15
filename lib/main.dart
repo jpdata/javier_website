@@ -1,33 +1,42 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:javier_website/core/l10n/dynamic_app_localizations.dart';
 import 'package:javier_website/core/providers/notifiers/locale_notifier.dart';
-import 'package:provider/provider.dart';
 import 'package:javier_website/core/l10n/app_locale.dart';
 import 'package:javier_website/core/l10n/app_localizations.dart';
 import 'package:javier_website/router/router.dart';
-import 'package:javier_website/view/Themes/app_theme.dart';
+import 'package:javier_website/view/themes/app_theme.dart';
+import 'package:javier_website/viewmodel/auth/auth_view_model.dart';
+import 'firebase_options.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform, // Usa las opciones correctas
+  );
+
   runApp(
-    ChangeNotifierProvider(
-      create: (context) => LocaleNotifier(),
-      child: const MyApp(),
+    const ProviderScope(
+      child: MyApp(),
     ),
   );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final locale = Provider.of<LocaleNotifier>(context).locale;
+  Widget build(BuildContext context, WidgetRef ref) {
+    final locale = ref.watch(localeNotifierProvider);
+    ref.watch(authViewModelProvider);
     LocalizationManager.updateLocale(context); // Update localizations
 
     return MaterialApp.router(
       key: ValueKey(locale),
       routerConfig: AppRouter.router,
       locale: locale,
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      localizationsDelegates: [...AppLocalizations.localizationsDelegates, DynamicAppLocalizationsDelegate()],
       supportedLocales: AppLocalizations.supportedLocales,
       title: 'Javier Prato - Portfolio',
       onGenerateTitle: (context) {
