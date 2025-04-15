@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'dart:developer' as developer;
-
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/services.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:javier_website/core/auth_helper.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 part 'auth_view_model.g.dart';
 part 'auth_view_model.freezed.dart';
@@ -18,26 +18,26 @@ sealed class AuthState with _$AuthState {
     required String photoUrl,
     required bool isLoggedIn,
   }) = _AuthState;
+
+  factory AuthState.fromJson(Map<String, Object?> json) => _$AuthStateFromJson(json);
 }
 
 @Riverpod()
 class AuthViewModel extends _$AuthViewModel {
   @override
   Future<AuthState> build() async {
-    final user = FirebaseAuth.instance.currentUser;
-    final Map<String, dynamic> credentials = jsonDecode(await rootBundle.loadString('assets/strings/credentials.json'));
-
-    if (user != null && user.email != credentials['username']) {
-      return AuthState(
-        id: user.uid,
-        name: user.displayName ?? '',
-        email: user.email ?? '',
-        photoUrl: user.photoURL ?? '',
-        isLoggedIn: true,
-      );
+    final prefs = await SharedPreferences.getInstance();
+    final authData = prefs.getString('authState');
+    if (authData != null) {
+      return AuthState.fromJson(jsonDecode(authData));
     } else {
-      return const AuthState(
-        id: '',
+      if (state.value != null && state.value!.id.isNotEmpty) {
+        return state.value!;
+      }
+      await _loginWithEnvVars();
+      final user = FirebaseAuth.instance.currentUser;
+      return AuthState(
+        id: user?.uid.toString() ?? '',
         name: '',
         email: '',
         photoUrl: '',
@@ -46,9 +46,7 @@ class AuthViewModel extends _$AuthViewModel {
     }
   }
 
-  bool isLoggedIn() {
-    return state.value?.isLoggedIn ?? false;
-  }
+  bool isLoggedIn() => state.value?.isLoggedIn ?? false;
 
   Future<void> sigIn(String email, String password) async {
     state = const AsyncValue.loading();
@@ -56,13 +54,38 @@ class AuthViewModel extends _$AuthViewModel {
       () async {
         final userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);
         final user = userCredential.user;
-        return AuthState(
+        var authState = AuthState(
           id: user!.uid,
           name: user.displayName ?? '',
           email: user.email ?? '',
           photoUrl: user.photoURL ?? '',
           isLoggedIn: true,
         );
+        // Guarda el estado en localStorage
+        final prefs = await SharedPreferences.getInstance();
+        await prefs.setString('authState', jsonEncode(authState.toJson()));
+        return authState;
+      },
+    );
+  }
+
+  Future<void> sigInAnonymous() async {
+    state = const AsyncValue.loading();
+    state = await AsyncValue.guard(
+      () async {
+        _loginWithEnvVars();
+        final user = FirebaseAuth.instance.currentUser;
+        var authState = AuthState(
+          id: user!.uid,
+          name: user.displayName ?? '',
+          email: user.email ?? '',
+          photoUrl: user.photoURL ?? '',
+          isLoggedIn: true,
+        );
+        // Guarda el estado en localStorage
+        final prefs = await SharedPreferences.getInstance();
+        await prefs.setString('authState', jsonEncode(authState.toJson()));
+        return authState;
       },
     );
   }
@@ -71,7 +94,10 @@ class AuthViewModel extends _$AuthViewModel {
     state = const AsyncValue.loading();
     state = await AsyncValue.guard(() async {
       await FirebaseAuth.instance.signOut();
-      _loginWithEnvVars();
+      await _loginWithEnvVars();
+      // Elimina el estado de localStorage
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.remove('authState');
       return const AuthState(
         id: '',
         name: '',
@@ -84,11 +110,8 @@ class AuthViewModel extends _$AuthViewModel {
 
   Future<void> _loginWithEnvVars() async {
     try {
-      final Map<String, dynamic> credentials =
-          jsonDecode(await rootBundle.loadString('assets/strings/credentials.json'));
-
-      String email = credentials['username'];
-      String password = credentials['password'];
+      String email = AuthHelper.email;
+      String password = AuthHelper.password;
 
       await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);
       developer.log("Usuario autenticado exitosamente.");

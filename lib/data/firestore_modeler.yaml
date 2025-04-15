@@ -84,6 +84,21 @@ database:
           type:
             $: 'TimestampTypeData'
             required: true
+    - id: 'YQfuvD1FR7SBoE1nxm9bIg'
+      className: 'AboutMeDto'
+      fields:
+        - name: 'content'
+          type:
+            $: 'StringTypeData'
+            required: true
+        - name: 'language'
+          type:
+            $: 'StringTypeData'
+            required: true
+        - name: 'id'
+          type:
+            $: 'StringTypeData'
+            required: true
   collections:
     - id: 'Jd7cT8JdQ5mfXkBnbPIy8g'
       subPath: 'entries'
@@ -97,8 +112,13 @@ database:
       subPath: 'news'
       subCollections: []
       schemaID: 'pMk_KhDrQGqowPAfru2nHg'
+    - id: 'aQ-bH4a5QeGNBUN-eCdaYg'
+      subPath: 'about_me'
+      subCollections: []
+      schemaID: 'YQfuvD1FR7SBoE1nxm9bIg'
 nodeOffsets:
   root: '0,0'
   Jd7cT8JdQ5mfXkBnbPIy8g: '322.91619873046875,0'
   eO5f0YLxRJ6-rQpabF5nYg: '326.44007511877044,524.8417601808794'
   Q9IetBUHRaO9FMS55r-DvA: '319.91619873046875,879'
+  aQ-bH4a5QeGNBUN-eCdaYg: '322.91619873046875,1162'

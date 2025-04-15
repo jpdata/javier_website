@@ -41,7 +41,7 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
-crendetials.json
 assets/images/SvgStyleCleaner.exe
 lib/credentials.json
 assets/strings/credentials.json
+credentials.json

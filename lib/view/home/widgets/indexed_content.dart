@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:javier_website/view/blog/resumed_entries_from_firebase.dart';
+import 'package:javier_website/view/home/widgets/about_me_content.dart';
 import 'package:javier_website/view/home/widgets/credits_content.dart';
 import 'package:javier_website/view/home/widgets/news_entries_from_firebase.dart';
 import 'package:javier_website/view/home/widgets/portfolio_content.dart';
@@ -24,16 +25,20 @@ class _IndexedContentState extends State<IndexedContent> {
         result = Column(
           children: [
             if (_lastIndex == 2) CreditsContent(key: Key(_lastIndex.toString()), unfold: false),
+            if (_lastIndex == 4) AboutMeContent(key: Key(_lastIndex.toString()), unfold: false),
             PortfolioContent(key: Key(widget.index.toString())),
           ],
         );
+        break;
       case 2:
         result = Column(
           children: [
             if (_lastIndex == 1) PortfolioContent(key: Key(_lastIndex.toString()), unfold: false),
+            if (_lastIndex == 4) AboutMeContent(key: Key(_lastIndex.toString()), unfold: false),
             CreditsContent(key: Key(widget.index.toString())),
           ],
         );
+        break;
       case 3:
         result = const Column(
           children: [
@@ -43,6 +48,16 @@ class _IndexedContentState extends State<IndexedContent> {
             ),
           ],
         );
+        break;
+      case 4:
+        result = Column(
+          children: [
+            if (_lastIndex == 1) PortfolioContent(key: Key(_lastIndex.toString()), unfold: false),
+            if (_lastIndex == 2) CreditsContent(key: Key(_lastIndex.toString()), unfold: false),
+            AboutMeContent(key: Key(widget.index.toString())),
+          ],
+        );
+        break;
       default:
         result = const Column(
           children: [

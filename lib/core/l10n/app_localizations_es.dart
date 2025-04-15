@@ -218,6 +218,18 @@ class AppLocalizationsEs extends AppLocalizations {
 
     return 'Noticias del $dateString';
   }
+
+  @override
+  String get hiberus => 'hiberus';
+
+  @override
+  String get instagram => 'Instagram';
+
+  @override
+  String get linkedin => 'LinkedIn';
+
+  @override
+  String get github => 'GitHub';
 }
 
 /// The translations for Spanish Castilian, as used in Venezuela (`es_VE`).
@@ -434,4 +446,16 @@ class AppLocalizationsEsVe extends AppLocalizationsEs {
 
     return 'Noticias del $dateString';
   }
+
+  @override
+  String get hiberus => 'hiberus';
+
+  @override
+  String get instagram => 'Instagram';
+
+  @override
+  String get linkedin => 'LinkedIn';
+
+  @override
+  String get github => 'GitHub';
 }

@@ -7,6 +7,8 @@ class FooterIconMenuItem extends StatefulWidget {
   final double? height;
   final String imagePath;
   final String? imagePathMouseOver;
+  final String? tooltipTextMouseOver;
+  final String? label;
 
   const FooterIconMenuItem({
     super.key,
@@ -15,6 +17,8 @@ class FooterIconMenuItem extends StatefulWidget {
     this.height,
     required this.imagePath,
     this.imagePathMouseOver,
+    this.tooltipTextMouseOver,
+    this.label,
   });
 
   @override
@@ -32,12 +36,27 @@ class _FooterIconMenuItemState extends State<FooterIconMenuItem> {
       onExit: (_) => setState(() => _isHovered = false),
       child: GestureDetector(
         onTap: widget.onTap,
-        child: Image(
-          image: Svg(_isHovered && widget.imagePathMouseOver != null
-              ? widget.imagePathMouseOver!
-              : widget.imagePath),
-          width: widget.width ?? 32,
-          height: widget.height ?? 32,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Tooltip(
+              message: _isHovered && widget.tooltipTextMouseOver != null ? widget.tooltipTextMouseOver! : '',
+              child: Image(
+                image: Svg(
+                    _isHovered && widget.imagePathMouseOver != null ? widget.imagePathMouseOver! : widget.imagePath),
+                width: widget.width ?? 32,
+                height: widget.height ?? 32,
+              ),
+            ),
+            if (widget.label != null)
+              Padding(
+                padding: const EdgeInsets.only(top: 4.0),
+                child: Text(
+                  widget.label!,
+                  style: Theme.of(context).textTheme.bodySmall,
+                ),
+              ),
+          ],
         ),
       ),
     );

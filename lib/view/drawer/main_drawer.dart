@@ -43,7 +43,7 @@ class _MainDrawerState extends ConsumerState<MainDrawer> {
 
   @override
   Widget build(BuildContext context) {
-    ref.watch(localeProvider);
+    ref.watch(localeNotifierProvider);
     var authVm = ref.watch(authViewModelProvider);
     double screenWidth = MediaQuery.of(context).size.width > 400 ? 400 : MediaQuery.of(context).size.width;
     return authVm.when(
@@ -77,6 +77,7 @@ class _MainDrawerState extends ConsumerState<MainDrawer> {
                       child: Column(
                         children: [
                           Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               DrawerHeader(
                                 decoration: const BoxDecoration(
@@ -217,6 +218,8 @@ class _MainDrawerState extends ConsumerState<MainDrawer> {
                                 _showLoginDialog(context);
                               },
                             ),
+                          if (data != null && data.id == "error")
+                            Text(data.name, style: TextStyle(color: AppTheme.lightTheme.colorScheme.primary)),
                           if (data != null && data.isLoggedIn)
                             ListTile(
                               tileColor: Colors.black.withAlpha(128),
@@ -249,7 +252,9 @@ class _MainDrawerState extends ConsumerState<MainDrawer> {
                             width: 48,
                           ),
                           onPressed: () {
-                            ref.read(localeProvider.notifier).setLocale(locale: const Locale('en'), context: context);
+                            ref
+                                .read(localeNotifierProvider.notifier)
+                                .setLocale(locale: const Locale('en'), context: context);
                             context.go('/');
                           },
                           tooltip: localizations.english,
@@ -262,7 +267,9 @@ class _MainDrawerState extends ConsumerState<MainDrawer> {
                             width: 48,
                           ),
                           onPressed: () {
-                            ref.read(localeProvider.notifier).setLocale(locale: const Locale('es'), context: context);
+                            ref
+                                .read(localeNotifierProvider.notifier)
+                                .setLocale(locale: const Locale('es'), context: context);
                             context.go('/');
                           },
                           tooltip: localizations.spanish_spain,
@@ -276,7 +283,7 @@ class _MainDrawerState extends ConsumerState<MainDrawer> {
                           ),
                           onPressed: () {
                             ref
-                                .read(localeProvider.notifier)
+                                .read(localeNotifierProvider.notifier)
                                 .setLocale(locale: const Locale('es', 'VE'), context: context);
                             context.go('/');
                           },
@@ -290,7 +297,9 @@ class _MainDrawerState extends ConsumerState<MainDrawer> {
                             width: 48,
                           ),
                           onPressed: () {
-                            ref.read(localeProvider.notifier).setLocale(locale: const Locale('ca'), context: context);
+                            ref
+                                .read(localeNotifierProvider.notifier)
+                                .setLocale(locale: const Locale('ca'), context: context);
                             context.go('/');
                           },
                           tooltip: localizations.catalan,

@@ -3,10 +3,53 @@
 part of 'auth_view_model.dart';
 
 // **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+_AuthState _$AuthStateFromJson(Map<String, dynamic> json) => _AuthState(
+      id: json['id'] as String,
+      name: json['name'] as String,
+      email: json['email'] as String,
+      photoUrl: json['photoUrl'] as String,
+      isLoggedIn: json['isLoggedIn'] as bool,
+    );
+
+const _$AuthStateFieldMap = <String, String>{
+  'id': 'id',
+  'name': 'name',
+  'email': 'email',
+  'photoUrl': 'photoUrl',
+  'isLoggedIn': 'isLoggedIn',
+};
+
+// ignore: unused_element
+abstract class _$AuthStatePerFieldToJson {
+  // ignore: unused_element
+  static Object? id(String instance) => instance;
+  // ignore: unused_element
+  static Object? name(String instance) => instance;
+  // ignore: unused_element
+  static Object? email(String instance) => instance;
+  // ignore: unused_element
+  static Object? photoUrl(String instance) => instance;
+  // ignore: unused_element
+  static Object? isLoggedIn(bool instance) => instance;
+}
+
+Map<String, dynamic> _$AuthStateToJson(_AuthState instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'email': instance.email,
+      'photoUrl': instance.photoUrl,
+      'isLoggedIn': instance.isLoggedIn,
+    };
+
+// **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$authViewModelHash() => r'26c1ef90cbdfa2eff216a970a51ad58c2065939d';
+String _$authViewModelHash() => r'b9ddca0dbb9ded167f7bca8bd5ebf7859f16dd6c';
 
 /// See also [AuthViewModel].
 @ProviderFor(AuthViewModel)

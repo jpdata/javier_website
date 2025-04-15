@@ -24,7 +24,7 @@ class _HomeState extends ConsumerState<Home> {
 
   @override
   Widget build(BuildContext context) {
-    ref.watch(localeProvider);
+    ref.watch(localeNotifierProvider);
     return CommonScaffold(child: _scaffoldBody());
   }
 
@@ -92,11 +92,23 @@ class _HomeState extends ConsumerState<Home> {
               FooterIconMenuItem(
                 onTap: () {
                   setState(() {
+                    _index = 4;
+                  });
+                },
+                imagePath: 'assets/images/about_me.svg',
+                imagePathMouseOver: 'assets/images/about_me_negativo.svg',
+                tooltipTextMouseOver: localizations.about_me,
+              ),
+              const SizedBox(width: 10), //
+              FooterIconMenuItem(
+                onTap: () {
+                  setState(() {
                     _index = 3;
                   });
                 },
                 imagePath: 'assets/images/Blog.svg',
                 imagePathMouseOver: 'assets/images/Blog-negativo.svg',
+                tooltipTextMouseOver: localizations.blog,
               ),
               const SizedBox(width: 10), // Replace Flexible with SizedBox
               FooterIconMenuItem(
@@ -105,6 +117,7 @@ class _HomeState extends ConsumerState<Home> {
                 },
                 imagePath: 'assets/images/Linkedin.svg',
                 imagePathMouseOver: 'assets/images/Linkedin-negativo.svg',
+                tooltipTextMouseOver: localizations.linkedin,
               ),
               const SizedBox(width: 10),
               FooterIconMenuItem(
@@ -115,6 +128,7 @@ class _HomeState extends ConsumerState<Home> {
                 },
                 imagePath: 'assets/images/Portfolio.svg',
                 imagePathMouseOver: 'assets/images/Portfolio-negativo.svg',
+                tooltipTextMouseOver: localizations.portfolio,
               ),
               const SizedBox(width: 10),
               FooterIconMenuItem(
@@ -125,6 +139,7 @@ class _HomeState extends ConsumerState<Home> {
                 },
                 imagePath: 'assets/images/Colaboradores.svg',
                 imagePathMouseOver: 'assets/images/Colaboradores-negativo.svg',
+                tooltipTextMouseOver: localizations.collaborators,
               ),
               const SizedBox(width: 10),
               FooterIconMenuItem(
@@ -133,6 +148,7 @@ class _HomeState extends ConsumerState<Home> {
                 },
                 imagePath: 'assets/images/Hiberus.svg',
                 imagePathMouseOver: 'assets/images/Hiberus-negativo.svg',
+                tooltipTextMouseOver: localizations.hiberus,
               ),
               const SizedBox(width: 10),
               FooterIconMenuItem(
@@ -141,6 +157,7 @@ class _HomeState extends ConsumerState<Home> {
                 },
                 imagePath: 'assets/images/Mail.svg',
                 imagePathMouseOver: 'assets/images/Mail-negativo.svg',
+                tooltipTextMouseOver: localizations.contact_me,
               ),
               const SizedBox(width: 10),
               FooterIconMenuItem(
@@ -149,6 +166,7 @@ class _HomeState extends ConsumerState<Home> {
                 },
                 imagePath: 'assets/images/Instagram.svg',
                 imagePathMouseOver: 'assets/images/Instagram-negativo.svg',
+                tooltipTextMouseOver: localizations.instagram,
               ),
               const SizedBox(width: 10),
               FooterIconMenuItem(
@@ -157,6 +175,7 @@ class _HomeState extends ConsumerState<Home> {
                 },
                 imagePath: 'assets/images/Github.svg',
                 imagePathMouseOver: 'assets/images/Github-negativo.svg',
+                tooltipTextMouseOver: localizations.github,
               ),
             ],
           ),
@@ -166,7 +185,7 @@ class _HomeState extends ConsumerState<Home> {
   }
 
   Widget _typeWriterText({required List<String> text, void Function()? onFinished}) {
-    var locale = ref.read(localeProvider);
+    var locale = ref.read(localeNotifierProvider);
     var screenWidth = MediaQuery.of(context).size.width;
     return SizedBox(
       width: screenWidth * .40,

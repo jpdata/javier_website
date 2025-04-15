@@ -1,4 +1,5 @@
 import 'package:javier_website/data/firestore_client.dart';
+import 'package:javier_website/model/about_me.dart';
 import 'package:javier_website/model/comment.dart';
 import 'package:javier_website/model/entry.dart';
 import 'package:javier_website/model/news_entry.dart';
@@ -73,11 +74,31 @@ extension NewsDtoMapper on NewsEntry {
 }
 
 extension NewsEntryMapper on NewsDto {
-  Future<NewsEntry> toEntity() async {
+  NewsEntry toEntity() {
     return NewsEntry(
       id: id,
       content: content,
       createdAt: createdAt,
+    );
+  }
+}
+
+extension AboutMeDtoMapper on AboutMe {
+  AboutMeDto toDto() {
+    return AboutMeDto(
+      id: id,
+      content: content,
+      language: language,
+    );
+  }
+}
+
+extension AboutMeMapper on AboutMeDto {
+  AboutMe toEntity() {
+    return AboutMe(
+      id: id,
+      content: content,
+      language: language,
     );
   }
 }

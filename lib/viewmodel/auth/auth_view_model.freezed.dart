@@ -28,6 +28,9 @@ mixin _$AuthState {
   $AuthStateCopyWith<AuthState> get copyWith =>
       _$AuthStateCopyWithImpl<AuthState>(this as AuthState, _$identity);
 
+  /// Serializes this AuthState to a JSON map.
+  Map<String, dynamic> toJson();
+
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
@@ -42,6 +45,7 @@ mixin _$AuthState {
                 other.isLoggedIn == isLoggedIn));
   }
 
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, id, name, email, photoUrl, isLoggedIn);
@@ -105,7 +109,7 @@ class _$AuthStateCopyWithImpl<$Res> implements $AuthStateCopyWith<$Res> {
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _AuthState implements AuthState {
   const _AuthState(
       {required this.id,
@@ -113,6 +117,8 @@ class _AuthState implements AuthState {
       required this.email,
       required this.photoUrl,
       required this.isLoggedIn});
+  factory _AuthState.fromJson(Map<String, dynamic> json) =>
+      _$AuthStateFromJson(json);
 
   @override
   final String id;
@@ -134,6 +140,13 @@ class _AuthState implements AuthState {
       __$AuthStateCopyWithImpl<_AuthState>(this, _$identity);
 
   @override
+  Map<String, dynamic> toJson() {
+    return _$AuthStateToJson(
+      this,
+    );
+  }
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
@@ -147,6 +160,7 @@ class _AuthState implements AuthState {
                 other.isLoggedIn == isLoggedIn));
   }
 
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, id, name, email, photoUrl, isLoggedIn);

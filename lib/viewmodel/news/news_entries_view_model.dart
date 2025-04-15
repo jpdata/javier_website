@@ -66,7 +66,7 @@ class NewsEntriesViewModel extends _$NewsEntriesViewModel {
 
     final querySnapshot = await query.get();
     final entries = await Future.wait(
-      querySnapshot.docs.map((doc) async => await doc.data().toEntity()).toList(),
+      querySnapshot.docs.map((doc) async => doc.data().toEntity()).toList(),
     );
 
     //_hasNextPage = !(entries.length < limit);

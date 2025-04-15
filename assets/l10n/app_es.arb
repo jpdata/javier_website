@@ -85,5 +85,9 @@
     "delete_entry": "Eliminar Entrada",
     "delete_comment": "Eliminar Comentario",
     "back": "Atrás",
-    "return_": "Regresar"
+    "return_": "Regresar",
+    "hiberus": "hiberus",
+    "instagram": "Instagram",
+    "linkedin": "LinkedIn",
+    "github": "GitHub"
 }

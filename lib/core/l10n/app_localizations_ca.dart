@@ -218,4 +218,16 @@ class AppLocalizationsCa extends AppLocalizations {
 
     return 'Notícies del $dateString';
   }
+
+  @override
+  String get hiberus => 'hiberus';
+
+  @override
+  String get instagram => 'Instagram';
+
+  @override
+  String get linkedin => 'LinkedIn';
+
+  @override
+  String get github => 'GitHub';
 }

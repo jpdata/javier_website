@@ -160,7 +160,7 @@ class _SelectedNewsEntryByIdProviderElement
 }
 
 String _$newsEntriesViewModelHash() =>
-    r'066bc87ea471478535c8a8f87dff0041871ab22e';
+    r'2cae0d1cc6b541b5b206a936d63cfea4cd26bd5f';
 
 abstract class _$NewsEntriesViewModel
     extends BuildlessAutoDisposeAsyncNotifier<List<NewsEntry>> {

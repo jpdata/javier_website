@@ -85,5 +85,9 @@
                 "format": "yMd"
             }
         }
-    }
+    },
+    "hiberus": "hiberus",
+    "instagram": "Instagram",
+    "linkedin": "LinkedIn",
+    "github": "GitHub"
 }

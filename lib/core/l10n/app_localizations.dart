@@ -499,6 +499,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'News on {date}'**
   String news_on(DateTime date);
+
+  /// No description provided for @hiberus.
+  ///
+  /// In en, this message translates to:
+  /// **'hiberus'**
+  String get hiberus;
+
+  /// No description provided for @instagram.
+  ///
+  /// In en, this message translates to:
+  /// **'Instagram'**
+  String get instagram;
+
+  /// No description provided for @linkedin.
+  ///
+  /// In en, this message translates to:
+  /// **'LinkedIn'**
+  String get linkedin;
+
+  /// No description provided for @github.
+  ///
+  /// In en, this message translates to:
+  /// **'GitHub'**
+  String get github;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
