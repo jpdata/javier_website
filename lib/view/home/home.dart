@@ -44,43 +44,49 @@ class _HomeState extends ConsumerState<Home> {
 
   Widget _scaffoldBody() {
     double screenWidth = MediaQuery.of(context).size.width > 600 ? 600 : MediaQuery.of(context).size.width;
+    double lateralPadding = screenWidth < 600 ? 30 : screenWidth * .25;
     return Column(
       children: [
         Expanded(
           child: Center(
             child: ListView(
               children: [
-                Column(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(screenWidth * .05, screenWidth * .05, screenWidth * .05, 0),
-                      child: Row(
+                Padding(
+                  padding: EdgeInsets.fromLTRB(lateralPadding, 0, lateralPadding, 0),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Row(
                         children: [
-                          // Container(
-                          //     //color: AppTheme.lightTheme.colorScheme.secondary.withAlpha(128),
-                          //     child: _socialNetworkGroup()),
-                          // const SizedBox(width: 10),
-                          Image(
-                              image: const Svg("assets/images/javi-wireframe.svg"),
-                              width: screenWidth * .45,
-                              color: AppTheme.lightTheme.colorScheme.secondary),
-                          _typeWriterText(
-                            text: <String>[
-                              '${localizations.cogito_ergo_sum}\n${localizations.doing_cool_stuf_with_porgramming_languages}',
-                            ],
-                            onFinished: () {},
+                          AnimatedContainer(
+                            duration: const Duration(milliseconds: 500),
+                            curve: Curves.easeInOut,
+                            width: _index == 0 ? screenWidth * .45 : screenWidth / 2 * .45,
+                            height: _index == 0 ? screenWidth * .45 : screenWidth / 2 * .45,
+                            child: Image(
+                                image: const Svg("assets/images/javi-wireframe.svg"),
+                                width: screenWidth * .45,
+                                color: AppTheme.lightTheme.colorScheme.secondary),
+                          ),
+                          Expanded(
+                            child: AnimatedOpacity(
+                              opacity: [0, 4].contains(_index) ? 1.0 : 0.0,
+                              duration: const Duration(milliseconds: 500),
+                              child: _typeWriterText(
+                                text: <String>[
+                                  '${localizations.cogito_ergo_sum}\n${localizations.doing_cool_stuf_with_porgramming_languages}',
+                                ],
+                                onFinished: () {},
+                              ),
+                            ),
                           ),
                         ],
                       ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(screenWidth * .05, 10, screenWidth * .05, 0),
-                      child: IndexedContent(index: _index),
-                    ),
-                  ],
+                      IndexedContent(index: _index),
+                    ],
+                  ),
                 ),
               ],
             ),

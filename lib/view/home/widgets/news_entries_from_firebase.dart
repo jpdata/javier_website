@@ -32,17 +32,15 @@ class _EntriesListWidgetState extends ConsumerState<NewsEntriesFromFirebase> {
     var entryVm = ref.watch(newsEntriesViewModelProvider());
 
     return entryVm.when(
-      data: (entries) =>  widget.unfold
-        ? Unfolding.unfold(
-            duration: Duration(
-                milliseconds: widget.duration * (widget.initialDelay + entries.length)),
-            child: _unfoldContent(entries),
-          )
-        : Unfolding.fold(
-            duration: Duration(
-                milliseconds: widget.duration * (widget.initialDelay + entries.length)),
-            child: _unfoldContent(entries),
-          ),
+      data: (entries) => widget.unfold
+          ? Unfolding.unfold(
+              duration: Duration(milliseconds: widget.duration * (widget.initialDelay + entries.length)),
+              child: _unfoldContent(entries),
+            )
+          : Unfolding.fold(
+              duration: Duration(milliseconds: widget.duration * (widget.initialDelay + entries.length)),
+              child: _unfoldContent(entries),
+            ),
       loading: () {
         return FadeInOutText(text: localizations.loadind_data);
       },
@@ -50,12 +48,9 @@ class _EntriesListWidgetState extends ConsumerState<NewsEntriesFromFirebase> {
     );
   }
 
-  Padding _unfoldContent(List<NewsEntry> entries) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-      child: NewsEntries(
-        entries: entries,
-      ),
+  Widget _unfoldContent(List<NewsEntry> entries) {
+    return NewsEntries(
+      entries: entries,
     );
   }
 }
