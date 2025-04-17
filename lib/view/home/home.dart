@@ -114,17 +114,17 @@ class _HomeState extends ConsumerState<Home> {
     );
   }
 
-  Widget _socialNetworkGroup() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        for (var i = 0; i < _socialActions(context).length; i++) ...[
-          _socialActions(context)[i],
-          if (i < _socialActions(context).length - 1) const SizedBox(height: 10),
-        ],
-      ],
-    );
-  }
+  // Widget _socialNetworkGroup() {
+  //   return Row(
+  //     mainAxisAlignment: MainAxisAlignment.center,
+  //     children: [
+  //       for (var i = 0; i < _socialActions(context).length; i++) ...[
+  //         _socialActions(context)[i],
+  //         if (i < _socialActions(context).length - 1) const SizedBox(height: 10),
+  //       ],
+  //     ],
+  //   );
+  // }
 
   List<Widget> _socialActions(BuildContext context) => [
         IconMenuItem.iconMenuItem(

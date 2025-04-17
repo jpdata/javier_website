@@ -9,10 +9,9 @@ import 'package:javier_website/router/rout_names.dart';
 import 'package:javier_website/view/themes/app_theme.dart';
 import 'package:javier_website/view/widgets/common_scaffold.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter_html/flutter_html.dart';
 import 'package:javier_website/viewmodel/auth/auth_view_model.dart';
 import 'package:javier_website/viewmodel/blog/entries_view_model.dart';
-//import 'package:flutter_html_all/flutter_html_all.dart';
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 
 class EntryDetailPage extends ConsumerStatefulWidget {
   final String id;
@@ -112,18 +111,30 @@ class _EntryDetailPageState extends ConsumerState<EntryDetailPage> {
                       children: [
                         Expanded(
                           child: Container(
-                            decoration: BoxDecoration(
-                              color: AppTheme.lightTheme.colorScheme.primary,
+                            decoration: const BoxDecoration(
+                              color: Colors.white,
                             ),
-                            child: Html(
-                              data: entry.content,
-                              style: {
-                                "body": Style(
-                                  backgroundColor: Colors.white,
-                                  color: Colors.black,
-                                  fontFamily: 'Roboto',
-                                ),
-                              },
+                            child:
+                                // Html(
+                                //   data: entry.content,
+                                //   extensions: const [
+                                //     IframeHtmlExtension(),
+                                //   ],
+                                //   style: {
+                                //     "body": Style(
+                                //       backgroundColor: Colors.white,
+                                //       color: Colors.black,
+                                //       fontFamily: 'Roboto',
+                                //     ),
+                                //   },
+                                // ),
+                                HtmlWidget(
+                              entry.content,
+                              textStyle: const TextStyle(
+                                color: Colors.black,
+                                fontFamily: 'Roboto',
+                                backgroundColor: Colors.white,
+                              ),
                             ),
                           ),
                         ),
