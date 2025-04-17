@@ -7,7 +7,6 @@ import 'package:javier_website/core/l10n/app_locale.dart';
 import 'package:javier_website/core/l10n/app_localizations.dart';
 import 'package:javier_website/router/router.dart';
 import 'package:javier_website/view/themes/app_theme.dart';
-import 'package:javier_website/viewmodel/auth/auth_view_model.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
@@ -29,7 +28,6 @@ class MyApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final locale = ref.watch(localeNotifierProvider);
-    ref.watch(authViewModelProvider);
     LocalizationManager.updateLocale(context); // Update localizations
 
     return MaterialApp.router(

@@ -50,3 +50,5 @@ assets/images/SvgStyleCleaner.exe
 lib/credentials.json
 assets/strings/credentials.json
 credentials.json
+linux/flutter/generated_plugin_registrant.cc
+

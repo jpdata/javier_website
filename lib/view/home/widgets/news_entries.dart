@@ -16,10 +16,10 @@ class NewsEntries extends ConsumerStatefulWidget {
   const NewsEntries({super.key, required this.entries});
 
   @override
-  ConsumerState<NewsEntries> createState() => _ResumedNewsEntriesState();
+  ConsumerState<NewsEntries> createState() => _NewsEntriesState();
 }
 
-class _ResumedNewsEntriesState extends ConsumerState<NewsEntries> {
+class _NewsEntriesState extends ConsumerState<NewsEntries> {
   final Map<int, bool> _expanded = {};
 
   @override
