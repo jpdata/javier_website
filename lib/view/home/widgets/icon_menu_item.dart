@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 
-class FooterIconMenuItem extends StatefulWidget {
+class IconMenuItem extends StatefulWidget {
   final Function()? onTap;
   final double? width;
   final double? height;
@@ -9,8 +9,9 @@ class FooterIconMenuItem extends StatefulWidget {
   final String? imagePathMouseOver;
   final String? tooltipTextMouseOver;
   final String? label;
+  final Color? color;
 
-  const FooterIconMenuItem({
+  const IconMenuItem.iconMenuItem({
     super.key,
     this.onTap,
     this.width,
@@ -19,13 +20,14 @@ class FooterIconMenuItem extends StatefulWidget {
     this.imagePathMouseOver,
     this.tooltipTextMouseOver,
     this.label,
+    this.color,
   });
 
   @override
-  State<FooterIconMenuItem> createState() => _FooterIconMenuItemState();
+  State<IconMenuItem> createState() => _IconMenuItemState();
 }
 
-class _FooterIconMenuItemState extends State<FooterIconMenuItem> {
+class _IconMenuItemState extends State<IconMenuItem> {
   bool _isHovered = false;
 
   @override
@@ -46,6 +48,7 @@ class _FooterIconMenuItemState extends State<FooterIconMenuItem> {
                     _isHovered && widget.imagePathMouseOver != null ? widget.imagePathMouseOver! : widget.imagePath),
                 width: widget.width ?? 32,
                 height: widget.height ?? 32,
+                color: widget.color ?? Theme.of(context).colorScheme.primary,
               ),
             ),
             if (widget.label != null)

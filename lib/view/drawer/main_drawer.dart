@@ -101,7 +101,7 @@ class _MainDrawerState extends ConsumerState<MainDrawer> {
                           ListTile(
                             tileColor: Colors.black.withAlpha(128),
                             leading: Image(
-                              image: const Svg('assets/images/Mail.svg'),
+                              image: const Svg('assets/images/mail.svg'),
                               width: 24,
                               height: 24,
                               color: AppTheme.lightTheme.colorScheme.primary,
@@ -119,7 +119,7 @@ class _MainDrawerState extends ConsumerState<MainDrawer> {
                             ListTile(
                               tileColor: Colors.black.withAlpha(128),
                               leading: Image(
-                                image: const Svg('assets/images/Blog.svg'),
+                                image: const Svg('assets/images/blog.svg'),
                                 width: 24,
                                 height: 24,
                                 color: AppTheme.lightTheme.colorScheme.primary,
@@ -138,7 +138,7 @@ class _MainDrawerState extends ConsumerState<MainDrawer> {
                             ListTile(
                               tileColor: Colors.black.withAlpha(128),
                               leading: Image(
-                                image: const Svg('assets/images/Blog-negativo.svg'),
+                                image: const Svg('assets/images/blog_negative.svg'),
                                 width: 24,
                                 height: 24,
                                 color: AppTheme.lightTheme.colorScheme.primary,
@@ -156,7 +156,7 @@ class _MainDrawerState extends ConsumerState<MainDrawer> {
                           ListTile(
                             tileColor: Colors.black.withAlpha(128),
                             leading: Image(
-                              image: const Svg('assets/images/Instagram.svg'),
+                              image: const Svg('assets/images/instagram.svg'),
                               width: 24,
                               height: 24,
                               color: AppTheme.lightTheme.colorScheme.primary,
@@ -173,7 +173,7 @@ class _MainDrawerState extends ConsumerState<MainDrawer> {
                           ListTile(
                             tileColor: Colors.black.withAlpha(128),
                             leading: Image(
-                              image: const Svg('assets/images/Linkedin.svg'),
+                              image: const Svg('assets/images/linkedin.svg'),
                               width: 24,
                               height: 24,
                               color: AppTheme.lightTheme.colorScheme.primary,
@@ -190,7 +190,7 @@ class _MainDrawerState extends ConsumerState<MainDrawer> {
                           ListTile(
                             tileColor: Colors.black.withAlpha(128),
                             leading: Image(
-                              image: const Svg('assets/images/Hiberus.svg'),
+                              image: const Svg('assets/images/hiberus.svg'),
                               width: 24,
                               height: 24,
                               color: AppTheme.lightTheme.colorScheme.primary,
@@ -201,6 +201,23 @@ class _MainDrawerState extends ConsumerState<MainDrawer> {
                                 )),
                             onTap: () {
                               Utils.launchURL('https://www.hiberus.com');
+                            },
+                          ),
+                          const SizedBox(height: 2),
+                          ListTile(
+                            tileColor: Colors.black.withAlpha(128),
+                            leading: Image(
+                              image: const Svg('assets/images/github.svg'),
+                              width: 24,
+                              height: 24,
+                              color: AppTheme.lightTheme.colorScheme.primary,
+                            ),
+                            title: Text('Github',
+                                style: TextStyle(
+                                  color: AppTheme.lightTheme.colorScheme.primary,
+                                )),
+                            onTap: () {
+                              Utils.launchURL('https://www.github.com/jpdata');
                             },
                           ),
                           const SizedBox(height: 20),

@@ -15,6 +15,7 @@ class CommonScaffold extends ConsumerStatefulWidget {
   final Icon backButtonIcon;
   final Function()? floatingButtonAction;
   final Icon? floatingButtonIcon;
+  final List<Widget>? actions;
 
   const CommonScaffold(
       {super.key,
@@ -25,6 +26,7 @@ class CommonScaffold extends ConsumerStatefulWidget {
       this.backButtonIcon = const Icon(Icons.arrow_back_ios),
       this.floatingButtonAction,
       this.floatingButtonIcon,
+      this.actions,
       required this.child});
 
   @override
@@ -43,9 +45,21 @@ class _CommonScaffoldState extends ConsumerState<CommonScaffold> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: true,
-        title: Text(widget.title != null
-            ? widget.title!
-            : DynamicAppLocalizations.of(context).translate(currentRoute)),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text(widget.title != null ? widget.title! : DynamicAppLocalizations.of(context).translate(currentRoute)),
+            const SizedBox(width: 30),
+            ...(widget.actions != null
+                ? [
+                    for (var i = 0; i < widget.actions!.length; i++) ...[
+                      widget.actions![i],
+                      if (i < widget.actions!.length - 1) const SizedBox(width: 8),
+                    ],
+                  ]
+                : []),
+          ],
+        ),
         backgroundColor: AppTheme.lightTheme.colorScheme.primary,
         foregroundColor: AppTheme.lightTheme.colorScheme.onPrimary,
         leading: widget.showBackButton
@@ -70,8 +84,7 @@ class _CommonScaffoldState extends ConsumerState<CommonScaffold> {
             ).image,
             repeat: ImageRepeat.repeat,
             scale: 1.5,
-            colorFilter:
-                ColorFilter.mode(Colors.black.withAlpha(38), BlendMode.dstATop),
+            colorFilter: ColorFilter.mode(Colors.black.withAlpha(38), BlendMode.dstATop),
           ),
         ),
         child: child,
