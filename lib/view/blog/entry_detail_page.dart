@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:javier_website/view/blog/entry_detail_widget.dart';
+import 'package:javier_website/view/themes/app_theme.dart';
 import 'package:javier_website/viewmodel/auth/auth_view_model.dart';
 import 'package:javier_website/viewmodel/blog/entries_view_model.dart';
 
@@ -20,7 +21,9 @@ class _EntryDetailPageState extends ConsumerState<EntryDetailPage> {
     final auth = ref.watch(authViewModelProvider.notifier);
 
     return entry.when(
-      data: (data) => EntryDetailWidget(entry: data, showEditEntryButton: auth.isLoggedIn()),
+      data: (data) => Container(
+        color: AppTheme.lightTheme.colorScheme.surface,
+        child: EntryDetailWidget(entry: data, showEditEntryButton: auth.isLoggedIn())),
       error: (error, stackTrace) => Center(child: Text('Error: $error')),
       loading: () => const Center(child: CircularProgressIndicator()),
     );
