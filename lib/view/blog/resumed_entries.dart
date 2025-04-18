@@ -4,10 +4,8 @@
 //Comments are nested to their owner entry
 
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:javier_website/core/l10n/app_locale.dart';
 import 'package:javier_website/model/entry.dart';
-import 'package:javier_website/router/rout_names.dart';
+import 'package:javier_website/view/blog/entry_detail_page.dart';
 import 'package:javier_website/view/themes/app_theme.dart';
 
 class ResumedEntries extends StatefulWidget {
@@ -20,21 +18,22 @@ class ResumedEntries extends StatefulWidget {
 }
 
 class _ResumedEntriesState extends State<ResumedEntries> {
-  final Map<int, bool> _expanded = {};
+  int _expandedIndex = -1;
 
   @override
   Widget build(BuildContext context) {
+    double screenHeight = MediaQuery.of(context).size.height;
     return SingleChildScrollView(
       child: ExpansionPanelList(
         expansionCallback: (panelIndex, isExpanded) {
           setState(() {
-            _expanded[panelIndex] = !(_expanded[panelIndex] ?? false);
+            _expandedIndex = isExpanded ? panelIndex : -1;
           });
         },
         children: widget.entries.asMap().entries.map((entry) {
           final index = entry.key;
           final entryData = entry.value;
-          final isExpanded = _expanded[index] ?? false;
+          final isExpanded = _expandedIndex == index;
 
           return ExpansionPanel(
             isExpanded: isExpanded,
@@ -58,49 +57,51 @@ class _ResumedEntriesState extends State<ResumedEntries> {
             body: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(16, 0, 0, 0),
-                      child: Text(entryData.subtitle,
-                          style: TextStyle(
-                              color: AppTheme.lightTheme.colorScheme.primary,
-                              fontSize: 16,
-                              fontWeight: FontWeight.normal)),
-                    ),
-                  ],
-                ),
-                const Divider(),
-                Row(
-                  children: [
-                    Expanded(
-                      child: MouseRegion(
-                        cursor: SystemMouseCursors.click,
-                        child: GestureDetector(
-                          onTap: () {
-                            context.pushNamed(RoutNames.blogEntry,
-                                pathParameters: {
-                                  'id': entryData.id,
-                                },
-                                extra: entryData);
-                          },
-                          child: Container(
-                            color: Colors.black.withAlpha(200),
-                            child: Padding(
-                              padding: const EdgeInsets.fromLTRB(16, 0, 0, 0),
-                              child: Text(localizations.read_more,
-                                  style: TextStyle(
-                                    color: AppTheme.lightTheme.colorScheme.primary,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.normal,
-                                  )),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+                // Row(
+                //   children: [
+                //     Padding(
+                //       padding: const EdgeInsets.fromLTRB(16, 0, 0, 0),
+                //       child: Text(entryData.subtitle,
+                //           style: TextStyle(
+                //               color: AppTheme.lightTheme.colorScheme.primary,
+                //               fontSize: 16,
+                //               fontWeight: FontWeight.normal)),
+                //     ),
+                //   ],
+                // ),
+                //const Divider(),
+
+                SizedBox(height: screenHeight, child: EntryDetailPage(id: entryData.id))
+                // Row(
+                //   children: [
+                //     Expanded(
+                //       child: MouseRegion(
+                //         cursor: SystemMouseCursors.click,
+                //         child: GestureDetector(
+                //           onTap: () {
+                //             context.pushNamed(RoutNames.blogEntry,
+                //                 pathParameters: {
+                //                   'id': entryData.id,
+                //                 },
+                //                 extra: entryData);
+                //           },
+                //           child: Container(
+                //             color: Colors.black.withAlpha(200),
+                //             child: Padding(
+                //               padding: const EdgeInsets.fromLTRB(16, 0, 0, 0),
+                //               child: Text(localizations.read_more,
+                //                   style: TextStyle(
+                //                     color: AppTheme.lightTheme.colorScheme.primary,
+                //                     fontSize: 18,
+                //                     fontWeight: FontWeight.normal,
+                //                   )),
+                //             ),
+                //           ),
+                //         ),
+                //       ),
+                //     ),
+                //   ],
+                // ),
               ],
             ),
           );

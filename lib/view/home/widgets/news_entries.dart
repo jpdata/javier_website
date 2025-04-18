@@ -61,8 +61,7 @@ class _NewsEntriesState extends ConsumerState<NewsEntries> {
                           color: Colors.black.withAlpha(128),
                           child: Padding(
                             padding: const EdgeInsets.fromLTRB(16, 0, 0, 0),
-                            child: Html(data: entryData.content
-                            ),
+                            child: Html(data: entryData.content),
                           ),
                         ),
                       ),

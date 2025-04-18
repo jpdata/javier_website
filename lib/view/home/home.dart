@@ -52,7 +52,7 @@ class _HomeState extends ConsumerState<Home> {
             child: ListView(
               children: [
                 Padding(
-                  padding: EdgeInsets.fromLTRB(lateralPadding, 0, lateralPadding, 0),
+                  padding: EdgeInsets.fromLTRB(lateralPadding, 10, lateralPadding, 0),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.center,

@@ -4,7 +4,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:javier_website/core/l10n/app_locale.dart';
 import 'package:javier_website/view/blog/resumed_entries_from_firebase.dart';
 import 'package:javier_website/view/widgets/unfolding.dart';
-import 'package:javier_website/viewmodel/about_me/about_me_view_model.dart';
 
 class ResumedEntriesContent extends ConsumerStatefulWidget {
   const ResumedEntriesContent({super.key, this.initialDelay = 0, this.duration = 500, this.unfold = true});
@@ -20,25 +19,13 @@ class ResumedEntriesContent extends ConsumerStatefulWidget {
 class _ResumedEntriesContentState extends ConsumerState<ResumedEntriesContent> {
   @override
   Widget build(BuildContext context) {
-    var aboutVm = ref.watch(aboutMeViewModelProvider);
-    return aboutVm.when(
-      data: (data) {
-        return widget.unfold
-            ? Unfolding.unfold(
-                duration: Duration(milliseconds: widget.duration * (widget.initialDelay + 3)),
-                child: _unfoldContent(),
-              )
-            : Unfolding.fold(
-                duration: Duration(milliseconds: widget.duration * (widget.initialDelay + 3)),
-                child: _unfoldContent());
-      },
-      error: (error, stackTrace) {
-        return Center(child: Text('Error loading data $error'));
-      },
-      loading: () {
-        return const Center(child: CircularProgressIndicator());
-      },
-    );
+    return widget.unfold
+        ? Unfolding.unfold(
+            duration: Duration(milliseconds: widget.duration * (widget.initialDelay + 3)),
+            child: _unfoldContent(),
+          )
+        : Unfolding.fold(
+            duration: Duration(milliseconds: widget.duration * (widget.initialDelay + 3)), child: _unfoldContent());
   }
 
   Column _unfoldContent() {
@@ -55,8 +42,10 @@ class _ResumedEntriesContentState extends ConsumerState<ResumedEntriesContent> {
         ),
         DelayedDisplay(
           delay: Duration(milliseconds: widget.initialDelay + index * widget.duration),
-          child: const ResumedEntriesFromFirebase(              page: 0,
-              listLength: 3,),
+          child: const ResumedEntriesFromFirebase(
+            page: 0,
+            listLength: 3,
+          ),
         ),
       ],
     );

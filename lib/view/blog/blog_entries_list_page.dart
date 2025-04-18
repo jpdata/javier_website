@@ -20,39 +20,28 @@ class BlogEntriesListPage extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
-              width: screenWidth * .80,
-              child: SingleChildScrollView(
-                physics: const BouncingScrollPhysics(),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Text(localizations.blog_entries,
-                            style: TextStyle(
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
-                              color: AppTheme.lightTheme.colorScheme.secondary,
-                            )),
-                      ],
-                    ),
-                    const SizedBox(height: 16),
-                    const ResumedEntriesFromFirebase(),
-                    const SizedBox(height: 16),
-                    Row(
-                      children: [
-                        ElevatedButton(
-                          onPressed: () {
-                            context.pushNamed(RoutNames.blogNewEntry);
-                          },
-                          style: AppTheme.lightTheme.elevatedButtonTheme.style,
-                          child: Text(localizations.newEntry),
-                        ),
-                      ],
-                    ),
-                  ],
+            Expanded(
+              child: SizedBox(
+                child: SingleChildScrollView(
+                  physics: const BouncingScrollPhysics(),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      const ResumedEntriesFromFirebase(),
+                      const SizedBox(height: 16),
+                      Row(
+                        children: [
+                          ElevatedButton(
+                            onPressed: () {
+                              context.pushNamed(RoutNames.blogNewEntry);
+                            },
+                            style: AppTheme.lightTheme.elevatedButtonTheme.style,
+                            child: Text(localizations.newEntry),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
