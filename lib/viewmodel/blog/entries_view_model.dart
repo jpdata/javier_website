@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:javier_website/core/blog_mappers.dart';
+import 'package:javier_website/core/mappers.dart';
 import 'package:javier_website/data/firestore_client.dart';
 import 'package:javier_website/model/entry.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -102,17 +102,20 @@ class EntriesViewModel extends _$EntriesViewModel {
   Future<void> updateEntry(Entry entry) async {
     state = const AsyncValue.loading();
     state = await AsyncValue.guard(() async {
-      await _entriesCollection.doc(entry.id).set(entry.toDto());
+      await _entriesCollection.reference.doc(entry.id).set(entry.toDto());
       return await _fetchEntries(limit: _limit, page: _page);
     });
   }
 
-  Future<void> createEntry(Entry entry) async {
+  Future<Entry> createEntry(Entry entry) async {
     state = const AsyncValue.loading();
+    String id = '';
     state = await AsyncValue.guard(() async {
-      await _entriesCollection.add(entry.toDto());
+      var result = await _entriesCollection.add(entry.toDto());
+      id = result.id;
       return _fetchEntries(limit: _limit, page: _page);
     });
+    return entry.copyWith(id: id);
   }
 
   Future<Entry?> getEntryById(String id) async {

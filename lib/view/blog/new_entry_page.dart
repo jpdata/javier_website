@@ -1,5 +1,10 @@
+import 'dart:developer' as developer;
+
+import 'package:file_picker/file_picker.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:javier_website/core/l10n/app_locale.dart';
 import 'package:javier_website/model/entry.dart';
 import 'package:javier_website/view/themes/app_theme.dart';
@@ -26,18 +31,9 @@ class _NewEntryPageState extends ConsumerState<NewEntryPage> {
   final _bannerImageUrlController = TextEditingController();
   final _tagsController = StringTagController<String>();
   File? _selectedImage;
+  FilePickerResult? _selectedImageWeb;
+
   late double _distanceToField;
-
-  Future<void> _pickImage() async {
-    final picker = ImagePicker();
-    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
-
-    if (pickedFile != null) {
-      setState(() {
-        _selectedImage = File(pickedFile.path);
-      });
-    }
-  }
 
   @override
   void didChangeDependencies() {
@@ -113,22 +109,6 @@ class _NewEntryPageState extends ConsumerState<NewEntryPage> {
                     child: Text(localizations.pickAnImage),
                   ),
                   const SizedBox(height: 10),
-                  TextFormField(
-                    controller: _bannerImageUrlController,
-                    decoration: InputDecoration(
-                      labelText: localizations.bannerImageUrl,
-                      filled: true,
-                      fillColor: Theme.of(context).colorScheme.primary,
-                      labelStyle: const TextStyle(fontFamily: 'Roboto'),
-                    ),
-                    style: const TextStyle(fontFamily: 'Roboto'),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return localizations.pleaseEnterBannerImageUrl;
-                      }
-                      return null;
-                    },
-                  ),
                   _tagsField(),
                   const SizedBox(height: 20),
                   ElevatedButton(
@@ -136,17 +116,50 @@ class _NewEntryPageState extends ConsumerState<NewEntryPage> {
                     onPressed: () async {
                       if (_formKey.currentState!.validate()) {
                         var tags = _tagsController.getTags ?? <String>[];
-                        final newEntry = Entry(
+                        final entryToCreate = Entry(
                           id: '',
                           title: _titleController.text,
                           subtitle: _subtitleController.text,
-                          content: _contentHtmlController.toString(),
+                          content: await _contentHtmlController.getText(),
                           createdAt: DateTime.now(),
-                          bannerImageUrl: _bannerImageUrlController.text,
+                          bannerImageUrl: '',
                           tags: tags,
                           comments: [],
                         );
-                        ref.read(entriesViewModelProvider().notifier).createEntry(newEntry);
+                        var createdEntry =
+                            await ref.read(entriesViewModelProvider().notifier).createEntry(entryToCreate);
+
+                        if (_selectedImageWeb?.files.single.bytes != null) {
+                          Uint8List imageBytes = _selectedImageWeb!.files.single.bytes!;
+                          String fileName = _selectedImageWeb!.files.single.name;
+
+                          final storageRef = FirebaseStorage.instance.ref().child('blog/${createdEntry.id}/$fileName');
+
+                          await storageRef.putData(imageBytes);
+
+                          developer.log('✅ Upload completo: ${storageRef.fullPath}');
+                        } else {
+                          if (_selectedImage != null) {
+                            // Upload the image to Firestore
+                            final storageRef = FirebaseStorage.instance
+                                .ref()
+                                .child('blog/${createdEntry.id}/${_selectedImage!.path.split('/').last}');
+                            await storageRef.putFile(_selectedImage!);
+                          }
+                        }
+                        String imageName;
+                        if (kIsWeb) {
+                          imageName = _selectedImageWeb?.files.single.name ?? '';
+                        } else {
+                          imageName = _selectedImage?.path.split('/').last ?? '';
+                        }
+                        ref.read(entryViewModelProvider(createdEntry.id).notifier).updateEntry(createdEntry.copyWith(
+                              bannerImageUrl: imageName,
+                            ));
+
+                        if (context.mounted) {
+                          context.pop();
+                        }
                       }
                     },
                     child: Text(localizations.saveEntry),
@@ -167,6 +180,28 @@ class _NewEntryPageState extends ConsumerState<NewEntryPage> {
     _bannerImageUrlController.dispose();
     _tagsController.dispose();
     super.dispose();
+  }
+
+  Future<void> _pickImage() async {
+    if (kIsWeb) {
+      _selectedImageWeb = await FilePicker.platform.pickFiles(
+        type: FileType.image,
+        allowMultiple: false,
+      );
+      if (_selectedImageWeb != null) {
+        setState(() {});
+      }
+    } else {
+      // En móvil o desktop, puedes usar el ImagePicker
+      final picker = ImagePicker();
+      final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+
+      if (pickedFile != null) {
+        setState(() {
+          _selectedImage = File(pickedFile.path);
+        });
+      }
+    }
   }
 
   Widget _tagsField() {
@@ -285,6 +320,8 @@ class _NewEntryPageState extends ConsumerState<NewEntryPage> {
             const FontSettingButtons(),
             const ColorButtons(),
             const InsertButtons(),
+            const ListButtons(),
+            const ParagraphButtons(),
             const OtherButtons(),
           ],
           toolbarPosition: ToolbarPosition.belowEditor,
@@ -300,11 +337,8 @@ class _NewEntryPageState extends ConsumerState<NewEntryPage> {
         ),
         htmlEditorOptions: HtmlEditorOptions(
           hint: localizations.content,
-          //initalText: "text content initial, if any",
         ),
         otherOptions: OtherOptions(
-//          height: 400,
-
           decoration: BoxDecoration(
             color: AppTheme.lightTheme.colorScheme.primary,
             borderRadius: const BorderRadius.all(Radius.circular(5)),

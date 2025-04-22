@@ -1,28 +1,44 @@
-//A widget that shows a list of entries with comments.
-//Each entry is collapsed and only shows its title, then can be expanded to show its subtitle and comments.
-//Each comment is an item with author, date, and text (content).
-//Comments are nested to their owner entry
-
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:javier_website/core/enums/role.dart';
 import 'package:javier_website/model/entry.dart';
+import 'package:javier_website/model/user.dart';
 import 'package:javier_website/view/blog/entry_detail_page.dart';
 import 'package:javier_website/view/themes/app_theme.dart';
+import 'package:javier_website/viewmodel/blog/entries_view_model.dart';
+import 'package:javier_website/viewmodel/user/user_view_model.dart';
 
-class ResumedEntries extends StatefulWidget {
+class ResumedEntries extends ConsumerStatefulWidget {
   final List<Entry> entries;
 
   const ResumedEntries({super.key, required this.entries});
 
   @override
-  State<ResumedEntries> createState() => _ResumedEntriesState();
+  ConsumerState<ResumedEntries> createState() => _ResumedEntriesState();
 }
 
-class _ResumedEntriesState extends State<ResumedEntries> {
+class _ResumedEntriesState extends ConsumerState<ResumedEntries> {
   int _expandedIndex = -1;
 
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
+    var currentUser = ref.watch(currentUserProvider);
+
+    return currentUser.when(
+      data: (user) {
+        return _content(screenHeight, user);
+      },
+      error: (error, stackTrace) {
+        return Center(child: Text('Error: $error'));
+      },
+      loading: () {
+        return const Center(child: CircularProgressIndicator());
+      },
+    );
+  }
+
+  SingleChildScrollView _content(double screenHeight, User user) {
     return SingleChildScrollView(
       child: ExpansionPanelList(
         expansionCallback: (panelIndex, isExpanded) {
@@ -52,57 +68,28 @@ class _ResumedEntriesState extends State<ResumedEntries> {
                     fontSize: 18,
                   ),
                 ),
+                trailing: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    if (user.role == Role.admin)
+                      IconButton(
+                        icon: Icon(Icons.delete, color: AppTheme.lightTheme.colorScheme.primary),
+                        onPressed: () {
+                          setState(() {
+                            var entryVm = ref.read(entriesViewModelProvider().notifier);
+                            entryVm.deleteEntry(entryData.id);
+                            widget.entries.removeAt(index);
+                            _expandedIndex = -1;
+                          });
+                        },
+                      ),
+                  ],
+                ),
               );
             },
             body: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // Row(
-                //   children: [
-                //     Padding(
-                //       padding: const EdgeInsets.fromLTRB(16, 0, 0, 0),
-                //       child: Text(entryData.subtitle,
-                //           style: TextStyle(
-                //               color: AppTheme.lightTheme.colorScheme.primary,
-                //               fontSize: 16,
-                //               fontWeight: FontWeight.normal)),
-                //     ),
-                //   ],
-                // ),
-                //const Divider(),
-
-                SizedBox(height: screenHeight, child: EntryDetailPage(id: entryData.id))
-                // Row(
-                //   children: [
-                //     Expanded(
-                //       child: MouseRegion(
-                //         cursor: SystemMouseCursors.click,
-                //         child: GestureDetector(
-                //           onTap: () {
-                //             context.pushNamed(RoutNames.blogEntry,
-                //                 pathParameters: {
-                //                   'id': entryData.id,
-                //                 },
-                //                 extra: entryData);
-                //           },
-                //           child: Container(
-                //             color: Colors.black.withAlpha(200),
-                //             child: Padding(
-                //               padding: const EdgeInsets.fromLTRB(16, 0, 0, 0),
-                //               child: Text(localizations.read_more,
-                //                   style: TextStyle(
-                //                     color: AppTheme.lightTheme.colorScheme.primary,
-                //                     fontSize: 18,
-                //                     fontWeight: FontWeight.normal,
-                //                   )),
-                //             ),
-                //           ),
-                //         ),
-                //       ),
-                //     ),
-                //   ],
-                // ),
-              ],
+              children: [SizedBox(height: screenHeight, child: EntryDetailPage(id: entryData.id))],
             ),
           );
         }).toList(),

@@ -27,6 +27,7 @@ class _HomeState extends ConsumerState<Home> {
   @override
   Widget build(BuildContext context) {
     ref.watch(localeNotifierProvider);
+
     var authVm = ref.watch(authViewModelProvider);
 
     return authVm.when(
@@ -34,15 +35,15 @@ class _HomeState extends ConsumerState<Home> {
         return CommonScaffold(actions: _socialActions(context), child: _scaffoldBody());
       },
       error: (error, stackTrace) {
-        return Center(child: Text('Error authenticating service user: $error'));
+        return CommonScaffold(child: Center(child: Text('Error authenticating service user: $error')));
       },
       loading: () {
-        return Center(child: FadeInOutText(text: localizations.loadind_data));
+        return CommonScaffold(actions: _socialActions(context), child: _scaffoldBody(isLoading: true));
       },
     );
   }
 
-  Widget _scaffoldBody() {
+  Widget _scaffoldBody({bool isLoading = false}) {
     double screenWidth = MediaQuery.of(context).size.width > 600 ? 600 : MediaQuery.of(context).size.width;
     double lateralPadding = screenWidth < 600 ? 30 : screenWidth * .25;
     return Column(
@@ -84,7 +85,9 @@ class _HomeState extends ConsumerState<Home> {
                           ),
                         ],
                       ),
-                      IndexedContent(index: _index),
+                      if (!isLoading) IndexedContent(index: _index),
+                      if(isLoading)   Center(child: FadeInOutText(text: localizations.loadind_data)),
+
                     ],
                   ),
                 ),

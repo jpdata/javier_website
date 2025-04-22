@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:javier_website/core/l10n/dynamic_app_localizations.dart';
 import 'package:javier_website/core/providers/notifiers/locale_notifier.dart';
@@ -7,13 +6,9 @@ import 'package:javier_website/core/l10n/app_locale.dart';
 import 'package:javier_website/core/l10n/app_localizations.dart';
 import 'package:javier_website/router/router.dart';
 import 'package:javier_website/view/themes/app_theme.dart';
-import 'firebase_options.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform, // Usa las opciones correctas
-  );
 
   runApp(
     const ProviderScope(

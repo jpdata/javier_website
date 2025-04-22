@@ -1,4 +1,4 @@
-import 'package:javier_website/core/blog_mappers.dart';
+import 'package:javier_website/core/mappers.dart';
 import 'package:javier_website/data/firestore_client.dart';
 import 'package:javier_website/model/news_entry.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -97,4 +97,6 @@ class NewsEntriesViewModel extends _$NewsEntriesViewModel {
       return _fetchEntries(limit: _limit, page: _page);
     });
   }
+
+  
 }

@@ -49,7 +49,7 @@ Map<String, dynamic> _$AuthStateToJson(_AuthState instance) =>
 // RiverpodGenerator
 // **************************************************************************
 
-String _$authViewModelHash() => r'b9ddca0dbb9ded167f7bca8bd5ebf7859f16dd6c';
+String _$authViewModelHash() => r'9cb60569020e1930c68d937985e425b4f52c6915';
 
 /// See also [AuthViewModel].
 @ProviderFor(AuthViewModel)

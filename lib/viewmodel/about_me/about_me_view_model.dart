@@ -1,4 +1,4 @@
-import 'package:javier_website/core/blog_mappers.dart';
+import 'package:javier_website/core/mappers.dart';
 import 'package:javier_website/core/providers/notifiers/locale_notifier.dart';
 import 'package:javier_website/data/firestore_client.dart';
 import 'package:javier_website/model/about_me.dart';

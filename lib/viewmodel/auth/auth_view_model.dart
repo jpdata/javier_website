@@ -3,6 +3,7 @@ import 'dart:developer' as developer;
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:javier_website/core/auth_helper.dart';
+import 'package:javier_website/core/providers/firebase_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -27,6 +28,8 @@ class AuthViewModel extends _$AuthViewModel {
   @override
   Future<AuthState> build() async {
     final prefs = await SharedPreferences.getInstance();
+    final firebaseApp = await ref.watch(firebaseProvider.future); // Espera a Firebase
+
     final authData = prefs.getString('authState');
     if (authData != null) {
       return AuthState.fromJson(jsonDecode(authData));

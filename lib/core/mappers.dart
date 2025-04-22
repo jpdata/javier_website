@@ -1,8 +1,10 @@
+import 'package:javier_website/core/enums/role.dart';
 import 'package:javier_website/data/firestore_client.dart';
 import 'package:javier_website/model/about_me.dart';
 import 'package:javier_website/model/comment.dart';
 import 'package:javier_website/model/entry.dart';
 import 'package:javier_website/model/news_entry.dart';
+import 'package:javier_website/model/user.dart';
 
 extension CommentMapper on CommentDto {
   Comment toEntity() {
@@ -99,6 +101,34 @@ extension AboutMeMapper on AboutMeDto {
       id: id,
       content: content,
       language: language,
+    );
+  }
+}
+
+extension UserDtoMapper on User {
+  UserDto toDto() {
+    return UserDto(
+      id: id,
+      name: name,
+      email: email,
+      lastName: lastname,
+      registryDate: registryDate,
+      role: role.name,
+      status: status.name,
+    );
+  }
+}
+
+extension UserMapper on UserDto {
+  User toEntity() {
+    return User(
+      id: id,
+      name: name,
+      lastname: lastName,
+      email: email,
+      registryDate: registryDate,
+      role: Role.values.firstWhere((element) => element.name == role),
+      status: Status.values.firstWhere((element) => element.name == status),
     );
   }
 }

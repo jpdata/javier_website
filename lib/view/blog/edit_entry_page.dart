@@ -330,6 +330,8 @@ class _EditEntryPageState extends ConsumerState<EditEntryPage> {
             const FontSettingButtons(),
             const ColorButtons(),
             const InsertButtons(),
+            const ListButtons(),
+            const ParagraphButtons(),
             const OtherButtons(),
           ],
           toolbarPosition: ToolbarPosition.belowEditor,
