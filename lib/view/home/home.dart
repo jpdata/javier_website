@@ -32,7 +32,7 @@ class _HomeState extends ConsumerState<Home> {
 
     return authVm.when(
       data: (data) {
-        return CommonScaffold(actions: _socialActions(context), child: _scaffoldBody());
+        return CommonScaffold(child: _scaffoldBody());
       },
       error: (error, stackTrace) {
         return CommonScaffold(child: Center(child: Text('Error authenticating service user: $error')));
@@ -86,8 +86,7 @@ class _HomeState extends ConsumerState<Home> {
                         ],
                       ),
                       if (!isLoading) IndexedContent(index: _index),
-                      if(isLoading)   Center(child: FadeInOutText(text: localizations.loadind_data)),
-
+                      if (isLoading) Center(child: FadeInOutText(text: localizations.loadind_data)),
                     ],
                   ),
                 ),
@@ -97,9 +96,38 @@ class _HomeState extends ConsumerState<Home> {
         ),
         Padding(
           padding: const EdgeInsets.fromLTRB(0, 32, 0, 32),
-          child: _footer(),
+          child: Column(
+            children: [
+              _socialNetworkFooter(),
+              const SizedBox(height: 2),
+              _footer(),
+            ],
+          ),
         ),
       ],
+    );
+  }
+
+  SingleChildScrollView _socialNetworkFooter() {
+    return SingleChildScrollView(
+      physics: const BouncingScrollPhysics(),
+      scrollDirection: Axis.horizontal,
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        color: AppTheme.lightTheme.colorScheme.primary.withAlpha(128),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              for (var i = 0; i < _socialActions(context).length; i++) ...[
+                _socialActions(context)[i],
+                if (i < _socialActions(context).length - 1) const SizedBox(width: 10),
+              ],
+            ],
+          ),
+        ),
+      ),
     );
   }
 
@@ -135,7 +163,7 @@ class _HomeState extends ConsumerState<Home> {
   //   );
   // }
 
-  List<Widget> _socialActions(BuildContext context) => [
+  List<Widget> _socialActions(BuildContext context, {double size = 32}) => [
         IconMenuItem.iconMenuItem(
           onTap: () {
             Utils.launchURL('https://www.linkedin.com/in/jeprato/');
@@ -144,8 +172,8 @@ class _HomeState extends ConsumerState<Home> {
           imagePathMouseOver: 'assets/images/linkedin_negative.svg',
           tooltipTextMouseOver: localizations.linkedin,
           color: AppTheme.lightTheme.colorScheme.secondary,
-          height: 28,
-          width: 28,
+          height: size,
+          width: size,
         ),
         IconMenuItem.iconMenuItem(
           onTap: () {
@@ -155,8 +183,8 @@ class _HomeState extends ConsumerState<Home> {
           imagePathMouseOver: 'assets/images/hiberus_negative.svg',
           tooltipTextMouseOver: localizations.hiberus,
           color: AppTheme.lightTheme.colorScheme.secondary,
-          height: 28,
-          width: 28,
+          height: size,
+          width: size,
         ),
         IconMenuItem.iconMenuItem(
           onTap: () {
@@ -166,8 +194,8 @@ class _HomeState extends ConsumerState<Home> {
           imagePathMouseOver: 'assets/images/mail_negative.svg',
           tooltipTextMouseOver: localizations.contact_me,
           color: AppTheme.lightTheme.colorScheme.secondary,
-          height: 28,
-          width: 28,
+          height: size,
+          width: size,
         ),
         IconMenuItem.iconMenuItem(
           onTap: () {
@@ -177,8 +205,8 @@ class _HomeState extends ConsumerState<Home> {
           imagePathMouseOver: 'assets/images/instagram_negative.svg',
           tooltipTextMouseOver: localizations.instagram,
           color: AppTheme.lightTheme.colorScheme.secondary,
-          height: 28,
-          width: 28,
+          height: size,
+          width: size,
         ),
         IconMenuItem.iconMenuItem(
           onTap: () {
@@ -188,8 +216,8 @@ class _HomeState extends ConsumerState<Home> {
           imagePathMouseOver: 'assets/images/github_negative.svg',
           tooltipTextMouseOver: localizations.github,
           color: AppTheme.lightTheme.colorScheme.secondary,
-          height: 28,
-          width: 28,
+          height: size,
+          width: size,
         ),
       ];
 
