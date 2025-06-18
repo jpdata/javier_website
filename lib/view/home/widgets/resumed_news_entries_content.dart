@@ -45,6 +45,7 @@ class _ResumedEntriesContentState extends ConsumerState<ResumedEntriesContent> {
           child: const ResumedEntriesFromFirebase(
             page: 0,
             listLength: 3,
+            showLoggedActions: false,
           ),
         ),
       ],

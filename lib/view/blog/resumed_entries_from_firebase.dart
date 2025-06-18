@@ -9,8 +9,9 @@ import 'package:javier_website/viewmodel/blog/entries_view_model.dart';
 class ResumedEntriesFromFirebase extends ConsumerStatefulWidget {
   final int listLength;
   final int page;
+  final bool showLoggedActions;
   const ResumedEntriesFromFirebase(
-      {super.key, this.listLength = 3, this.page = 0});
+      {super.key, this.listLength = 3, this.page = 0, this.showLoggedActions = true});
 
   @override
   ConsumerState<ResumedEntriesFromFirebase> createState() =>
@@ -40,6 +41,7 @@ class _EntriesListWidgetState
       child: SingleChildScrollView(
         child: ResumedEntries(
           entries: entries,
+          showLoggedActions: widget.showLoggedActions,
         ),
       ),
     );

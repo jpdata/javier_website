@@ -18,7 +18,8 @@ class AppLocalizationsEs extends AppLocalizations {
   String get contact_me => 'Contáctame';
 
   @override
-  String get contact_me_body => 'Si quieres contactarme, simplemente envíame un correo electrónico a jpdata@gmail.com';
+  String get contact_me_body =>
+      'Si quieres contactarme, simplemente envíame un correo electrónico a jpdata@gmail.com';
 
   @override
   String get contact_me_by_email => 'Contáctame por correo electrónico';
@@ -36,7 +37,8 @@ class AppLocalizationsEs extends AppLocalizations {
   String get cogito_ergo_sum => 'Programo, luego existo';
 
   @override
-  String get doing_cool_stuf_with_porgramming_languages => 'Haciendo cosas chulas con lenguajes de programación';
+  String get doing_cool_stuf_with_porgramming_languages =>
+      'Haciendo cosas chulas con lenguajes de programación';
 
   @override
   String get spanish_spain => 'Español (España)';
@@ -54,19 +56,22 @@ class AppLocalizationsEs extends AppLocalizations {
   String get my_website => 'Mi sitio web';
 
   @override
-  String get my_website_description => 'Ejemplo de sitio web y aplicación móvil hecha con Flutter';
+  String get my_website_description =>
+      'Ejemplo de sitio web y aplicación móvil hecha con Flutter';
 
   @override
   String get svg_style_cleaner => 'Limpiador de estilos SVG';
 
   @override
-  String get svg_style_cleaner_description => 'Limpia archivos SVG eliminando estilos innecesarios';
+  String get svg_style_cleaner_description =>
+      'Limpia archivos SVG eliminando estilos innecesarios';
 
   @override
   String get api_open_builder => 'ApiOpenBuilder';
 
   @override
-  String get api_open_builder_description => 'Genera código cliente API de Dart a partir de la especificación OpenAPI 3.0';
+  String get api_open_builder_description =>
+      'Genera código cliente API de Dart a partir de la especificación OpenAPI 3.0';
 
   @override
   String get some_of_my_projects => 'Algunos de mis proyectos';
@@ -128,7 +133,8 @@ class AppLocalizationsEs extends AppLocalizations {
   String get pleaseEnterContent => 'Por favor ingrese contenido';
 
   @override
-  String get pleaseEnterBannerImageUrl => 'Por favor ingrese una URL de imagen de banner';
+  String get pleaseEnterBannerImageUrl =>
+      'Por favor ingrese una URL de imagen de banner';
 
   @override
   String get read_more => 'Leer más';
@@ -234,7 +240,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
 /// The translations for Spanish Castilian, as used in Venezuela (`es_VE`).
 class AppLocalizationsEsVe extends AppLocalizationsEs {
-  AppLocalizationsEsVe(): super('es_VE');
+  AppLocalizationsEsVe() : super('es_VE');
 
   @override
   String get title => 'Website personal de Javi';
@@ -246,7 +252,8 @@ class AppLocalizationsEsVe extends AppLocalizationsEs {
   String get contact_me => 'Contáctame';
 
   @override
-  String get contact_me_body => 'Si quieres contactarme, simplemente envíame un email a jpdata@gmail.com';
+  String get contact_me_body =>
+      'Si quieres contactarme, simplemente envíame un email a jpdata@gmail.com';
 
   @override
   String get contact_me_by_email => 'Contáctame por email';
@@ -264,7 +271,8 @@ class AppLocalizationsEsVe extends AppLocalizationsEs {
   String get cogito_ergo_sum => 'Programo, luego existo';
 
   @override
-  String get doing_cool_stuf_with_porgramming_languages => 'Haciendo cosas finas con lenguajes de programación';
+  String get doing_cool_stuf_with_porgramming_languages =>
+      'Haciendo cosas finas con lenguajes de programación';
 
   @override
   String get spanish_spain => 'Español (España)';
@@ -282,19 +290,22 @@ class AppLocalizationsEsVe extends AppLocalizationsEs {
   String get my_website => 'Mi website';
 
   @override
-  String get my_website_description => 'Ejemplo de website y aplicación móvil hecha con Flutter';
+  String get my_website_description =>
+      'Ejemplo de website y aplicación móvil hecha con Flutter';
 
   @override
   String get svg_style_cleaner => 'Limpiador de estilos SVG';
 
   @override
-  String get svg_style_cleaner_description => 'Limpia archivos SVG eliminando estilos innecesarios';
+  String get svg_style_cleaner_description =>
+      'Limpia archivos SVG eliminando estilos innecesarios';
 
   @override
   String get api_open_builder => 'ApiOpenBuilder';
 
   @override
-  String get api_open_builder_description => 'Genera código cliente API de Dart a partir de la especificación OpenAPI 3.0';
+  String get api_open_builder_description =>
+      'Genera código cliente API de Dart a partir de la especificación OpenAPI 3.0';
 
   @override
   String get some_of_my_projects => 'Algunos de mis proyectos';
@@ -356,7 +367,8 @@ class AppLocalizationsEsVe extends AppLocalizationsEs {
   String get pleaseEnterContent => 'Por favor ingrese contenido';
 
   @override
-  String get pleaseEnterBannerImageUrl => 'Por favor ingrese una URL de imagen de banner';
+  String get pleaseEnterBannerImageUrl =>
+      'Por favor ingrese una URL de imagen de banner';
 
   @override
   String get read_more => 'Leer más';

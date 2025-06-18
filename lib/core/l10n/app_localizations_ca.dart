@@ -18,7 +18,8 @@ class AppLocalizationsCa extends AppLocalizations {
   String get contact_me => 'Contacta\'m';
 
   @override
-  String get contact_me_body => 'Si vols contactar amb mi, només envia\'m un correu a jpdata@gmail.com';
+  String get contact_me_body =>
+      'Si vols contactar amb mi, només envia\'m un correu a jpdata@gmail.com';
 
   @override
   String get contact_me_by_email => 'Contacta\'m per Correu Electrònic';
@@ -36,7 +37,8 @@ class AppLocalizationsCa extends AppLocalizations {
   String get cogito_ergo_sum => 'Programo, per tant existeixo';
 
   @override
-  String get doing_cool_stuf_with_porgramming_languages => 'Fent coses genials amb llenguatges de programació';
+  String get doing_cool_stuf_with_porgramming_languages =>
+      'Fent coses genials amb llenguatges de programació';
 
   @override
   String get spanish_spain => 'Espanyol (Espanya)';
@@ -54,19 +56,22 @@ class AppLocalizationsCa extends AppLocalizations {
   String get my_website => 'El meu lloc web';
 
   @override
-  String get my_website_description => 'Exemple de lloc web i aplicació mòbil feta amb Flutter';
+  String get my_website_description =>
+      'Exemple de lloc web i aplicació mòbil feta amb Flutter';
 
   @override
   String get svg_style_cleaner => 'Netejador d\'estils SVG';
 
   @override
-  String get svg_style_cleaner_description => 'Neteja fitxers SVG eliminant estils innecessaris';
+  String get svg_style_cleaner_description =>
+      'Neteja fitxers SVG eliminant estils innecessaris';
 
   @override
   String get api_open_builder => 'ApiOpenBuilder';
 
   @override
-  String get api_open_builder_description => 'Genera codi client API de Dart a partir de l\'especificació OpenAPI 3.0';
+  String get api_open_builder_description =>
+      'Genera codi client API de Dart a partir de l\'especificació OpenAPI 3.0';
 
   @override
   String get some_of_my_projects => 'Alguns dels meus projectes';
@@ -128,7 +133,8 @@ class AppLocalizationsCa extends AppLocalizations {
   String get pleaseEnterContent => 'Si us plau, introdueix contingut';
 
   @override
-  String get pleaseEnterBannerImageUrl => 'Si us plau, introdueix una URL de la imatge de banner';
+  String get pleaseEnterBannerImageUrl =>
+      'Si us plau, introdueix una URL de la imatge de banner';
 
   @override
   String get read_more => 'Llegir més';

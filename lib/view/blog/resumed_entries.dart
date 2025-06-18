@@ -11,7 +11,9 @@ import 'package:javier_website/viewmodel/user/user_view_model.dart';
 class ResumedEntries extends ConsumerStatefulWidget {
   final List<Entry> entries;
 
-  const ResumedEntries({super.key, required this.entries});
+  final bool showLoggedActions;
+
+  const ResumedEntries({super.key, required this.entries, this.showLoggedActions = true});
 
   @override
   ConsumerState<ResumedEntries> createState() => _ResumedEntriesState();
@@ -68,23 +70,44 @@ class _ResumedEntriesState extends ConsumerState<ResumedEntries> {
                     fontSize: 18,
                   ),
                 ),
-                trailing: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    if (user.role == Role.admin)
-                      IconButton(
-                        icon: Icon(Icons.delete, color: AppTheme.lightTheme.colorScheme.primary),
-                        onPressed: () {
-                          setState(() {
-                            var entryVm = ref.read(entriesViewModelProvider().notifier);
-                            entryVm.deleteEntry(entryData.id);
-                            widget.entries.removeAt(index);
-                            _expandedIndex = -1;
-                          });
-                        },
-                      ),
-                  ],
-                ),
+                trailing: widget.showLoggedActions
+                    ? Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          if (user.role == Role.admin)
+                            IconButton(
+                              icon: Icon(Icons.delete, color: AppTheme.lightTheme.colorScheme.primary),
+                              onPressed: () async {
+                                final confirmed = await showDialog<bool>(
+                                  context: context,
+                                  builder: (context) => AlertDialog(
+                                    title: const Text('Confirmar eliminación'),
+                                    content: const Text('¿Estás seguro de que deseas borrar esta entrada?'),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () => Navigator.of(context).pop(false),
+                                        child: const Text('Cancelar'),
+                                      ),
+                                      TextButton(
+                                        onPressed: () => Navigator.of(context).pop(true),
+                                        child: const Text('Borrar'),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                                if (confirmed == true) {
+                                  setState(() {
+                                    var entryVm = ref.read(entriesViewModelProvider().notifier);
+                                    entryVm.deleteEntry(entryData.id);
+                                    widget.entries.removeAt(index);
+                                    _expandedIndex = -1;
+                                  });
+                                }
+                              },
+                            ),
+                        ],
+                      )
+                    : null,
               );
             },
             body: Column(

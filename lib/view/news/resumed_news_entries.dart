@@ -54,13 +54,37 @@ class _ResumedNewsEntriesState extends ConsumerState<ResumedNewsEntries> {
                   children: [
                     IconButton(
                       icon: Icon(Icons.delete, color: AppTheme.lightTheme.colorScheme.primary),
-                      onPressed: () {
-                        setState(() {
-                          var newsEntryVm = ref.read(newsEntriesViewModelProvider().notifier);
-                          newsEntryVm.deleteEntry(entryData.id);
-                          widget.entries.removeAt(index);
-                          _expanded.remove(index);
-                        });
+                      onPressed: () async {
+                        final confirmed = await showDialog<bool>(
+                          context: context,
+                          builder: (context) => AlertDialog(
+                            title: const Text('Confirmar eliminación'),
+                            content: const Text('¿Estás seguro de que deseas borrar esta entrada?'),
+                            actions: [
+                              TextButton(
+                                onPressed: () => Navigator.of(context).pop(false),
+                                style: AppTheme.lightTheme.elevatedButtonTheme.style,
+                                child: const Text('Cancelar'),
+                              ),
+                              TextButton(
+                                onPressed: () => Navigator.of(context).pop(true),
+                                style: TextButton.styleFrom(
+                                  backgroundColor: AppTheme.lightTheme.colorScheme.primary,
+                                  foregroundColor: AppTheme.lightTheme.colorScheme.onPrimary,
+                                ),
+                                child: const Text('Borrar'),
+                              ),
+                            ],
+                          ),
+                        );
+                        if (confirmed == true) {
+                          setState(() {
+                            var newsEntryVm = ref.read(newsEntriesViewModelProvider().notifier);
+                            newsEntryVm.deleteEntry(entryData.id);
+                            widget.entries.removeAt(index);
+                            _expanded.remove(index);
+                          });
+                        }
                       },
                     ),
                   ],
