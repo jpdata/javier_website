@@ -6,6 +6,7 @@ import 'package:javier_website/core/utils.dart';
 import 'package:javier_website/core/l10n/app_locale.dart';
 import 'package:javier_website/core/providers/notifiers/locale_notifier.dart';
 import 'package:javier_website/view/themes/app_theme.dart';
+import 'package:javier_website/core/assets.dart';
 import 'package:javier_website/view/home/widgets/icon_menu_item.dart';
 import 'package:javier_website/view/home/widgets/indexed_content.dart';
 import 'package:javier_website/view/widgets/common_scaffold.dart';
@@ -83,7 +84,7 @@ class _HomeState extends ConsumerState<Home> {
           width: _index == 0 ? screenWidth * .45 : screenWidth / 2 * .45,
           height: _index == 0 ? screenWidth * .45 : screenWidth / 2 * .45,
           child: Image(
-            image: const Svg("assets/images/javi-wireframe.svg"),
+            image: const Svg(Assets.javiWireframe),
             width: screenWidth * .45,
             color: AppTheme.lightTheme.colorScheme.secondary,
           ),
@@ -170,8 +171,8 @@ class _HomeState extends ConsumerState<Home> {
           onTap: () {
             Utils.launchURL('https://www.linkedin.com/in/jeprato/');
           },
-          imagePath: 'assets/images/linkedin.svg',
-          imagePathMouseOver: 'assets/images/linkedin_negative.svg',
+          imagePath: Assets.linkedin,
+          imagePathMouseOver: Assets.linkedinNegative,
           tooltipTextMouseOver: localizations.linkedin,
           color: AppTheme.lightTheme.colorScheme.secondary,
           height: size,
@@ -181,8 +182,8 @@ class _HomeState extends ConsumerState<Home> {
           onTap: () {
             Utils.launchURL('https://www.hiberus.com');
           },
-          imagePath: 'assets/images/hiberus.svg',
-          imagePathMouseOver: 'assets/images/hiberus_negative.svg',
+          imagePath: Assets.hiberus,
+          imagePathMouseOver: Assets.hiberusNegative,
           tooltipTextMouseOver: localizations.hiberus,
           color: AppTheme.lightTheme.colorScheme.secondary,
           height: size,
@@ -192,8 +193,8 @@ class _HomeState extends ConsumerState<Home> {
           onTap: () {
             Utils.launchMailto(context);
           },
-          imagePath: 'assets/images/mail.svg',
-          imagePathMouseOver: 'assets/images/mail_negative.svg',
+          imagePath: Assets.mail,
+          imagePathMouseOver: Assets.mailNegative,
           tooltipTextMouseOver: localizations.contact_me,
           color: AppTheme.lightTheme.colorScheme.secondary,
           height: size,
@@ -203,8 +204,8 @@ class _HomeState extends ConsumerState<Home> {
           onTap: () {
             Utils.launchURL('https://www.instagram.com/jeprato');
           },
-          imagePath: 'assets/images/instagram.svg',
-          imagePathMouseOver: 'assets/images/instagram_negative.svg',
+          imagePath: Assets.instagram,
+          imagePathMouseOver: Assets.instagramNegative,
           tooltipTextMouseOver: localizations.instagram,
           color: AppTheme.lightTheme.colorScheme.secondary,
           height: size,
@@ -214,8 +215,8 @@ class _HomeState extends ConsumerState<Home> {
           onTap: () {
             Utils.launchURL('https://www.github.com/jpdata');
           },
-          imagePath: 'assets/images/github.svg',
-          imagePathMouseOver: 'assets/images/github_negative.svg',
+          imagePath: Assets.github,
+          imagePathMouseOver: Assets.githubNegative,
           tooltipTextMouseOver: localizations.github,
           color: AppTheme.lightTheme.colorScheme.secondary,
           height: size,
@@ -232,15 +233,15 @@ class _HomeState extends ConsumerState<Home> {
 
   List<Widget> _navigationButtons() {
     return [
-      _navButton(0, 'assets/images/home.svg', 'assets/images/home_negative.svg', localizations.home),
+      _navButton(0, Assets.home, Assets.homeNegative, localizations.home),
       const SizedBox(width: 10),
-      _navButton(4, 'assets/images/about_me.svg', 'assets/images/about_me_negative.svg', localizations.about_me),
+      _navButton(4, Assets.aboutMe, Assets.aboutMeNegative, localizations.about_me),
       const SizedBox(width: 10),
-      _navButton(3, 'assets/images/blog.svg', 'assets/images/blog_negative.svg', localizations.blog),
+      _navButton(3, Assets.blog, Assets.blogNegative, localizations.blog),
       const SizedBox(width: 10),
-      _navButton(1, 'assets/images/portfolio.svg', 'assets/images/portfolio_negative.svg', localizations.portfolio),
+      _navButton(1, Assets.portfolio, Assets.portfolioNegative, localizations.portfolio),
       const SizedBox(width: 10),
-      _navButton(2, 'assets/images/collaborators.svg', 'assets/images/collaborators_negative.svg', localizations.collaborators),
+      _navButton(2, Assets.collaborators, Assets.collaboratorsNegative, localizations.collaborators),
     ];
   }
 

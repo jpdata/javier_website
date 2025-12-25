@@ -1,6 +1,7 @@
 import 'package:delayed_display/delayed_display.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
+import 'package:javier_website/core/assets.dart';
 import 'package:javier_website/core/l10n/app_locale.dart';
 import 'package:javier_website/core/utils.dart';
 import 'package:javier_website/view/widgets/unfolding.dart';
@@ -18,7 +19,7 @@ class CreditsContent extends StatelessWidget {
 
   final List<Map<String, String>> collaborators = [
     {
-      'icon': 'assets/images/linkedin.svg',
+      'icon': Assets.linkedin,
       'name': 'John Gonzalez Vicent',
       'url': 'https://www.linkedin.com/in/johngonzalezvicent/',
       'description': localizations.design_colors_and_images,
@@ -27,7 +28,7 @@ class CreditsContent extends StatelessWidget {
 
   final List<Map<String, String>> collaborations = [
     {
-      'icon': 'assets/images/Linkedin.svg',
+      'icon': Assets.linkedin,
       'name': 'John Gonzalez Vicent',
       'url': 'https://www.linkedin.com/in/johngonzalezvicent/',
       'description': localizations.design_colors_and_images,

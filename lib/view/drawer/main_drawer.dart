@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 import 'package:go_router/go_router.dart';
+import 'package:javier_website/core/assets.dart';
 import 'package:javier_website/core/l10n/app_locale.dart';
 import 'package:javier_website/core/providers/notifiers/locale_notifier.dart';
 import 'package:javier_website/core/utils.dart';
@@ -89,7 +90,7 @@ class _MainDrawerState extends ConsumerState<MainDrawer> {
                                       width: screenWidth * .40,
                                       height: screenWidth / 1.48 * .40,
                                       child: const rive.RiveAnimation.asset(
-                                        'assets/animations/javier.riv',
+                                        Assets.javierAnimation,
                                         fit: BoxFit.cover,
                                       ),
                                     ),

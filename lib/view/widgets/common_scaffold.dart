@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
+import 'package:javier_website/core/assets.dart';
 import 'package:javier_website/core/l10n/dynamic_app_localizations.dart';
 import 'package:javier_website/core/providers/go_router_provider.dart';
 import 'package:javier_website/view/themes/app_theme.dart';
@@ -80,7 +81,7 @@ class _CommonScaffoldState extends ConsumerState<CommonScaffold> {
           color: AppTheme.lightTheme.colorScheme.primary,
           image: DecorationImage(
             image: const Image(
-              image: Svg('assets/images/bg-tile-part-c.svg'),
+              image: Svg(Assets.bgTile),
             ).image,
             repeat: ImageRepeat.repeat,
             scale: 1.5,

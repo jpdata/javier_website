@@ -1,6 +1,7 @@
 import 'package:delayed_display/delayed_display.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
+import 'package:javier_website/core/assets.dart';
 import 'package:javier_website/core/l10n/app_locale.dart';
 import 'package:javier_website/core/utils.dart';
 import 'package:javier_website/view/widgets/unfolding.dart';
@@ -18,19 +19,19 @@ class PortfolioContent extends StatelessWidget {
 
   final List<Map<String, String>> projects = [
     {
-      'icon': 'assets/images/github-icon-2.svg',
+      'icon': Assets.githubIcon,
       'name': localizations.my_website,
       'url': 'https://github.com/jpdata/javier_website',
       'description': localizations.my_website_description,
     },
     {
-      'icon': 'assets/images/github-icon-2.svg',
+      'icon': Assets.githubIcon,
       'name': localizations.svg_style_cleaner,
       'url': 'https://github.com/jpdata/SvgStyleCleaner',
       'description': localizations.svg_style_cleaner_description,
     },
     {
-      'icon': 'assets/images/github-icon-2.svg',
+      'icon': Assets.githubIcon,
       'name': localizations.api_open_builder,
       'url': 'https://github.com/jpdata/api_open_builder',
       'description': localizations.api_open_builder_description,
