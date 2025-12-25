@@ -59,32 +59,7 @@ class _HomeState extends ConsumerState<Home> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Row(
-                        children: [
-                          AnimatedContainer(
-                            duration: const Duration(milliseconds: 500),
-                            curve: Curves.easeInOut,
-                            width: _index == 0 ? screenWidth * .45 : screenWidth / 2 * .45,
-                            height: _index == 0 ? screenWidth * .45 : screenWidth / 2 * .45,
-                            child: Image(
-                                image: const Svg("assets/images/javi-wireframe.svg"),
-                                width: screenWidth * .45,
-                                color: AppTheme.lightTheme.colorScheme.secondary),
-                          ),
-                          Expanded(
-                            child: AnimatedOpacity(
-                              opacity: [0, 4].contains(_index) ? 1.0 : 0.0,
-                              duration: const Duration(milliseconds: 500),
-                              child: _typeWriterText(
-                                text: <String>[
-                                  '${localizations.cogito_ergo_sum}\n${localizations.doing_cool_stuf_with_porgramming_languages}',
-                                ],
-                                onFinished: () {},
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
+                      _profileSection(screenWidth),
                       if (!isLoading) IndexedContent(index: _index),
                       if (isLoading) Center(child: FadeInOutText(text: localizations.loadind_data)),
                     ],
@@ -94,17 +69,51 @@ class _HomeState extends ConsumerState<Home> {
             ),
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.fromLTRB(0, 32, 0, 32),
-          child: Column(
-            children: [
-              _socialNetworkFooter(),
-              const SizedBox(height: 2),
-              _footer(),
-            ],
+        _footerSection(),
+      ],
+    );
+  }
+
+  Widget _profileSection(double screenWidth) {
+    return Row(
+      children: [
+        AnimatedContainer(
+          duration: const Duration(milliseconds: 500),
+          curve: Curves.easeInOut,
+          width: _index == 0 ? screenWidth * .45 : screenWidth / 2 * .45,
+          height: _index == 0 ? screenWidth * .45 : screenWidth / 2 * .45,
+          child: Image(
+            image: const Svg("assets/images/javi-wireframe.svg"),
+            width: screenWidth * .45,
+            color: AppTheme.lightTheme.colorScheme.secondary,
+          ),
+        ),
+        Expanded(
+          child: AnimatedOpacity(
+            opacity: [0, 4].contains(_index) ? 1.0 : 0.0,
+            duration: const Duration(milliseconds: 500),
+            child: _typeWriterText(
+              text: <String>[
+                '${localizations.cogito_ergo_sum}\n${localizations.doing_cool_stuf_with_porgramming_languages}',
+              ],
+              onFinished: () {},
+            ),
           ),
         ),
       ],
+    );
+  }
+
+  Widget _footerSection() {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(0, 32, 0, 32),
+      child: Column(
+        children: [
+          _socialNetworkFooter(),
+          const SizedBox(height: 2),
+          _footer(),
+        ],
+      ),
     );
   }
 
@@ -138,15 +147,8 @@ class _HomeState extends ConsumerState<Home> {
       child: Container(
         width: MediaQuery.of(context).size.width,
         color: AppTheme.lightTheme.colorScheme.secondary.withAlpha(128),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              _functionalIGroup(),
-              //const SizedBox(height: 8),
-            ],
-          ),
-        ),
+        padding: const EdgeInsets.all(8.0),
+        child: _functionalIGroup(),
       ),
     );
   }
@@ -224,62 +226,30 @@ class _HomeState extends ConsumerState<Home> {
   Row _functionalIGroup() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        IconMenuItem.iconMenuItem(
-          onTap: () {
-            setState(() {
-              _index = 0;
-            });
-          },
-          imagePath: 'assets/images/home.svg',
-          imagePathMouseOver: 'assets/images/home_negative.svg',
-          tooltipTextMouseOver: localizations.home,
-        ),
-        const SizedBox(width: 10),
-        IconMenuItem.iconMenuItem(
-          onTap: () {
-            setState(() {
-              _index = 4;
-            });
-          },
-          imagePath: 'assets/images/about_me.svg',
-          imagePathMouseOver: 'assets/images/about_me_negative.svg',
-          tooltipTextMouseOver: localizations.about_me,
-        ),
-        const SizedBox(width: 10), //
-        IconMenuItem.iconMenuItem(
-          onTap: () {
-            setState(() {
-              _index = 3;
-            });
-          },
-          imagePath: 'assets/images/blog.svg',
-          imagePathMouseOver: 'assets/images/blog_negative.svg',
-          tooltipTextMouseOver: localizations.blog,
-        ),
-        const SizedBox(width: 10),
-        IconMenuItem.iconMenuItem(
-          onTap: () {
-            setState(() {
-              _index = 1;
-            });
-          },
-          imagePath: 'assets/images/portfolio.svg',
-          imagePathMouseOver: 'assets/images/portfolio_negative.svg',
-          tooltipTextMouseOver: localizations.portfolio,
-        ),
-        const SizedBox(width: 10), // Replace Flexible with SizedBox
-        IconMenuItem.iconMenuItem(
-          onTap: () {
-            setState(() {
-              _index = 2;
-            });
-          },
-          imagePath: 'assets/images/collaborators.svg',
-          imagePathMouseOver: 'assets/images/collaborators_negative.svg',
-          tooltipTextMouseOver: localizations.collaborators,
-        ),
-      ],
+      children: _navigationButtons(),
+    );
+  }
+
+  List<Widget> _navigationButtons() {
+    return [
+      _navButton(0, 'assets/images/home.svg', 'assets/images/home_negative.svg', localizations.home),
+      const SizedBox(width: 10),
+      _navButton(4, 'assets/images/about_me.svg', 'assets/images/about_me_negative.svg', localizations.about_me),
+      const SizedBox(width: 10),
+      _navButton(3, 'assets/images/blog.svg', 'assets/images/blog_negative.svg', localizations.blog),
+      const SizedBox(width: 10),
+      _navButton(1, 'assets/images/portfolio.svg', 'assets/images/portfolio_negative.svg', localizations.portfolio),
+      const SizedBox(width: 10),
+      _navButton(2, 'assets/images/collaborators.svg', 'assets/images/collaborators_negative.svg', localizations.collaborators),
+    ];
+  }
+
+  Widget _navButton(int index, String imagePath, String hoverPath, String tooltip) {
+    return IconMenuItem.iconMenuItem(
+      onTap: () => setState(() => _index = index),
+      imagePath: imagePath,
+      imagePathMouseOver: hoverPath,
+      tooltipTextMouseOver: tooltip,
     );
   }
 
