@@ -4,7 +4,7 @@
 //Comments are nested to their owner entry
 
 import 'package:flutter/material.dart';
-import 'package:flutter_html/flutter_html.dart';
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:javier_website/core/l10n/app_locale.dart';
 import 'package:javier_website/model/news_entry.dart';
@@ -61,7 +61,7 @@ class _NewsEntriesState extends ConsumerState<NewsEntries> {
                           color: Colors.black.withAlpha(128),
                           child: Padding(
                             padding: const EdgeInsets.fromLTRB(16, 0, 0, 0),
-                            child: Html(data: entryData.content),
+                            child: HtmlWidget(entryData.content),
                           ),
                         ),
                       ),

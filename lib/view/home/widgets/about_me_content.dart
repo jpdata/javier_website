@@ -1,6 +1,6 @@
 import 'package:delayed_display/delayed_display.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_html/flutter_html.dart';
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:javier_website/core/error_handler.dart';
 import 'package:javier_website/core/l10n/app_locale.dart';
@@ -56,11 +56,12 @@ class _AboutMeContentState extends ConsumerState<AboutMeContent> {
         ),
         DelayedDisplay(
           delay: Duration(milliseconds: widget.initialDelay + index * widget.duration),
-          child: Html(
-            onLinkTap: (url, attributes, element) {
-              Utils.launchURL(url ?? '');
+          child: HtmlWidget(
+            text,
+            onTapUrl: (url) {
+              Utils.launchURL(url);
+              return true;
             },
-            data: text,
           ),
         ),
       ],
