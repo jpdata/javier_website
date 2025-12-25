@@ -2,6 +2,7 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
+import 'package:javier_website/core/error_handler.dart';
 import 'package:javier_website/core/utils.dart';
 import 'package:javier_website/core/l10n/app_locale.dart';
 import 'package:javier_website/core/providers/notifiers/locale_notifier.dart';
@@ -35,9 +36,7 @@ class _HomeState extends ConsumerState<Home> {
       data: (data) {
         return CommonScaffold(child: _scaffoldBody());
       },
-      error: (error, stackTrace) {
-        return CommonScaffold(child: Center(child: Text('Error authenticating service user: $error')));
-      },
+      error: (error, stackTrace) => CommonScaffold(child: ErrorHandler.errorWidget(error)),
       loading: () {
         return CommonScaffold(actions: _socialActions(context), child: _scaffoldBody(isLoading: true));
       },

@@ -236,4 +236,29 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String get github => 'GitHub';
+
+  @override
+  String get unknown_error => 'Ha ocorregut un error desconegut';
+
+  @override
+  String get network_error =>
+      'Error de connexió. Si us plau, comprova la teva connexió a internet.';
+
+  @override
+  String get permission_error => 'No tens permís per accedir a aquest recurs';
+
+  @override
+  String get timeout_error =>
+      'La solicitud ha excedit el temps límit. Si us plau, intenta de nou.';
+
+  @override
+  String get not_found_error => 'El recurs sol·licitat no va ser trobat';
+
+  @override
+  String get authentication_error =>
+      'Error d\'autenticació. Si us plau, inicia sessió de nou.';
+
+  @override
+  String get something_went_wrong =>
+      'Quelcom va anar malament. Si us plau, intenta més tard.';
 }

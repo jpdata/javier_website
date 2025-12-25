@@ -2,6 +2,7 @@ import 'package:delayed_display/delayed_display.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:javier_website/core/error_handler.dart';
 import 'package:javier_website/core/l10n/app_locale.dart';
 import 'package:javier_website/core/utils.dart';
 import 'package:javier_website/view/widgets/unfolding.dart';
@@ -34,9 +35,7 @@ class _AboutMeContentState extends ConsumerState<AboutMeContent> {
                 duration: Duration(milliseconds: widget.duration * (widget.initialDelay + 3)),
                 child: _unfoldContent(textStyle, data.content));
       },
-      error: (error, stackTrace) {
-        return Center(child: Text('Error loading data $error'));
-      },
+      error: (error, stackTrace) => ErrorHandler.errorWidget(error),
       loading: () {
         return const Center(child: CircularProgressIndicator());
       },

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:javier_website/core/error_handler.dart';
 import 'package:javier_website/core/l10n/app_locale.dart';
 import 'package:javier_website/view/widgets/fade_in_out_text.dart';
 
@@ -38,7 +39,7 @@ class ReusableEntriesList<T> extends StatelessWidget {
         child: builder(entries),
       ),
       loading: () => FadeInOutText(text: localizations.loadind_data),
-      error: (error, stackTrace) => Text('Error: $error'),
+      error: (error, stackTrace) => ErrorHandler.errorWidget(error),
     );
   }
 }

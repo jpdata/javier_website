@@ -89,5 +89,12 @@
     "hiberus": "hiberus",
     "instagram": "Instagram",
     "linkedin": "LinkedIn",
-    "github": "GitHub"
+    "github": "GitHub",
+    "unknown_error": "An unknown error occurred",
+    "network_error": "Network connection error. Please check your internet connection.",
+    "permission_error": "You don''t have permission to access this resource",
+    "timeout_error": "Request timed out. Please try again.",
+    "not_found_error": "The requested resource was not found",
+    "authentication_error": "Authentication failed. Please log in again.",
+    "something_went_wrong": "Something went wrong. Please try again later."
 }

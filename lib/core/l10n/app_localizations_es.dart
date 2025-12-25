@@ -236,6 +236,32 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get github => 'GitHub';
+
+  @override
+  String get unknown_error => 'Ocurrió un error desconocido';
+
+  @override
+  String get network_error =>
+      'Error de conexión. Por favor, comprueba tu conexión a internet.';
+
+  @override
+  String get permission_error =>
+      'No tienes permiso para acceder a este recurso';
+
+  @override
+  String get timeout_error =>
+      'La solicitud ha excedido el tiempo límite. Por favor, intenta de nuevo.';
+
+  @override
+  String get not_found_error => 'El recurso solicitado no fue encontrado';
+
+  @override
+  String get authentication_error =>
+      'Error de autenticación. Por favor, inicia sesión de nuevo.';
+
+  @override
+  String get something_went_wrong =>
+      'Algo salió mal. Por favor, intenta más tarde.';
 }
 
 /// The translations for Spanish Castilian, as used in Venezuela (`es_VE`).
@@ -470,4 +496,30 @@ class AppLocalizationsEsVe extends AppLocalizationsEs {
 
   @override
   String get github => 'GitHub';
+
+  @override
+  String get unknown_error => 'Ocurrió un error desconocido';
+
+  @override
+  String get network_error =>
+      'Error de conexión. Por favor, verifica tu conexión a internet.';
+
+  @override
+  String get permission_error =>
+      'No tienes permiso para acceder a este recurso';
+
+  @override
+  String get timeout_error =>
+      'La solicitud ha excedido el tiempo límite. Por favor, intenta de nuevo.';
+
+  @override
+  String get not_found_error => 'El recurso solicitado no fue encontrado';
+
+  @override
+  String get authentication_error =>
+      'Error de autenticación. Por favor, inicia sesión de nuevo.';
+
+  @override
+  String get something_went_wrong =>
+      'Algo salió mal. Por favor, intenta más tarde.';
 }

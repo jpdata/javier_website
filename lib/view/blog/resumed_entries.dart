@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:javier_website/core/enums/role.dart';
+import 'package:javier_website/core/error_handler.dart';
 import 'package:javier_website/model/entry.dart';
 import 'package:javier_website/model/user.dart';
 import 'package:javier_website/view/blog/entry_detail_page.dart';
@@ -31,9 +32,7 @@ class _ResumedEntriesState extends ConsumerState<ResumedEntries> {
       data: (user) {
         return _content(screenHeight, user);
       },
-      error: (error, stackTrace) {
-        return Center(child: Text('Error: $error'));
-      },
+      error: (error, stackTrace) => ErrorHandler.errorWidget(error),
       loading: () {
         return const Center(child: CircularProgressIndicator());
       },

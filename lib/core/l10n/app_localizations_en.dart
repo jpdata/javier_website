@@ -235,4 +235,29 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get github => 'GitHub';
+
+  @override
+  String get unknown_error => 'An unknown error occurred';
+
+  @override
+  String get network_error =>
+      'Network connection error. Please check your internet connection.';
+
+  @override
+  String get permission_error =>
+      'You don\'t have permission to access this resource';
+
+  @override
+  String get timeout_error => 'Request timed out. Please try again.';
+
+  @override
+  String get not_found_error => 'The requested resource was not found';
+
+  @override
+  String get authentication_error =>
+      'Authentication failed. Please log in again.';
+
+  @override
+  String get something_went_wrong =>
+      'Something went wrong. Please try again later.';
 }

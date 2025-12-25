@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:javier_website/core/error_handler.dart';
 import 'package:javier_website/core/l10n/app_locale.dart';
 import 'package:javier_website/model/news_entry.dart';
 import 'package:javier_website/view/home/widgets/news_entries.dart';
@@ -44,7 +45,7 @@ class _EntriesListWidgetState extends ConsumerState<NewsEntriesFromFirebase> {
       loading: () {
         return FadeInOutText(text: localizations.loadind_data);
       },
-      error: (error, stackTrace) => Text('Error: $error'),
+      error: (error, stackTrace) => ErrorHandler.errorWidget(error),
     );
   }
 

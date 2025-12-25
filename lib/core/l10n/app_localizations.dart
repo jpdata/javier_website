@@ -526,6 +526,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'GitHub'**
   String get github;
+
+  /// No description provided for @unknown_error.
+  ///
+  /// In en, this message translates to:
+  /// **'An unknown error occurred'**
+  String get unknown_error;
+
+  /// No description provided for @network_error.
+  ///
+  /// In en, this message translates to:
+  /// **'Network connection error. Please check your internet connection.'**
+  String get network_error;
+
+  /// No description provided for @permission_error.
+  ///
+  /// In en, this message translates to:
+  /// **'You don\'\'t have permission to access this resource'**
+  String get permission_error;
+
+  /// No description provided for @timeout_error.
+  ///
+  /// In en, this message translates to:
+  /// **'Request timed out. Please try again.'**
+  String get timeout_error;
+
+  /// No description provided for @not_found_error.
+  ///
+  /// In en, this message translates to:
+  /// **'The requested resource was not found'**
+  String get not_found_error;
+
+  /// No description provided for @authentication_error.
+  ///
+  /// In en, this message translates to:
+  /// **'Authentication failed. Please log in again.'**
+  String get authentication_error;
+
+  /// No description provided for @something_went_wrong.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong. Please try again later.'**
+  String get something_went_wrong;
 }
 
 class _AppLocalizationsDelegate
