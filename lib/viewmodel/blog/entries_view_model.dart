@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:javier_website/core/analytics_service.dart';
 import 'package:javier_website/core/mappers.dart';
 import 'package:javier_website/data/firestore_client.dart';
 import 'package:javier_website/model/entry.dart';
@@ -95,6 +96,7 @@ class EntriesViewModel extends _$EntriesViewModel {
     state = const AsyncValue.loading();
     state = await AsyncValue.guard(() async {
       await _entriesCollection.reference.doc(id).delete();
+      await AnalyticsService.logEntryDeleted(entryId: id, entryType: 'blog_entry');
       return _fetchEntries(limit: _limit, page: _page);
     });
   }
@@ -113,6 +115,11 @@ class EntriesViewModel extends _$EntriesViewModel {
     state = await AsyncValue.guard(() async {
       var result = await _entriesCollection.add(entry.toDto());
       id = result.id;
+      await AnalyticsService.logEntryCreated(
+        entryId: id,
+        entryType: 'blog_entry',
+        wordCount: entry.content?.length ?? 0,
+      );
       return _fetchEntries(limit: _limit, page: _page);
     });
     return entry.copyWith(id: id);
@@ -126,7 +133,14 @@ class EntriesViewModel extends _$EntriesViewModel {
       return Future.value(state.value);
     });
     if (snapshot?.exists ?? false) {
-      return snapshot!.data()!.toEntity();
+      final Entry entry = await snapshot!.data()!.toEntity();
+      final String entryTitle = entry.title ?? '';
+      await AnalyticsService.logEntryView(
+        entryId: id,
+        entryTitle: entryTitle,
+        entryCategory: 'blog',
+      );
+      return entry;
     } else {
       return null;
     }

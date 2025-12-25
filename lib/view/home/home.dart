@@ -2,6 +2,7 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
+import 'package:javier_website/core/analytics_service.dart';
 import 'package:javier_website/core/error_handler.dart';
 import 'package:javier_website/core/utils.dart';
 import 'package:javier_website/core/l10n/app_locale.dart';
@@ -25,6 +26,12 @@ class Home extends ConsumerStatefulWidget {
 
 class _HomeState extends ConsumerState<Home> {
   int _index = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    AnalyticsService.logPageView(pageName: 'home', pageClass: 'Home');
+  }
 
   @override
   Widget build(BuildContext context) {

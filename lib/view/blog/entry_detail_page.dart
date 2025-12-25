@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:javier_website/core/analytics_service.dart';
 import 'package:javier_website/core/error_handler.dart';
 import 'package:javier_website/view/blog/entry_detail_widget.dart';
 import 'package:javier_website/view/themes/app_theme.dart';
@@ -16,6 +17,12 @@ class EntryDetailPage extends ConsumerStatefulWidget {
 }
 
 class _EntryDetailPageState extends ConsumerState<EntryDetailPage> {
+  @override
+  void initState() {
+    super.initState();
+    AnalyticsService.logPageView(pageName: 'blog_entry_detail', pageClass: 'BlogEntryDetail');
+  }
+
   @override
   Widget build(BuildContext context) {
     final entry = ref.watch(entryViewModelProvider(widget.id));

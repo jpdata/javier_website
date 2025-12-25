@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:javier_website/core/analytics_service.dart';
 import 'package:javier_website/core/l10n/app_locale.dart';
 import 'package:javier_website/router/rout_names.dart';
 import 'package:javier_website/view/themes/app_theme.dart';
@@ -11,6 +12,8 @@ class BlogEntriesListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AnalyticsService.logPageView(pageName: 'blog_entries_list', pageClass: 'BlogEntriesList');
+
     double screenWidth = MediaQuery.of(context).size.width;
 
     return CommonScaffold(

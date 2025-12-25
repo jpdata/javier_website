@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:javier_website/core/analytics_service.dart';
 import 'package:javier_website/core/l10n/app_locale.dart';
 import 'package:javier_website/router/rout_names.dart';
 import 'package:javier_website/view/themes/app_theme.dart';
@@ -23,6 +24,8 @@ class NewsEntryDetailPage extends ConsumerWidget {
         body: Center(child: CircularProgressIndicator()),
       );
     }
+
+    AnalyticsService.logPageView(pageName: 'news_entry_detail', pageClass: 'NewsEntryDetail');
 
     double screenWidth = MediaQuery.of(context).size.width;
 

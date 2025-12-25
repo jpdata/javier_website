@@ -55,6 +55,7 @@ dependencies:
   firebase_auth: ^5.5.2
   firebase_remote_config: ^5.4.3
   firebase_analytics: ^11.4.5
+  firebase_crashlytics: ^4.1.4
   another_flushbar: ^1.12.30
   freezed_annotation: ^3.0.0
   cloud_functions: ^5.4.0

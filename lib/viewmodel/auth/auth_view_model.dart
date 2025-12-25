@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:javier_website/core/analytics_service.dart';
 import 'package:javier_website/core/auth_helper.dart';
 import 'package:javier_website/core/providers/firebase_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -77,6 +78,11 @@ class AuthViewModel extends _$AuthViewModel {
 
         // Persist to local storage
         await _saveLocalAuthState(authState);
+        
+        // Track analytics
+        await AnalyticsService.logSignIn(method: 'email');
+        await AnalyticsService.setUserId(user.uid);
+        await CrashlyticsService.setUserId(user.uid);
 
         return authState;
       },
@@ -98,6 +104,11 @@ class AuthViewModel extends _$AuthViewModel {
 
         // Persist to local storage
         await _saveLocalAuthState(authState);
+        
+        // Track analytics
+        await AnalyticsService.logSignIn(method: 'service_account');
+        await AnalyticsService.setUserId(user.uid);
+        await CrashlyticsService.setUserId(user.uid);
 
         return authState;
       },
@@ -113,6 +124,11 @@ class AuthViewModel extends _$AuthViewModel {
       // Clear local cache
       final prefs = await SharedPreferences.getInstance();
       await prefs.remove(_authStateKey);
+      
+      // Track analytics
+      await AnalyticsService.logSignOut();
+      await AnalyticsService.clearUserId();
+      await CrashlyticsService.clearUserId();
 
       return const AuthState(
         id: '',

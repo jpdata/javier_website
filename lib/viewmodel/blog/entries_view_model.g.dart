@@ -173,7 +173,7 @@ class _EntryViewModelProviderElement
   String get id => (origin as EntryViewModelProvider).id;
 }
 
-String _$entriesViewModelHash() => r'4a2faf756bfd4afc7f1cbc155c2ba8e1d049a806';
+String _$entriesViewModelHash() => r'cb60d0328ae0e5cc0ea3769788f991338d601418';
 
 abstract class _$EntriesViewModel
     extends BuildlessAutoDisposeAsyncNotifier<List<Entry>> {

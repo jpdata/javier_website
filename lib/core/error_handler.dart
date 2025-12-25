@@ -1,12 +1,5 @@
-/// Global error handling utilities
-/// 
-/// Provides centralized error handling for the application with:
-/// - User-friendly error messages
-/// - Specific exception type handling
-/// - Firebase exception recognition
-/// - Logging support (can be extended with Crashlytics)
-
 import 'package:flutter/material.dart';
+import 'package:javier_website/core/analytics_service.dart';
 import 'package:javier_website/core/l10n/app_locale.dart';
 
 /// Custom exception for application-specific errors
@@ -71,14 +64,16 @@ class ErrorHandler {
     return localizations.something_went_wrong;
   }
 
-  /// Log error (can be extended with Crashlytics or other services)
+  /// Log error to Crashlytics and local debug
   static void logError(Object? error, StackTrace? stackTrace) {
     debugPrint('❌ Error: $error');
     if (stackTrace != null) {
       debugPrintStack(stackTrace: stackTrace);
     }
-    // TODO: Send to Firebase Crashlytics
-    // FirebaseCrashlytics.instance.recordError(error, stackTrace);
+    // Send to Firebase Crashlytics
+    if (error != null) {
+      CrashlyticsService.recordError(error, stackTrace, reason: getErrorMessage(error));
+    }
   }
 
   /// Log warning (non-fatal issues)

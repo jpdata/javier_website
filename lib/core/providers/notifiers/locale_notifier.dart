@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:javier_website/core/analytics_service.dart';
 import 'package:javier_website/core/l10n/app_locale.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -33,6 +34,7 @@ class LocaleNotifier extends _$LocaleNotifier {
   // ignore: avoid_build_context_in_providers
   void setLocale({required Locale locale, BuildContext? context}) {
     state = locale;
+    AnalyticsService.logLanguageChange(language: locale.languageCode);
     if (context != null) LocalizationManager.updateLocale(context);
   }
 }

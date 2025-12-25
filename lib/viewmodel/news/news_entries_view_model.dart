@@ -1,3 +1,4 @@
+import 'package:javier_website/core/analytics_service.dart';
 import 'package:javier_website/core/mappers.dart';
 import 'package:javier_website/data/firestore_client.dart';
 import 'package:javier_website/model/news_entry.dart';
@@ -78,6 +79,7 @@ class NewsEntriesViewModel extends _$NewsEntriesViewModel {
     state = const AsyncValue.loading();
     state = await AsyncValue.guard(() async {
       await _newsEntriesCollection.reference.doc(id).delete();
+      await AnalyticsService.logEntryDeleted(entryId: id, entryType: 'news_entry');
       return _fetchEntries(limit: _limit, page: _page);
     });
   }
@@ -93,7 +95,12 @@ class NewsEntriesViewModel extends _$NewsEntriesViewModel {
   Future<void> createEntry(NewsEntry entry) async {
     state = const AsyncValue.loading();
     state = await AsyncValue.guard(() async {
-      await _newsEntriesCollection.add(entry.toDto());
+      var result = await _newsEntriesCollection.add(entry.toDto());
+      await AnalyticsService.logEntryCreated(
+        entryId: result.id,
+        entryType: 'news_entry',
+        wordCount: entry.content?.length ?? 0,
+      );
       return _fetchEntries(limit: _limit, page: _page);
     });
   }
