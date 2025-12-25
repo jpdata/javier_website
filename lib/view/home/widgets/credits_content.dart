@@ -1,83 +1,50 @@
 import 'package:delayed_display/delayed_display.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
-import 'package:javier_website/core/assets.dart';
 import 'package:javier_website/core/l10n/app_locale.dart';
+import 'package:javier_website/core/providers/localized_content_provider.dart';
 import 'package:javier_website/core/utils.dart';
 import 'package:javier_website/view/widgets/unfolding.dart';
 
-class CreditsContent extends StatelessWidget {
-  CreditsContent(
-      {super.key,
-      this.initialDelay = 0,
-      this.duration = 500,
-      this.unfold = true});
-
+class CreditsContent extends ConsumerWidget {
   final int initialDelay;
   final int duration;
   final bool unfold;
 
-  final List<Map<String, String>> collaborators = [
-    {
-      'icon': Assets.linkedin,
-      'name': 'John Gonzalez Vicent',
-      'url': 'https://www.linkedin.com/in/johngonzalezvicent/',
-      'description': localizations.design_colors_and_images,
-    },
-  ];
-
-  final List<Map<String, String>> collaborations = [
-    {
-      'icon': Assets.linkedin,
-      'name': 'John Gonzalez Vicent',
-      'url': 'https://www.linkedin.com/in/johngonzalezvicent/',
-      'description': localizations.design_colors_and_images,
-    },
-  ];
-
-  final List<Map<String, String>> creditsIMustGive = [
-    // {
-    //   'icon': 'assets/images/portfolio.svg',
-    //   'name': 'Icono Portfolio',
-    //   'url': 'https://iconscout.com/contributors/fullratio',
-    //   'description': localizations.portfolio,
-    // },
-    // {
-    //   'icon': 'assets/images/email.svg',
-    //   'name': 'Icono email',
-    //   'url': 'https://iconscout.com/contributors/eva-icons',
-    //   'description': localizations.contact_me_by_email,
-    // },
-  ];
+  const CreditsContent({
+    super.key,
+    this.initialDelay = 0,
+    this.duration = 500,
+    this.unfold = true,
+  });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final collaborators = ref.watch(collaboratorsProvider);
+    final collaborations = ref.watch(collaborationsProvider);
+    final credits = ref.watch(creditsProvider);
+    
     var textStyle = DefaultTextStyle.of(context).style;
+    final totalItems = collaborators.length + collaborations.length + credits.length + 3;
 
     return unfold
         ? Unfolding.unfold(
-            duration: Duration(
-                milliseconds: duration *
-                    (initialDelay +
-                        3 +
-                        collaborators.length +
-                        collaborations.length +
-                        creditsIMustGive.length)),
-            child: _unfoldContent(textStyle),
+            duration: Duration(milliseconds: duration * (initialDelay + totalItems)),
+            child: _unfoldContent(textStyle, collaborators, collaborations, credits),
           )
         : Unfolding.fold(
-            duration: Duration(
-                milliseconds: duration *
-                    (initialDelay +
-                        3 +
-                        collaborators.length +
-                        collaborations.length +
-                        creditsIMustGive.length)),
-            child: _unfoldContent(textStyle),
+            duration: Duration(milliseconds: duration * (initialDelay + totalItems)),
+            child: _unfoldContent(textStyle, collaborators, collaborations, credits),
           );
   }
 
-  Column _unfoldContent(TextStyle textStyle) {
+  Column _unfoldContent(
+    TextStyle textStyle,
+    List<Map<String, String>> collaborators,
+    List<Map<String, String>> collaborations,
+    List<Map<String, String>> credits,
+  ) {
     int index = 0;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -101,38 +68,16 @@ class CreditsContent extends StatelessWidget {
             ),
           );
         }),
-        //Collaborations
-        // DelayedDisplay(
-        //   delay: Duration(milliseconds: initialDelay),
-        //   child: Text(
-        //     localizations.my_collaborations,
-        //     style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-        //   ),
-        // ),
-        // ...collaborations.map((project) {
-        //   index++;
-        //   return DelayedDisplay(
-        //     delay: Duration(milliseconds: initialDelay + index * duration),
-        //     child: ListTile(
-        //       leading: Image(image: Svg(project['icon']!)),
-        //       title: Text(project['name']!, style: textStyle),
-        //       subtitle: Text(project['description']!, style: textStyle),
-        //       onTap: () => _launchURL(project['url']!),
-        //     ),
-        //   );
-        // }),
-        //Credits I must give
-        (creditsIMustGive.isNotEmpty
+        (credits.isNotEmpty
             ? DelayedDisplay(
                 delay: Duration(milliseconds: initialDelay),
                 child: Text(
                   localizations.credits_i_must_give,
-                  style: const TextStyle(
-                      fontSize: 24, fontWeight: FontWeight.bold),
+                  style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                 ),
               )
             : Container()),
-        ...creditsIMustGive.map((item) {
+        ...credits.map((item) {
           index++;
           return DelayedDisplay(
             delay: Duration(milliseconds: initialDelay + index * duration),

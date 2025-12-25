@@ -1,60 +1,41 @@
 import 'package:delayed_display/delayed_display.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
-import 'package:javier_website/core/assets.dart';
 import 'package:javier_website/core/l10n/app_locale.dart';
+import 'package:javier_website/core/providers/localized_content_provider.dart';
 import 'package:javier_website/core/utils.dart';
 import 'package:javier_website/view/widgets/unfolding.dart';
 
-class PortfolioContent extends StatelessWidget {
-  PortfolioContent(
-      {super.key,
-      this.initialDelay = 0,
-      this.duration = 500,
-      this.unfold = true});
-
+class PortfolioContent extends ConsumerWidget {
   final int initialDelay;
   final int duration;
   final bool unfold;
 
-  final List<Map<String, String>> projects = [
-    {
-      'icon': Assets.githubIcon,
-      'name': localizations.my_website,
-      'url': 'https://github.com/jpdata/javier_website',
-      'description': localizations.my_website_description,
-    },
-    {
-      'icon': Assets.githubIcon,
-      'name': localizations.svg_style_cleaner,
-      'url': 'https://github.com/jpdata/SvgStyleCleaner',
-      'description': localizations.svg_style_cleaner_description,
-    },
-    {
-      'icon': Assets.githubIcon,
-      'name': localizations.api_open_builder,
-      'url': 'https://github.com/jpdata/api_open_builder',
-      'description': localizations.api_open_builder_description,
-    },
-  ];
+  const PortfolioContent({
+    super.key,
+    this.initialDelay = 0,
+    this.duration = 500,
+    this.unfold = true,
+  });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final projects = ref.watch(projectsProvider);
     var textStyle = DefaultTextStyle.of(context).style;
+
     return unfold
         ? Unfolding.unfold(
-            duration: Duration(
-                milliseconds: duration * (initialDelay + projects.length)),
-            child: _unfoldContent(textStyle),
+            duration: Duration(milliseconds: duration * (initialDelay + projects.length)),
+            child: _unfoldContent(textStyle, projects),
           )
         : Unfolding.fold(
-            duration: Duration(
-                milliseconds: duration * (initialDelay + projects.length)),
-            child: _unfoldContent(textStyle),
+            duration: Duration(milliseconds: duration * (initialDelay + projects.length)),
+            child: _unfoldContent(textStyle, projects),
           );
   }
 
-  Column _unfoldContent(TextStyle textStyle) {
+  Column _unfoldContent(TextStyle textStyle, List<Map<String, String>> projects) {
     int index = 0;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
