@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:developer' as developer;
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:javier_website/core/auth_helper.dart';
@@ -9,6 +8,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 part 'auth_view_model.g.dart';
 part 'auth_view_model.freezed.dart';
+
+const String _authStateKey = 'authState';
 
 @freezed
 sealed class AuthState with _$AuthState {
@@ -27,80 +28,92 @@ sealed class AuthState with _$AuthState {
 class AuthViewModel extends _$AuthViewModel {
   @override
   Future<AuthState> build() async {
-    final prefs = await SharedPreferences.getInstance();
-    final firebaseApp = await ref.watch(firebaseProvider.future); // Espera a Firebase
+    // Wait for Firebase initialization
+    await ref.watch(firebaseProvider.future);
 
-    final authData = prefs.getString('authState');
-    if (authData != null) {
-      return AuthState.fromJson(jsonDecode(authData));
-    } else {
-      if (state.value != null && state.value!.id.isNotEmpty) {
-        return state.value!;
-      }
+    // Check if user is already logged in Firebase
+    final currentUser = FirebaseAuth.instance.currentUser;
+    if (currentUser != null) {
+      return _userToAuthState(currentUser, isLoggedIn: true);
+    }
+
+    // Try to restore from local cache
+    final cachedAuthState = await _getLocalAuthState();
+    if (cachedAuthState != null) {
+      return cachedAuthState;
+    }
+
+    // Try to login with env vars (service account)
+    try {
       await _loginWithEnvVars();
       final user = FirebaseAuth.instance.currentUser;
-      return AuthState(
-        id: user?.uid.toString() ?? '',
-        name: '',
-        email: '',
-        photoUrl: '',
-        isLoggedIn: false,
-      );
+      if (user != null) {
+        return _userToAuthState(user, isLoggedIn: false);
+      }
+    } catch (e) {
+      // Silent fail - user can login manually
     }
+
+    return const AuthState(
+      id: '',
+      name: '',
+      email: '',
+      photoUrl: '',
+      isLoggedIn: false,
+    );
   }
 
-  bool isLoggedIn() => state.value?.isLoggedIn ?? false;
-
+  /// Sign in with email and password
   Future<void> sigIn(String email, String password) async {
     state = const AsyncValue.loading();
     state = await AsyncValue.guard(
       () async {
-        final userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);
-        final user = userCredential.user;
-        var authState = AuthState(
-          id: user!.uid,
-          name: user.displayName ?? '',
-          email: user.email ?? '',
-          photoUrl: user.photoURL ?? '',
-          isLoggedIn: true,
+        final userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: email,
+          password: password,
         );
-        // Guarda el estado en localStorage
-        final prefs = await SharedPreferences.getInstance();
-        await prefs.setString('authState', jsonEncode(authState.toJson()));
+        final user = userCredential.user!;
+        final authState = _userToAuthState(user, isLoggedIn: true);
+
+        // Persist to local storage
+        await _saveLocalAuthState(authState);
+
         return authState;
       },
     );
   }
 
+  /// Sign in with env vars (service account)
   Future<void> sigInAnonymous() async {
     state = const AsyncValue.loading();
     state = await AsyncValue.guard(
       () async {
-        _loginWithEnvVars();
+        await _loginWithEnvVars();
         final user = FirebaseAuth.instance.currentUser;
-        var authState = AuthState(
-          id: user!.uid,
-          name: user.displayName ?? '',
-          email: user.email ?? '',
-          photoUrl: user.photoURL ?? '',
-          isLoggedIn: true,
-        );
-        // Guarda el estado en localStorage
-        final prefs = await SharedPreferences.getInstance();
-        await prefs.setString('authState', jsonEncode(authState.toJson()));
+        if (user == null) {
+          throw Exception('Failed to authenticate with service account');
+        }
+
+        final authState = _userToAuthState(user, isLoggedIn: true);
+
+        // Persist to local storage
+        await _saveLocalAuthState(authState);
+
         return authState;
       },
     );
   }
 
+  /// Sign out from Firebase and clear local cache
   Future<void> signOut() async {
     state = const AsyncValue.loading();
     state = await AsyncValue.guard(() async {
       await FirebaseAuth.instance.signOut();
-      await _loginWithEnvVars();
-      // Elimina el estado de localStorage
+
+      // Clear local cache
       final prefs = await SharedPreferences.getInstance();
-      await prefs.remove('authState');
+      await prefs.remove(_authStateKey);
+
       return const AuthState(
         id: '',
         name: '',
@@ -111,15 +124,59 @@ class AuthViewModel extends _$AuthViewModel {
     });
   }
 
-  Future<void> _loginWithEnvVars() async {
-    try {
-      String email = AuthHelper.email;
-      String password = AuthHelper.password;
+  /// Check if user is logged in
+  bool isLoggedIn() => state.value?.isLoggedIn ?? false;
 
-      await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);
-      developer.log("Usuario autenticado exitosamente.");
+  /// Private helpers
+
+  /// Convert Firebase User to AuthState
+  AuthState _userToAuthState(User user, {required bool isLoggedIn}) {
+    return AuthState(
+      id: user.uid,
+      name: user.displayName ?? '',
+      email: user.email ?? '',
+      photoUrl: user.photoURL ?? '',
+      isLoggedIn: isLoggedIn,
+    );
+  }
+
+  /// Get cached auth state from local storage
+  Future<AuthState?> _getLocalAuthState() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final authDataJson = prefs.getString(_authStateKey);
+      if (authDataJson != null) {
+        return AuthState.fromJson(jsonDecode(authDataJson) as Map<String, Object?>);
+      }
     } catch (e) {
-      developer.log("Error al autenticar", error: e);
+      // Ignore cache read errors
     }
+    return null;
+  }
+
+  /// Save auth state to local storage
+  Future<void> _saveLocalAuthState(AuthState authState) async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setString(_authStateKey, jsonEncode(authState.toJson()));
+    } catch (e) {
+      // Log but don't fail - persistence is not critical
+    }
+  }
+
+  /// Login with environment variables (service account)
+  /// This is used for automatic authentication with a backend service account
+  Future<void> _loginWithEnvVars() async {
+    final email = AuthHelper.email;
+    final password = AuthHelper.password;
+
+    if (email.isEmpty || password.isEmpty) {
+      throw Exception('Service account credentials not configured');
+    }
+
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
   }
 }

@@ -1,10 +1,9 @@
-import 'dart:developer' as developer;
-
 import 'package:go_router/go_router.dart';
 import 'package:javier_website/core/l10n/app_locale.dart';
 import 'package:javier_website/model/entry.dart';
 import 'package:javier_website/model/news_entry.dart';
 import 'package:javier_website/router/rout_names.dart';
+import 'package:javier_website/view/auth/sign_in_page.dart';
 import 'package:javier_website/view/blog/blog_entries_list_page.dart';
 import 'package:javier_website/view/blog/edit_entry_page.dart';
 import 'package:javier_website/view/blog/entry_detail_page.dart';
@@ -62,7 +61,6 @@ class AppRouter {
         path: RoutPaths.newsEntry,
         name: RoutNames.newsEntry,
         builder: (context, state) {
-          developer.log('state.pathParameters: ${state.pathParameters['id']}');
           return NewsEntryDetailPage(entryId: state.pathParameters['id']!);
         },
       ),
@@ -87,7 +85,7 @@ class AppRouter {
       GoRoute(
         path: RoutPaths.signIn,
         name: RoutNames.signIn,
-        builder: (context, state) => const NewsEntriesListPage(),
+        builder: (context, state) => const SignInPage(),
       ),
     ],
   );

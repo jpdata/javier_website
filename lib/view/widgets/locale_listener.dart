@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:javier_website/core/providers/notifiers/locale_notifier.dart';
 
-class LocaleListenerWidget extends StatelessWidget {
+class LocaleListenerWidget extends ConsumerWidget {
   final Widget? child;
   const LocaleListenerWidget({super.key, required this.child});
 
   @override
-  Widget build(BuildContext context) {
-    return Consumer<LocaleNotifier>(
-      builder: (context, localeNotifier, wchild) {
-        return child!;
-      },
-    );
+  Widget build(BuildContext context, WidgetRef ref) {
+    // Watch the locale notifier to trigger rebuilds when locale changes
+    ref.watch(localeNotifierProvider);
+    return child ?? const SizedBox.shrink();
   }
 }
