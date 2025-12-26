@@ -10,6 +10,9 @@ class RoutPaths {
   static const String newsNewEntry = '/news_new_entry';
   static const String newsEditEntry = '/news_edit_entry';
 
+  static const String portfolioManagement = '/portfolio_management';
+  static const String portfolioImport = '/portfolio_import';
+
   static const String profile = '/profile';
   static const String settings = '/settings';
   static const String about = '/about';
@@ -37,6 +40,8 @@ class RoutNames {
   static const String newsEntry = 'news_entry';
   static const String newsNewEntry = 'news_new_entry';
   static const String newsEditEntry = 'news_edit_entry';
+  static const String portfolioManagement = 'portfolio_management';
+  static const String portfolioImport = 'portfolio_import';
 
   static const String profile = 'profile';
   static const String settings = 'settings';

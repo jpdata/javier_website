@@ -568,6 +568,156 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Something went wrong. Please try again later.'**
   String get something_went_wrong;
+
+  /// No description provided for @manage_portfolio.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage Portfolio'**
+  String get manage_portfolio;
+
+  /// No description provided for @add_new_portfolio.
+  ///
+  /// In en, this message translates to:
+  /// **'Add New Portfolio'**
+  String get add_new_portfolio;
+
+  /// No description provided for @edit_portfolio.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Portfolio'**
+  String get edit_portfolio;
+
+  /// No description provided for @portfolio_management.
+  ///
+  /// In en, this message translates to:
+  /// **'Portfolio Management'**
+  String get portfolio_management;
+
+  /// No description provided for @add_new.
+  ///
+  /// In en, this message translates to:
+  /// **'Add New'**
+  String get add_new;
+
+  /// No description provided for @no_portfolio_items.
+  ///
+  /// In en, this message translates to:
+  /// **'No portfolio items yet'**
+  String get no_portfolio_items;
+
+  /// No description provided for @name.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get name;
+
+  /// No description provided for @name_required.
+  ///
+  /// In en, this message translates to:
+  /// **'Name is required'**
+  String get name_required;
+
+  /// No description provided for @description.
+  ///
+  /// In en, this message translates to:
+  /// **'Description'**
+  String get description;
+
+  /// No description provided for @description_required.
+  ///
+  /// In en, this message translates to:
+  /// **'Description is required'**
+  String get description_required;
+
+  /// No description provided for @url.
+  ///
+  /// In en, this message translates to:
+  /// **'URL'**
+  String get url;
+
+  /// No description provided for @url_required.
+  ///
+  /// In en, this message translates to:
+  /// **'URL is required'**
+  String get url_required;
+
+  /// No description provided for @invalid_url.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid URL'**
+  String get invalid_url;
+
+  /// No description provided for @icon_url.
+  ///
+  /// In en, this message translates to:
+  /// **'Icon URL'**
+  String get icon_url;
+
+  /// No description provided for @icon_url_helper.
+  ///
+  /// In en, this message translates to:
+  /// **'URL to icon image (optional)'**
+  String get icon_url_helper;
+
+  /// No description provided for @icon_type.
+  ///
+  /// In en, this message translates to:
+  /// **'Icon Type'**
+  String get icon_type;
+
+  /// No description provided for @icon_is_asset.
+  ///
+  /// In en, this message translates to:
+  /// **'Icon is Asset'**
+  String get icon_is_asset;
+
+  /// No description provided for @icon_is_url.
+  ///
+  /// In en, this message translates to:
+  /// **'Icon is URL'**
+  String get icon_is_url;
+
+  /// No description provided for @image_url.
+  ///
+  /// In en, this message translates to:
+  /// **'Image URL'**
+  String get image_url;
+
+  /// No description provided for @image_url_helper.
+  ///
+  /// In en, this message translates to:
+  /// **'URL to project image (optional)'**
+  String get image_url_helper;
+
+  /// No description provided for @save.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get save;
+
+  /// No description provided for @saved_successfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved successfully'**
+  String get saved_successfully;
+
+  /// No description provided for @confirm_delete.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm Delete'**
+  String get confirm_delete;
+
+  /// No description provided for @are_you_sure_delete.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete'**
+  String get are_you_sure_delete;
+
+  /// No description provided for @edit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit'**
+  String get edit;
 }
 
 class _AppLocalizationsDelegate
