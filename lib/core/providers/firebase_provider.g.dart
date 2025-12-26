@@ -6,21 +6,44 @@ part of 'firebase_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$firebaseHash() => r'2803a697b9104556f7dfb6ff78e495bd3577746e';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
 
-/// See also [firebase].
 @ProviderFor(firebase)
-final firebaseProvider = AutoDisposeFutureProvider<FirebaseApp?>.internal(
-  firebase,
-  name: r'firebaseProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$firebaseHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+const firebaseProvider = FirebaseProvider._();
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef FirebaseRef = AutoDisposeFutureProviderRef<FirebaseApp?>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
+final class FirebaseProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<FirebaseApp?>,
+          FirebaseApp?,
+          FutureOr<FirebaseApp?>
+        >
+    with $FutureModifier<FirebaseApp?>, $FutureProvider<FirebaseApp?> {
+  const FirebaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'firebaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$firebaseHash();
+
+  @$internal
+  @override
+  $FutureProviderElement<FirebaseApp?> $createElement(
+    $ProviderPointer pointer,
+  ) => $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<FirebaseApp?> create(Ref ref) {
+    return firebase(ref);
+  }
+}
+
+String _$firebaseHash() => r'2803a697b9104556f7dfb6ff78e495bd3577746e';

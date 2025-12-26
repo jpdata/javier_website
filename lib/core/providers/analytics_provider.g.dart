@@ -6,7 +6,17 @@ part of 'analytics_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$analyticsServiceHash() => r'fa19e22c7c552c4e91ba12f76148d59ee1e954f8';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
+/// Provider for analytics service
+///
+/// Usage:
+/// ```dart
+/// ref.read(analyticsServiceProvider).logPageView(pageName: 'Home');
+/// ```
+
+@ProviderFor(analyticsService)
+const analyticsServiceProvider = AnalyticsServiceProvider._();
 
 /// Provider for analytics service
 ///
@@ -14,24 +24,55 @@ String _$analyticsServiceHash() => r'fa19e22c7c552c4e91ba12f76148d59ee1e954f8';
 /// ```dart
 /// ref.read(analyticsServiceProvider).logPageView(pageName: 'Home');
 /// ```
-///
-/// Copied from [analyticsService].
-@ProviderFor(analyticsService)
-final analyticsServiceProvider = AutoDisposeProvider<AnalyticsService>.internal(
-  analyticsService,
-  name: r'analyticsServiceProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$analyticsServiceHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef AnalyticsServiceRef = AutoDisposeProviderRef<AnalyticsService>;
-String _$crashlyticsServiceHash() =>
-    r'afe27d7c88c7d71b8817a0c3f62fc58548286986';
+final class AnalyticsServiceProvider
+    extends
+        $FunctionalProvider<
+          AnalyticsService,
+          AnalyticsService,
+          AnalyticsService
+        >
+    with $Provider<AnalyticsService> {
+  /// Provider for analytics service
+  ///
+  /// Usage:
+  /// ```dart
+  /// ref.read(analyticsServiceProvider).logPageView(pageName: 'Home');
+  /// ```
+  const AnalyticsServiceProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'analyticsServiceProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$analyticsServiceHash();
+
+  @$internal
+  @override
+  $ProviderElement<AnalyticsService> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  AnalyticsService create(Ref ref) {
+    return analyticsService(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(AnalyticsService value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<AnalyticsService>(value),
+    );
+  }
+}
+
+String _$analyticsServiceHash() => r'a78e9020e79b5e99632cc4cee7e5f7156c672acd';
 
 /// Provider for Crashlytics service
 ///
@@ -39,22 +80,64 @@ String _$crashlyticsServiceHash() =>
 /// ```dart
 /// ref.read(crashlyticsServiceProvider).log('App started');
 /// ```
-///
-/// Copied from [crashlyticsService].
-@ProviderFor(crashlyticsService)
-final crashlyticsServiceProvider =
-    AutoDisposeProvider<CrashlyticsService>.internal(
-  crashlyticsService,
-  name: r'crashlyticsServiceProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$crashlyticsServiceHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef CrashlyticsServiceRef = AutoDisposeProviderRef<CrashlyticsService>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
+@ProviderFor(crashlyticsService)
+const crashlyticsServiceProvider = CrashlyticsServiceProvider._();
+
+/// Provider for Crashlytics service
+///
+/// Usage:
+/// ```dart
+/// ref.read(crashlyticsServiceProvider).log('App started');
+/// ```
+
+final class CrashlyticsServiceProvider
+    extends
+        $FunctionalProvider<
+          CrashlyticsService,
+          CrashlyticsService,
+          CrashlyticsService
+        >
+    with $Provider<CrashlyticsService> {
+  /// Provider for Crashlytics service
+  ///
+  /// Usage:
+  /// ```dart
+  /// ref.read(crashlyticsServiceProvider).log('App started');
+  /// ```
+  const CrashlyticsServiceProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'crashlyticsServiceProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$crashlyticsServiceHash();
+
+  @$internal
+  @override
+  $ProviderElement<CrashlyticsService> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  CrashlyticsService create(Ref ref) {
+    return crashlyticsService(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(CrashlyticsService value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<CrashlyticsService>(value),
+    );
+  }
+}
+
+String _$crashlyticsServiceHash() =>
+    r'542aa3ece81c80242afe3dfde3fa1fe1963c01f9';

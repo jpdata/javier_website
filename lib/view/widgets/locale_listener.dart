@@ -9,7 +9,7 @@ class LocaleListenerWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     // Watch the locale notifier to trigger rebuilds when locale changes
-    ref.watch(localeNotifierProvider);
+    ref.watch(localeProvider);
     return child ?? const SizedBox.shrink();
   }
 }

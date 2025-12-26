@@ -7,20 +7,21 @@ part of 'entry.dart';
 // **************************************************************************
 
 _Entry _$EntryFromJson(Map<String, dynamic> json) => _Entry(
-      id: json['id'] as String,
-      title: json['title'] as String,
-      subtitle: json['subtitle'] as String,
-      content: json['content'] as String,
-      createdAt: DateTime.parse(json['createdAt'] as String),
-      bannerImageUrl: json['bannerImageUrl'] as String,
-      tags:
-          (json['tags'] as List<dynamic>?)?.map((e) => e as String).toList() ??
-              const <String>[],
-      comments: (json['comments'] as List<dynamic>?)
-              ?.map((e) => Comment.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          const <Comment>[],
-    );
+  id: json['id'] as String,
+  title: json['title'] as String,
+  subtitle: json['subtitle'] as String,
+  content: json['content'] as String,
+  createdAt: DateTime.parse(json['createdAt'] as String),
+  bannerImageUrl: json['bannerImageUrl'] as String,
+  tags:
+      (json['tags'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+      const <String>[],
+  comments:
+      (json['comments'] as List<dynamic>?)
+          ?.map((e) => Comment.fromJson(e as Map<String, dynamic>))
+          .toList() ??
+      const <Comment>[],
+);
 
 const _$EntryFieldMap = <String, String>{
   'id': 'id',
@@ -54,12 +55,12 @@ abstract class _$EntryPerFieldToJson {
 }
 
 Map<String, dynamic> _$EntryToJson(_Entry instance) => <String, dynamic>{
-      'id': instance.id,
-      'title': instance.title,
-      'subtitle': instance.subtitle,
-      'content': instance.content,
-      'createdAt': instance.createdAt.toIso8601String(),
-      'bannerImageUrl': instance.bannerImageUrl,
-      'tags': instance.tags,
-      'comments': instance.comments,
-    };
+  'id': instance.id,
+  'title': instance.title,
+  'subtitle': instance.subtitle,
+  'content': instance.content,
+  'createdAt': instance.createdAt.toIso8601String(),
+  'bannerImageUrl': instance.bannerImageUrl,
+  'tags': instance.tags,
+  'comments': instance.comments,
+};

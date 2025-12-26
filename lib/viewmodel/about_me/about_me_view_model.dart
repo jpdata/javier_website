@@ -12,7 +12,7 @@ final AboutMeCollectionReference _entriesCollection = AboutMeCollectionReference
 class AboutMeViewModel extends _$AboutMeViewModel {
   @override
   Future<AboutMe> build() async {
-    final locale = ref.watch(localeNotifierProvider);
+    final locale = ref.watch(localeProvider);
     var result = await _fetchAboutMe(locale.languageCode);
     return result;
   }

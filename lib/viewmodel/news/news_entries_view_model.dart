@@ -3,7 +3,6 @@ import 'package:javier_website/core/mappers.dart';
 import 'package:javier_website/data/firestore_client.dart';
 import 'package:javier_website/model/news_entry.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 part 'news_entries_view_model.g.dart';
 
@@ -99,7 +98,7 @@ class NewsEntriesViewModel extends _$NewsEntriesViewModel {
       await AnalyticsService.logEntryCreated(
         entryId: result.id,
         entryType: 'news_entry',
-        wordCount: entry.content?.length ?? 0,
+        wordCount: entry.content.length,
       );
       return _fetchEntries(limit: _limit, page: _page);
     });

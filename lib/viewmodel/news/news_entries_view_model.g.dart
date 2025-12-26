@@ -6,328 +6,178 @@ part of 'news_entries_view_model.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
+
+@ProviderFor(selectedNewsEntryById)
+const selectedNewsEntryByIdProvider = SelectedNewsEntryByIdFamily._();
+
+final class SelectedNewsEntryByIdProvider
+    extends $FunctionalProvider<NewsEntry?, NewsEntry?, NewsEntry?>
+    with $Provider<NewsEntry?> {
+  const SelectedNewsEntryByIdProvider._({
+    required SelectedNewsEntryByIdFamily super.from,
+    required String super.argument,
+  }) : super(
+         retry: null,
+         name: r'selectedNewsEntryByIdProvider',
+         isAutoDispose: true,
+         dependencies: null,
+         $allTransitiveDependencies: null,
+       );
+
+  @override
+  String debugGetCreateSourceHash() => _$selectedNewsEntryByIdHash();
+
+  @override
+  String toString() {
+    return r'selectedNewsEntryByIdProvider'
+        ''
+        '($argument)';
+  }
+
+  @$internal
+  @override
+  $ProviderElement<NewsEntry?> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  NewsEntry? create(Ref ref) {
+    final argument = this.argument as String;
+    return selectedNewsEntryById(ref, argument);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(NewsEntry? value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<NewsEntry?>(value),
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is SelectedNewsEntryByIdProvider && other.argument == argument;
+  }
+
+  @override
+  int get hashCode {
+    return argument.hashCode;
+  }
+}
+
 String _$selectedNewsEntryByIdHash() =>
     r'ae6898c4a9024525ea74fdbfdb99ebb35344353b';
 
-/// Copied from Dart SDK
-class _SystemHash {
-  _SystemHash._();
-
-  static int combine(int hash, int value) {
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + value);
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + ((0x0007ffff & hash) << 10));
-    return hash ^ (hash >> 6);
-  }
-
-  static int finish(int hash) {
-    // ignore: parameter_assignments
-    hash = 0x1fffffff & (hash + ((0x03ffffff & hash) << 3));
-    // ignore: parameter_assignments
-    hash = hash ^ (hash >> 11);
-    return 0x1fffffff & (hash + ((0x00003fff & hash) << 15));
-  }
-}
-
-/// See also [selectedNewsEntryById].
-@ProviderFor(selectedNewsEntryById)
-const selectedNewsEntryByIdProvider = SelectedNewsEntryByIdFamily();
-
-/// See also [selectedNewsEntryById].
-class SelectedNewsEntryByIdFamily extends Family<NewsEntry?> {
-  /// See also [selectedNewsEntryById].
-  const SelectedNewsEntryByIdFamily();
-
-  /// See also [selectedNewsEntryById].
-  SelectedNewsEntryByIdProvider call(
-    String id,
-  ) {
-    return SelectedNewsEntryByIdProvider(
-      id,
-    );
-  }
-
-  @override
-  SelectedNewsEntryByIdProvider getProviderOverride(
-    covariant SelectedNewsEntryByIdProvider provider,
-  ) {
-    return call(
-      provider.id,
-    );
-  }
-
-  static const Iterable<ProviderOrFamily>? _dependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
-
-  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
-      _allTransitiveDependencies;
-
-  @override
-  String? get name => r'selectedNewsEntryByIdProvider';
-}
-
-/// See also [selectedNewsEntryById].
-class SelectedNewsEntryByIdProvider extends AutoDisposeProvider<NewsEntry?> {
-  /// See also [selectedNewsEntryById].
-  SelectedNewsEntryByIdProvider(
-    String id,
-  ) : this._internal(
-          (ref) => selectedNewsEntryById(
-            ref as SelectedNewsEntryByIdRef,
-            id,
-          ),
-          from: selectedNewsEntryByIdProvider,
-          name: r'selectedNewsEntryByIdProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$selectedNewsEntryByIdHash,
-          dependencies: SelectedNewsEntryByIdFamily._dependencies,
-          allTransitiveDependencies:
-              SelectedNewsEntryByIdFamily._allTransitiveDependencies,
-          id: id,
-        );
-
-  SelectedNewsEntryByIdProvider._internal(
-    super._createNotifier, {
-    required super.name,
-    required super.dependencies,
-    required super.allTransitiveDependencies,
-    required super.debugGetCreateSourceHash,
-    required super.from,
-    required this.id,
-  }) : super.internal();
-
-  final String id;
-
-  @override
-  Override overrideWith(
-    NewsEntry? Function(SelectedNewsEntryByIdRef provider) create,
-  ) {
-    return ProviderOverride(
-      origin: this,
-      override: SelectedNewsEntryByIdProvider._internal(
-        (ref) => create(ref as SelectedNewsEntryByIdRef),
-        from: from,
-        name: null,
+final class SelectedNewsEntryByIdFamily extends $Family
+    with $FunctionalFamilyOverride<NewsEntry?, String> {
+  const SelectedNewsEntryByIdFamily._()
+    : super(
+        retry: null,
+        name: r'selectedNewsEntryByIdProvider',
         dependencies: null,
-        allTransitiveDependencies: null,
-        debugGetCreateSourceHash: null,
-        id: id,
-      ),
-    );
-  }
+        $allTransitiveDependencies: null,
+        isAutoDispose: true,
+      );
+
+  SelectedNewsEntryByIdProvider call(String id) =>
+      SelectedNewsEntryByIdProvider._(argument: id, from: this);
 
   @override
-  AutoDisposeProviderElement<NewsEntry?> createElement() {
-    return _SelectedNewsEntryByIdProviderElement(this);
+  String toString() => r'selectedNewsEntryByIdProvider';
+}
+
+@ProviderFor(NewsEntriesViewModel)
+const newsEntriesViewModelProvider = NewsEntriesViewModelFamily._();
+
+final class NewsEntriesViewModelProvider
+    extends $AsyncNotifierProvider<NewsEntriesViewModel, List<NewsEntry>> {
+  const NewsEntriesViewModelProvider._({
+    required NewsEntriesViewModelFamily super.from,
+    required ({int? limit, int? page}) super.argument,
+  }) : super(
+         retry: null,
+         name: r'newsEntriesViewModelProvider',
+         isAutoDispose: true,
+         dependencies: null,
+         $allTransitiveDependencies: null,
+       );
+
+  @override
+  String debugGetCreateSourceHash() => _$newsEntriesViewModelHash();
+
+  @override
+  String toString() {
+    return r'newsEntriesViewModelProvider'
+        ''
+        '$argument';
   }
+
+  @$internal
+  @override
+  NewsEntriesViewModel create() => NewsEntriesViewModel();
 
   @override
   bool operator ==(Object other) {
-    return other is SelectedNewsEntryByIdProvider && other.id == id;
+    return other is NewsEntriesViewModelProvider && other.argument == argument;
   }
 
   @override
   int get hashCode {
-    var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, id.hashCode);
-
-    return _SystemHash.finish(hash);
+    return argument.hashCode;
   }
-}
-
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-mixin SelectedNewsEntryByIdRef on AutoDisposeProviderRef<NewsEntry?> {
-  /// The parameter `id` of this provider.
-  String get id;
-}
-
-class _SelectedNewsEntryByIdProviderElement
-    extends AutoDisposeProviderElement<NewsEntry?>
-    with SelectedNewsEntryByIdRef {
-  _SelectedNewsEntryByIdProviderElement(super.provider);
-
-  @override
-  String get id => (origin as SelectedNewsEntryByIdProvider).id;
 }
 
 String _$newsEntriesViewModelHash() =>
-    r'9803f3b6653e99120736d001fcb873376cf4b241';
+    r'1371ebdd15d541fcb81481f26e63f468eee73284';
 
-abstract class _$NewsEntriesViewModel
-    extends BuildlessAutoDisposeAsyncNotifier<List<NewsEntry>> {
-  late final int? limit;
-  late final int? page;
-
-  FutureOr<List<NewsEntry>> build({
-    int? limit,
-    int? page,
-  });
-}
-
-/// See also [NewsEntriesViewModel].
-@ProviderFor(NewsEntriesViewModel)
-const newsEntriesViewModelProvider = NewsEntriesViewModelFamily();
-
-/// See also [NewsEntriesViewModel].
-class NewsEntriesViewModelFamily extends Family<AsyncValue<List<NewsEntry>>> {
-  /// See also [NewsEntriesViewModel].
-  const NewsEntriesViewModelFamily();
-
-  /// See also [NewsEntriesViewModel].
-  NewsEntriesViewModelProvider call({
-    int? limit,
-    int? page,
-  }) {
-    return NewsEntriesViewModelProvider(
-      limit: limit,
-      page: page,
-    );
-  }
-
-  @override
-  NewsEntriesViewModelProvider getProviderOverride(
-    covariant NewsEntriesViewModelProvider provider,
-  ) {
-    return call(
-      limit: provider.limit,
-      page: provider.page,
-    );
-  }
-
-  static const Iterable<ProviderOrFamily>? _dependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
-
-  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
-      _allTransitiveDependencies;
-
-  @override
-  String? get name => r'newsEntriesViewModelProvider';
-}
-
-/// See also [NewsEntriesViewModel].
-class NewsEntriesViewModelProvider extends AutoDisposeAsyncNotifierProviderImpl<
-    NewsEntriesViewModel, List<NewsEntry>> {
-  /// See also [NewsEntriesViewModel].
-  NewsEntriesViewModelProvider({
-    int? limit,
-    int? page,
-  }) : this._internal(
-          () => NewsEntriesViewModel()
-            ..limit = limit
-            ..page = page,
-          from: newsEntriesViewModelProvider,
-          name: r'newsEntriesViewModelProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$newsEntriesViewModelHash,
-          dependencies: NewsEntriesViewModelFamily._dependencies,
-          allTransitiveDependencies:
-              NewsEntriesViewModelFamily._allTransitiveDependencies,
-          limit: limit,
-          page: page,
-        );
-
-  NewsEntriesViewModelProvider._internal(
-    super._createNotifier, {
-    required super.name,
-    required super.dependencies,
-    required super.allTransitiveDependencies,
-    required super.debugGetCreateSourceHash,
-    required super.from,
-    required this.limit,
-    required this.page,
-  }) : super.internal();
-
-  final int? limit;
-  final int? page;
-
-  @override
-  FutureOr<List<NewsEntry>> runNotifierBuild(
-    covariant NewsEntriesViewModel notifier,
-  ) {
-    return notifier.build(
-      limit: limit,
-      page: page,
-    );
-  }
-
-  @override
-  Override overrideWith(NewsEntriesViewModel Function() create) {
-    return ProviderOverride(
-      origin: this,
-      override: NewsEntriesViewModelProvider._internal(
-        () => create()
-          ..limit = limit
-          ..page = page,
-        from: from,
-        name: null,
+final class NewsEntriesViewModelFamily extends $Family
+    with
+        $ClassFamilyOverride<
+          NewsEntriesViewModel,
+          AsyncValue<List<NewsEntry>>,
+          List<NewsEntry>,
+          FutureOr<List<NewsEntry>>,
+          ({int? limit, int? page})
+        > {
+  const NewsEntriesViewModelFamily._()
+    : super(
+        retry: null,
+        name: r'newsEntriesViewModelProvider',
         dependencies: null,
-        allTransitiveDependencies: null,
-        debugGetCreateSourceHash: null,
-        limit: limit,
-        page: page,
-      ),
-    );
-  }
+        $allTransitiveDependencies: null,
+        isAutoDispose: true,
+      );
+
+  NewsEntriesViewModelProvider call({int? limit, int? page}) =>
+      NewsEntriesViewModelProvider._(
+        argument: (limit: limit, page: page),
+        from: this,
+      );
 
   @override
-  AutoDisposeAsyncNotifierProviderElement<NewsEntriesViewModel, List<NewsEntry>>
-      createElement() {
-    return _NewsEntriesViewModelProviderElement(this);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return other is NewsEntriesViewModelProvider &&
-        other.limit == limit &&
-        other.page == page;
-  }
-
-  @override
-  int get hashCode {
-    var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, limit.hashCode);
-    hash = _SystemHash.combine(hash, page.hashCode);
-
-    return _SystemHash.finish(hash);
-  }
+  String toString() => r'newsEntriesViewModelProvider';
 }
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-mixin NewsEntriesViewModelRef
-    on AutoDisposeAsyncNotifierProviderRef<List<NewsEntry>> {
-  /// The parameter `limit` of this provider.
-  int? get limit;
+abstract class _$NewsEntriesViewModel extends $AsyncNotifier<List<NewsEntry>> {
+  late final _$args = ref.$arg as ({int? limit, int? page});
+  int? get limit => _$args.limit;
+  int? get page => _$args.page;
 
-  /// The parameter `page` of this provider.
-  int? get page;
-}
-
-class _NewsEntriesViewModelProviderElement
-    extends AutoDisposeAsyncNotifierProviderElement<NewsEntriesViewModel,
-        List<NewsEntry>> with NewsEntriesViewModelRef {
-  _NewsEntriesViewModelProviderElement(super.provider);
-
+  FutureOr<List<NewsEntry>> build({int? limit, int? page});
+  @$mustCallSuper
   @override
-  int? get limit => (origin as NewsEntriesViewModelProvider).limit;
-  @override
-  int? get page => (origin as NewsEntriesViewModelProvider).page;
+  void runBuild() {
+    final created = build(limit: _$args.limit, page: _$args.page);
+    final ref = this.ref as $Ref<AsyncValue<List<NewsEntry>>, List<NewsEntry>>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<AsyncValue<List<NewsEntry>>, List<NewsEntry>>,
+              AsyncValue<List<NewsEntry>>,
+              Object?,
+              Object?
+            >;
+    element.handleValue(ref, created);
+  }
 }
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

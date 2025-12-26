@@ -7,12 +7,12 @@ part of 'comment.dart';
 // **************************************************************************
 
 _Comment _$CommentFromJson(Map<String, dynamic> json) => _Comment(
-      id: json['id'] as String,
-      content: json['content'] as String,
-      createdAt: DateTime.parse(json['createdAt'] as String),
-      authorName: json['authorName'] as String,
-      authorEmail: json['authorEmail'] as String,
-    );
+  id: json['id'] as String,
+  content: json['content'] as String,
+  createdAt: DateTime.parse(json['createdAt'] as String),
+  authorName: json['authorName'] as String,
+  authorEmail: json['authorEmail'] as String,
+);
 
 const _$CommentFieldMap = <String, String>{
   'id': 'id',
@@ -37,9 +37,9 @@ abstract class _$CommentPerFieldToJson {
 }
 
 Map<String, dynamic> _$CommentToJson(_Comment instance) => <String, dynamic>{
-      'id': instance.id,
-      'content': instance.content,
-      'createdAt': instance.createdAt.toIso8601String(),
-      'authorName': instance.authorName,
-      'authorEmail': instance.authorEmail,
-    };
+  'id': instance.id,
+  'content': instance.content,
+  'createdAt': instance.createdAt.toIso8601String(),
+  'authorName': instance.authorName,
+  'authorEmail': instance.authorEmail,
+};

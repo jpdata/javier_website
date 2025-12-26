@@ -6,37 +6,83 @@ part of 'user_view_model.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$currentUserHash() => r'99fc015b071c2374ad60cc29fd7c60ec594e6ae0';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
 
-/// See also [currentUser].
-@ProviderFor(currentUser)
-final currentUserProvider = AutoDisposeFutureProvider<User>.internal(
-  currentUser,
-  name: r'currentUserProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$currentUserHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+@ProviderFor(UserViewModel)
+const userViewModelProvider = UserViewModelProvider._();
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef CurrentUserRef = AutoDisposeFutureProviderRef<User>;
+final class UserViewModelProvider
+    extends $AsyncNotifierProvider<UserViewModel, List<User>> {
+  const UserViewModelProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'userViewModelProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$userViewModelHash();
+
+  @$internal
+  @override
+  UserViewModel create() => UserViewModel();
+}
+
 String _$userViewModelHash() => r'afb7de3fc22f18f8d493fb31488ed725091195fa';
 
-/// See also [UserViewModel].
-@ProviderFor(UserViewModel)
-final userViewModelProvider =
-    AutoDisposeAsyncNotifierProvider<UserViewModel, List<User>>.internal(
-  UserViewModel.new,
-  name: r'userViewModelProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$userViewModelHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+abstract class _$UserViewModel extends $AsyncNotifier<List<User>> {
+  FutureOr<List<User>> build();
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final created = build();
+    final ref = this.ref as $Ref<AsyncValue<List<User>>, List<User>>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<AsyncValue<List<User>>, List<User>>,
+              AsyncValue<List<User>>,
+              Object?,
+              Object?
+            >;
+    element.handleValue(ref, created);
+  }
+}
 
-typedef _$UserViewModel = AutoDisposeAsyncNotifier<List<User>>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
+@ProviderFor(currentUser)
+const currentUserProvider = CurrentUserProvider._();
+
+final class CurrentUserProvider
+    extends $FunctionalProvider<AsyncValue<User>, User, FutureOr<User>>
+    with $FutureModifier<User>, $FutureProvider<User> {
+  const CurrentUserProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'currentUserProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$currentUserHash();
+
+  @$internal
+  @override
+  $FutureProviderElement<User> $createElement($ProviderPointer pointer) =>
+      $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<User> create(Ref ref) {
+    return currentUser(ref);
+  }
+}
+
+String _$currentUserHash() => r'99fc015b071c2374ad60cc29fd7c60ec594e6ae0';

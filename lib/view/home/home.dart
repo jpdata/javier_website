@@ -35,7 +35,7 @@ class _HomeState extends ConsumerState<Home> {
 
   @override
   Widget build(BuildContext context) {
-    ref.watch(localeNotifierProvider);
+    ref.watch(localeProvider);
 
     var authVm = ref.watch(authViewModelProvider);
 
@@ -261,7 +261,7 @@ class _HomeState extends ConsumerState<Home> {
   }
 
   Widget _typeWriterText({required List<String> text, void Function()? onFinished}) {
-    var locale = ref.read(localeNotifierProvider);
+    var locale = ref.read(localeProvider);
     var screenWidth = MediaQuery.of(context).size.width;
     return SizedBox(
       width: screenWidth * .40,

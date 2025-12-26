@@ -7,14 +7,14 @@ part of 'user.dart';
 // **************************************************************************
 
 _User _$UserFromJson(Map<String, dynamic> json) => _User(
-      id: json['id'] as String,
-      name: json['name'] as String,
-      lastname: json['lastname'] as String,
-      email: json['email'] as String,
-      registryDate: json['registryDate'] as String,
-      role: $enumDecode(_$RoleEnumMap, json['role']),
-      status: $enumDecode(_$StatusEnumMap, json['status']),
-    );
+  id: json['id'] as String,
+  name: json['name'] as String,
+  lastname: json['lastname'] as String,
+  email: json['email'] as String,
+  registryDate: json['registryDate'] as String,
+  role: $enumDecode(_$RoleEnumMap, json['role']),
+  status: $enumDecode(_$StatusEnumMap, json['status']),
+);
 
 const _$UserFieldMap = <String, String>{
   'id': 'id',
@@ -45,14 +45,14 @@ abstract class _$UserPerFieldToJson {
 }
 
 Map<String, dynamic> _$UserToJson(_User instance) => <String, dynamic>{
-      'id': instance.id,
-      'name': instance.name,
-      'lastname': instance.lastname,
-      'email': instance.email,
-      'registryDate': instance.registryDate,
-      'role': _$RoleEnumMap[instance.role]!,
-      'status': _$StatusEnumMap[instance.status]!,
-    };
+  'id': instance.id,
+  'name': instance.name,
+  'lastname': instance.lastname,
+  'email': instance.email,
+  'registryDate': instance.registryDate,
+  'role': _$RoleEnumMap[instance.role]!,
+  'status': _$StatusEnumMap[instance.status]!,
+};
 
 const _$RoleEnumMap = {
   Role.user: 'user',

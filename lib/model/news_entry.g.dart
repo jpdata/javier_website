@@ -7,17 +7,18 @@ part of 'news_entry.dart';
 // **************************************************************************
 
 _NewsEntry _$NewsEntryFromJson(Map<String, dynamic> json) => _NewsEntry(
-      id: json['id'] as String,
-      content: json['content'] as String,
-      createdAt: DateTime.parse(json['createdAt'] as String),
-      tags:
-          (json['tags'] as List<dynamic>?)?.map((e) => e as String).toList() ??
-              const <String>[],
-      comments: (json['comments'] as List<dynamic>?)
-              ?.map((e) => Comment.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          const <Comment>[],
-    );
+  id: json['id'] as String,
+  content: json['content'] as String,
+  createdAt: DateTime.parse(json['createdAt'] as String),
+  tags:
+      (json['tags'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+      const <String>[],
+  comments:
+      (json['comments'] as List<dynamic>?)
+          ?.map((e) => Comment.fromJson(e as Map<String, dynamic>))
+          .toList() ??
+      const <Comment>[],
+);
 
 const _$NewsEntryFieldMap = <String, String>{
   'id': 'id',

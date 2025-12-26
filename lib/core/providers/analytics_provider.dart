@@ -10,7 +10,7 @@ part 'analytics_provider.g.dart';
 /// ref.read(analyticsServiceProvider).logPageView(pageName: 'Home');
 /// ```
 @riverpod
-AnalyticsService analyticsService(ref) {
+AnalyticsService analyticsService(Ref ref) {
   return AnalyticsService();
 }
 
@@ -21,6 +21,6 @@ AnalyticsService analyticsService(ref) {
 /// ref.read(crashlyticsServiceProvider).log('App started');
 /// ```
 @riverpod
-CrashlyticsService crashlyticsService(ref) {
+CrashlyticsService crashlyticsService(Ref ref) {
   return CrashlyticsService();
 }

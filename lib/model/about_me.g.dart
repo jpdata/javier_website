@@ -7,10 +7,10 @@ part of 'about_me.dart';
 // **************************************************************************
 
 _AboutMe _$AboutMeFromJson(Map<String, dynamic> json) => _AboutMe(
-      id: json['id'] as String,
-      content: json['content'] as String,
-      language: json['language'] as String,
-    );
+  id: json['id'] as String,
+  content: json['content'] as String,
+  language: json['language'] as String,
+);
 
 const _$AboutMeFieldMap = <String, String>{
   'id': 'id',
@@ -29,7 +29,7 @@ abstract class _$AboutMePerFieldToJson {
 }
 
 Map<String, dynamic> _$AboutMeToJson(_AboutMe instance) => <String, dynamic>{
-      'id': instance.id,
-      'content': instance.content,
-      'language': instance.language,
-    };
+  'id': instance.id,
+  'content': instance.content,
+  'language': instance.language,
+};

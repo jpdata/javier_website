@@ -7,12 +7,12 @@ part of 'auth_view_model.dart';
 // **************************************************************************
 
 _AuthState _$AuthStateFromJson(Map<String, dynamic> json) => _AuthState(
-      id: json['id'] as String,
-      name: json['name'] as String,
-      email: json['email'] as String,
-      photoUrl: json['photoUrl'] as String,
-      isLoggedIn: json['isLoggedIn'] as bool,
-    );
+  id: json['id'] as String,
+  name: json['name'] as String,
+  email: json['email'] as String,
+  photoUrl: json['photoUrl'] as String,
+  isLoggedIn: json['isLoggedIn'] as bool,
+);
 
 const _$AuthStateFieldMap = <String, String>{
   'id': 'id',
@@ -49,21 +49,50 @@ Map<String, dynamic> _$AuthStateToJson(_AuthState instance) =>
 // RiverpodGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
+
+@ProviderFor(AuthViewModel)
+const authViewModelProvider = AuthViewModelProvider._();
+
+final class AuthViewModelProvider
+    extends $AsyncNotifierProvider<AuthViewModel, AuthState> {
+  const AuthViewModelProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'authViewModelProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$authViewModelHash();
+
+  @$internal
+  @override
+  AuthViewModel create() => AuthViewModel();
+}
+
 String _$authViewModelHash() => r'af21a41657e3a24387a156751bb3946c50359bcd';
 
-/// See also [AuthViewModel].
-@ProviderFor(AuthViewModel)
-final authViewModelProvider =
-    AutoDisposeAsyncNotifierProvider<AuthViewModel, AuthState>.internal(
-  AuthViewModel.new,
-  name: r'authViewModelProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$authViewModelHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef _$AuthViewModel = AutoDisposeAsyncNotifier<AuthState>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
+abstract class _$AuthViewModel extends $AsyncNotifier<AuthState> {
+  FutureOr<AuthState> build();
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final created = build();
+    final ref = this.ref as $Ref<AsyncValue<AuthState>, AuthState>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<AsyncValue<AuthState>, AuthState>,
+              AsyncValue<AuthState>,
+              Object?,
+              Object?
+            >;
+    element.handleValue(ref, created);
+  }
+}

@@ -9,7 +9,7 @@ typedef LocalizedEntry = Map<String, String>;
 /// Provider for portfolio projects list
 final projectsProvider = Provider<List<LocalizedEntry>>((ref) {
   // Watch the locale to trigger rebuild when language changes
-  ref.watch(localeNotifierProvider);
+  ref.watch(localeProvider);
   
   return [
     {
@@ -35,7 +35,7 @@ final projectsProvider = Provider<List<LocalizedEntry>>((ref) {
 
 /// Provider for collaborators list
 final collaboratorsProvider = Provider<List<LocalizedEntry>>((ref) {
-  ref.watch(localeNotifierProvider);
+  ref.watch(localeProvider);
   
   return [
     {
@@ -49,7 +49,7 @@ final collaboratorsProvider = Provider<List<LocalizedEntry>>((ref) {
 
 /// Provider for collaborations list
 final collaborationsProvider = Provider<List<LocalizedEntry>>((ref) {
-  ref.watch(localeNotifierProvider);
+  ref.watch(localeProvider);
   
   return [
     {
@@ -63,7 +63,7 @@ final collaborationsProvider = Provider<List<LocalizedEntry>>((ref) {
 
 /// Provider for credits list
 final creditsProvider = Provider<List<LocalizedEntry>>((ref) {
-  ref.watch(localeNotifierProvider);
+  ref.watch(localeProvider);
   
   // All credits are commented out for now
   // Add items here to display credits

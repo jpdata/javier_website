@@ -6,21 +6,50 @@ part of 'about_me_view_model.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$aboutMeViewModelHash() => r'd0a4b5800e9632272f7d6c78657d682a9c76c87f';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
 
-/// See also [AboutMeViewModel].
 @ProviderFor(AboutMeViewModel)
-final aboutMeViewModelProvider =
-    AutoDisposeAsyncNotifierProvider<AboutMeViewModel, AboutMe>.internal(
-  AboutMeViewModel.new,
-  name: r'aboutMeViewModelProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$aboutMeViewModelHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+const aboutMeViewModelProvider = AboutMeViewModelProvider._();
 
-typedef _$AboutMeViewModel = AutoDisposeAsyncNotifier<AboutMe>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
+final class AboutMeViewModelProvider
+    extends $AsyncNotifierProvider<AboutMeViewModel, AboutMe> {
+  const AboutMeViewModelProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'aboutMeViewModelProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$aboutMeViewModelHash();
+
+  @$internal
+  @override
+  AboutMeViewModel create() => AboutMeViewModel();
+}
+
+String _$aboutMeViewModelHash() => r'a554dc38b7de2b89970d294c63c68a7738cb2564';
+
+abstract class _$AboutMeViewModel extends $AsyncNotifier<AboutMe> {
+  FutureOr<AboutMe> build();
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final created = build();
+    final ref = this.ref as $Ref<AsyncValue<AboutMe>, AboutMe>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<AsyncValue<AboutMe>, AboutMe>,
+              AsyncValue<AboutMe>,
+              Object?,
+              Object?
+            >;
+    element.handleValue(ref, created);
+  }
+}

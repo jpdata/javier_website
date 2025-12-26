@@ -11,7 +11,7 @@ import 'package:javier_website/router/rout_names.dart';
 import 'package:javier_website/view/themes/app_theme.dart';
 import 'package:javier_website/view/widgets/fade_in_out_text.dart';
 import 'package:javier_website/viewmodel/auth/auth_view_model.dart';
-import 'package:rive/rive.dart' as rive;
+import 'package:rive/rive.dart';
 
 class MainDrawer extends ConsumerStatefulWidget {
   const MainDrawer({super.key});
@@ -23,6 +23,7 @@ class MainDrawer extends ConsumerStatefulWidget {
 class _MainDrawerState extends ConsumerState<MainDrawer> {
   late ImageProvider<Object> _backgroundImage;
   late DecorationImage _backgroundDecoration;
+  late final FileLoader _riveFileLoader;
 
   _MainDrawerState() {
     _backgroundImage = Image.asset('assets/images/circuit-3.png').image;
@@ -37,6 +38,21 @@ class _MainDrawerState extends ConsumerState<MainDrawer> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    _riveFileLoader = FileLoader.fromAsset(
+      Assets.javierAnimation,
+      riveFactory: Factory.rive,
+    );
+  }
+
+  @override
+  void dispose() {
+    _riveFileLoader.dispose();
+    super.dispose();
+  }
+
+  @override
   Future<void> didChangeDependencies() async {
     super.didChangeDependencies();
     await precacheImage(_backgroundImage, context);
@@ -44,7 +60,7 @@ class _MainDrawerState extends ConsumerState<MainDrawer> {
 
   @override
   Widget build(BuildContext context) {
-    ref.watch(localeNotifierProvider);
+    ref.watch(localeProvider);
     var authVm = ref.watch(authViewModelProvider);
     double screenWidth = MediaQuery.of(context).size.width > 400 ? 400 : MediaQuery.of(context).size.width;
     return authVm.when(
@@ -89,9 +105,18 @@ class _MainDrawerState extends ConsumerState<MainDrawer> {
                                     SizedBox(
                                       width: screenWidth * .40,
                                       height: screenWidth / 1.48 * .40,
-                                      child: const rive.RiveAnimation.asset(
-                                        Assets.javierAnimation,
-                                        fit: BoxFit.cover,
+                                      child: RiveWidgetBuilder(
+                                        fileLoader: _riveFileLoader,
+                                        builder: (context, state) => switch (state) {
+                                          RiveLoading() => const Center(
+                                              child: CircularProgressIndicator(),
+                                            ),
+                                          RiveFailed() => const SizedBox.shrink(),
+                                          RiveLoaded() => RiveWidget(
+                                              controller: state.controller,
+                                              fit: Fit.cover,
+                                            )
+                                        },
                                       ),
                                     ),
                                   ],
@@ -263,60 +288,40 @@ class _MainDrawerState extends ConsumerState<MainDrawer> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         IconButton(
-                          icon: CountryFlag.fromCountryCode(
-                            'GB',
-                            shape: const RoundedRectangle(5),
-                            height: 32,
-                            width: 48,
-                          ),
+                          icon: CountryFlag.fromCountryCode('GB'),
                           onPressed: () {
                             ref
-                                .read(localeNotifierProvider.notifier)
+                                .read(localeProvider.notifier)
                                 .setLocale(locale: const Locale('en'), context: context);
                             context.go('/');
                           },
                           tooltip: localizations.english,
                         ),
                         IconButton(
-                          icon: CountryFlag.fromCountryCode(
-                            'ES',
-                            shape: const RoundedRectangle(5),
-                            height: 32,
-                            width: 48,
-                          ),
+                          icon: CountryFlag.fromCountryCode('ES'),
                           onPressed: () {
                             ref
-                                .read(localeNotifierProvider.notifier)
+                                .read(localeProvider.notifier)
                                 .setLocale(locale: const Locale('es'), context: context);
                             context.go('/');
                           },
                           tooltip: localizations.spanish_spain,
                         ),
                         IconButton(
-                          icon: CountryFlag.fromCountryCode(
-                            'VE',
-                            shape: const RoundedRectangle(5),
-                            height: 32,
-                            width: 48,
-                          ),
+                          icon: CountryFlag.fromCountryCode('VE'),
                           onPressed: () {
                             ref
-                                .read(localeNotifierProvider.notifier)
+                                .read(localeProvider.notifier)
                                 .setLocale(locale: const Locale('es', 'VE'), context: context);
                             context.go('/');
                           },
                           tooltip: localizations.spanish_venezuela,
                         ),
                         IconButton(
-                          icon: CountryFlag.fromCountryCode(
-                            'ES',
-                            shape: const RoundedRectangle(5),
-                            height: 32,
-                            width: 48,
-                          ),
+                          icon: CountryFlag.fromCountryCode('ES'),
                           onPressed: () {
                             ref
-                                .read(localeNotifierProvider.notifier)
+                                .read(localeProvider.notifier)
                                 .setLocale(locale: const Locale('ca'), context: context);
                             context.go('/');
                           },

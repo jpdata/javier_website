@@ -118,7 +118,7 @@ class EntriesViewModel extends _$EntriesViewModel {
       await AnalyticsService.logEntryCreated(
         entryId: id,
         entryType: 'blog_entry',
-        wordCount: entry.content?.length ?? 0,
+        wordCount: entry.content.length,
       );
       return _fetchEntries(limit: _limit, page: _page);
     });
@@ -134,7 +134,7 @@ class EntriesViewModel extends _$EntriesViewModel {
     });
     if (snapshot?.exists ?? false) {
       final Entry entry = await snapshot!.data()!.toEntity();
-      final String entryTitle = entry.title ?? '';
+      final String entryTitle = entry.title;
       await AnalyticsService.logEntryView(
         entryId: id,
         entryTitle: entryTitle,
