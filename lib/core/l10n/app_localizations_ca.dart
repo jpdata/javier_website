@@ -261,4 +261,79 @@ class AppLocalizationsCa extends AppLocalizations {
   @override
   String get something_went_wrong =>
       'Quelcom va anar malament. Si us plau, intenta més tard.';
+
+  @override
+  String get manage_portfolio => 'Gestionar Portafoli';
+
+  @override
+  String get add_new_portfolio => 'Afegir Nou Portafoli';
+
+  @override
+  String get edit_portfolio => 'Edita Portafoli';
+
+  @override
+  String get portfolio_management => 'Gestió del Portafoli';
+
+  @override
+  String get add_new => 'Afegir Nou';
+
+  @override
+  String get no_portfolio_items => 'Encara no hi ha elements al portafoli';
+
+  @override
+  String get name => 'Nom';
+
+  @override
+  String get name_required => 'El nom és obligatori';
+
+  @override
+  String get description => 'Descripció';
+
+  @override
+  String get description_required => 'La descripció és obligatòria';
+
+  @override
+  String get url => 'URL';
+
+  @override
+  String get url_required => 'L\'URL és obligatòria';
+
+  @override
+  String get invalid_url => 'URL no vàlida';
+
+  @override
+  String get icon_url => 'URL de la Icona';
+
+  @override
+  String get icon_url_helper => 'URL de la imatge de la icona (opcional)';
+
+  @override
+  String get icon_type => 'Tipus de Icona';
+
+  @override
+  String get icon_is_asset => 'Icona és Asset';
+
+  @override
+  String get icon_is_url => 'Icona és URL';
+
+  @override
+  String get image_url => 'URL de la Imatge';
+
+  @override
+  String get image_url_helper => 'URL de la imatge del projecte (opcional)';
+
+  @override
+  String get save => 'Guardar';
+
+  @override
+  String get saved_successfully => 'Desat exitosament';
+
+  @override
+  String get confirm_delete => 'Confirma Eliminació';
+
+  @override
+  String get are_you_sure_delete => 'Estàs segur que vols esborrar';
+
+  @override
+  String get edit => 'Edita';
 }

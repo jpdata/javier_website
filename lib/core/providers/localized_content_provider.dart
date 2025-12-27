@@ -2,35 +2,29 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:javier_website/core/assets.dart';
 import 'package:javier_website/core/l10n/app_locale.dart';
 import 'package:javier_website/core/providers/notifiers/locale_notifier.dart';
+import 'package:javier_website/viewmodel/portfolio/portfolio_view_model.dart';
 
 /// Type alias for localized entry data
-typedef LocalizedEntry = Map<String, String>;
+typedef LocalizedEntry = Map<String, dynamic>;
 
-/// Provider for portfolio projects list
-final projectsProvider = Provider<List<LocalizedEntry>>((ref) {
+/// Provider for portfolio projects list - now fetches from Firebase
+final projectsProvider = FutureProvider<List<LocalizedEntry>>((ref) async {
   // Watch the locale to trigger rebuild when language changes
   ref.watch(localeProvider);
   
-  return [
-    {
-      'icon': Assets.githubIcon,
-      'name': localizations.my_website,
-      'url': 'https://github.com/jpdata/javier_website',
-      'description': localizations.my_website_description,
-    },
-    {
-      'icon': Assets.githubIcon,
-      'name': localizations.svg_style_cleaner,
-      'url': 'https://github.com/jpdata/SvgStyleCleaner',
-      'description': localizations.svg_style_cleaner_description,
-    },
-    {
-      'icon': Assets.githubIcon,
-      'name': localizations.api_open_builder,
-      'url': 'https://github.com/jpdata/api_open_builder',
-      'description': localizations.api_open_builder_description,
-    },
-  ];
+  // Fetch portfolio entries from Firebase
+  final portfolioEntries = await ref.watch(portfolioViewModelProvider.future);
+  
+  // Convert to LocalizedEntry format compatible with UI
+  return portfolioEntries.map((entry) {
+    return {
+      'icon': entry.icon.isNotEmpty ? entry.icon : Assets.githubIcon,
+      'iconIsAsset': entry.iconIsAsset,
+      'name': entry.name,
+      'url': entry.url,
+      'description': entry.description,
+    };
+  }).toList();
 });
 
 /// Provider for collaborators list

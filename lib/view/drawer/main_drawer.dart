@@ -179,6 +179,25 @@ class _MainDrawerState extends ConsumerState<MainDrawer> {
                               },
                             ),
                           const SizedBox(height: 2),
+                          if (data != null && data.isLoggedIn)
+                            ListTile(
+                              tileColor: Colors.black.withAlpha(128),
+                              leading: Image(
+                                image: const Svg('assets/images/collaborators.svg'),
+                                width: 24,
+                                height: 24,
+                                color: AppTheme.lightTheme.colorScheme.primary,
+                              ),
+                              title: Text(localizations.manage_portfolio,
+                                  style: TextStyle(
+                                    color: AppTheme.lightTheme.colorScheme.primary,
+                                  )),
+                              onTap: () {
+                                Scaffold.of(context).closeDrawer();
+                                context.pushNamed(RoutNames.portfolioManagement);
+                              },
+                            ),
+                          const SizedBox(height: 2),
                           ListTile(
                             tileColor: Colors.black.withAlpha(128),
                             leading: Image(

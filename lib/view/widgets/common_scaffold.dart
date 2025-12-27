@@ -75,7 +75,9 @@ class _CommonScaffoldState extends ConsumerState<CommonScaffold> {
       backgroundColor: Colors.transparent,
       drawer: const MainDrawer(),
       body: Container(
-        height: MediaQuery.of(context).size.height,
+        constraints: BoxConstraints(
+          minHeight: MediaQuery.of(context).size.height,
+        ),
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
           color: AppTheme.lightTheme.colorScheme.primary,

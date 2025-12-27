@@ -262,6 +262,81 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get something_went_wrong =>
       'Algo salió mal. Por favor, intenta más tarde.';
+
+  @override
+  String get manage_portfolio => 'Gestionar Portafolio';
+
+  @override
+  String get add_new_portfolio => 'Agregar Nuevo Portafolio';
+
+  @override
+  String get edit_portfolio => 'Editar Portafolio';
+
+  @override
+  String get portfolio_management => 'Gestión del Portafolio';
+
+  @override
+  String get add_new => 'Agregar Nuevo';
+
+  @override
+  String get no_portfolio_items => 'Aún no hay elementos en el portafolio';
+
+  @override
+  String get name => 'Nombre';
+
+  @override
+  String get name_required => 'El nombre es requerido';
+
+  @override
+  String get description => 'Descripción';
+
+  @override
+  String get description_required => 'La descripción es requerida';
+
+  @override
+  String get url => 'URL';
+
+  @override
+  String get url_required => 'La URL es requerida';
+
+  @override
+  String get invalid_url => 'URL no válida';
+
+  @override
+  String get icon_url => 'URL del Icono';
+
+  @override
+  String get icon_url_helper => 'URL de la imagen del icono (opcional)';
+
+  @override
+  String get icon_type => 'Tipo de Icono';
+
+  @override
+  String get icon_is_asset => 'Icono es Asset';
+
+  @override
+  String get icon_is_url => 'Icono es URL';
+
+  @override
+  String get image_url => 'URL de la Imagen';
+
+  @override
+  String get image_url_helper => 'URL de la imagen del proyecto (opcional)';
+
+  @override
+  String get save => 'Guardar';
+
+  @override
+  String get saved_successfully => 'Guardado exitosamente';
+
+  @override
+  String get confirm_delete => 'Confirmar Eliminación';
+
+  @override
+  String get are_you_sure_delete => '¿Estás seguro de que deseas eliminar';
+
+  @override
+  String get edit => 'Editar';
 }
 
 /// The translations for Spanish Castilian, as used in Venezuela (`es_VE`).
@@ -522,4 +597,79 @@ class AppLocalizationsEsVe extends AppLocalizationsEs {
   @override
   String get something_went_wrong =>
       'Algo salió mal. Por favor, intenta más tarde.';
+
+  @override
+  String get manage_portfolio => 'Gestionar Portafolio';
+
+  @override
+  String get add_new_portfolio => 'Agregar Nuevo Portafolio';
+
+  @override
+  String get edit_portfolio => 'Editar Portafolio';
+
+  @override
+  String get portfolio_management => 'Gestión del Portafolio';
+
+  @override
+  String get add_new => 'Agregar Nuevo';
+
+  @override
+  String get no_portfolio_items => 'Aún no hay elementos en el portafolio';
+
+  @override
+  String get name => 'Nombre';
+
+  @override
+  String get name_required => 'El nombre es requerido';
+
+  @override
+  String get description => 'Descripción';
+
+  @override
+  String get description_required => 'La descripción es requerida';
+
+  @override
+  String get url => 'URL';
+
+  @override
+  String get url_required => 'La URL es requerida';
+
+  @override
+  String get invalid_url => 'URL no válida';
+
+  @override
+  String get icon_url => 'URL del Icono';
+
+  @override
+  String get icon_url_helper => 'URL de la imagen del icono (opcional)';
+
+  @override
+  String get icon_type => 'Tipo de Icono';
+
+  @override
+  String get icon_is_asset => 'Icono es Asset';
+
+  @override
+  String get icon_is_url => 'Icono es URL';
+
+  @override
+  String get image_url => 'URL de la Imagen';
+
+  @override
+  String get image_url_helper => 'URL de la imagen del proyecto (opcional)';
+
+  @override
+  String get save => 'Guardar';
+
+  @override
+  String get saved_successfully => 'Guardado exitosamente';
+
+  @override
+  String get confirm_delete => 'Confirmar Eliminación';
+
+  @override
+  String get are_you_sure_delete => '¿Estás seguro de que deseas borrar';
+
+  @override
+  String get edit => 'Editar';
 }

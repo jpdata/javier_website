@@ -130,6 +130,41 @@ database:
           type:
             $: 'StringTypeData'
             required: true
+    - id: 'zU9pFgHkT2mXcYwBnLqRsT'
+      className: 'PortfolioEntryDto'
+      fields:
+        - name: 'id'
+          type:
+            $: 'StringTypeData'
+            required: true
+        - name: 'name'
+          type:
+            $: 'StringTypeData'
+            required: true
+        - name: 'description'
+          type:
+            $: 'StringTypeData'
+            required: true
+        - name: 'url'
+          type:
+            $: 'StringTypeData'
+            required: true
+        - name: 'icon'
+          type:
+            $: 'StringTypeData'
+            required: false
+        - name: 'iconIsAsset'
+          type:
+            $: 'BoolTypeData'
+            required: false
+        - name: 'imageUrl'
+          type:
+            $: 'StringTypeData'
+            required: false
+        - name: 'createdAt'
+          type:
+            $: 'TimestampTypeData'
+            required: false
   collections:
     - id: 'Jd7cT8JdQ5mfXkBnbPIy8g'
       subPath: 'entries'
@@ -151,6 +186,10 @@ database:
       subPath: 'users'
       subCollections: []
       schemaID: 'wgCpZrGeSX6WNacctBgu6w'
+    - id: 'cV5xDsKpMnOqRvWxYzAbCd'
+      subPath: 'portfolio'
+      subCollections: []
+      schemaID: 'zU9pFgHkT2mXcYwBnLqRsT'
 nodeOffsets:
   root: '0,0'
   Jd7cT8JdQ5mfXkBnbPIy8g: '322.91619873046875,0'
@@ -158,3 +197,5 @@ nodeOffsets:
   Q9IetBUHRaO9FMS55r-DvA: '319.91619873046875,879'
   aQ-bH4a5QeGNBUN-eCdaYg: '322.91619873046875,1162'
   BJiJuwGvTrKS7wQAzrrJ4w: '323.91619873046875,1438'
+  cV5xDsKpMnOqRvWxYzAbCd: '320.91619873046875,1700'
+

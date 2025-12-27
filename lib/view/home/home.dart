@@ -45,7 +45,7 @@ class _HomeState extends ConsumerState<Home> {
       },
       error: (error, stackTrace) => CommonScaffold(child: ErrorHandler.errorWidget(error)),
       loading: () {
-        return CommonScaffold(actions: _socialActions(context), child: _scaffoldBody(isLoading: true));
+        return CommonScaffold(child: _scaffoldBody(isLoading: true));
       },
     );
   }

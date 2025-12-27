@@ -41,9 +41,9 @@ class CreditsContent extends ConsumerWidget {
 
   Column _unfoldContent(
     TextStyle textStyle,
-    List<Map<String, String>> collaborators,
-    List<Map<String, String>> collaborations,
-    List<Map<String, String>> credits,
+    List<Map<String, dynamic>> collaborators,
+    List<Map<String, dynamic>> collaborations,
+    List<Map<String, dynamic>> credits,
   ) {
     int index = 0;
     return Column(
@@ -58,13 +58,18 @@ class CreditsContent extends ConsumerWidget {
         ),
         ...collaborators.map((item) {
           index++;
+          final iconPath = item['icon'] as String;
+          final iconIsAsset = item['iconIsAsset'] as bool? ?? false;
+          
           return DelayedDisplay(
             delay: Duration(milliseconds: initialDelay + index * duration),
             child: ListTile(
-              leading: Image(image: Svg(item['icon']!)),
-              title: Text(item['name']!, style: textStyle),
-              subtitle: Text(item['description']!, style: textStyle),
-              onTap: () => Utils.launchURL(item['url']!),
+              leading: iconIsAsset
+                  ? Image.asset(iconPath)
+                  : Image(image: Svg(iconPath)),
+              title: Text(item['name']! as String, style: textStyle),
+              subtitle: Text(item['description']! as String, style: textStyle),
+              onTap: () => Utils.launchURL(item['url']! as String),
             ),
           );
         }),
@@ -79,13 +84,18 @@ class CreditsContent extends ConsumerWidget {
             : Container()),
         ...credits.map((item) {
           index++;
+          final iconPath = item['icon'] as String;
+          final iconIsAsset = item['iconIsAsset'] as bool? ?? false;
+          
           return DelayedDisplay(
             delay: Duration(milliseconds: initialDelay + index * duration),
             child: ListTile(
-              leading: Image(image: Svg(item['icon']!)),
-              title: Text(item['name']!, style: textStyle),
-              subtitle: Text(item['description']!, style: textStyle),
-              onTap: () => Utils.launchURL(item['url']!),
+              leading: iconIsAsset
+                  ? Image.asset(iconPath)
+                  : Image(image: Svg(iconPath)),
+              title: Text(item['name']! as String, style: textStyle),
+              subtitle: Text(item['description']! as String, style: textStyle),
+              onTap: () => Utils.launchURL(item['url']! as String),
             ),
           );
         }),

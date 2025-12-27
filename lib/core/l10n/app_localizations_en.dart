@@ -260,4 +260,79 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get something_went_wrong =>
       'Something went wrong. Please try again later.';
+
+  @override
+  String get manage_portfolio => 'Manage Portfolio';
+
+  @override
+  String get add_new_portfolio => 'Add New Portfolio';
+
+  @override
+  String get edit_portfolio => 'Edit Portfolio';
+
+  @override
+  String get portfolio_management => 'Portfolio Management';
+
+  @override
+  String get add_new => 'Add New';
+
+  @override
+  String get no_portfolio_items => 'No portfolio items yet';
+
+  @override
+  String get name => 'Name';
+
+  @override
+  String get name_required => 'Name is required';
+
+  @override
+  String get description => 'Description';
+
+  @override
+  String get description_required => 'Description is required';
+
+  @override
+  String get url => 'URL';
+
+  @override
+  String get url_required => 'URL is required';
+
+  @override
+  String get invalid_url => 'Invalid URL';
+
+  @override
+  String get icon_url => 'Icon URL';
+
+  @override
+  String get icon_url_helper => 'URL to icon image (optional)';
+
+  @override
+  String get icon_type => 'Icon Type';
+
+  @override
+  String get icon_is_asset => 'Icon is Asset';
+
+  @override
+  String get icon_is_url => 'Icon is URL';
+
+  @override
+  String get image_url => 'Image URL';
+
+  @override
+  String get image_url_helper => 'URL to project image (optional)';
+
+  @override
+  String get save => 'Save';
+
+  @override
+  String get saved_successfully => 'Saved successfully';
+
+  @override
+  String get confirm_delete => 'Confirm Delete';
+
+  @override
+  String get are_you_sure_delete => 'Are you sure you want to delete';
+
+  @override
+  String get edit => 'Edit';
 }

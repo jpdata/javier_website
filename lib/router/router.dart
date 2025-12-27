@@ -13,6 +13,7 @@ import 'package:javier_website/view/news/news_edit_entry_page.dart';
 import 'package:javier_website/view/news/news_entries_list_page.dart';
 import 'package:javier_website/view/news/news_entry_detail_page.dart';
 import 'package:javier_website/view/news/news_new_entry_page.dart';
+import 'package:javier_website/view/portfolio/portfolio_management_page.dart';
 
 class AppRouter {
   static final GoRouter router = GoRouter(
@@ -79,6 +80,13 @@ class AppRouter {
         builder: (context, state) {
           return const NewsNewEntryPage();
         },
+      ),
+
+      //-------------------PORTFOLIO-------------------
+      GoRoute(
+        path: RoutPaths.portfolioManagement,
+        name: RoutNames.portfolioManagement,
+        builder: (context, state) => const PortfolioManagementPage(),
       ),
 
       //-------------------AUTH-------------------
