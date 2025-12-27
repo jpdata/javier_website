@@ -32,6 +32,23 @@ class _IconMenuItemState extends State<IconMenuItem> {
 
   @override
   Widget build(BuildContext context) {
+    final shouldShowTooltip = _isHovered && widget.tooltipTextMouseOver != null && widget.tooltipTextMouseOver!.isNotEmpty;
+    
+    Widget imageWidget = Image(
+      image: Svg(
+          _isHovered && widget.imagePathMouseOver != null ? widget.imagePathMouseOver! : widget.imagePath),
+      width: widget.width ?? 32,
+      height: widget.height ?? 32,
+      color: widget.color ?? Theme.of(context).colorScheme.primary,
+    );
+
+    if (shouldShowTooltip) {
+      imageWidget = Tooltip(
+        message: widget.tooltipTextMouseOver!,
+        child: imageWidget,
+      );
+    }
+
     return MouseRegion(
       cursor: SystemMouseCursors.click,
       onEnter: (_) => setState(() => _isHovered = true),
@@ -41,16 +58,7 @@ class _IconMenuItemState extends State<IconMenuItem> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Tooltip(
-              message: _isHovered && widget.tooltipTextMouseOver != null ? widget.tooltipTextMouseOver! : '',
-              child: Image(
-                image: Svg(
-                    _isHovered && widget.imagePathMouseOver != null ? widget.imagePathMouseOver! : widget.imagePath),
-                width: widget.width ?? 32,
-                height: widget.height ?? 32,
-                color: widget.color ?? Theme.of(context).colorScheme.primary,
-              ),
-            ),
+            imageWidget,
             if (widget.label != null)
               Padding(
                 padding: const EdgeInsets.only(top: 4.0),

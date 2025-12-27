@@ -56,14 +56,23 @@ class PortfolioContent extends ConsumerWidget {
         ...projects.map((item) {
           index++;
           final iconPath = item['icon'] as String;
-          final iconIsAsset = item['iconIsAsset'] as bool? ?? false;
+          final iconIsAsset = item['iconIsAsset'] as bool? ?? true;
           
           return DelayedDisplay(
             delay: Duration(milliseconds: initialDelay + index * duration),
             child: ListTile(
-              leading: iconIsAsset ?
-                   Image(image: Svg(iconPath)) :
-                   Image(image: Svg(iconPath,source: SvgSource.network)),
+              leading: SizedBox(
+                width: 40,
+                height: 40,
+                child: iconPath.isEmpty
+                    ? null
+                    : Image(
+                        image: iconIsAsset ? Svg(iconPath) : Svg(iconPath, source: SvgSource.network),
+                        fit: BoxFit.contain,
+                        errorBuilder: (context, error, stackTrace) =>
+                            const Icon(Icons.error, size: 40),
+                      ),
+              ),
               title: Text(item['name']! as String, style: textStyle),
               subtitle: Text(item['description']! as String, style: textStyle),
               onTap: () => Utils.launchURL(item['url']! as String),

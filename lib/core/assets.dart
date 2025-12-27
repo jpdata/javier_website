@@ -4,17 +4,17 @@
 /// to improve maintainability and prevent typos.
 abstract class Assets {
   // Social media icons
-  static const String linkedin = 'assets/images/linkedin.svg';
+  static const String linkedin = 'assets/images/Linkedin.svg';
   static const String linkedinNegative = 'assets/images/linkedin_negative.svg';
-  static const String github = 'assets/images/github.svg';
+  static const String github = 'assets/images/Github.svg';
   static const String githubNegative = 'assets/images/github_negative.svg';
-  static const String instagram = 'assets/images/instagram.svg';
+  static const String instagram = 'assets/images/Instagram.svg';
   static const String instagramNegative = 'assets/images/instagram_negative.svg';
-  static const String mail = 'assets/images/mail.svg';
+  static const String mail = 'assets/images/Mail.svg';
   static const String mailNegative = 'assets/images/mail_negative.svg';
   
   // Company/Brand icons
-  static const String hiberus = 'assets/images/hiberus.svg';
+  static const String hiberus = 'assets/images/Hiberus.svg';
   static const String hiberusNegative = 'assets/images/hiberus_negative.svg';
   
   // Navigation icons

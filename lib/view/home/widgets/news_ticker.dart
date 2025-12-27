@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'dart:async';
+import 'dart:developer' as developer;
 import 'package:javier_website/model/news_entry.dart';
 import 'package:javier_website/view/themes/app_theme.dart';
 
@@ -16,18 +18,16 @@ class NewsTicker extends StatefulWidget {
   State<NewsTicker> createState() => _NewsTickerState();
 }
 
-class _NewsTickerState extends State<NewsTicker> with SingleTickerProviderStateMixin {
+class _NewsTickerState extends State<NewsTicker> {
   late ScrollController _scrollController;
-  late AnimationController _animationController;
+  Timer? _scrollTimer;
+  double _maxScroll = 0;
+  double _currentScroll = 0;
 
   @override
   void initState() {
     super.initState();
     _scrollController = ScrollController();
-    _animationController = AnimationController(
-      vsync: this,
-      duration: widget.scrollDuration,
-    );
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _startScrolling();
@@ -35,21 +35,36 @@ class _NewsTickerState extends State<NewsTicker> with SingleTickerProviderStateM
   }
 
   void _startScrolling() {
-    if (_scrollController.hasClients) {
-      _animationController.forward().then((_) {
-        if (mounted) {
-          _scrollController.jumpTo(0);
-          _animationController.reset();
-          _startScrolling();
+    if (!_scrollController.hasClients) return;
+    
+    _maxScroll = _scrollController.position.maxScrollExtent;
+    if (_maxScroll <= 0) return;
+
+    _scrollTimer?.cancel();
+    _scrollTimer = Timer.periodic(const Duration(milliseconds: 50), (timer) {
+      if (!mounted || !_scrollController.hasClients) {
+        timer.cancel();
+        return;
+      }
+
+      try {
+        _currentScroll += (_maxScroll / (widget.scrollDuration.inMilliseconds / 50));
+        
+        if (_currentScroll >= _maxScroll) {
+          _currentScroll = 0;
         }
-      });
-    }
+        
+        _scrollController.jumpTo(_currentScroll);
+      } catch (e) {
+        developer.log('Error en NewsTicker: $e');
+      }
+    });
   }
 
   @override
   void dispose() {
+    _scrollTimer?.cancel();
     _scrollController.dispose();
-    _animationController.dispose();
     super.dispose();
   }
 
@@ -71,48 +86,34 @@ class _NewsTickerState extends State<NewsTicker> with SingleTickerProviderStateM
     return Container(
       color: AppTheme.lightTheme.colorScheme.primary.withAlpha(50),
       padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-      child: NotificationListener<ScrollNotification>(
-        onNotification: (notification) {
-          return false;
-        },
-        child: SingleChildScrollView(
-          controller: _scrollController,
-          scrollDirection: Axis.horizontal,
-          physics: const NeverScrollableScrollPhysics(),
-          child: AnimatedBuilder(
-            animation: _animationController,
-            builder: (context, child) {
-              final maxScroll = _scrollController.position.maxScrollExtent;
-              final currentScroll = _animationController.value * maxScroll;
-              _scrollController.jumpTo(currentScroll);
-              return child!;
-            },
-            child: Row(
-              children: [
-                Text(
-                  tickerText,
-                  style: TextStyle(
-                    color: AppTheme.lightTheme.colorScheme.secondary,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                  ),
-                  maxLines: 1,
-                  overflow: TextOverflow.fade,
-                ),
-                const SizedBox(width: 32),
-                Text(
-                  tickerText,
-                  style: TextStyle(
-                    color: AppTheme.lightTheme.colorScheme.secondary,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                  ),
-                  maxLines: 1,
-                  overflow: TextOverflow.fade,
-                ),
-              ],
+      child: SingleChildScrollView(
+        controller: _scrollController,
+        scrollDirection: Axis.horizontal,
+        physics: const NeverScrollableScrollPhysics(),
+        child: Row(
+          children: [
+            Text(
+              tickerText,
+              style: TextStyle(
+                color: AppTheme.lightTheme.colorScheme.secondary,
+                fontSize: 16,
+                fontWeight: FontWeight.w500,
+              ),
+              maxLines: 1,
+              overflow: TextOverflow.fade,
             ),
-          ),
+            const SizedBox(width: 32),
+            Text(
+              tickerText,
+              style: TextStyle(
+                color: AppTheme.lightTheme.colorScheme.secondary,
+                fontSize: 16,
+                fontWeight: FontWeight.w500,
+              ),
+              maxLines: 1,
+              overflow: TextOverflow.fade,
+            ),
+          ],
         ),
       ),
     );

@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:javier_website/core/l10n/app_locale.dart';
 import 'package:javier_website/core/error_handler.dart';
 import 'package:javier_website/model/portfolio_entry.dart';
-import 'package:javier_website/router/rout_names.dart';
 import 'package:javier_website/view/portfolio/portfolio_form_page.dart';
 import 'package:javier_website/view/widgets/common_scaffold.dart';
 import 'package:javier_website/viewmodel/portfolio/portfolio_view_model.dart';
@@ -41,18 +39,6 @@ class PortfolioManagementPage extends ConsumerWidget {
                   ),
                   Row(
                     children: [
-                      ElevatedButton.icon(
-                        onPressed: () {
-                          context.pushNamed(RoutNames.portfolioImport);
-                        },
-                        icon: const Icon(Icons.cloud_upload),
-                        label: const Text('Importar'),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.blue,
-                          foregroundColor: Colors.white,
-                        ),
-                      ),
-                      const SizedBox(width: 8),
                       ElevatedButton.icon(
                         onPressed: () {
                           Navigator.push(
