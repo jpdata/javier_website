@@ -10,7 +10,7 @@ part of 'firebase_provider.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(firebase)
-const firebaseProvider = FirebaseProvider._();
+final firebaseProvider = FirebaseProvider._();
 
 final class FirebaseProvider
     extends
@@ -20,7 +20,7 @@ final class FirebaseProvider
           FutureOr<FirebaseApp?>
         >
     with $FutureModifier<FirebaseApp?>, $FutureProvider<FirebaseApp?> {
-  const FirebaseProvider._()
+  FirebaseProvider._()
     : super(
         from: null,
         argument: null,

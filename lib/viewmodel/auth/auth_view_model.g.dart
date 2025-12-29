@@ -53,11 +53,11 @@ Map<String, dynamic> _$AuthStateToJson(_AuthState instance) =>
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(AuthViewModel)
-const authViewModelProvider = AuthViewModelProvider._();
+final authViewModelProvider = AuthViewModelProvider._();
 
 final class AuthViewModelProvider
     extends $AsyncNotifierProvider<AuthViewModel, AuthState> {
-  const AuthViewModelProvider._()
+  AuthViewModelProvider._()
     : super(
         from: null,
         argument: null,
@@ -83,7 +83,6 @@ abstract class _$AuthViewModel extends $AsyncNotifier<AuthState> {
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build();
     final ref = this.ref as $Ref<AsyncValue<AuthState>, AuthState>;
     final element =
         ref.element
@@ -93,6 +92,6 @@ abstract class _$AuthViewModel extends $AsyncNotifier<AuthState> {
               Object?,
               Object?
             >;
-    element.handleValue(ref, created);
+    element.handleCreate(ref, build);
   }
 }

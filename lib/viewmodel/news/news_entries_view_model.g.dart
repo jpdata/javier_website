@@ -10,12 +10,12 @@ part of 'news_entries_view_model.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(selectedNewsEntryById)
-const selectedNewsEntryByIdProvider = SelectedNewsEntryByIdFamily._();
+final selectedNewsEntryByIdProvider = SelectedNewsEntryByIdFamily._();
 
 final class SelectedNewsEntryByIdProvider
     extends $FunctionalProvider<NewsEntry?, NewsEntry?, NewsEntry?>
     with $Provider<NewsEntry?> {
-  const SelectedNewsEntryByIdProvider._({
+  SelectedNewsEntryByIdProvider._({
     required SelectedNewsEntryByIdFamily super.from,
     required String super.argument,
   }) : super(
@@ -71,7 +71,7 @@ String _$selectedNewsEntryByIdHash() =>
 
 final class SelectedNewsEntryByIdFamily extends $Family
     with $FunctionalFamilyOverride<NewsEntry?, String> {
-  const SelectedNewsEntryByIdFamily._()
+  SelectedNewsEntryByIdFamily._()
     : super(
         retry: null,
         name: r'selectedNewsEntryByIdProvider',
@@ -88,11 +88,11 @@ final class SelectedNewsEntryByIdFamily extends $Family
 }
 
 @ProviderFor(NewsEntriesViewModel)
-const newsEntriesViewModelProvider = NewsEntriesViewModelFamily._();
+final newsEntriesViewModelProvider = NewsEntriesViewModelFamily._();
 
 final class NewsEntriesViewModelProvider
     extends $AsyncNotifierProvider<NewsEntriesViewModel, List<NewsEntry>> {
-  const NewsEntriesViewModelProvider._({
+  NewsEntriesViewModelProvider._({
     required NewsEntriesViewModelFamily super.from,
     required ({int? limit, int? page}) super.argument,
   }) : super(
@@ -140,7 +140,7 @@ final class NewsEntriesViewModelFamily extends $Family
           FutureOr<List<NewsEntry>>,
           ({int? limit, int? page})
         > {
-  const NewsEntriesViewModelFamily._()
+  NewsEntriesViewModelFamily._()
     : super(
         retry: null,
         name: r'newsEntriesViewModelProvider',
@@ -168,7 +168,6 @@ abstract class _$NewsEntriesViewModel extends $AsyncNotifier<List<NewsEntry>> {
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build(limit: _$args.limit, page: _$args.page);
     final ref = this.ref as $Ref<AsyncValue<List<NewsEntry>>, List<NewsEntry>>;
     final element =
         ref.element
@@ -178,6 +177,9 @@ abstract class _$NewsEntriesViewModel extends $AsyncNotifier<List<NewsEntry>> {
               Object?,
               Object?
             >;
-    element.handleValue(ref, created);
+    element.handleCreate(
+      ref,
+      () => build(limit: _$args.limit, page: _$args.page),
+    );
   }
 }

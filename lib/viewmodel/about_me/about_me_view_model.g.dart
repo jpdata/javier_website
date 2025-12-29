@@ -10,11 +10,11 @@ part of 'about_me_view_model.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(AboutMeViewModel)
-const aboutMeViewModelProvider = AboutMeViewModelProvider._();
+final aboutMeViewModelProvider = AboutMeViewModelProvider._();
 
 final class AboutMeViewModelProvider
     extends $AsyncNotifierProvider<AboutMeViewModel, AboutMe> {
-  const AboutMeViewModelProvider._()
+  AboutMeViewModelProvider._()
     : super(
         from: null,
         argument: null,
@@ -40,7 +40,6 @@ abstract class _$AboutMeViewModel extends $AsyncNotifier<AboutMe> {
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build();
     final ref = this.ref as $Ref<AsyncValue<AboutMe>, AboutMe>;
     final element =
         ref.element
@@ -50,6 +49,6 @@ abstract class _$AboutMeViewModel extends $AsyncNotifier<AboutMe> {
               Object?,
               Object?
             >;
-    element.handleValue(ref, created);
+    element.handleCreate(ref, build);
   }
 }

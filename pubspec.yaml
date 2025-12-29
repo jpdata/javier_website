@@ -30,26 +30,30 @@ environment:
 dependencies:
   animated_text_kit: ^4.3.0
   another_flushbar: ^1.12.32
-  cloud_firestore: ^5.0.0
-  cloud_firestore_odm: ^1.0.0-dev.88
-  cloud_functions: ^5.6.2
+  cloud_firestore: ^6.1.1
+  cloud_firestore_odm:
+    git:
+      url: https://github.com/dorklein/firestoreodm-flutter.git
+      ref: main
+      path: packages/cloud_firestore_odm
+  cloud_functions: ^6.0.5
   country_flags: ^4.1.0
   cupertino_icons: ^1.0.8
   delayed_display: ^2.0.0
   file_picker: ^10.3.8
-  firebase_analytics: ^11.2.0
-  firebase_auth: ^5.1.3
-  firebase_core: ^3.15.2
-  firebase_crashlytics: ^4.0.3
-  firebase_remote_config: ^5.0.3
-  firebase_storage: ^12.3.2
+  firebase_analytics: ^12.1.0
+  firebase_auth: ^6.1.3
+  firebase_core: ^4.3.0
+  firebase_crashlytics: ^5.0.6
+  firebase_remote_config: ^6.1.3
+  firebase_storage: ^13.0.5
   firestore_modeler: ^0.2.0
   flutter:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
   flutter_native_splash: ^2.4.7
-  flutter_riverpod: ^3.0.3
+  flutter_riverpod: ^3.1.0
   flutter_svg: ^2.2.3
   flutter_svg_provider: ^1.0.7
   flutter_web_plugins:
@@ -62,8 +66,8 @@ dependencies:
   intl: any
   json_annotation: ^4.9.0
   rive: ^0.14.0
-  riverpod: 3.0.3
-  riverpod_annotation: ^3.0.3
+  riverpod: 3.1.0
+  riverpod_annotation: ^4.0.0
   shared_preferences: ^2.5.4
   textfield_tags: ^3.0.1
   url_launcher: ^6.3.2
@@ -77,9 +81,16 @@ dev_dependencies:
   freezed: ^3.2.3
   json_serializable: ^6.10.0
   mocktail: ^1.0.4
-  riverpod_generator: ^3.0.3
-  riverpod_lint: ^3.0.3
+  riverpod_generator: ^4.0.0+1
+  riverpod_lint: ^3.1.0
   test: ^1.26.0
+
+dependency_overrides:
+  cloud_firestore_odm:
+    git:
+      url: https://github.com/dorklein/firestoreodm-flutter.git
+      ref: main
+      path: packages/cloud_firestore_odm
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

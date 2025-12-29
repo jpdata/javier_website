@@ -10,11 +10,11 @@ part of 'entries_view_model.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(EntryViewModel)
-const entryViewModelProvider = EntryViewModelFamily._();
+final entryViewModelProvider = EntryViewModelFamily._();
 
 final class EntryViewModelProvider
     extends $AsyncNotifierProvider<EntryViewModel, Entry> {
-  const EntryViewModelProvider._({
+  EntryViewModelProvider._({
     required EntryViewModelFamily super.from,
     required String super.argument,
   }) : super(
@@ -61,7 +61,7 @@ final class EntryViewModelFamily extends $Family
           FutureOr<Entry>,
           String
         > {
-  const EntryViewModelFamily._()
+  EntryViewModelFamily._()
     : super(
         retry: null,
         name: r'entryViewModelProvider',
@@ -85,7 +85,6 @@ abstract class _$EntryViewModel extends $AsyncNotifier<Entry> {
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build(_$args);
     final ref = this.ref as $Ref<AsyncValue<Entry>, Entry>;
     final element =
         ref.element
@@ -95,16 +94,16 @@ abstract class _$EntryViewModel extends $AsyncNotifier<Entry> {
               Object?,
               Object?
             >;
-    element.handleValue(ref, created);
+    element.handleCreate(ref, () => build(_$args));
   }
 }
 
 @ProviderFor(EntriesViewModel)
-const entriesViewModelProvider = EntriesViewModelFamily._();
+final entriesViewModelProvider = EntriesViewModelFamily._();
 
 final class EntriesViewModelProvider
     extends $AsyncNotifierProvider<EntriesViewModel, List<Entry>> {
-  const EntriesViewModelProvider._({
+  EntriesViewModelProvider._({
     required EntriesViewModelFamily super.from,
     required ({int? limit, int? page}) super.argument,
   }) : super(
@@ -151,7 +150,7 @@ final class EntriesViewModelFamily extends $Family
           FutureOr<List<Entry>>,
           ({int? limit, int? page})
         > {
-  const EntriesViewModelFamily._()
+  EntriesViewModelFamily._()
     : super(
         retry: null,
         name: r'entriesViewModelProvider',
@@ -179,7 +178,6 @@ abstract class _$EntriesViewModel extends $AsyncNotifier<List<Entry>> {
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build(limit: _$args.limit, page: _$args.page);
     final ref = this.ref as $Ref<AsyncValue<List<Entry>>, List<Entry>>;
     final element =
         ref.element
@@ -189,6 +187,9 @@ abstract class _$EntriesViewModel extends $AsyncNotifier<List<Entry>> {
               Object?,
               Object?
             >;
-    element.handleValue(ref, created);
+    element.handleCreate(
+      ref,
+      () => build(limit: _$args.limit, page: _$args.page),
+    );
   }
 }

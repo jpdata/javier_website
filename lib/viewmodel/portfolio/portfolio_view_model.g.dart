@@ -10,11 +10,11 @@ part of 'portfolio_view_model.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(PortfolioViewModel)
-const portfolioViewModelProvider = PortfolioViewModelProvider._();
+final portfolioViewModelProvider = PortfolioViewModelProvider._();
 
 final class PortfolioViewModelProvider
     extends $AsyncNotifierProvider<PortfolioViewModel, List<PortfolioEntry>> {
-  const PortfolioViewModelProvider._()
+  PortfolioViewModelProvider._()
     : super(
         from: null,
         argument: null,
@@ -42,7 +42,6 @@ abstract class _$PortfolioViewModel
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build();
     final ref =
         this.ref
             as $Ref<AsyncValue<List<PortfolioEntry>>, List<PortfolioEntry>>;
@@ -57,6 +56,6 @@ abstract class _$PortfolioViewModel
               Object?,
               Object?
             >;
-    element.handleValue(ref, created);
+    element.handleCreate(ref, build);
   }
 }

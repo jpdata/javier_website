@@ -10,11 +10,11 @@ part of 'user_view_model.dart';
 // ignore_for_file: type=lint, type=warning
 
 @ProviderFor(UserViewModel)
-const userViewModelProvider = UserViewModelProvider._();
+final userViewModelProvider = UserViewModelProvider._();
 
 final class UserViewModelProvider
     extends $AsyncNotifierProvider<UserViewModel, List<User>> {
-  const UserViewModelProvider._()
+  UserViewModelProvider._()
     : super(
         from: null,
         argument: null,
@@ -40,7 +40,6 @@ abstract class _$UserViewModel extends $AsyncNotifier<List<User>> {
   @$mustCallSuper
   @override
   void runBuild() {
-    final created = build();
     final ref = this.ref as $Ref<AsyncValue<List<User>>, List<User>>;
     final element =
         ref.element
@@ -50,17 +49,17 @@ abstract class _$UserViewModel extends $AsyncNotifier<List<User>> {
               Object?,
               Object?
             >;
-    element.handleValue(ref, created);
+    element.handleCreate(ref, build);
   }
 }
 
 @ProviderFor(currentUser)
-const currentUserProvider = CurrentUserProvider._();
+final currentUserProvider = CurrentUserProvider._();
 
 final class CurrentUserProvider
     extends $FunctionalProvider<AsyncValue<User>, User, FutureOr<User>>
     with $FutureModifier<User>, $FutureProvider<User> {
-  const CurrentUserProvider._()
+  CurrentUserProvider._()
     : super(
         from: null,
         argument: null,

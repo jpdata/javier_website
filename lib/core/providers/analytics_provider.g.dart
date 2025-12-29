@@ -16,7 +16,7 @@ part of 'analytics_provider.dart';
 /// ```
 
 @ProviderFor(analyticsService)
-const analyticsServiceProvider = AnalyticsServiceProvider._();
+final analyticsServiceProvider = AnalyticsServiceProvider._();
 
 /// Provider for analytics service
 ///
@@ -39,7 +39,7 @@ final class AnalyticsServiceProvider
   /// ```dart
   /// ref.read(analyticsServiceProvider).logPageView(pageName: 'Home');
   /// ```
-  const AnalyticsServiceProvider._()
+  AnalyticsServiceProvider._()
     : super(
         from: null,
         argument: null,
@@ -82,7 +82,7 @@ String _$analyticsServiceHash() => r'a78e9020e79b5e99632cc4cee7e5f7156c672acd';
 /// ```
 
 @ProviderFor(crashlyticsService)
-const crashlyticsServiceProvider = CrashlyticsServiceProvider._();
+final crashlyticsServiceProvider = CrashlyticsServiceProvider._();
 
 /// Provider for Crashlytics service
 ///
@@ -105,7 +105,7 @@ final class CrashlyticsServiceProvider
   /// ```dart
   /// ref.read(crashlyticsServiceProvider).log('App started');
   /// ```
-  const CrashlyticsServiceProvider._()
+  CrashlyticsServiceProvider._()
     : super(
         from: null,
         argument: null,
