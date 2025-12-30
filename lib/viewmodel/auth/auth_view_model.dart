@@ -29,32 +29,33 @@ sealed class AuthState with _$AuthState {
 class AuthViewModel extends _$AuthViewModel {
   @override
   Future<AuthState> build() async {
-    // Wait for Firebase initialization
-    await ref.watch(firebaseProvider.future);
+    // Firebase is already initialized in main()
+    ref.watch(firebaseProvider);
 
-    // Check if user is already logged in Firebase
+    // Check if user is already logged in Firebase (persisted session)
     final currentUser = FirebaseAuth.instance.currentUser;
     if (currentUser != null) {
       return _userToAuthState(currentUser, isLoggedIn: true);
     }
 
-    // Try to restore from local cache
+    // Try to restore from local cache (fast)
     final cachedAuthState = await _getLocalAuthState();
     if (cachedAuthState != null) {
       return cachedAuthState;
     }
 
-    // Try to login with env vars (service account)
-    try {
-      await _loginWithEnvVars();
+    // Try to login with env vars (service account) in the background
+    // to avoid blocking the initial UI render
+    _loginWithEnvVars().then((_) {
       final user = FirebaseAuth.instance.currentUser;
       if (user != null) {
-        return _userToAuthState(user, isLoggedIn: false);
+        state = AsyncValue.data(_userToAuthState(user, isLoggedIn: false));
       }
-    } catch (e) {
+    }).catchError((e) {
       // Silent fail - user can login manually
-    }
+    });
 
+    // Return guest state immediately
     return const AuthState(
       id: '',
       name: '',

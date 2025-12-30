@@ -37,22 +37,6 @@ class PortfolioManagementPage extends ConsumerWidget {
                     localizations.manage_portfolio,
                     style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                   ),
-                  Row(
-                    children: [
-                      ElevatedButton.icon(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const PortfolioFormPage(),
-                            ),
-                          );
-                        },
-                        icon: const Icon(Icons.add),
-                        label: Text(localizations.add_new),
-                      ),
-                    ],
-                  ),
                 ],
               ),
             ],
@@ -102,6 +86,35 @@ class PortfolioManagementPage extends ConsumerWidget {
                     );
                   },
                 ),
+        ),
+              Padding(
+          padding: const EdgeInsets.fromLTRB(16, 16, 32, 16),
+          child: Column(
+            children: [
+              Row(
+                
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Row(
+                    children: [
+                      ElevatedButton.icon(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const PortfolioFormPage(),
+                            ),
+                          );
+                        },
+                        icon: const Icon(Icons.add),
+                        label: Text(localizations.add_new),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ],
     );

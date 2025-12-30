@@ -13,13 +13,8 @@ part of 'firebase_provider.dart';
 final firebaseProvider = FirebaseProvider._();
 
 final class FirebaseProvider
-    extends
-        $FunctionalProvider<
-          AsyncValue<FirebaseApp?>,
-          FirebaseApp?,
-          FutureOr<FirebaseApp?>
-        >
-    with $FutureModifier<FirebaseApp?>, $FutureProvider<FirebaseApp?> {
+    extends $FunctionalProvider<FirebaseApp, FirebaseApp, FirebaseApp>
+    with $Provider<FirebaseApp> {
   FirebaseProvider._()
     : super(
         from: null,
@@ -36,14 +31,21 @@ final class FirebaseProvider
 
   @$internal
   @override
-  $FutureProviderElement<FirebaseApp?> $createElement(
-    $ProviderPointer pointer,
-  ) => $FutureProviderElement(pointer);
+  $ProviderElement<FirebaseApp> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
 
   @override
-  FutureOr<FirebaseApp?> create(Ref ref) {
+  FirebaseApp create(Ref ref) {
     return firebase(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(FirebaseApp value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<FirebaseApp>(value),
+    );
   }
 }
 
-String _$firebaseHash() => r'2803a697b9104556f7dfb6ff78e495bd3577746e';
+String _$firebaseHash() => r'd63cdb5bc19ef62ddecaa56a69b39c60f84404e9';
