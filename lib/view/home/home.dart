@@ -57,24 +57,21 @@ class _HomeState extends ConsumerState<Home> {
       children: [
         Expanded(
           child: Center(
-            child: ListView(
-              children: [
-                Padding(
-                  padding: EdgeInsets.fromLTRB(lateralPadding, 0, lateralPadding, 0),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      SizedBox(height: 40),
-                      _profileSection(screenWidth),
-                      SizedBox(height: 40),
-                      if (!isLoading) IndexedContent(index: _index),
-                      if (isLoading) Center(child: FadeInOutText(text: localizations.loadind_data)),
-                    ],
-                  ),
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(lateralPadding, 40, lateralPadding, 40),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    _profileSection(screenWidth),
+                    SizedBox(height: 40),
+                    if (!isLoading) IndexedContent(index: _index),
+                    if (isLoading) Center(child: FadeInOutText(text: localizations.loadind_data)),
+                  ],
                 ),
-              ],
+              ),
             ),
           ),
         ),
@@ -84,8 +81,7 @@ class _HomeState extends ConsumerState<Home> {
   }
 
   Widget _profileSection(double screenWidth) {
-    return screenWidth <
-            600 // Check if the screen width is narrow
+    return screenWidth < 600
         ? Center(
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -94,28 +90,29 @@ class _HomeState extends ConsumerState<Home> {
                 AnimatedContainer(
                   duration: const Duration(milliseconds: 500),
                   curve: Curves.easeInOut,
-                  width: screenWidth * .85,
-                  height: screenWidth * .85,
+                  width: _index == 0 ? screenWidth * .85 : screenWidth / 2 * .60,
+                  height: _index == 0 ? screenWidth * .85 : screenWidth / 2 * .60,
                   child: Image(
                     image: const Svg(Assets.javiWireframe),
                     color: AppTheme.lightTheme.colorScheme.secondary,
                   ),
                 ),
-                SizedBox(height: 20),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: AnimatedOpacity(
-                    opacity: [0, 4].contains(_index) ? 1.0 : 0.0,
-                    duration: const Duration(milliseconds: 500),
-                    child: _typeWriterText(
-                      text: <String>[
-                        '${localizations.cogito_ergo_sum}\n${localizations.doing_cool_stuf_with_porgramming_languages}',
-                      ],
-                      onFinished: () {},
-                      isVertical: true,
+                if ([0].contains(_index))
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: AnimatedOpacity(
+                      opacity: 1.0,
+                      duration: const Duration(milliseconds: 500),
+                      child: _typeWriterText(
+                        text: <String>[
+                          '${localizations.cogito_ergo_sum}\n${localizations.doing_cool_stuf_with_porgramming_languages}',
+                        ],
+                        onFinished: () {},
+                        isVertical: true,
+                        adjustTextsize: _index != 0,
+                      ),
                     ),
                   ),
-                ),
               ],
             ),
           )
@@ -289,12 +286,17 @@ class _HomeState extends ConsumerState<Home> {
     );
   }
 
-  Widget _typeWriterText({required List<String> text, void Function()? onFinished, bool isVertical = false}) {
+  Widget _typeWriterText({
+    required List<String> text,
+    void Function()? onFinished,
+    bool isVertical = false,
+    bool adjustTextsize = false,
+  }) {
     var locale = ref.read(localeProvider);
     var screenWidth = MediaQuery.of(context).size.width;
     return DefaultTextStyle(
       style: TextStyle(
-        fontSize: (isVertical ? 100.0 : 60.0) * Utils.screenHzRelation(context),
+        fontSize: (isVertical ? 100.0 : 60.0) * Utils.screenHzRelation(context) * (adjustTextsize ? 0.7 : 1.0),
         fontFamily: 'GalaxyBt',
         color: AppTheme.lightTheme.colorScheme.secondary,
       ),
