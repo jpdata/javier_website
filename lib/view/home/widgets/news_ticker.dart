@@ -8,11 +8,7 @@ class NewsTicker extends StatefulWidget {
   final List<NewsEntry> entries;
   final Duration scrollDuration;
 
-  const NewsTicker({
-    super.key,
-    required this.entries,
-    this.scrollDuration = const Duration(seconds: 30),
-  });
+  const NewsTicker({super.key, required this.entries, this.scrollDuration = const Duration(seconds: 30)});
 
   @override
   State<NewsTicker> createState() => _NewsTickerState();
@@ -36,7 +32,7 @@ class _NewsTickerState extends State<NewsTicker> {
 
   void _startScrolling() {
     if (!_scrollController.hasClients) return;
-    
+
     _maxScroll = _scrollController.position.maxScrollExtent;
     if (_maxScroll <= 0) return;
 
@@ -49,11 +45,11 @@ class _NewsTickerState extends State<NewsTicker> {
 
       try {
         _currentScroll += (_maxScroll / (widget.scrollDuration.inMilliseconds / 50));
-        
+
         if (_currentScroll >= _maxScroll) {
           _currentScroll = 0;
         }
-        
+
         _scrollController.jumpTo(_currentScroll);
       } catch (e) {
         developer.log('Error en NewsTicker: $e');
@@ -76,7 +72,8 @@ class _NewsTickerState extends State<NewsTicker> {
 
     final tickerText = widget.entries
         .map((entry) {
-          final dateStr = '${entry.createdAt.year}-${entry.createdAt.month.toString().padLeft(2, '0')}-${entry.createdAt.day.toString().padLeft(2, '0')}';
+          final dateStr =
+              '${entry.createdAt.year}-${entry.createdAt.month.toString().padLeft(2, '0')}-${entry.createdAt.day.toString().padLeft(2, '0')}';
           final content = entry.content.replaceAll(RegExp(r'<[^>]*>'), '').trim();
           return '[$dateStr] $content';
         })

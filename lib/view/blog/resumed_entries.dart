@@ -54,20 +54,14 @@ class _ResumedEntriesState extends ConsumerState<ResumedEntries> {
 
           return ExpansionPanel(
             isExpanded: isExpanded,
-            backgroundColor: Colors.black.withAlpha(128),
+            backgroundColor: Colors.black.withAlpha(0),
             canTapOnHeader: true,
             headerBuilder: (context, isExpanded) {
               return ListTile(
-                leading: Icon(
-                  Icons.article_outlined,
-                  color: AppTheme.lightTheme.colorScheme.primary,
-                ),
+                leading: Icon(Icons.article_outlined, color: AppTheme.lightTheme.colorScheme.primary),
                 title: Text(
                   entryData.title,
-                  style: TextStyle(
-                    color: AppTheme.lightTheme.colorScheme.primary,
-                    fontSize: 18,
-                  ),
+                  style: TextStyle(color: AppTheme.lightTheme.colorScheme.primary, fontSize: 18),
                 ),
                 trailing: widget.showLoggedActions
                     ? Row(
@@ -111,7 +105,12 @@ class _ResumedEntriesState extends ConsumerState<ResumedEntries> {
             },
             body: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [SizedBox(height: screenHeight, child: EntryDetailPage(id: entryData.id))],
+              children: [
+                SizedBox(
+                  height: screenHeight,
+                  child: EntryDetailPage(id: entryData.id),
+                ),
+              ],
             ),
           );
         }).toList(),

@@ -60,13 +60,15 @@ class _HomeState extends ConsumerState<Home> {
             child: ListView(
               children: [
                 Padding(
-                  padding: EdgeInsets.fromLTRB(lateralPadding, 10, lateralPadding, 0),
+                  padding: EdgeInsets.fromLTRB(lateralPadding, 0, lateralPadding, 0),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
+                      SizedBox(height: 40),
                       _profileSection(screenWidth),
+                      SizedBox(height: 40),
                       if (!isLoading) IndexedContent(index: _index),
                       if (isLoading) Center(child: FadeInOutText(text: localizations.loadind_data)),
                     ],
@@ -114,13 +116,7 @@ class _HomeState extends ConsumerState<Home> {
   Widget _footerSection() {
     return Padding(
       padding: const EdgeInsets.fromLTRB(0, 32, 0, 32),
-      child: Column(
-        children: [
-          _socialNetworkFooter(),
-          const SizedBox(height: 2),
-          _footer(),
-        ],
-      ),
+      child: Column(children: [_socialNetworkFooter(), const SizedBox(height: 2), _footer()]),
     );
   }
 
@@ -173,68 +169,65 @@ class _HomeState extends ConsumerState<Home> {
   // }
 
   List<Widget> _socialActions(BuildContext context, {double size = 32}) => [
-        IconMenuItem.iconMenuItem(
-          onTap: () {
-            Utils.launchURL('https://www.linkedin.com/in/jeprato/');
-          },
-          imagePath: Assets.linkedin,
-          imagePathMouseOver: Assets.linkedinNegative,
-          tooltipTextMouseOver: localizations.linkedin,
-          color: AppTheme.lightTheme.colorScheme.secondary,
-          height: size,
-          width: size,
-        ),
-        IconMenuItem.iconMenuItem(
-          onTap: () {
-            Utils.launchURL('https://www.hiberus.com');
-          },
-          imagePath: Assets.hiberus,
-          imagePathMouseOver: Assets.hiberusNegative,
-          tooltipTextMouseOver: localizations.hiberus,
-          color: AppTheme.lightTheme.colorScheme.secondary,
-          height: size,
-          width: size,
-        ),
-        IconMenuItem.iconMenuItem(
-          onTap: () {
-            Utils.launchMailto(context);
-          },
-          imagePath: Assets.mail,
-          imagePathMouseOver: Assets.mailNegative,
-          tooltipTextMouseOver: localizations.contact_me,
-          color: AppTheme.lightTheme.colorScheme.secondary,
-          height: size,
-          width: size,
-        ),
-        IconMenuItem.iconMenuItem(
-          onTap: () {
-            Utils.launchURL('https://www.instagram.com/jeprato');
-          },
-          imagePath: Assets.instagram,
-          imagePathMouseOver: Assets.instagramNegative,
-          tooltipTextMouseOver: localizations.instagram,
-          color: AppTheme.lightTheme.colorScheme.secondary,
-          height: size,
-          width: size,
-        ),
-        IconMenuItem.iconMenuItem(
-          onTap: () {
-            Utils.launchURL('https://www.github.com/jpdata');
-          },
-          imagePath: Assets.github,
-          imagePathMouseOver: Assets.githubNegative,
-          tooltipTextMouseOver: localizations.github,
-          color: AppTheme.lightTheme.colorScheme.secondary,
-          height: size,
-          width: size,
-        ),
-      ];
+    IconMenuItem.iconMenuItem(
+      onTap: () {
+        Utils.launchURL('https://www.linkedin.com/in/jeprato/');
+      },
+      imagePath: Assets.linkedin,
+      imagePathMouseOver: Assets.linkedinNegative,
+      tooltipTextMouseOver: localizations.linkedin,
+      color: AppTheme.lightTheme.colorScheme.secondary,
+      height: size,
+      width: size,
+    ),
+    IconMenuItem.iconMenuItem(
+      onTap: () {
+        Utils.launchURL('https://www.hiberus.com');
+      },
+      imagePath: Assets.hiberus,
+      imagePathMouseOver: Assets.hiberusNegative,
+      tooltipTextMouseOver: localizations.hiberus,
+      color: AppTheme.lightTheme.colorScheme.secondary,
+      height: size,
+      width: size,
+    ),
+    IconMenuItem.iconMenuItem(
+      onTap: () {
+        Utils.launchMailto(context);
+      },
+      imagePath: Assets.mail,
+      imagePathMouseOver: Assets.mailNegative,
+      tooltipTextMouseOver: localizations.contact_me,
+      color: AppTheme.lightTheme.colorScheme.secondary,
+      height: size,
+      width: size,
+    ),
+    IconMenuItem.iconMenuItem(
+      onTap: () {
+        Utils.launchURL('https://www.instagram.com/jeprato');
+      },
+      imagePath: Assets.instagram,
+      imagePathMouseOver: Assets.instagramNegative,
+      tooltipTextMouseOver: localizations.instagram,
+      color: AppTheme.lightTheme.colorScheme.secondary,
+      height: size,
+      width: size,
+    ),
+    IconMenuItem.iconMenuItem(
+      onTap: () {
+        Utils.launchURL('https://www.github.com/jpdata');
+      },
+      imagePath: Assets.github,
+      imagePathMouseOver: Assets.githubNegative,
+      tooltipTextMouseOver: localizations.github,
+      color: AppTheme.lightTheme.colorScheme.secondary,
+      height: size,
+      width: size,
+    ),
+  ];
 
   Row _functionalIGroup() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: _navigationButtons(),
-    );
+    return Row(mainAxisAlignment: MainAxisAlignment.center, children: _navigationButtons());
   }
 
   List<Widget> _navigationButtons() {
@@ -277,11 +270,7 @@ class _HomeState extends ConsumerState<Home> {
           pause: const Duration(milliseconds: 1000),
           totalRepeatCount: 1,
           isRepeatingAnimation: false,
-          animatedTexts: [
-            ...text.map(
-              (text) => TypewriterAnimatedText(text, speed: const Duration(milliseconds: 90)),
-            )
-          ],
+          animatedTexts: [...text.map((text) => TypewriterAnimatedText(text, speed: const Duration(milliseconds: 90)))],
           onTap: () {
             //print("Tap Event");
           },
