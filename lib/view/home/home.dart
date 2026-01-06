@@ -293,7 +293,6 @@ class _HomeState extends ConsumerState<Home> {
     bool adjustTextsize = false,
   }) {
     var locale = ref.read(localeProvider);
-    var screenWidth = MediaQuery.of(context).size.width;
     return DefaultTextStyle(
       style: TextStyle(
         fontSize: (isVertical ? 100.0 : 60.0) * Utils.screenHzRelation(context) * (adjustTextsize ? 0.7 : 1.0),

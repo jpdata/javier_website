@@ -52,9 +52,6 @@
     "news_on": "Notícies del {date}",
     "@news_on": {
         "placeholders": {
-            "name": {
-                "type": "String"
-            },
             "date": {
                 "type": "DateTime",
                 "format": "yMd"
@@ -66,6 +63,9 @@
             "date": {
                 "type": "DateTime",
                 "format": "yMd"
+            },
+            "name": {
+                "type": "String"
             }
         }
     },

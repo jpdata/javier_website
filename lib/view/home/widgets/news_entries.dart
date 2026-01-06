@@ -4,7 +4,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:javier_website/model/news_entry.dart';
-import 'package:javier_website/view/home/widgets/news_ticker.dart';
 import 'package:marquee/marquee.dart';
 
 class NewsEntries extends ConsumerStatefulWidget {
