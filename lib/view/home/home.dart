@@ -84,33 +84,69 @@ class _HomeState extends ConsumerState<Home> {
   }
 
   Widget _profileSection(double screenWidth) {
-    return Row(
-      children: [
-        AnimatedContainer(
-          duration: const Duration(milliseconds: 500),
-          curve: Curves.easeInOut,
-          width: _index == 0 ? screenWidth * .45 : screenWidth / 2 * .45,
-          height: _index == 0 ? screenWidth * .45 : screenWidth / 2 * .45,
-          child: Image(
-            image: const Svg(Assets.javiWireframe),
-            width: screenWidth * .45,
-            color: AppTheme.lightTheme.colorScheme.secondary,
-          ),
-        ),
-        Expanded(
-          child: AnimatedOpacity(
-            opacity: [0, 4].contains(_index) ? 1.0 : 0.0,
-            duration: const Duration(milliseconds: 500),
-            child: _typeWriterText(
-              text: <String>[
-                '${localizations.cogito_ergo_sum}\n${localizations.doing_cool_stuf_with_porgramming_languages}',
+    return screenWidth <
+            600 // Check if the screen width is narrow
+        ? Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                AnimatedContainer(
+                  duration: const Duration(milliseconds: 500),
+                  curve: Curves.easeInOut,
+                  width: screenWidth * .85,
+                  height: screenWidth * .85,
+                  child: Image(
+                    image: const Svg(Assets.javiWireframe),
+                    color: AppTheme.lightTheme.colorScheme.secondary,
+                  ),
+                ),
+                SizedBox(height: 20),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: AnimatedOpacity(
+                    opacity: [0, 4].contains(_index) ? 1.0 : 0.0,
+                    duration: const Duration(milliseconds: 500),
+                    child: _typeWriterText(
+                      text: <String>[
+                        '${localizations.cogito_ergo_sum}\n${localizations.doing_cool_stuf_with_porgramming_languages}',
+                      ],
+                      onFinished: () {},
+                      isVertical: true,
+                    ),
+                  ),
+                ),
               ],
-              onFinished: () {},
             ),
-          ),
-        ),
-      ],
-    );
+          )
+        : Row(
+            // Use Row for wider screens
+            children: [
+              AnimatedContainer(
+                duration: const Duration(milliseconds: 500),
+                curve: Curves.easeInOut,
+                width: _index == 0 ? screenWidth * .45 : screenWidth / 2 * .45,
+                height: _index == 0 ? screenWidth * .45 : screenWidth / 2 * .45,
+                child: Image(
+                  image: const Svg(Assets.javiWireframe),
+                  width: screenWidth * .45,
+                  color: AppTheme.lightTheme.colorScheme.secondary,
+                ),
+              ),
+              Expanded(
+                child: AnimatedOpacity(
+                  opacity: [0, 4].contains(_index) ? 1.0 : 0.0,
+                  duration: const Duration(milliseconds: 500),
+                  child: _typeWriterText(
+                    text: <String>[
+                      '${localizations.cogito_ergo_sum}\n${localizations.doing_cool_stuf_with_porgramming_languages}',
+                    ],
+                    onFinished: () {},
+                  ),
+                ),
+              ),
+            ],
+          );
   }
 
   Widget _footerSection() {
@@ -253,35 +289,31 @@ class _HomeState extends ConsumerState<Home> {
     );
   }
 
-  Widget _typeWriterText({required List<String> text, void Function()? onFinished}) {
+  Widget _typeWriterText({required List<String> text, void Function()? onFinished, bool isVertical = false}) {
     var locale = ref.read(localeProvider);
     var screenWidth = MediaQuery.of(context).size.width;
-    return SizedBox(
-      width: screenWidth * .40,
-      //height: MediaQuery.of(context).size.height * .3,
-      child: DefaultTextStyle(
-        style: TextStyle(
-          fontSize: 60.0 * Utils.screenHzRelation(context),
-          fontFamily: 'GalaxyBt',
-          color: AppTheme.lightTheme.colorScheme.secondary,
-        ),
-        child: AnimatedTextKit(
-          key: ValueKey(locale),
-          pause: const Duration(milliseconds: 1000),
-          totalRepeatCount: 1,
-          isRepeatingAnimation: false,
-          animatedTexts: [...text.map((text) => TypewriterAnimatedText(text, speed: const Duration(milliseconds: 90)))],
-          onTap: () {
-            //print("Tap Event");
-          },
-          onFinished: () {
-            if (onFinished != null) {
-              setState(() {
-                onFinished();
-              });
-            }
-          },
-        ),
+    return DefaultTextStyle(
+      style: TextStyle(
+        fontSize: (isVertical ? 100.0 : 60.0) * Utils.screenHzRelation(context),
+        fontFamily: 'GalaxyBt',
+        color: AppTheme.lightTheme.colorScheme.secondary,
+      ),
+      child: AnimatedTextKit(
+        key: ValueKey(locale),
+        pause: const Duration(milliseconds: 1000),
+        totalRepeatCount: 1,
+        isRepeatingAnimation: false,
+        animatedTexts: [...text.map((text) => TypewriterAnimatedText(text, speed: const Duration(milliseconds: 90)))],
+        onTap: () {
+          //print("Tap Event");
+        },
+        onFinished: () {
+          if (onFinished != null) {
+            setState(() {
+              onFinished();
+            });
+          }
+        },
       ),
     );
   }
