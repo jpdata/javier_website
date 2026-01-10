@@ -20,17 +20,6 @@ _PortfolioEntry _$PortfolioEntryFromJson(Map<String, dynamic> json) =>
           : DateTime.parse(json['createdAt'] as String),
     );
 
-const _$PortfolioEntryFieldMap = <String, String>{
-  'id': 'id',
-  'name': 'name',
-  'description': 'description',
-  'url': 'url',
-  'icon': 'icon',
-  'iconIsAsset': 'iconIsAsset',
-  'imageUrl': 'imageUrl',
-  'createdAt': 'createdAt',
-};
-
 // ignore: unused_element
 abstract class _$PortfolioEntryPerFieldToJson {
   // ignore: unused_element

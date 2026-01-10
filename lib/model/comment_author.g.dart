@@ -13,12 +13,6 @@ _CommentAuthor _$CommentAuthorFromJson(Map<String, dynamic> json) =>
       avatar: json['avatar'] as String,
     );
 
-const _$CommentAuthorFieldMap = <String, String>{
-  'name': 'name',
-  'email': 'email',
-  'avatar': 'avatar',
-};
-
 // ignore: unused_element
 abstract class _$CommentAuthorPerFieldToJson {
   // ignore: unused_element

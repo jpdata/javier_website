@@ -23,17 +23,6 @@ _Entry _$EntryFromJson(Map<String, dynamic> json) => _Entry(
       const <Comment>[],
 );
 
-const _$EntryFieldMap = <String, String>{
-  'id': 'id',
-  'title': 'title',
-  'subtitle': 'subtitle',
-  'content': 'content',
-  'createdAt': 'createdAt',
-  'bannerImageUrl': 'bannerImageUrl',
-  'tags': 'tags',
-  'comments': 'comments',
-};
-
 // ignore: unused_element
 abstract class _$EntryPerFieldToJson {
   // ignore: unused_element

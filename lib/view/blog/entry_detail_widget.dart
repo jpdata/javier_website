@@ -7,6 +7,7 @@ import 'package:javier_website/core/l10n/app_locale.dart';
 import 'package:javier_website/model/entry.dart';
 import 'package:javier_website/router/rout_names.dart';
 import 'package:javier_website/view/themes/app_theme.dart';
+import 'package:glassmorphism/glassmorphism.dart';
 
 class EntryDetailWidget extends StatelessWidget {
   final Entry entry;
@@ -23,151 +24,162 @@ class EntryDetailWidget extends StatelessWidget {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
 
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Expanded(
-          child: SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+    return SingleChildScrollView(
+      physics: const BouncingScrollPhysics(),
+      child: GlassmorphicContainer(
+        width: double.infinity,
+        height: screenHeight * 0.9,
+        borderRadius: 20,
+        blur: 20,
+        alignment: Alignment.center,
+        border: 1,
+        linearGradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [Colors.white.withAlpha((0.2 * 255).toInt()), Colors.white.withAlpha((0.05 * 255).toInt())],
+          stops: const [0.1, 1],
+        ),
+        borderGradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [Colors.white.withAlpha((0.5 * 255).toInt()), Colors.white.withAlpha((0.05 * 255).toInt())],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 8),
+            if (entry.bannerImageUrl.isNotEmpty)
+              FutureBuilder(
+                future: _buildFirestorageFromImageName(entry.id, entry.bannerImageUrl),
+                builder: (context, snapshot) => snapshot.hasData
+                    ? Image.network(snapshot.data.toString(), height: screenHeight * 0.15, width: screenWidth)
+                    : const CircularProgressIndicator(),
+              ),
+            const SizedBox(height: 16),
+            Row(
               children: [
-                const SizedBox(height: 8),
-                if (entry.bannerImageUrl.isNotEmpty)
-                  FutureBuilder(
-                    future: _buildFirestorageFromImageName(entry.id, entry.bannerImageUrl),
-                    builder: (context, snapshot) => snapshot.hasData
-                        ? Image.network(snapshot.data.toString(), height: screenHeight * 0.15, width: screenWidth)
-                        : const CircularProgressIndicator(),
-                  ),
-                const SizedBox(height: 16),
-                Row(
-                  children: [
-                    Expanded(
-                      child: Container(
-                        // decoration: BoxDecoration(
-                        //   border: Border.all(
-                        //     color: AppTheme.lightTheme.colorScheme.secondary,
-                        //   ),
-                        // ),
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 4),
-                          child: Text(
-                            entry.title,
-                            style: TextStyle(
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
-                              color: AppTheme.lightTheme.colorScheme.secondary,
-                            ),
-                          ),
-                        ),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 4),
+                    child: Text(
+                      entry.title,
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        color: AppTheme.lightTheme.colorScheme.secondary,
                       ),
                     ),
-                  ],
+                  ),
                 ),
-                const SizedBox(height: 8),
-                Row(
-                  children: [
-                    Expanded(
-                      child: Container(
-                        //decoration: BoxDecoration(border: Border.all(color: AppTheme.lightTheme.colorScheme.secondary)),
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 4),
-                          child: Text(
-                            entry.subtitle,
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontStyle: FontStyle.italic,
-                              color: AppTheme.lightTheme.colorScheme.secondary,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 16),
-                Row(
-                  children: [
-                    Expanded(
-                      child: Container(
-                        //decoration: const BoxDecoration(color: Colors.white),
-                        margin: const EdgeInsets.symmetric(vertical: 2, horizontal: 16),
-                        child:
-                            // Html(
-                            //   data: entry.content,
-                            //   extensions: const [
-                            //     IframeHtmlExtension(),
-                            //   ],
-                            //   style: {
-                            //     "body": Style(
-                            //       backgroundColor: Colors.white,
-                            //       color: Colors.black,
-                            //       fontFamily: 'Roboto',
-                            //     ),
-                            //   },
-                            // ),
-                            HtmlWidget(
-                              entry.content,
-                              textStyle: TextStyle(
-                                color: Colors.black,
-                                fontFamily: 'Roboto',
-                                backgroundColor: Colors.white.withAlpha(0),
-                              ),
-                            ),
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 16),
-                if (entry.comments.isNotEmpty) const Divider(),
-                if (entry.comments.isNotEmpty)
-                  const Row(
-                    children: [Text('Comments', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold))],
-                  ),
-                if (entry.comments.isNotEmpty) const SizedBox(height: 4),
-                if (entry.comments.isNotEmpty)
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.25,
-                    child: SingleChildScrollView(
-                      child: Column(
-                        children: [
-                          ...entry.comments.map((comment) {
-                            return Row(
-                              children: [
-                                Expanded(
-                                  child: Container(
-                                    decoration: const BoxDecoration(color: Colors.white),
-                                    margin: const EdgeInsets.symmetric(vertical: 2, horizontal: 16),
-                                    child: ListTile(
-                                      title: Text(
-                                        localizations.comment_title(comment.authorName, comment.createdAt),
-                                        style: const TextStyle(color: Colors.black),
-                                      ),
-                                      subtitle: Text(comment.content, style: const TextStyle(color: Colors.black)),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            );
-                          }),
-                        ],
-                      ),
-                    ),
-                  ),
-                const SizedBox(height: 16),
-                if (showEditEntryButton)
-                  ElevatedButton(
-                    onPressed: () async {
-                      await context.pushNamed(RoutNames.blogEditEntry, extra: entry);
-                    },
-                    child: const Text('Editar entrada'),
-                  ),
               ],
             ),
-          ),
+            const SizedBox(height: 8),
+            Row(
+              children: [
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 4),
+                    child: Text(
+                      entry.subtitle,
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontStyle: FontStyle.italic,
+                        color: AppTheme.lightTheme.colorScheme.secondary,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 16),
+            Row(
+              children: [
+                Expanded(
+                  child: Container(
+                    margin: const EdgeInsets.symmetric(vertical: 2, horizontal: 16),
+                    child: HtmlWidget(
+                      entry.content,
+                      textStyle: TextStyle(
+                        color: Colors.black,
+                        fontFamily: 'Roboto',
+                        backgroundColor: Colors.white.withAlpha(0),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 16),
+            if (entry.comments.isNotEmpty) const Divider(),
+            if (entry.comments.isNotEmpty)
+              const Row(
+                children: [Text('Comments', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold))],
+              ),
+            if (entry.comments.isNotEmpty) const SizedBox(height: 4),
+            if (entry.comments.isNotEmpty)
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.25,
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      ...entry.comments.map((comment) {
+                        return Row(
+                          children: [
+                            Expanded(
+                              child: GlassmorphicContainer(
+                                width: double.infinity,
+                                height: 80, // Set an appropriate height for the comment container
+                                borderRadius: 12,
+                                blur: 16,
+                                alignment: Alignment.center,
+                                border: 1,
+                                linearGradient: LinearGradient(
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight,
+                                  colors: [
+                                    Colors.white.withAlpha((0.2 * 255).toInt()),
+                                    Colors.white.withAlpha((0.05 * 255).toInt()),
+                                  ],
+                                  stops: const [0.1, 1],
+                                ),
+                                borderGradient: LinearGradient(
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight,
+                                  colors: [
+                                    Colors.white.withAlpha((0.5 * 255).toInt()),
+                                    Colors.white.withAlpha((0.05 * 255).toInt()),
+                                  ],
+                                ),
+                                child: Container(
+                                  margin: const EdgeInsets.symmetric(vertical: 2, horizontal: 16),
+                                  child: ListTile(
+                                    title: Text(
+                                      localizations.comment_title(comment.authorName, comment.createdAt),
+                                      style: const TextStyle(color: Colors.black),
+                                    ),
+                                    subtitle: Text(comment.content, style: const TextStyle(color: Colors.black)),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        );
+                      }),
+                    ],
+                  ),
+                ),
+              ),
+            if (showEditEntryButton) const SizedBox(height: 32),
+            if (showEditEntryButton)
+              ElevatedButton(
+                onPressed: () async {
+                  await context.pushNamed(RoutNames.blogEditEntry, extra: entry);
+                },
+                child: const Text('Editar entrada'),
+              ),
+          ],
         ),
-      ],
+      ),
     );
   }
 

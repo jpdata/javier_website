@@ -19,15 +19,6 @@ _NewsEntry _$NewsEntryFromJson(Map<String, dynamic> json) => _NewsEntry(
           .toList() ??
       const <Comment>[],
 );
-
-const _$NewsEntryFieldMap = <String, String>{
-  'id': 'id',
-  'content': 'content',
-  'createdAt': 'createdAt',
-  'tags': 'tags',
-  'comments': 'comments',
-};
-
 // ignore: unused_element
 abstract class _$NewsEntryPerFieldToJson {
   // ignore: unused_element

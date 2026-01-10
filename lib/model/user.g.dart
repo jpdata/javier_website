@@ -16,16 +16,6 @@ _User _$UserFromJson(Map<String, dynamic> json) => _User(
   status: $enumDecode(_$StatusEnumMap, json['status']),
 );
 
-const _$UserFieldMap = <String, String>{
-  'id': 'id',
-  'name': 'name',
-  'lastname': 'lastname',
-  'email': 'email',
-  'registryDate': 'registryDate',
-  'role': 'role',
-  'status': 'status',
-};
-
 // ignore: unused_element
 abstract class _$UserPerFieldToJson {
   // ignore: unused_element

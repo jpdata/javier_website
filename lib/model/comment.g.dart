@@ -14,14 +14,6 @@ _Comment _$CommentFromJson(Map<String, dynamic> json) => _Comment(
   authorEmail: json['authorEmail'] as String,
 );
 
-const _$CommentFieldMap = <String, String>{
-  'id': 'id',
-  'content': 'content',
-  'createdAt': 'createdAt',
-  'authorName': 'authorName',
-  'authorEmail': 'authorEmail',
-};
-
 // ignore: unused_element
 abstract class _$CommentPerFieldToJson {
   // ignore: unused_element

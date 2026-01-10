@@ -12,12 +12,6 @@ _AboutMe _$AboutMeFromJson(Map<String, dynamic> json) => _AboutMe(
   language: json['language'] as String,
 );
 
-const _$AboutMeFieldMap = <String, String>{
-  'id': 'id',
-  'content': 'content',
-  'language': 'language',
-};
-
 // ignore: unused_element
 abstract class _$AboutMePerFieldToJson {
   // ignore: unused_element
