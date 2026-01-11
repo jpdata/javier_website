@@ -56,7 +56,7 @@ class _ResumedBlogEntriesState extends ConsumerState<ResumedBlogEntries> {
 
               return ExpansionPanel(
                 isExpanded: isExpanded,
-                backgroundColor: Colors.black.withAlpha(0),
+                backgroundColor: Colors.white.withAlpha(0),
                 canTapOnHeader: true,
                 headerBuilder: (context, isExpanded) {
                   return ListTile(

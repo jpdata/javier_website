@@ -28,12 +28,11 @@ class EntryDetailWidget extends StatelessWidget {
     return SingleChildScrollView(
       physics: const BouncingScrollPhysics(),
       child: Container(
-        color: Colors.black.withAlpha(32),
+        color: Colors.white.withAlpha(96),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
 
           children: [
-            const SizedBox(height: 8),
             if (entry.bannerImageUrl.isNotEmpty)
               FutureBuilder(
                 future: _buildFirestorageFromImageName(entry.id, entry.bannerImageUrl),
@@ -50,7 +49,7 @@ class EntryDetailWidget extends StatelessWidget {
                     child: Text(
                       entry.title,
                       style: TextStyle(
-                        fontSize: 24,
+                        fontSize: 28,
                         fontWeight: FontWeight.bold,
                         color: AppTheme.lightTheme.colorScheme.secondary,
                       ),
@@ -83,10 +82,10 @@ class EntryDetailWidget extends StatelessWidget {
                     child: Text(
                       entry.subtitle,
                       style: TextStyle(
-                        fontSize: 18,
+                        fontSize: 22,
                         fontStyle: FontStyle.italic,
                         color: AppTheme.lightTheme.colorScheme.secondary,
-                      ),
+                      ),                          
                     ),
                   ),
                 ),
@@ -102,7 +101,7 @@ class EntryDetailWidget extends StatelessWidget {
                       entry.content,
                       textStyle: TextStyle(
                         color: Colors.black,
-                        fontFamily: 'Roboto',
+                        fontFamily: AppTheme.lightTheme.textTheme.bodyMedium?.fontFamily,
                         backgroundColor: Colors.white.withAlpha(0),
                       ),
                     ),

@@ -18,17 +18,18 @@ class CommonScaffold extends ConsumerStatefulWidget {
   final Icon? floatingButtonIcon;
   final List<Widget>? actions;
 
-  const CommonScaffold(
-      {super.key,
-      this.showBackButton = false,
-      this.showDrawer = true,
-      this.showTitle = true,
-      this.title,
-      this.backButtonIcon = const Icon(Icons.arrow_back_ios),
-      this.floatingButtonAction,
-      this.floatingButtonIcon,
-      this.actions,
-      required this.child});
+  const CommonScaffold({
+    super.key,
+    this.showBackButton = false,
+    this.showDrawer = true,
+    this.showTitle = true,
+    this.title,
+    this.backButtonIcon = const Icon(Icons.arrow_back_ios),
+    this.floatingButtonAction,
+    this.floatingButtonIcon,
+    this.actions,
+    required this.child,
+  });
 
   @override
   ConsumerState<CommonScaffold> createState() => _CommonScaffoldState();
@@ -73,18 +74,14 @@ class _CommonScaffoldState extends ConsumerState<CommonScaffold> {
             : null,
       ),
       backgroundColor: Colors.transparent,
-      drawer: const MainDrawer(),
+      drawer: widget.showDrawer ? const MainDrawer() : null,
       body: Container(
-        constraints: BoxConstraints(
-          minHeight: MediaQuery.of(context).size.height,
-        ),
+        constraints: BoxConstraints(minHeight: MediaQuery.of(context).size.height),
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
           color: AppTheme.lightTheme.colorScheme.primary,
           image: DecorationImage(
-            image: const Image(
-              image: Svg(Assets.bgTile),
-            ).image,
+            image: const Image(image: Svg(Assets.bgTile)).image,
             repeat: ImageRepeat.repeat,
             scale: 1.5,
             colorFilter: ColorFilter.mode(Colors.black.withAlpha(38), BlendMode.dstATop),

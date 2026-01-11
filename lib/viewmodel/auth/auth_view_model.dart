@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:javier_website/core/analytics_service.dart';
 import 'package:javier_website/core/auth_helper.dart';
@@ -55,64 +56,51 @@ class AuthViewModel extends _$AuthViewModel {
       // Silent fail - user can login manually
     }
 
-    return const AuthState(
-      id: '',
-      name: '',
-      email: '',
-      photoUrl: '',
-      isLoggedIn: false,
-    );
+    return const AuthState(id: '', name: '', email: '', photoUrl: '', isLoggedIn: false);
   }
 
   /// Sign in with email and password
   Future<void> sigIn(String email, String password) async {
     state = const AsyncValue.loading();
-    state = await AsyncValue.guard(
-      () async {
-        final userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: email,
-          password: password,
-        );
-        final user = userCredential.user!;
-        final authState = _userToAuthState(user, isLoggedIn: true);
+    state = await AsyncValue.guard(() async {
+      final userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);
+      final user = userCredential.user!;
+      final authState = _userToAuthState(user, isLoggedIn: true);
 
-        // Persist to local storage
-        await _saveLocalAuthState(authState);
-        
-        // Track analytics
-        await AnalyticsService.logSignIn(method: 'email');
-        await AnalyticsService.setUserId(user.uid);
-        await CrashlyticsService.setUserId(user.uid);
+      // Persist to local storage
+      await _saveLocalAuthState(authState);
 
-        return authState;
-      },
-    );
+      // Track analytics
+      await AnalyticsService.logSignIn(method: 'email');
+      await AnalyticsService.setUserId(user.uid);
+      await CrashlyticsService.setUserId(user.uid);
+
+      return authState;
+    });
   }
 
   /// Sign in with env vars (service account)
   Future<void> sigInAnonymous() async {
     state = const AsyncValue.loading();
-    state = await AsyncValue.guard(
-      () async {
-        await _loginWithEnvVars();
-        final user = FirebaseAuth.instance.currentUser;
-        if (user == null) {
-          throw Exception('Failed to authenticate with service account');
-        }
+    state = await AsyncValue.guard(() async {
+      await _loginWithEnvVars();
+      final user = FirebaseAuth.instance.currentUser;
+      if (user == null) {
+        throw Exception('Failed to authenticate with service account');
+      }
 
-        final authState = _userToAuthState(user, isLoggedIn: true);
+      final authState = _userToAuthState(user, isLoggedIn: true);
 
-        // Persist to local storage
-        await _saveLocalAuthState(authState);
-        
-        // Track analytics
-        await AnalyticsService.logSignIn(method: 'service_account');
-        await AnalyticsService.setUserId(user.uid);
-        await CrashlyticsService.setUserId(user.uid);
+      // Persist to local storage
+      await _saveLocalAuthState(authState);
 
-        return authState;
-      },
-    );
+      // Track analytics
+      await AnalyticsService.logSignIn(method: 'service_account');
+      await AnalyticsService.setUserId(user.uid);
+      await CrashlyticsService.setUserId(user.uid);
+
+      return authState;
+    });
   }
 
   /// Sign out from Firebase and clear local cache
@@ -124,24 +112,22 @@ class AuthViewModel extends _$AuthViewModel {
       // Clear local cache
       final prefs = await SharedPreferences.getInstance();
       await prefs.remove(_authStateKey);
-      
+
       // Track analytics
       await AnalyticsService.logSignOut();
       await AnalyticsService.clearUserId();
       await CrashlyticsService.clearUserId();
 
-      return const AuthState(
-        id: '',
-        name: '',
-        email: '',
-        photoUrl: '',
-        isLoggedIn: false,
-      );
+      return const AuthState(id: '', name: '', email: '', photoUrl: '', isLoggedIn: false);
     });
   }
 
   /// Check if user is logged in
-  bool isLoggedIn() => state.value?.isLoggedIn ?? false;
+  bool isLoggedIn() {
+    final logged = state.value?.isLoggedIn ?? false;
+    debugPrint('[AuthViewModel] isLoggedIn: $logged, state: \\${state.value}');
+    return logged;
+  }
 
   /// Private helpers
 
@@ -190,9 +176,6 @@ class AuthViewModel extends _$AuthViewModel {
       throw Exception('Service account credentials not configured');
     }
 
-    await FirebaseAuth.instance.signInWithEmailAndPassword(
-      email: email,
-      password: password,
-    );
+    await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);
   }
 }
