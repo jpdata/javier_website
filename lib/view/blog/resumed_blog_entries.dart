@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:glassmorphism/glassmorphism.dart';
 import 'package:javier_website/model/entry.dart';
 import 'package:javier_website/view/blog/entry_detail_widget.dart';
 import 'package:javier_website/view/themes/app_theme.dart';
@@ -34,12 +35,7 @@ class _ResumedBlogEntriesState extends ConsumerState<ResumedBlogEntries> {
     return _content(screenHeight, widget.showCreateAction, widget.showEditAction, widget.showDeleteAction);
   }
 
-  SingleChildScrollView _content(
-    double screenHeight,
-    bool showCreateAction,
-    bool showEditAction,
-    bool showDeleteAction,
-  ) {
+  Widget _content(double screenHeight, bool showCreateAction, bool showEditAction, bool showDeleteAction) {
     return SingleChildScrollView(
       child: ExpansionPanelList(
         expansionCallback: (panelIndex, isExpanded) {
@@ -104,12 +100,9 @@ class _ResumedBlogEntriesState extends ConsumerState<ResumedBlogEntries> {
               );
             },
             body: Column(
+              mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(
-                  height: screenHeight,
-                  child: EntryDetailWidget(entry: entryData, showEditEntryButton: widget.showEditAction)),               
-              ],
+              children: [EntryDetailWidget(entry: entryData, showEditEntryButton: widget.showEditAction)],
             ),
           );
         }).toList(),

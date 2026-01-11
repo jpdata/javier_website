@@ -26,26 +26,11 @@ class EntryDetailWidget extends StatelessWidget {
 
     return SingleChildScrollView(
       physics: const BouncingScrollPhysics(),
-      child: GlassmorphicContainer(
-        width: double.infinity,
-        height: screenHeight * 0.9,
-        borderRadius: 20,
-        blur: 20,
-        alignment: Alignment.center,
-        border: 1,
-        linearGradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [Colors.white.withAlpha((0.2 * 255).toInt()), Colors.white.withAlpha((0.05 * 255).toInt())],
-          stops: const [0.1, 1],
-        ),
-        borderGradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [Colors.white.withAlpha((0.5 * 255).toInt()), Colors.white.withAlpha((0.05 * 255).toInt())],
-        ),
+      child: Container(
+        color: Colors.black.withAlpha(32),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+
           children: [
             const SizedBox(height: 8),
             if (entry.bannerImageUrl.isNotEmpty)
