@@ -3,6 +3,9 @@ import 'package:javier_website/core/analytics_service.dart';
 import 'package:javier_website/core/mappers.dart';
 import 'package:javier_website/data/firestore_client.dart';
 import 'package:javier_website/model/entry.dart';
+import 'package:javier_website/model/user.dart';
+import 'package:javier_website/viewmodel/user/user_view_model.dart';
+import 'package:riverpod/riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'entries_view_model.g.dart';
@@ -18,6 +21,12 @@ final EntriesCollectionReference _entriesCollection = EntriesCollectionReference
 //     orElse: () => null,
 //   );
 // }
+
+final combinedUserEntriesProvider = Provider<({AsyncValue<User> user, AsyncValue<List<Entry>> entries})>((ref) {
+  final user = ref.watch(currentUserProvider);
+  final entries = ref.watch(entriesViewModelProvider());
+  return (user: user, entries: entries);
+});
 
 @Riverpod()
 class EntryViewModel extends _$EntryViewModel {
@@ -64,10 +73,7 @@ class EntriesViewModel extends _$EntriesViewModel {
     });
   }
 
-  Future<List<Entry>> _fetchEntries({
-    required int limit,
-    required int page,
-  }) async {
+  Future<List<Entry>> _fetchEntries({required int limit, required int page}) async {
     var query = _entriesCollection.reference.orderBy('createdAt', descending: false).limit(limit);
 
     // Si es la página 0, no se usa paginación
@@ -83,9 +89,7 @@ class EntriesViewModel extends _$EntriesViewModel {
     }
 
     final querySnapshot = await query.get();
-    final entries = await Future.wait(
-      querySnapshot.docs.map((doc) async => await doc.data().toEntity()).toList(),
-    );
+    final entries = await Future.wait(querySnapshot.docs.map((doc) async => await doc.data().toEntity()).toList());
 
     //_hasNextPage = !(entries.length < limit);
 
@@ -115,11 +119,7 @@ class EntriesViewModel extends _$EntriesViewModel {
     state = await AsyncValue.guard(() async {
       var result = await _entriesCollection.add(entry.toDto());
       id = result.id;
-      await AnalyticsService.logEntryCreated(
-        entryId: id,
-        entryType: 'blog_entry',
-        wordCount: entry.content.length,
-      );
+      await AnalyticsService.logEntryCreated(entryId: id, entryType: 'blog_entry', wordCount: entry.content.length);
       return _fetchEntries(limit: _limit, page: _page);
     });
     return entry.copyWith(id: id);
@@ -135,11 +135,7 @@ class EntriesViewModel extends _$EntriesViewModel {
     if (snapshot?.exists ?? false) {
       final Entry entry = await snapshot!.data()!.toEntity();
       final String entryTitle = entry.title;
-      await AnalyticsService.logEntryView(
-        entryId: id,
-        entryTitle: entryTitle,
-        entryCategory: 'blog',
-      );
+      await AnalyticsService.logEntryView(entryId: id, entryTitle: entryTitle, entryCategory: 'blog');
       return entry;
     } else {
       return null;
