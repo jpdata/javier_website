@@ -50,7 +50,7 @@ final class EntryViewModelProvider
   }
 }
 
-String _$entryViewModelHash() => r'f2aab6840b89a90dd04ae7954469ac7e2d4315aa';
+String _$entryViewModelHash() => r'5cf6bc2cba375ced9dfe19699de1fc53addd6ce4';
 
 final class EntryViewModelFamily extends $Family
     with
@@ -140,7 +140,7 @@ final class EntriesViewModelProvider
   }
 }
 
-String _$entriesViewModelHash() => r'60427e7533d8a82d9313a321193bdc4c47a4f043';
+String _$entriesViewModelHash() => r'5e148629e80faf60995f282057d8ef8f87d4f83f';
 
 final class EntriesViewModelFamily extends $Family
     with

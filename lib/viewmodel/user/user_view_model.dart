@@ -1,4 +1,3 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:javier_website/core/mappers.dart';
 import 'package:javier_website/data/firestore_client.dart';
 import 'package:javier_website/viewmodel/auth/auth_view_model.dart';

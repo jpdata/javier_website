@@ -19,6 +19,7 @@ _NewsEntry _$NewsEntryFromJson(Map<String, dynamic> json) => _NewsEntry(
           .toList() ??
       const <Comment>[],
 );
+
 // ignore: unused_element
 abstract class _$NewsEntryPerFieldToJson {
   // ignore: unused_element

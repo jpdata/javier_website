@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_web_plugins/url_strategy.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:javier_website/firebase_options.dart';
 import 'package:javier_website/core/l10n/dynamic_app_localizations.dart';
 import 'package:javier_website/core/providers/notifiers/locale_notifier.dart';
 import 'package:javier_website/core/l10n/app_locale.dart';
@@ -10,11 +13,13 @@ import 'package:javier_website/view/themes/app_theme.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  runApp(
-    const ProviderScope(
-      child: MyApp(),
-    ),
-  );
+  // Use clean path-based URLs on web so /blog/:id works when opened directly.
+  setUrlStrategy(PathUrlStrategy());
+
+  // Initialize Firebase (required before using Analytics/Crashlytics/Firestore).
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends ConsumerWidget {

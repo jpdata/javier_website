@@ -2,6 +2,8 @@ class RoutPaths {
   static const String home = '/';
   static const String blogEntries = '/blog_entries';
   static const String blogEntry = '/blog_entry/:id';
+  // SEO-friendly alias for web
+  static const String blogEntrySeo = '/blog/:id';
   static const String blogNewEntry = '/blog_new_entry';
   static const String blogEditEntry = '/blog_edit_entry';
 
@@ -33,6 +35,8 @@ class RoutNames {
   static const String home = 'home';
   static const String blogEntries = 'blog_entries';
   static const String blogEntry = 'blog_entry';
+  // Name for SEO-friendly blog detail route
+  static const String blogEntrySeo = 'blog_detail';
   static const String blogNewEntry = 'blog_new_entry';
   static const String blogEditEntry = 'blog_edit_entry';
   static const String newsEntries = 'news_entries';

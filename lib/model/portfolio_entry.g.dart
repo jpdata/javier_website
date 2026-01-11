@@ -19,7 +19,7 @@ _PortfolioEntry _$PortfolioEntryFromJson(Map<String, dynamic> json) =>
           ? null
           : DateTime.parse(json['createdAt'] as String),
     );
-
+    
 // ignore: unused_element
 abstract class _$PortfolioEntryPerFieldToJson {
   // ignore: unused_element

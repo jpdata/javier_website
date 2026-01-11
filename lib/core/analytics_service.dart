@@ -6,12 +6,11 @@ import 'dart:developer' as developer;
 /// Analytics service for tracking user events and performance
 class AnalyticsService {
   static final FirebaseAnalytics _analytics = FirebaseAnalytics.instance;
+  static bool get _disabledOnWeb => kIsWeb;
 
   /// Track page view
-  static Future<void> logPageView({
-    required String pageName,
-    String? pageClass,
-  }) async {
+  static Future<void> logPageView({required String pageName, String? pageClass}) async {
+    if (_disabledOnWeb) return;
     try {
       await _analytics.logEvent(
         name: 'page_view',
@@ -29,13 +28,11 @@ class AnalyticsService {
 
   /// Track user sign in
   static Future<void> logSignIn({required String method}) async {
+    if (_disabledOnWeb) return;
     try {
       await _analytics.logEvent(
         name: 'sign_in',
-        parameters: {
-          'method': method,
-          'timestamp': DateTime.now().toIso8601String(),
-        },
+        parameters: {'method': method, 'timestamp': DateTime.now().toIso8601String()},
       );
       developer.log('Analytics: Sign in tracked - method: $method');
     } catch (e) {
@@ -45,13 +42,9 @@ class AnalyticsService {
 
   /// Track user sign out
   static Future<void> logSignOut() async {
+    if (_disabledOnWeb) return;
     try {
-      await _analytics.logEvent(
-        name: 'sign_out',
-        parameters: {
-          'timestamp': DateTime.now().toIso8601String(),
-        },
-      );
+      await _analytics.logEvent(name: 'sign_out', parameters: {'timestamp': DateTime.now().toIso8601String()});
       developer.log('Analytics: Sign out tracked');
     } catch (e) {
       developer.log('Analytics Error: Failed to log sign out - $e');
@@ -59,11 +52,8 @@ class AnalyticsService {
   }
 
   /// Track blog entry view
-  static Future<void> logEntryView({
-    required String entryId,
-    required String entryTitle,
-    String? entryCategory,
-  }) async {
+  static Future<void> logEntryView({required String entryId, required String entryTitle, String? entryCategory}) async {
+    if (_disabledOnWeb) return;
     try {
       final params = <String, Object>{
         'entry_id': entryId,
@@ -73,10 +63,7 @@ class AnalyticsService {
       if (entryCategory != null) {
         params['entry_category'] = entryCategory;
       }
-      await _analytics.logEvent(
-        name: 'view_entry',
-        parameters: params,
-      );
+      await _analytics.logEvent(name: 'view_entry', parameters: params);
       developer.log('Analytics: Entry view tracked - $entryTitle');
     } catch (e) {
       developer.log('Analytics Error: Failed to log entry view - $e');
@@ -89,6 +76,7 @@ class AnalyticsService {
     required String entryType, // 'blog' or 'news'
     int? wordCount,
   }) async {
+    if (_disabledOnWeb) return;
     try {
       final params = <String, Object>{
         'entry_id': entryId,
@@ -98,10 +86,7 @@ class AnalyticsService {
       if (wordCount != null) {
         params['word_count'] = wordCount;
       }
-      await _analytics.logEvent(
-        name: 'entry_created',
-        parameters: params,
-      );
+      await _analytics.logEvent(name: 'entry_created', parameters: params);
       developer.log('Analytics: Entry created tracked - type: $entryType');
     } catch (e) {
       developer.log('Analytics Error: Failed to log entry creation - $e');
@@ -109,18 +94,12 @@ class AnalyticsService {
   }
 
   /// Track entry deleted
-  static Future<void> logEntryDeleted({
-    required String entryId,
-    required String entryType,
-  }) async {
+  static Future<void> logEntryDeleted({required String entryId, required String entryType}) async {
+    if (_disabledOnWeb) return;
     try {
       await _analytics.logEvent(
         name: 'entry_deleted',
-        parameters: {
-          'entry_id': entryId,
-          'entry_type': entryType,
-          'timestamp': DateTime.now().toIso8601String(),
-        },
+        parameters: {'entry_id': entryId, 'entry_type': entryType, 'timestamp': DateTime.now().toIso8601String()},
       );
       developer.log('Analytics: Entry deleted tracked - type: $entryType');
     } catch (e) {
@@ -130,13 +109,11 @@ class AnalyticsService {
 
   /// Track language change
   static Future<void> logLanguageChange({required String language}) async {
+    if (_disabledOnWeb) return;
     try {
       await _analytics.logEvent(
         name: 'language_changed',
-        parameters: {
-          'language': language,
-          'timestamp': DateTime.now().toIso8601String(),
-        },
+        parameters: {'language': language, 'timestamp': DateTime.now().toIso8601String()},
       );
       developer.log('Analytics: Language changed to - $language');
     } catch (e) {
@@ -145,15 +122,10 @@ class AnalyticsService {
   }
 
   /// Track custom event
-  static Future<void> logCustomEvent({
-    required String eventName,
-    Map<String, Object>? parameters,
-  }) async {
+  static Future<void> logCustomEvent({required String eventName, Map<String, Object>? parameters}) async {
+    if (_disabledOnWeb) return;
     try {
-      await _analytics.logEvent(
-        name: eventName,
-        parameters: parameters ?? {},
-      );
+      await _analytics.logEvent(name: eventName, parameters: parameters ?? {});
       developer.log('Analytics: Custom event tracked - $eventName');
     } catch (e) {
       developer.log('Analytics Error: Failed to log custom event - $e');
@@ -161,10 +133,8 @@ class AnalyticsService {
   }
 
   /// Set user properties
-  static Future<void> setUserProperty({
-    required String name,
-    required String value,
-  }) async {
+  static Future<void> setUserProperty({required String name, required String value}) async {
+    if (_disabledOnWeb) return;
     try {
       await _analytics.setUserProperty(name: name, value: value);
       developer.log('Analytics: User property set - $name: $value');
@@ -175,13 +145,11 @@ class AnalyticsService {
 
   /// Set user ID for analytics
   static Future<void> setUserId(String userId) async {
+    if (_disabledOnWeb) return;
     try {
       await _analytics.logEvent(
         name: 'user_identified',
-        parameters: {
-          'user_id': userId,
-          'timestamp': DateTime.now().toIso8601String(),
-        },
+        parameters: {'user_id': userId, 'timestamp': DateTime.now().toIso8601String()},
       );
       developer.log('Analytics: User ID set');
     } catch (e) {
@@ -191,12 +159,10 @@ class AnalyticsService {
 
   /// Clear user ID (on sign out)
   static Future<void> clearUserId() async {
+    if (_disabledOnWeb) return;
     try {
       // Firebase Analytics doesn't have a direct clearUserId, so we'll use the log method
-      await _analytics.logEvent(
-        name: 'user_cleared',
-        parameters: {'timestamp': DateTime.now().toIso8601String()},
-      );
+      await _analytics.logEvent(name: 'user_cleared', parameters: {'timestamp': DateTime.now().toIso8601String()});
       developer.log('Analytics: User ID cleared');
     } catch (e) {
       developer.log('Analytics Error: Failed to clear user ID - $e');
@@ -207,11 +173,12 @@ class AnalyticsService {
 /// Crashlytics service for error reporting and monitoring
 class CrashlyticsService {
   static final FirebaseCrashlytics _crashlytics = FirebaseCrashlytics.instance;
+  static bool get _disabledOnWeb => kIsWeb;
 
   /// Initialize Crashlytics
   static Future<void> initialize() async {
+    if (_disabledOnWeb) return;
     try {
-      // Disable Crashlytics in debug mode
       if (kDebugMode) {
         await _crashlytics.setCrashlyticsCollectionEnabled(false);
       } else {
@@ -224,17 +191,10 @@ class CrashlyticsService {
   }
 
   /// Report an error to Crashlytics
-  static Future<void> recordError(
-    dynamic exception,
-    StackTrace? stackTrace, {
-    String? reason,
-  }) async {
+  static Future<void> recordError(dynamic exception, StackTrace? stackTrace, {String? reason}) async {
+    if (_disabledOnWeb) return;
     try {
-      await _crashlytics.recordError(
-        exception,
-        stackTrace,
-        reason: reason,
-      );
+      await _crashlytics.recordError(exception, stackTrace, reason: reason);
       developer.log('Crashlytics: Error recorded - ${exception.toString()}');
     } catch (e) {
       developer.log('Crashlytics Error: Failed to record error - $e');
@@ -242,17 +202,11 @@ class CrashlyticsService {
   }
 
   /// Record a fatal error (app-breaking)
-  static Future<void> recordFatalError(
-    dynamic exception,
-    StackTrace stackTrace,
-  ) async {
+  static Future<void> recordFatalError(dynamic exception, StackTrace stackTrace) async {
+    if (_disabledOnWeb) return;
     try {
       await _crashlytics.recordFlutterFatalError(
-        FlutterErrorDetails(
-          exception: exception,
-          stack: stackTrace,
-          library: 'javier_website',
-        ),
+        FlutterErrorDetails(exception: exception, stack: stackTrace, library: 'javier_website'),
       );
       developer.log('Crashlytics: Fatal error recorded');
     } catch (e) {
@@ -262,6 +216,7 @@ class CrashlyticsService {
 
   /// Log a custom message to Crashlytics
   static void log(String message) {
+    if (_disabledOnWeb) return;
     try {
       _crashlytics.log(message);
     } catch (e) {
@@ -271,6 +226,7 @@ class CrashlyticsService {
 
   /// Set a custom key-value pair
   static void setCustomKey(String key, Object value) {
+    if (_disabledOnWeb) return;
     try {
       _crashlytics.setCustomKey(key, value);
       developer.log('Crashlytics: Custom key set - $key: $value');
@@ -281,6 +237,7 @@ class CrashlyticsService {
 
   /// Set user ID
   static Future<void> setUserId(String userId) async {
+    if (_disabledOnWeb) return;
     try {
       _crashlytics.log('User ID set: $userId');
       developer.log('Crashlytics: User ID set');
@@ -291,6 +248,7 @@ class CrashlyticsService {
 
   /// Clear user ID
   static Future<void> clearUserId() async {
+    if (_disabledOnWeb) return;
     try {
       _crashlytics.log('User ID cleared');
       developer.log('Crashlytics: User ID cleared');
@@ -301,6 +259,7 @@ class CrashlyticsService {
 
   /// Check if Crashlytics is collecting errors
   static Future<bool> isCrashlyticsCollectionEnabled() async {
+    if (_disabledOnWeb) return false;
     try {
       return kDebugMode ? false : true;
     } catch (e) {

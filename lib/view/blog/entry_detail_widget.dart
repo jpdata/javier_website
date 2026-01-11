@@ -1,6 +1,7 @@
 import 'dart:developer' as developer;
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:go_router/go_router.dart';
 import 'package:javier_website/core/l10n/app_locale.dart';
@@ -55,6 +56,21 @@ class EntryDetailWidget extends StatelessWidget {
                       ),
                     ),
                   ),
+                ),
+                IconButton(
+                  tooltip: 'Copiar enlace',
+                  onPressed: () async {
+                    final origin = Uri.base.origin; // preserves scheme + host (+ port in local dev)
+                    final shareUrl = '$origin/blog/${entry.id}';
+                    await Clipboard.setData(ClipboardData(text: shareUrl));
+                    if (context.mounted) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Enlace copiado')), // brief feedback
+                      );
+                    }
+                  },
+                  icon: const Icon(Icons.link),
+                  color: AppTheme.lightTheme.colorScheme.secondary,
                 ),
               ],
             ),
@@ -154,14 +170,15 @@ class EntryDetailWidget extends StatelessWidget {
                   ),
                 ),
               ),
-            if (showEditEntryButton) const SizedBox(height: 32),
-            if (showEditEntryButton)
+            if (showEditEntryButton) ...[
+              const SizedBox(height: 32),
               ElevatedButton(
                 onPressed: () async {
                   await context.pushNamed(RoutNames.blogEditEntry, extra: entry);
                 },
                 child: const Text('Editar entrada'),
               ),
+            ],
           ],
         ),
       ),

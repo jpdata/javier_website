@@ -10,11 +10,13 @@ class ResumedEntriesFromFirebase extends ConsumerWidget {
   final int page;
   final bool showLoggedActions;
 
-  const ResumedEntriesFromFirebase({super.key, this.listLength = 3, this.page = 0, this.showLoggedActions = true});
+  const ResumedEntriesFromFirebase({super.key, this.listLength = 10, this.page = 0, this.showLoggedActions = true});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final entriesAsync = ref.watch(entriesViewModelProvider(limit: listLength, page: page));
+    // Watch the provider without parameters to get the managed state from the viewmodel
+    final entriesAsync = ref.watch(entriesViewModelProvider());
+    final entriesNotifier = ref.watch(entriesViewModelProvider().notifier);
 
     return ReusableEntriesList<Entry>(
       data: entriesAsync,
@@ -24,6 +26,8 @@ class ResumedEntriesFromFirebase extends ConsumerWidget {
         showEditAction: showLoggedActions,
         showDeleteAction: showLoggedActions,
         showLoggedActions: showLoggedActions,
+        hasPreviousPage: entriesNotifier.hasPreviousPage,
+        hasNextPage: entriesNotifier.hasNextPage,
       ),
     );
   }

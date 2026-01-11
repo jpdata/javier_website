@@ -37,6 +37,14 @@ class AppRouter {
           return EntryDetailPage(id: state.pathParameters['id']!);
         },
       ),
+      // SEO-friendly alias: /blog/:id
+      GoRoute(
+        path: RoutPaths.blogEntrySeo,
+        name: RoutNames.blogEntrySeo,
+        builder: (context, state) {
+          return EntryDetailPage(id: state.pathParameters['id']!);
+        },
+      ),
       GoRoute(
         path: RoutPaths.blogEditEntry,
         name: RoutNames.blogEditEntry,
@@ -69,8 +77,9 @@ class AppRouter {
         path: RoutPaths.newsEditEntry,
         name: RoutNames.newsEditEntry,
         builder: (context, state) {
-          var entry =
-              (state.extra is Map) ? NewsEntry.fromJson(state.extra as Map<String, Object?>) : state.extra as NewsEntry;
+          var entry = (state.extra is Map)
+              ? NewsEntry.fromJson(state.extra as Map<String, Object?>)
+              : state.extra as NewsEntry;
           return NewsEditEntryPage(newsEntry: entry);
         },
       ),
@@ -90,11 +99,7 @@ class AppRouter {
       ),
 
       //-------------------AUTH-------------------
-      GoRoute(
-        path: RoutPaths.signIn,
-        name: RoutNames.signIn,
-        builder: (context, state) => const SignInPage(),
-      ),
+      GoRoute(path: RoutPaths.signIn, name: RoutNames.signIn, builder: (context, state) => const SignInPage()),
     ],
   );
 }

@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:javier_website/core/analytics_service.dart';
 import 'package:javier_website/core/error_handler.dart';
 import 'package:javier_website/view/blog/entry_detail_widget.dart';
-import 'package:javier_website/view/themes/app_theme.dart';
+import 'package:javier_website/view/widgets/common_scaffold.dart';
 import 'package:javier_website/viewmodel/auth/auth_view_model.dart';
 import 'package:javier_website/viewmodel/blog/entries_view_model.dart';
 
@@ -27,13 +27,23 @@ class _EntryDetailPageState extends ConsumerState<EntryDetailPage> {
   Widget build(BuildContext context) {
     final entry = ref.watch(entryViewModelProvider(widget.id));
     final auth = ref.watch(authViewModelProvider.notifier);
+    double screenWidth = MediaQuery.of(context).size.width;
 
-    return entry.when(
-      data: (data) => Container(
-        color: AppTheme.lightTheme.colorScheme.surface,
-        child: EntryDetailWidget(entry: data, showEditEntryButton: auth.isLoggedIn())),
-      error: (error, stackTrace) => ErrorHandler.errorWidget(error),
-      loading: () => const Center(child: CircularProgressIndicator()),
+    return CommonScaffold(
+      showBackButton: true,
+      title: 'Artículo',
+      showTitle: true,
+      child: entry.when(
+        data: (data) => Padding(
+          padding: EdgeInsets.fromLTRB(screenWidth * .10, 8, screenWidth * .10, 16),
+          child: SingleChildScrollView(
+            physics: const BouncingScrollPhysics(),
+            child: EntryDetailWidget(entry: data, showEditEntryButton: auth.isLoggedIn()),
+          ),
+        ),
+        error: (error, stackTrace) => Center(child: ErrorHandler.errorWidget(error)),
+        loading: () => const Center(child: CircularProgressIndicator()),
+      ),
     );
   }
 }

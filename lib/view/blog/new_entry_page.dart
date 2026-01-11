@@ -1,6 +1,4 @@
 import 'dart:developer' as developer;
-
-import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -31,7 +29,7 @@ class _NewEntryPageState extends ConsumerState<NewEntryPage> {
   final _bannerImageUrlController = TextEditingController();
   final _tagsController = StringTagController<String>();
   File? _selectedImage;
-  FilePickerResult? _selectedImageWeb;
+  Uint8List? _selectedImageWebBytes;
 
   late double _distanceToField;
 
@@ -91,23 +89,12 @@ class _NewEntryPageState extends ConsumerState<NewEntryPage> {
                   ),
                   _htmlEditorField(),
                   const SizedBox(height: 10),
-                  if (_selectedImage != null)
-                    kIsWeb
-                        ? Image.network(
-                            _selectedImage!.path,
-                            height: 200,
-                            fit: BoxFit.cover,
-                          )
-                        : Image.file(
-                            _selectedImage!,
-                            height: 200,
-                            fit: BoxFit.cover,
-                          ),
-                  if (_selectedImage != null) const SizedBox(height: 10),
-                  ElevatedButton(
-                    onPressed: _pickImage,
-                    child: Text(localizations.pickAnImage),
-                  ),
+                  if (kIsWeb && _selectedImageWebBytes != null)
+                    Image.memory(_selectedImageWebBytes!, height: 200, fit: BoxFit.cover),
+                  if (!kIsWeb && _selectedImage != null) Image.file(_selectedImage!, height: 200, fit: BoxFit.cover),
+                  if ((kIsWeb && _selectedImageWebBytes != null) || (!kIsWeb && _selectedImage != null))
+                    const SizedBox(height: 10),
+                  ElevatedButton(onPressed: _pickImage, child: Text(localizations.pickAnImage)),
                   const SizedBox(height: 10),
                   _tagsField(),
                   const SizedBox(height: 20),
@@ -126,36 +113,34 @@ class _NewEntryPageState extends ConsumerState<NewEntryPage> {
                           tags: tags,
                           comments: [],
                         );
-                        var createdEntry =
-                            await ref.read(entriesViewModelProvider().notifier).createEntry(entryToCreate);
+                        var createdEntry = await ref
+                            .read(entriesViewModelProvider().notifier)
+                            .createEntry(entryToCreate);
 
-                        if (_selectedImageWeb?.files.single.bytes != null) {
-                          Uint8List imageBytes = _selectedImageWeb!.files.single.bytes!;
-                          String fileName = _selectedImageWeb!.files.single.name;
-
+                        if (kIsWeb && _selectedImageWebBytes != null) {
+                          // En web, usa los bytes guardados
+                          final fileName = 'image.jpg';
                           final storageRef = FirebaseStorage.instance.ref().child('blog/${createdEntry.id}/$fileName');
-
-                          await storageRef.putData(imageBytes);
-
-                          developer.log('✅ Upload completo: ${storageRef.fullPath}');
-                        } else {
-                          if (_selectedImage != null) {
-                            // Upload the image to Firestore
-                            final storageRef = FirebaseStorage.instance
-                                .ref()
-                                .child('blog/${createdEntry.id}/${_selectedImage!.path.split('/').last}');
-                            await storageRef.putFile(_selectedImage!);
-                          }
+                          await storageRef.putData(_selectedImageWebBytes!);
+                          developer.log('✅ Upload completado en web: ${storageRef.fullPath}');
+                        } else if (!kIsWeb && _selectedImage != null) {
+                          // En móvil/desktop, sube el archivo
+                          final storageRef = FirebaseStorage.instance.ref().child(
+                            'blog/${createdEntry.id}/${_selectedImage!.path.split('/').last}',
+                          );
+                          await storageRef.putFile(_selectedImage!);
+                          developer.log('✅ Upload completado en móvil: ${storageRef.fullPath}');
                         }
+
                         String imageName;
                         if (kIsWeb) {
-                          imageName = _selectedImageWeb?.files.single.name ?? '';
+                          imageName = _selectedImageWebBytes != null ? 'image.jpg' : '';
                         } else {
                           imageName = _selectedImage?.path.split('/').last ?? '';
                         }
-                        ref.read(entryViewModelProvider(createdEntry.id).notifier).updateEntry(createdEntry.copyWith(
-                              bannerImageUrl: imageName,
-                            ));
+                        ref
+                            .read(entryViewModelProvider(createdEntry.id).notifier)
+                            .updateEntry(createdEntry.copyWith(bannerImageUrl: imageName));
 
                         if (context.mounted) {
                           context.pop();
@@ -183,20 +168,18 @@ class _NewEntryPageState extends ConsumerState<NewEntryPage> {
   }
 
   Future<void> _pickImage() async {
-    if (kIsWeb) {
-      _selectedImageWeb = await FilePicker.platform.pickFiles(
-        type: FileType.image,
-        allowMultiple: false,
-      );
-      if (_selectedImageWeb != null) {
-        setState(() {});
-      }
-    } else {
-      // En móvil o desktop, puedes usar el ImagePicker
-      final picker = ImagePicker();
-      final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+    final picker = ImagePicker();
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
 
-      if (pickedFile != null) {
+    if (pickedFile != null) {
+      if (kIsWeb) {
+        // En web, obtén los bytes directamente
+        final bytes = await pickedFile.readAsBytes();
+        setState(() {
+          _selectedImageWebBytes = bytes;
+        });
+      } else {
+        // En móvil o desktop
         setState(() {
           _selectedImage = File(pickedFile.path);
         });
@@ -226,21 +209,13 @@ class _NewEntryPageState extends ConsumerState<NewEntryPage> {
           decoration: InputDecoration(
             isDense: true,
             border: OutlineInputBorder(
-              borderSide: BorderSide(
-                color: AppTheme.lightTheme.colorScheme.primary,
-                width: 3.0,
-              ),
+              borderSide: BorderSide(color: AppTheme.lightTheme.colorScheme.primary, width: 3.0),
             ),
             focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-                color: AppTheme.lightTheme.colorScheme.primary,
-                width: 3.0,
-              ),
+              borderSide: BorderSide(color: AppTheme.lightTheme.colorScheme.primary, width: 3.0),
             ),
             helperText: localizations.tags,
-            helperStyle: TextStyle(
-              color: AppTheme.lightTheme.colorScheme.secondary,
-            ),
+            helperStyle: TextStyle(color: AppTheme.lightTheme.colorScheme.secondary),
             hintText: inputFieldValues.tags.isNotEmpty ? '' : '',
             errorText: inputFieldValues.error,
             prefixIconConstraints: BoxConstraints(maxWidth: _distanceToField * 0.8),
@@ -249,52 +224,43 @@ class _NewEntryPageState extends ConsumerState<NewEntryPage> {
                     controller: inputFieldValues.tagScrollController,
                     scrollDirection: Axis.vertical,
                     child: Padding(
-                      padding: const EdgeInsets.only(
-                        top: 8,
-                        bottom: 8,
-                        left: 8,
-                      ),
+                      padding: const EdgeInsets.only(top: 8, bottom: 8, left: 8),
                       child: Wrap(
-                          runSpacing: 4.0,
-                          spacing: 4.0,
-                          children: inputFieldValues.tags.map((String tag) {
-                            return Container(
-                              decoration: BoxDecoration(
-                                borderRadius: const BorderRadius.all(
-                                  Radius.circular(5.0),
-                                ),
-                                color: AppTheme.lightTheme.colorScheme.onPrimary,
-                              ),
-                              margin: const EdgeInsets.symmetric(horizontal: 5.0),
-                              padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  InkWell(
-                                    child: Text(
-                                      '#$tag',
-                                      style: TextStyle(color: AppTheme.lightTheme.colorScheme.primary),
-                                    ),
-                                    onTap: () {
-                                      //print("$tag selected");
-                                    },
+                        runSpacing: 4.0,
+                        spacing: 4.0,
+                        children: inputFieldValues.tags.map((String tag) {
+                          return Container(
+                            decoration: BoxDecoration(
+                              borderRadius: const BorderRadius.all(Radius.circular(5.0)),
+                              color: AppTheme.lightTheme.colorScheme.onPrimary,
+                            ),
+                            margin: const EdgeInsets.symmetric(horizontal: 5.0),
+                            padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                InkWell(
+                                  child: Text(
+                                    '#$tag',
+                                    style: TextStyle(color: AppTheme.lightTheme.colorScheme.primary),
                                   ),
-                                  const SizedBox(width: 4.0),
-                                  InkWell(
-                                    child: Icon(
-                                      Icons.cancel,
-                                      size: 14.0,
-                                      color: AppTheme.lightTheme.colorScheme.primary,
-                                    ),
-                                    onTap: () {
-                                      inputFieldValues.onTagRemoved(tag);
-                                    },
-                                  )
-                                ],
-                              ),
-                            );
-                          }).toList()),
+                                  onTap: () {
+                                    //print("$tag selected");
+                                  },
+                                ),
+                                const SizedBox(width: 4.0),
+                                InkWell(
+                                  child: Icon(Icons.cancel, size: 14.0, color: AppTheme.lightTheme.colorScheme.primary),
+                                  onTap: () {
+                                    inputFieldValues.onTagRemoved(tag);
+                                  },
+                                ),
+                              ],
+                            ),
+                          );
+                        }).toList(),
+                      ),
                     ),
                   )
                 : null,
@@ -326,18 +292,13 @@ class _NewEntryPageState extends ConsumerState<NewEntryPage> {
           ],
           toolbarPosition: ToolbarPosition.belowEditor,
           toolbarType: ToolbarType.nativeScrollable,
-          textStyle: TextStyle(
-            fontFamily: 'Roboto',
-            color: AppTheme.lightTheme.colorScheme.secondary,
-          ),
+          textStyle: TextStyle(fontFamily: 'Roboto', color: AppTheme.lightTheme.colorScheme.secondary),
           dropdownBackgroundColor: AppTheme.lightTheme.colorScheme.primary,
           onButtonPressed: (button, controller, focusNode) {
             return true;
           },
         ),
-        htmlEditorOptions: HtmlEditorOptions(
-          hint: localizations.content,
-        ),
+        htmlEditorOptions: HtmlEditorOptions(hint: localizations.content),
         otherOptions: OtherOptions(
           decoration: BoxDecoration(
             color: AppTheme.lightTheme.colorScheme.primary,

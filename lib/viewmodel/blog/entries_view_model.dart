@@ -30,56 +30,94 @@ final combinedUserEntriesProvider = Provider<({AsyncValue<User> user, AsyncValue
 
 @Riverpod()
 class EntryViewModel extends _$EntryViewModel {
+  bool _isDisposed = false;
+
   @override
   Future<Entry> build(String id) async {
+    ref.onDispose(() {
+      _isDisposed = true;
+    });
+
     final snapshot = await _entriesCollection.reference.doc(id).get();
     return snapshot.data()!.toEntity();
   }
 
   Future<void> updateEntry(Entry entry) async {
+    if (_isDisposed) return;
+
     state = const AsyncValue.loading();
-    state = await AsyncValue.guard(() async {
+    try {
       await _entriesCollection.doc(entry.id).set(entry.toDto());
-      return entry;
-    });
+      if (_isDisposed) return;
+      state = AsyncValue.data(entry);
+    } catch (err, st) {
+      if (_isDisposed) return;
+      state = AsyncValue.error(err, st);
+    }
   }
 }
 
 @Riverpod()
 class EntriesViewModel extends _$EntriesViewModel {
-  int _limit = 4;
+  int _limit = 10;
   int _page = 0;
+  bool _hasNextPage = false;
+  bool _isDisposed = false;
+
+  bool get hasNextPage => _hasNextPage;
+  bool get hasPreviousPage => _page > 0;
+  int get currentPage => _page;
 
   @override
   Future<List<Entry>> build({int? limit, int? page}) {
     _limit = limit ?? _limit;
     _page = page ?? _page;
+
+    ref.onDispose(() {
+      _isDisposed = true;
+    });
+
     return _fetchEntries(limit: _limit, page: _page);
   }
 
   Future<void> loadNextPage() async {
+    if (_isDisposed) return;
+
     state = const AsyncValue.loading();
-    state = await AsyncValue.guard(() async {
+    try {
       _page++;
-      return await _fetchEntries(limit: _limit, page: _page);
-    });
+      final entries = await _fetchEntries(limit: _limit, page: _page);
+      if (_isDisposed) return;
+      state = AsyncValue.data(entries);
+    } catch (err, st) {
+      if (_isDisposed) return;
+      state = AsyncValue.error(err, st);
+    }
   }
 
   Future<void> loadPreviousPage() async {
+    if (_isDisposed) return;
+
     state = const AsyncValue.loading();
-    state = await AsyncValue.guard(() async {
+    try {
       if (_page > 0) _page--;
-      return _fetchEntries(limit: _limit, page: _page);
-    });
+      final entries = await _fetchEntries(limit: _limit, page: _page);
+      if (_isDisposed) return;
+      state = AsyncValue.data(entries);
+    } catch (err, st) {
+      if (_isDisposed) return;
+      state = AsyncValue.error(err, st);
+    }
   }
 
   Future<List<Entry>> _fetchEntries({required int limit, required int page}) async {
-    var query = _entriesCollection.reference.orderBy('createdAt', descending: false).limit(limit);
+    // Fetch one extra element to know if there is another page available.
+    var query = _entriesCollection.reference.orderBy('createdAt', descending: true).limit(limit + 1);
 
     // Si es la página 0, no se usa paginación
     if (page > 0) {
       final snapshot = await _entriesCollection.reference
-          .orderBy('createdAt', descending: false)
+          .orderBy('createdAt', descending: true)
           .limit(limit * page) // Obtener hasta la página deseada
           .get();
 
@@ -91,38 +129,72 @@ class EntriesViewModel extends _$EntriesViewModel {
     final querySnapshot = await query.get();
     final entries = await Future.wait(querySnapshot.docs.map((doc) async => await doc.data().toEntity()).toList());
 
-    //_hasNextPage = !(entries.length < limit);
+    _hasNextPage = entries.length > limit;
 
-    return entries;
+    // If we fetched one extra entry, drop it before returning the page.
+    return _hasNextPage ? entries.sublist(0, limit) : entries;
   }
 
   Future<void> deleteEntry(String id) async {
+    if (_isDisposed) return;
+
     state = const AsyncValue.loading();
-    state = await AsyncValue.guard(() async {
+    try {
       await _entriesCollection.reference.doc(id).delete();
+      if (_isDisposed) return;
       await AnalyticsService.logEntryDeleted(entryId: id, entryType: 'blog_entry');
-      return _fetchEntries(limit: _limit, page: _page);
-    });
+      if (_isDisposed) return;
+      final entries = await _fetchEntries(limit: _limit, page: _page);
+      if (_isDisposed) return;
+      state = AsyncValue.data(entries);
+    } catch (err, st) {
+      if (_isDisposed) return;
+      state = AsyncValue.error(err, st);
+    }
   }
 
   Future<void> updateEntry(Entry entry) async {
+    if (_isDisposed) return;
+
     state = const AsyncValue.loading();
-    state = await AsyncValue.guard(() async {
+    try {
       await _entriesCollection.reference.doc(entry.id).set(entry.toDto());
-      return await _fetchEntries(limit: _limit, page: _page);
-    });
+      if (_isDisposed) return;
+      final entries = await _fetchEntries(limit: _limit, page: _page);
+      if (_isDisposed) return;
+      state = AsyncValue.data(entries);
+    } catch (err, st) {
+      if (_isDisposed) return;
+      state = AsyncValue.error(err, st);
+    }
   }
 
   Future<Entry> createEntry(Entry entry) async {
+    if (_isDisposed) return entry;
+
     state = const AsyncValue.loading();
     String id = '';
-    state = await AsyncValue.guard(() async {
+    try {
       var result = await _entriesCollection.add(entry.toDto());
       id = result.id;
+      if (_isDisposed) return entry.copyWith(id: id);
+
+      final newEntry = entry.copyWith(id: id);
       await AnalyticsService.logEntryCreated(entryId: id, entryType: 'blog_entry', wordCount: entry.content.length);
-      return _fetchEntries(limit: _limit, page: _page);
-    });
-    return entry.copyWith(id: id);
+      if (_isDisposed) return newEntry;
+
+      // Reset to first page and add the new entry at the top
+      _page = 0;
+      final currentEntries = state.value ?? [];
+      final updatedEntries = [newEntry, ...currentEntries];
+      _hasNextPage = updatedEntries.length > _limit;
+      state = AsyncValue.data(updatedEntries);
+      return newEntry;
+    } catch (err, st) {
+      if (_isDisposed) return entry.copyWith(id: id);
+      state = AsyncValue.error(err, st);
+      return entry.copyWith(id: id);
+    }
   }
 
   Future<Entry?> getEntryById(String id) async {
